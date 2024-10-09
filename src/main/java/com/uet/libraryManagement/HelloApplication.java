@@ -1,8 +1,6 @@
-package com.example.librarymanagement_demo;
+package com.uet.libraryManagement;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;

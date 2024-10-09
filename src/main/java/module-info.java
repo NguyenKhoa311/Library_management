@@ -3,6 +3,6 @@ module com.example.librarymanagement_demo {
     requires javafx.fxml;
 
 
-    opens com.example.librarymanagement_demo to javafx.fxml;
-    exports com.example.librarymanagement_demo;
+    opens com.uet.libraryManagement to javafx.fxml;
+    exports com.uet.libraryManagement;
 }

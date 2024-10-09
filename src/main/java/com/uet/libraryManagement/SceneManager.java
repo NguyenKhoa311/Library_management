@@ -1,4 +1,4 @@
-package com.example.librarymanagement_demo;
+package com.uet.libraryManagement;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
