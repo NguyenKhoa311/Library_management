@@ -38,6 +38,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        
     </dependencies>
 
     <build>
@@ -61,7 +62,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.librarymanagement_demo/com.uet.libraryManagement.HelloApplication
+                                com.uet.libraryManagement.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

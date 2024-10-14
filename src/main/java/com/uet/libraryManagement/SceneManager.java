@@ -24,7 +24,7 @@ public class SceneManager {
     public void setScene(String sceneName) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(sceneName));
 
-        Scene scene = new Scene(fxmlLoader.load(), 300, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
 //        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
         rootStage.setTitle("Library Management");
