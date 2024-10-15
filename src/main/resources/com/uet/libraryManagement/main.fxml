@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.MainController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.MenuController">
    <children>
-      <VBox layoutY="100.0" prefHeight="200.0" prefWidth="220.0" />
       <HBox prefHeight="30.0" prefWidth="600.0">
          <children>
             <Label alignment="CENTER" prefHeight="30.0" prefWidth="41.0">
@@ -21,29 +19,35 @@
                      </image></ImageView>
                </graphic>
             </Label>
-            <Button mnemonicParsing="false" onAction="#Documents" prefHeight="30.0" prefWidth="110.0" text="Documents">
+            <JFXButton onAction="#Documents" prefHeight="30.0" prefWidth="110.0" text="Documents">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/documents.png" />
-                     </image></ImageView>
-               </graphic></Button>
-            <Button mnemonicParsing="false" onAction="#Manage" prefHeight="30.0" prefWidth="110.0" text="Manage">
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton onAction="#Manage" prefHeight="30.0" prefWidth="110.0" text="Manage">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/manage.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button mnemonicParsing="false" onAction="#Issue" prefHeight="30.0" prefWidth="110.0" text="Issue book">
+               </graphic>
+            </JFXButton>
+            <JFXButton onAction="#Issue" prefHeight="30.0" prefWidth="110.0" text="Issue book">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/books.png" />
-                     </image></ImageView>
-               </graphic></Button>
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
       </HBox>
+      <AnchorPane fx:id="contentPane" layoutY="29.0" prefHeight="371.0" prefWidth="600.0" />
    </children>
 </AnchorPane>
