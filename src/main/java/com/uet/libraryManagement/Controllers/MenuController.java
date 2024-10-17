@@ -1,6 +1,6 @@
-package com.uet.libraryManagement;
+package com.uet.libraryManagement.Controllers;
 
-import javafx.event.ActionEvent;
+import com.uet.libraryManagement.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
@@ -17,17 +17,17 @@ public class MenuController {
 
     @FXML
     void Documents() throws IOException {
-        SceneManager.getInstance().setSubScene("hello-view.fxml");
+        SceneManager.getInstance().setSubScene("Documents.fxml");
     }
 
     @FXML
     void Issue() {
-
+        SceneManager.getInstance().setSubScene("IssueBook.fxml");
     }
 
     @FXML
     void Manage() {
-
+        SceneManager.getInstance().setSubScene("ManageDocuments.fxml");
     }
 
 }
