@@ -9,7 +9,7 @@ public class LibraryManagementApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         SceneManager.getInstance().setStage(stage);
-        SceneManager.getInstance().setScene("main.fxml");
+        SceneManager.getInstance().setScene("UserMenu.fxml");
     }
 
     public static void main(String[] args) {

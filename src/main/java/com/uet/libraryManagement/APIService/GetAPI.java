@@ -11,7 +11,7 @@ import com.google.gson.*;
 public class GetAPI {
     public static void main(String[] args) {
         String apiKey = "AIzaSyB5gHzt3vVKJHxU4R-g8MEMibYNtxtIRC4";
-        String query = "C++";
+        String query = "intitle:Doraemon";
 
         try {
             String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8.toString());
@@ -46,6 +46,7 @@ public class GetAPI {
                 VolumeResponse volumeResponse = gson.fromJson(content.toString(), VolumeResponse.class);
 
                 // Duyệt qua từng volume và in thông tin cần thiết
+                // iterating through each volume to get information
                 for (Volume volume : volumeResponse.items) {
                     VolumeInfo volumeInfo = volume.volumeInfo;
                     String title = volumeInfo.title != null ? volumeInfo.title : "N/A";
@@ -53,11 +54,9 @@ public class GetAPI {
                     String publishedDate = volumeInfo.publishedDate != null ? volumeInfo.publishedDate : "N/A";
                     String publisher = volumeInfo.publisher != null ? volumeInfo.publisher : "N/A";
                     String description = volumeInfo.description != null ? volumeInfo.description : "N/A";
-
                     String categories = volumeInfo.categories != null ? String.join(", ", volumeInfo.categories) : "N/A";
 
-
-                    // In ra thông tin
+                    // Print out result sets
                     System.out.println("Title: " + title);
                     System.out.println("Authors: " + authors);
                     System.out.println("Published Date: " + publishedDate);
@@ -67,8 +66,7 @@ public class GetAPI {
                     System.out.println();
                 }
 
-
-                // Đóng kết nối
+                // Stop connecting
                 in.close();
                 conn.disconnect();
             }
