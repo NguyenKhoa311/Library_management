@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.uet.libraryManagement.Controllers.HomeController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.HomeController">
+   <children>
+      <ImageView fitHeight="294.0" fitWidth="200.0" layoutX="54.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../test.JPG" />
+         </image>
+      </ImageView>
+      <Label fx:id="version_label" layoutX="350.0" layoutY="62.0" prefHeight="18.0" prefWidth="200.0" text="Phiên bản: demo" />
+      <Label fx:id="appname_label" layoutX="350.0" layoutY="37.0" prefHeight="18.0" prefWidth="200.0" text="Ứng dụng quản lý thư viện" />
+      <Label fx:id="authors_label" layoutX="350.0" layoutY="89.0" prefHeight="18.0" prefWidth="200.0" text="Tác giả: H-K-K" />
+      <Label fx:id="time_label" layoutX="350.0" layoutY="115.0" prefHeight="18.0" prefWidth="187.0" text="dd:MM:yyyy HH:mm:ss" />
+   </children>
 </AnchorPane>

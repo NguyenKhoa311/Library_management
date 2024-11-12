@@ -1,0 +1,43 @@
+.root {
+    -fx-background-color: black;
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+}
+
+.buttons {
+    -fx-text-fill: white;
+}
+
+.jfx-button {
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-text-fill: black;
+}
+
+#Title_page {
+    -fx-font-size: 30;
+    -fx-font-family: Montserrat;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
+
+.tree-view {
+    -fx-background-color: black;
+    -fx-border-color: white;
+}
+
+.tree-view .cell {
+    -fx-text-fill: white; /* Set text color for each cell */
+    -fx-background-color: black; /* Background color of cells */
+    -fx-border-color: white;
+}
+
+.tree-view .tree-cell {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}

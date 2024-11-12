@@ -1,19 +1,31 @@
 package com.uet.libraryManagement;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class SceneManager {
+
     @FXML
     private AnchorPane contentPane;
 
     private static SceneManager instance;
     private static Stage rootStage;
+    private boolean isLight = true;
+
+    private Scene scene;
 
     private SceneManager() {}
 
@@ -24,12 +36,27 @@ public class SceneManager {
     public void setScene(String sceneName) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(sceneName));
 
-        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
-//        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        scene = new Scene(fxmlLoader.load(), 700, 500);
+
+        setDL_Mode(isLight);
 
         rootStage.setTitle("Library Management");
         rootStage.setScene(scene);
         rootStage.show();
+    }
+
+    public void setDL_Mode(boolean state) {
+        isLight = state;
+        String css;
+        if (isLight) {
+            css = this.getClass().getResource("CSS/Light-mode.css").toExternalForm();
+            scene.getStylesheets().clear();
+        } else {
+            css = this.getClass().getResource("CSS/Dark-mode.css").toExternalForm();
+            scene.getStylesheets().clear();
+        }
+
+        scene.getStylesheets().add(css);
     }
 
     public static SceneManager getInstance() {
