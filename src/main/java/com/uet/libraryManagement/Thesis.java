@@ -9,8 +9,13 @@ public class Thesis extends Document {
 
     }
 
-    public Thesis(String id, String title, String author, String publisher, String description, int year, String field) {
-        super(id, title, author, publisher, description, year);
+    public Thesis(String title, String author, String publisher, String description, String year, String field, String url, String isbn10, String isbn13) {
+        super(title, author, publisher, description, year, url, isbn10, isbn13);
+        this.field = field;
+    }
+
+    public Thesis(int id, String title, String author, String publisher, String description, String year, String field, String url, String isbn10, String isbn13) {
+        super(id, title, author, publisher, description, year, url, isbn10, isbn13);
         this.field = field;
     }
 

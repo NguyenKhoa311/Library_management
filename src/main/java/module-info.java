@@ -4,6 +4,7 @@ module com.example.librarymanagement_demo {
     requires com.google.gson;
     requires com.jfoenix;
     requires jdk.compiler;
+    requires java.sql;
 
 
     opens com.uet.libraryManagement to javafx.fxml;

@@ -9,4 +9,6 @@ public class VolumeInfo {
     public String publisher;
     public String description;
     public List<String> categories;
+    public ImageLinks imageLinks;
+    public IndustryIdentifier[] industryIdentifiers;
 }

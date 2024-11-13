@@ -8,7 +8,6 @@ public class Book extends Document {
     // attribute
 
     public static List<String> allGenres = new ArrayList<>(Arrays.asList("làm giàu", "làm người", "nấu ăn"));
-    private String isbn;
     private String genre;
 
     // constructors
@@ -16,21 +15,17 @@ public class Book extends Document {
 
     }
 
-   public Book(String id, String title, String author, String publisher, String description, int year, String isbn, String genre) {
-        super(id, title, author, publisher, description, year);
-        this.isbn = isbn;
+    public Book(String title, String author, String publisher, String description, String year, String genre, String url, String isbn10, String isbn13) {
+        super(title, author, publisher, description, year, url, isbn10, isbn13);
+        this.genre = genre;
+    }
+
+   public Book(int id, String title, String author, String publisher, String description, String year, String genre, String url, String isbn10, String isbn13) {
+        super(id, title, author, publisher, description, year, url, isbn10, isbn13);
         this.genre = genre;
    }
 
     // getters, setters
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     public String getGenre() {
         return genre;
     }

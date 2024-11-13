@@ -2,35 +2,50 @@ package com.uet.libraryManagement;
 
 public class Document {
     // attributes
-    private String id;
+    private int id;
     private String title;
     private String author;
     private String publisher;
     private String description;
-    private int publicationYear;
+    private String publishedDate;
+    private String thumbnailUrl;
+    private String isbn10;
+    private String isbn13;
 
     //constructors
     public Document() {
 
     }
 
-    public Document(String id, String title, String author, String publisher, String description, int year) {
+    public Document(String title, String author, String publisher,
+                    String description, String year, String thumbnailUrl, String isbn10, String isbn13) {
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.description = description;
+        this.publishedDate = year;
+        this.thumbnailUrl = thumbnailUrl;
+        this.isbn10 = isbn10;
+        this.isbn13 = isbn13;
+    }
+
+    public Document(int id, String title, String author, String publisher,
+                    String description, String year, String thumbnailUrl, String isbn10, String isbn13) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.description = description;
-        this.publicationYear = year;
+        this.publishedDate = year;
+        this.thumbnailUrl = thumbnailUrl;
+        this.isbn10 = isbn10;
+        this.isbn13 = isbn13;
     }
 
     // getters, setters
-    public String getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
 
     public String getTitle() {
         return title;
@@ -64,11 +79,23 @@ public class Document {
         this.description = description;
     }
 
-    public int getYear() {
-        return publicationYear;
+    public String getYear() {
+        return publishedDate;
     }
 
-    public void setYear(int year) {
-        this.publicationYear = year;
+    public void setYear(String year) {
+        this.publishedDate = year;
     }
+
+    public String getThumbnailUrl() { return thumbnailUrl; }
+
+    public void setThumbnailUrl(String thumbnailUrl) { this.thumbnailUrl = thumbnailUrl; }
+
+    public String getIsbn10() { return isbn10; }
+
+    public void setIsbn10(String isbn10) { this.isbn10 = isbn10; }
+
+    public String getIsbn13() { return isbn13; }
+
+    public void setIsbn13(String isbn13) { this.isbn13 = isbn13; }
 }

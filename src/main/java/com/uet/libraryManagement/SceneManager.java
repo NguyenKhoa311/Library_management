@@ -49,10 +49,10 @@ public class SceneManager {
         isLight = state;
         String css;
         if (isLight) {
-            css = this.getClass().getResource("CSS/Light-mode.css").toExternalForm();
+            css = Objects.requireNonNull(this.getClass().getResource("CSS/Light-mode.css")).toExternalForm();
             scene.getStylesheets().clear();
         } else {
-            css = this.getClass().getResource("CSS/Dark-mode.css").toExternalForm();
+            css = Objects.requireNonNull(this.getClass().getResource("CSS/Dark-mode.css")).toExternalForm();
             scene.getStylesheets().clear();
         }
 

@@ -1,5 +1,6 @@
 package com.uet.libraryManagement;
 
+import com.uet.libraryManagement.Controllers.MenuController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -21,20 +22,8 @@ public class LibraryManagementApp extends Application {
 
         stage.setOnCloseRequest(event -> {
             event.consume();
-            logout(stage);
+            MenuController.close(stage);
         });
-    }
-
-    public void logout(Stage stage) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("You're about to logout!");
-        alert.setContentText("Are you sure you want to logout?");
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            System.out.println("Logged out successfully");
-            stage.close();
-        }
     }
 
     public static void main(String[] args) {

@@ -7,12 +7,14 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import com.google.gson.*;
+import com.uet.libraryManagement.Book;
+import com.uet.libraryManagement.BookRepository;
 
 public class GetAPI {
     public static void main(String[] args) {
+        BookRepository bookRepository = new BookRepository();
         String apiKey = "AIzaSyB5gHzt3vVKJHxU4R-g8MEMibYNtxtIRC4";
-        String query = "intitle:Doraemon";
-
+        String query = "C++";
         try {
             String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8.toString());
             String urlString = "https://www.googleapis.com/books/v1/volumes?q=" + encodedQuery + "&key=" + apiKey;
@@ -55,14 +57,31 @@ public class GetAPI {
                     String publisher = volumeInfo.publisher != null ? volumeInfo.publisher : "N/A";
                     String description = volumeInfo.description != null ? volumeInfo.description : "N/A";
                     String categories = volumeInfo.categories != null ? String.join(", ", volumeInfo.categories) : "N/A";
+                    String thumbnail = volumeInfo.imageLinks != null ? volumeInfo.imageLinks.thumbnail : "No Thumbnail";
 
+                    String isbn10 = "N/A";
+                    String isbn13 = "N/A";
+                    if (volumeInfo.industryIdentifiers != null) {
+                        for (IndustryIdentifier id : volumeInfo.industryIdentifiers) {
+                            if ("ISBN_10".equals(id.type)) {
+                                isbn10 = id.identifier;
+                            } else if ("ISBN_13".equals(id.type)) {
+                                isbn13 = id.identifier;
+                            }
+                        }
+                    }
+                    Book newBook = new Book(title, authors, publisher, description, publishedDate, categories, thumbnail, isbn10, isbn13);
+                    bookRepository.create(newBook);
                     // Print out result sets
-                    System.out.println("Title: " + title);
-                    System.out.println("Authors: " + authors);
-                    System.out.println("Published Date: " + publishedDate);
-                    System.out.println("Publisher: " + publisher);
-                    System.out.println("Description: " + description);
-                    System.out.println("Categories: " + categories);
+                    System.out.println("Title: " + newBook.getTitle());
+                    System.out.println("Authors: " + newBook.getAuthor());
+                    System.out.println("Published Date: " + newBook.getYear());
+                    System.out.println("Publisher: " + newBook.getPublisher());
+                    System.out.println("Description: " + newBook.getDescription());
+                    System.out.println("Categories: " + newBook.getGenre());
+                    System.out.println("Thumbnail: " + newBook.getThumbnailUrl());
+                    System.out.println("ISBN-10: " + newBook.getIsbn10());
+                    System.out.println("ISBN-13: " + newBook.getIsbn13());
                     System.out.println();
                 }
 

@@ -20,7 +20,6 @@ public class DocumentsController implements Initializable {
     private TreeView<String> book_types_tree;
 
     public void selectItem() {
-
         TreeItem<String> item =  book_types_tree.getSelectionModel().getSelectedItem();
         if (item != null) {
             genre.setText(item.getValue());

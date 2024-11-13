@@ -13,9 +13,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 public class MenuController {
@@ -35,6 +37,7 @@ public class MenuController {
     private void initialize() throws IOException {
         SceneManager.getInstance().setContentPane(contentPane);
         menuBox.setTranslateX(-menuBox.getPrefWidth());
+        Title_page.setText("Welcome to UET Library Management");
     }
 
     @FXML
@@ -54,14 +57,26 @@ public class MenuController {
         }
     }
 
+    public static void close(Stage stage) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit confirmation");
+        alert.setHeaderText("Do you really want to exit?");
+        alert.setContentText("Choose OK to exit the application.");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            System.out.println("Logged out successfully");
+            stage.close();
+        }
+    }
+
     public void DL_mode(ActionEvent event) {
         if (isLight) {
             SceneManager.getInstance().setDL_Mode(isLight);
-            DL_image.setImage(new Image(getClass().getResource("/com/uet/libraryManagement/icons/dark.png").toExternalForm()));
+            DL_image.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/uet/libraryManagement/icons/dark.png")).toExternalForm()));
             isLight = false;
         } else {
             SceneManager.getInstance().setDL_Mode(isLight);
-            Image image = new Image(getClass().getResource("/com/uet/libraryManagement/icons/dark.png").toExternalForm());
+            Image image = new Image(Objects.requireNonNull(getClass().getResource("/com/uet/libraryManagement/icons/light.png")).toExternalForm());
             DL_image.setImage(image);
             isLight = true;
         }

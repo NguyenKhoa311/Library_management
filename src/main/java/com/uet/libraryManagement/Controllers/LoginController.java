@@ -43,6 +43,8 @@ public class LoginController {
         if (validateLogin()) {
             try {
                 SceneManager.getInstance().setScene("UserMenu.fxml");
+                SceneManager.getInstance().setSubScene("Home.fxml");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
