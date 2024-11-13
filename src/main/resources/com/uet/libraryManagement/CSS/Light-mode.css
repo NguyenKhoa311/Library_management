@@ -1,0 +1,25 @@
+.root {
+    -fx-background-color: whitesmoke;
+}
+
+.label {
+    -fx-text-fill: black;
+    -fx-font-family: Arial;
+}
+
+.buttons {
+    -fx-text-fill: black;
+}
+
+.jfx-button {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+#Title_page {
+    -fx-font-size: 30;
+    -fx-font-family: Montserrat;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-alignment: center;
+}

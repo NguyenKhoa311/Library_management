@@ -1,7 +1,13 @@
 package com.uet.libraryManagement;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Book extends Document {
     // attribute
+
+    public static List<String> allGenres = new ArrayList<>(Arrays.asList("làm giàu", "làm người", "nấu ăn"));
     private String isbn;
     private String genre;
 

@@ -1,0 +1,37 @@
+.root {
+    -fx-background-color: #669999;
+}
+.text-field {
+    -fx-text-fill: black;
+}
+.label {
+    -fx-font-size: 20;
+    -fx-font-family: Calibri;
+    -fx-text-fill: black;
+    -fx-alignment-baseline: middle;
+}
+.TextField {
+    -fx-alignment: center;
+}
+.buttons {
+    -fx-text-fill: white;
+}
+
+.jfx-button {
+    -fx-background-color: #669999;
+    -fx-text-fill: white;
+}
+
+#titleLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 60;
+    -fx-font-family: Calibri;
+}
+
+#Title_page {
+    -fx-font-size: 30;
+    -fx-font-family: Montserrat;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-alignment: center;
+}

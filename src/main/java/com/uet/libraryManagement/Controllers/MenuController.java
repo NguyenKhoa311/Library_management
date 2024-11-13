@@ -1,5 +1,6 @@
 package com.uet.libraryManagement.Controllers;
 
+import com.jfoenix.controls.JFXButton;
 import com.uet.libraryManagement.SceneManager;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -7,6 +8,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -15,6 +19,10 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class MenuController {
+    public Label Title_page;
+    private boolean isLight = false;
+    public JFXButton DL_mode;
+    public ImageView DL_image;
     @FXML
     private AnchorPane overlayPane;
 
@@ -46,45 +54,66 @@ public class MenuController {
         }
     }
 
+    public void DL_mode(ActionEvent event) {
+        if (isLight) {
+            SceneManager.getInstance().setDL_Mode(isLight);
+            DL_image.setImage(new Image("dark.png"));
+            isLight = false;
+        } else {
+            SceneManager.getInstance().setDL_Mode(isLight);
+            Image image = new Image("light.png");
+            DL_image.setImage(image);
+            isLight = true;
+
+        }
+    }
+
     @FXML
     private void Home() {
         SceneManager.getInstance().setSubScene("Home.fxml");
+        Title_page.setText("Home");
         hideMenuBox();
     }
 
     @FXML
     private void Profile() {
         SceneManager.getInstance().setSubScene("Profile.fxml");
+        Title_page.setText("Profile");
         hideMenuBox();
     }
 
     @FXML
     private void Documents() throws IOException {
         SceneManager.getInstance().setSubScene("Documents.fxml");
+        Title_page.setText("Documents");
         hideMenuBox();
     }
 
     @FXML
     private void Issue() {
         SceneManager.getInstance().setSubScene("IssueBook.fxml");
+        Title_page.setText("Issue");
         hideMenuBox();
     }
 
     @FXML
     private void Manage() {
         SceneManager.getInstance().setSubScene("ManageDocuments.fxml");
+        Title_page.setText("Manage");
         hideMenuBox();
     }
 
     @FXML
     private void History() {
         SceneManager.getInstance().setSubScene("History.fxml");
+        Title_page.setText("History");
         hideMenuBox();
     }
 
     @FXML
     private void LogOut() {
         SceneManager.getInstance().setSubScene("Logout.fxml");
+        Title_page.setText("Logout");
         hideMenuBox();
     }
 
