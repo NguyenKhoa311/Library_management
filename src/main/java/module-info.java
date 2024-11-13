@@ -3,6 +3,7 @@ module com.example.librarymanagement_demo {
     requires javafx.fxml;
     requires com.google.gson;
     requires com.jfoenix;
+    requires jdk.compiler;
 
 
     opens com.uet.libraryManagement to javafx.fxml;

@@ -57,14 +57,13 @@ public class MenuController {
     public void DL_mode(ActionEvent event) {
         if (isLight) {
             SceneManager.getInstance().setDL_Mode(isLight);
-            DL_image.setImage(new Image("dark.png"));
+            DL_image.setImage(new Image(getClass().getResource("/com/uet/libraryManagement/icons/dark.png").toExternalForm()));
             isLight = false;
         } else {
             SceneManager.getInstance().setDL_Mode(isLight);
-            Image image = new Image("light.png");
+            Image image = new Image(getClass().getResource("/com/uet/libraryManagement/icons/dark.png").toExternalForm());
             DL_image.setImage(image);
             isLight = true;
-
         }
     }
 
