@@ -9,12 +9,15 @@ import java.nio.charset.StandardCharsets;
 import com.google.gson.*;
 import com.uet.libraryManagement.Book;
 import com.uet.libraryManagement.BookRepository;
+import com.uet.libraryManagement.Thesis;
+import com.uet.libraryManagement.ThesisRepository;
 
 public class GetAPI {
     public static void main(String[] args) {
-        BookRepository bookRepository = new BookRepository();
+//        BookRepository bookRepository = new BookRepository();
+        ThesisRepository thesisRepository = new ThesisRepository();
         String apiKey = "AIzaSyB5gHzt3vVKJHxU4R-g8MEMibYNtxtIRC4";
-        String query = "C++";
+        String query = "thesis";
         try {
             String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8.toString());
             String urlString = "https://www.googleapis.com/books/v1/volumes?q=" + encodedQuery + "&key=" + apiKey;
@@ -70,18 +73,19 @@ public class GetAPI {
                             }
                         }
                     }
-                    Book newBook = new Book(title, authors, publisher, description, publishedDate, categories, thumbnail, isbn10, isbn13);
-                    bookRepository.create(newBook);
+                    Thesis newThesis = new Thesis(title, authors, publisher, description, publishedDate, categories, thumbnail, isbn10, isbn13);
+//                    Book newBook = new Book(title, authors, publisher, description, publishedDate, categories, thumbnail, isbn10, isbn13);
+                    thesisRepository.create(newThesis);
                     // Print out result sets
-                    System.out.println("Title: " + newBook.getTitle());
-                    System.out.println("Authors: " + newBook.getAuthor());
-                    System.out.println("Published Date: " + newBook.getYear());
-                    System.out.println("Publisher: " + newBook.getPublisher());
-                    System.out.println("Description: " + newBook.getDescription());
-                    System.out.println("Categories: " + newBook.getGenre());
-                    System.out.println("Thumbnail: " + newBook.getThumbnailUrl());
-                    System.out.println("ISBN-10: " + newBook.getIsbn10());
-                    System.out.println("ISBN-13: " + newBook.getIsbn13());
+                    System.out.println("Title: " + newThesis.getTitle());
+                    System.out.println("Authors: " + newThesis.getAuthor());
+                    System.out.println("Published Date: " + newThesis.getYear());
+                    System.out.println("Publisher: " + newThesis.getPublisher());
+                    System.out.println("Description: " + newThesis.getDescription());
+                    System.out.println("Categories: " + newThesis.getField());
+                    System.out.println("Thumbnail: " + newThesis.getThumbnailUrl());
+                    System.out.println("ISBN-10: " + newThesis.getIsbn10());
+                    System.out.println("ISBN-13: " + newThesis.getIsbn13());
                     System.out.println();
                 }
 

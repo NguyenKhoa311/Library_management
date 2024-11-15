@@ -9,6 +9,6 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.uet.libraryManagement.Controllers.ProfileController"
-            layoutY="34.0" prefHeight="366.0" prefWidth="600.0">
+            prefHeight="464.0" prefWidth="700.0">
 
 </AnchorPane>

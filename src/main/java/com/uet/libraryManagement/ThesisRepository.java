@@ -5,17 +5,17 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
-public class BookRepository extends DocumentRepository {
+public class ThesisRepository extends DocumentRepository {
     protected String db_table;
     protected final ConnectJDBC connectJDBC;
 
-    public BookRepository() {
+    public ThesisRepository() {
         this.connectJDBC = new ConnectJDBC();
         loadDatabase();
     }
 
     @Override
     protected void loadDatabase() {
-        db_table = "books";
+        db_table = "theses";
     }
 }
