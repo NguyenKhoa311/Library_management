@@ -13,9 +13,9 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.MenuController">
    <children>
-      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#menuButton" prefHeight="38.0" prefWidth="110.0">
+      <JFXButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#menuButton" prefHeight="40.0" prefWidth="110.0">
          <graphic>
-            <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true">
                <image>
                   <Image url="@icons/menu_bar.png" />
                </image>
@@ -35,6 +35,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </JFXButton>
             <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" onAction="#Profile" prefHeight="40.0" prefWidth="110.0" text="Profile">
                <graphic>
@@ -77,9 +80,6 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>

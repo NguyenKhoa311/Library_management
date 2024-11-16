@@ -98,6 +98,10 @@ public class Document {
         this.publishedDate.set(year);
     }
 
+    public void setCategory(String category) {
+
+    }
+
     public String getCategory() {
         return "";
     }

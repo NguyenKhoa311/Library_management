@@ -3,7 +3,6 @@ package com.uet.libraryManagement;
 import com.uet.libraryManagement.Controllers.MenuController;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class LibraryManagementApp extends Application {

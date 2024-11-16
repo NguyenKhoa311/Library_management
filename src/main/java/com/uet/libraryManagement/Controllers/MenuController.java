@@ -2,6 +2,7 @@ package com.uet.libraryManagement.Controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.uet.libraryManagement.SceneManager;
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -98,7 +99,7 @@ public class MenuController {
 
     @FXML
     private void Documents() throws IOException {
-        SceneManager.getInstance().setSubScene("Documents.fxml");
+        SceneManager.getInstance().setSubScene("AdminDocuments.fxml");
         Title_page.setText("Documents");
         hideMenuBox();
     }
@@ -137,32 +138,49 @@ public class MenuController {
             hideMenuBox();
         } else {
             showMenuBox();
-            overlayPane.toFront(); // put overlayPane front
-            menuBox.toFront(); // put menuBox front overlayPane
-            overlayPane.setVisible(true); // show overlayPane
         }
     }
 
     private void showMenuBox() {
-        TranslateTransition transition = new TranslateTransition(Duration.millis(300), menuBox);
+        // Hiện overlayPane với độ mờ
+        overlayPane.setVisible(true);
+        overlayPane.toFront();
+        menuBox.toFront();
+
+        // Thiết lập hiệu ứng mờ dần cho overlayPane
+        FadeTransition fadeInOverlay = new FadeTransition(Duration.millis(300), overlayPane);
+        fadeInOverlay.setFromValue(0);     // bắt đầu từ trong suốt
+        fadeInOverlay.setToValue(0.5);     // kết thúc với độ mờ 50%
+        fadeInOverlay.play();
+
+        TranslateTransition transition = new TranslateTransition(Duration.millis(200), menuBox);
         transition.setFromX(-menuBox.getPrefWidth());  // start from left-most position
         transition.setToX(0);                            // end at x = 0
+        transition.setOnFinished(event -> isMenuVisible = true);
         transition.play();
-        isMenuVisible = !isMenuVisible;
-        menuBox.setVisible(true);  // show menu box
+        menuBox.setVisible(true);  // Hiển thị menu box
+
+        // Thêm sự kiện bấm chuột để ẩn menuBox khi bấm vào overlayPane
+        overlayPane.setOnMouseClicked(event -> hideMenuBox());
     }
 
     private void hideMenuBox() {
-        overlayPane.setVisible(false);
-        overlayPane.toBack();
-        TranslateTransition transition = new TranslateTransition(Duration.millis(300), menuBox);
+        // Ẩn overlayPane với hiệu ứng mờ dần
+        FadeTransition fadeOutOverlay = new FadeTransition(Duration.millis(200), overlayPane);
+        fadeOutOverlay.setFromValue(0.5);   // bắt đầu với độ mờ 50%
+        fadeOutOverlay.setToValue(0);       // kết thúc ở trong suốt
+        fadeOutOverlay.setOnFinished(event -> overlayPane.setVisible(false));
+        fadeOutOverlay.play();
+
+        TranslateTransition transition = new TranslateTransition(Duration.millis(200), menuBox);
         transition.setFromX(0);                          // start from x = 0
         transition.setToX(-menuBox.getPrefWidth());     // end at left-most position
         transition.setOnFinished(event -> {
             menuBox.setVisible(false); // hide menu box
+            overlayPane.toBack();
             menuBox.toBack();
+            isMenuVisible = false;
         });
         transition.play();
-        isMenuVisible = !isMenuVisible;
     }
 }

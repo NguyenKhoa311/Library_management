@@ -18,4 +18,9 @@ public class ThesisRepository extends DocumentRepository {
     protected void loadDatabase() {
         db_table = "theses";
     }
+
+    @Override
+    public String getDbTable() {
+        return db_table;
+    }
 }

@@ -35,4 +35,9 @@ public class Book extends Document {
     public String getCategory() {
         return genre.get();
     }
+
+    @Override
+    public void setCategory(String category) {
+        setGenre(category);
+    }
 }

@@ -35,4 +35,9 @@ public class Thesis extends Document {
     public String getCategory() {
         return field.get();
     }
+
+    @Override
+    public void setCategory(String category) {
+        setField(category);
+    }
 }

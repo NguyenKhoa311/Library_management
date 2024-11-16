@@ -18,4 +18,9 @@ public class BookRepository extends DocumentRepository {
     protected void loadDatabase() {
         db_table = "books";
     }
+
+    @Override
+    public String getDbTable() {
+        return db_table;
+    }
 }

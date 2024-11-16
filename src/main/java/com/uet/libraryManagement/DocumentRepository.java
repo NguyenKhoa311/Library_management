@@ -15,6 +15,8 @@ public abstract class DocumentRepository {
         loadDatabase();
     }
 
+    public abstract String getDbTable();
+
     // override in child class
     protected void loadDatabase() {
 
@@ -22,7 +24,7 @@ public abstract class DocumentRepository {
 
     public ObservableList<Document> getAllBooks() {
         ObservableList<Document> books = FXCollections.observableArrayList();
-        String query = "SELECT * FROM books";
+        String query = "SELECT * FROM " + getDbTable();
 
         try (ResultSet rs = connectJDBC.executeQuery(query)) {
             while (rs.next()) {
@@ -49,7 +51,7 @@ public abstract class DocumentRepository {
     // get all books from database
     public ObservableList<Document> getAllTheses() {
         ObservableList<Document> theses = FXCollections.observableArrayList();
-        String query = "SELECT * FROM theses";
+        String query = "SELECT * FROM " + getDbTable();
 
         try (ResultSet rs = connectJDBC.executeQuery(query)) {
             while (rs.next()) {
@@ -74,9 +76,9 @@ public abstract class DocumentRepository {
     }
 
     public void create(Document document) {
-        String checkQuery = "SELECT COUNT(*) FROM " + dbTable + " WHERE isbn10 = ? OR isbn13 = ?";
-        String insertQuery = "INSERT INTO " + dbTable + " (title, author, publisher, publishDate, description, "
-                + (dbTable.equals("books") ? "genre" : "field") + ", thumbnail, isbn10, isbn13) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String checkQuery = "SELECT COUNT(*) FROM " + getDbTable() + " WHERE isbn10 = ? OR isbn13 = ?";
+        String insertQuery = "INSERT INTO " + getDbTable() + " (title, author, publisher, publishDate, description, "
+                + (getDbTable().equals("books") ? "genre" : "field") + ", thumbnail, isbn10, isbn13) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (ResultSet rs = connectJDBC.executeQueryWithParams(checkQuery, document.getIsbn10(), document.getIsbn13())) {
             if (rs.next() && rs.getInt(1) > 0) {
@@ -94,20 +96,20 @@ public abstract class DocumentRepository {
     }
 
     public void update(Document document) {
-        String query = "UPDATE " + dbTable + " SET title = ?, author = ?, publisher = ?, publishDate = ?, description = ?, "
-                + (dbTable.equals("books") ? "genre" : "field") + " = ?, thumbnail = ?, isbn10 = ?, isbn13 = ? WHERE id = ?";
+        String query = "UPDATE " + getDbTable() + " SET title = ?, author = ?, publisher = ?, publishDate = ?, description = ?, "
+                + (getDbTable().equals("books") ? "genre" : "field") + " = ?, thumbnail = ?, isbn10 = ?, isbn13 = ? WHERE id = ?";
         connectJDBC.executeUpdate(query, document.getTitle(), document.getAuthor(), document.getPublisher(),
                 document.getYear(), document.getDescription(), document.getCategory(),
                 document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13(), document.getId());
     }
 
     public void delete(Document document) {
-        String query = "DELETE FROM " + dbTable + " WHERE id = ?";
+        String query = "DELETE FROM " + getDbTable() + " WHERE id = ?";
         connectJDBC.executeUpdate(query, document.getId());
     }
 
     public void deleteAll() {
-        String query = "DELETE FROM " + dbTable;
+        String query = "DELETE FROM " + getDbTable();
         connectJDBC.executeUpdate(query);
     }
 }

@@ -40,7 +40,7 @@ public class SceneManager {
 
         setDL_Mode(isLight);
 
-        rootStage.setTitle("Library Management");
+        rootStage.setTitle("UET Library");
         rootStage.setScene(scene);
         rootStage.show();
     }

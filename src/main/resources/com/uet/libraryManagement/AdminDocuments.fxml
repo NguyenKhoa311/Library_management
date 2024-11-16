@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDocumentsController">
+   <children>
+      <TableView fx:id="docsTable" layoutX="15.0" layoutY="50.0" prefHeight="360.0" prefWidth="670.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="40.0" text="ID" />
+          <TableColumn fx:id="titleCol" prefWidth="145.0" text="Title" />
+            <TableColumn fx:id="authorCol" prefWidth="140.0" text="Author" />
+            <TableColumn fx:id="categoryCol" prefWidth="100.0" text="Genre" />
+            <TableColumn fx:id="publisherCol" prefWidth="146.0" text="Publisher" />
+            <TableColumn fx:id="dateCol" prefWidth="108.0" text="Published Date" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="docTypeBox" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
+      <JFXButton layoutX="282.0" layoutY="418.0" onAction="#deleteDoc" text="Delete document">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/deleteDoc.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="487.0" layoutY="418.0" onAction="#editDoc" text="Edit document">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/editDoc.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="88.0" layoutY="418.0" onAction="#addDoc" text="Add document">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/addDoc.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>
