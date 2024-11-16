@@ -8,8 +8,104 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 <AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDocumentsController">
    <children>
+       <!-- Search Bar -->
+       <HBox alignment="CENTER" layoutX="10" layoutY="10" prefHeight="33.0" prefWidth="468.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="222.0">
+           <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#handleSearchAction">
+               <graphic>
+                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@icons/search.png" />
+                       </image>
+                   </ImageView>
+               </graphic>
+           </JFXButton>
+           <TextField fx:id="searchBar" prefHeight="25.0" prefWidth="184.0" promptText="Search documents...">
+               <HBox.margin>
+                   <Insets />
+               </HBox.margin></TextField>
+           <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#clearSearchTerm">
+               <graphic>
+                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@icons/clear.png" />
+                       </image>
+                   </ImageView>
+               </graphic>
+           </JFXButton>
+           <JFXButton contentDisplay="RIGHT" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" text="Advanced Search">
+               <graphic>
+                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@icons/advanced_search.png" />
+                       </image>
+                   </ImageView>
+               </graphic>
+               <HBox.margin>
+                   <Insets left="30.0" />
+               </HBox.margin>
+           </JFXButton>
+       </HBox>
+
+       <!-- Advanced Filters (Collapsible) -->
+       <VBox fx:id="filtersPanel" layoutX="10" layoutY="50" spacing="10" style="-fx-background-color: white;" visible="false">
+           <Text text="Advanced Search Filters" />
+           <HBox spacing="10">
+               <Label prefHeight="25.0" text="Title:" />
+               <TextField fx:id="titleFilter" promptText="Filter by title" />
+           </HBox>
+           <HBox spacing="10">
+               <Label alignment="CENTER" prefHeight="25.0" text="Author:" />
+               <TextField fx:id="authorFilter" promptText="Filter by author" />
+           </HBox>
+           <HBox prefHeight="25.0" prefWidth="445.0" spacing="10.0">
+               <Label alignment="CENTER" prefHeight="25.0" text="Category:" />
+               <TextField fx:id="categoryFilter" promptText="Filter by category" />
+           </HBox>
+           <HBox prefHeight="25.0" prefWidth="445.0" spacing="10.0">
+               <Label alignment="CENTER" prefHeight="25.0" text="Isbn 10:" />
+               <TextField fx:id="isbn10Filter" promptText="Filter by isbn10" />
+           </HBox>
+           <HBox prefHeight="25.0" prefWidth="445.0" spacing="10.0">
+               <Label alignment="CENTER" prefHeight="25.0" text="Isbn 13:" />
+               <TextField fx:id="isbn13Filter" promptText="Filter by isbn13" />
+           </HBox>
+           <HBox spacing="10">
+               <Label alignment="CENTER" prefHeight="25.0" text="Year:" />
+               <DatePicker fx:id="startDateFilter" promptText="Start Year" />
+               <Text text="to" />
+               <DatePicker fx:id="endDateFilter" promptText="End Year" />
+           </HBox>
+           <HBox alignment="CENTER" spacing="20.0">
+               <JFXButton onAction="#applyFilters" prefWidth="115.0" text="Search">
+                   <graphic>
+                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                               <Image url="@icons/search.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
+               </JFXButton>
+               <JFXButton onAction="#clearFilters" prefHeight="25.0" prefWidth="115.0" text="Clear filters">
+                   <graphic>
+                       <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                               <Image url="@icons/clear_filters.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
+               </JFXButton>
+           </HBox>
+       </VBox>
+
       <TableView fx:id="docsTable" layoutX="15.0" layoutY="50.0" prefHeight="360.0" prefWidth="670.0">
         <columns>
           <TableColumn fx:id="idCol" prefWidth="40.0" text="ID" />
@@ -18,6 +114,8 @@
             <TableColumn fx:id="categoryCol" prefWidth="100.0" text="Genre" />
             <TableColumn fx:id="publisherCol" prefWidth="146.0" text="Publisher" />
             <TableColumn fx:id="dateCol" prefWidth="108.0" text="Published Date" />
+            <TableColumn fx:id="isbn10Col" prefWidth="75.0" text="Isbn 10" />
+            <TableColumn fx:id="isbn13Col" prefWidth="75.0" text="Isbn13" />
         </columns>
       </TableView>
       <ComboBox fx:id="docTypeBox" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />

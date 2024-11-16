@@ -13,7 +13,6 @@ import java.io.IOException;
 
 
 public class AdminDocumentsController extends DocumentsController {
-
     @FXML
     private void deleteDoc(ActionEvent actionEvent) {
         Document selectedDocument = docsTable.getSelectionModel().getSelectedItem();

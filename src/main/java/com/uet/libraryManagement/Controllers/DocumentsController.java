@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,9 +27,15 @@ public abstract class DocumentsController implements Initializable {
     @FXML
     protected TableColumn<Document, Integer> idCol;
     @FXML
-    protected TableColumn<Document, String> titleCol, authorCol, categoryCol, publisherCol, dateCol;
+    protected TableColumn<Document, String> titleCol, authorCol, categoryCol, publisherCol, dateCol, isbn10Col, isbn13Col;
     @FXML
     protected ComboBox<String> docTypeBox;
+    @FXML
+    protected TextField titleFilter, authorFilter, categoryFilter, isbn10Filter, isbn13Filter, searchBar;
+    @FXML
+    protected DatePicker startDateFilter, endDateFilter;
+    @FXML
+    protected VBox filtersPanel;
 
     protected final BookRepository bookRepository = new BookRepository();
     protected final ThesisRepository thesisRepository = new ThesisRepository();
@@ -41,6 +48,8 @@ public abstract class DocumentsController implements Initializable {
         categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         publisherCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("year"));
+        isbn10Col.setCellValueFactory(new PropertyValueFactory<>("isbn10"));
+        isbn13Col.setCellValueFactory(new PropertyValueFactory<>("isbn13"));
 
         docTypeBox.getItems().addAll("Books", "Theses");
         docTypeBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
@@ -58,7 +67,57 @@ public abstract class DocumentsController implements Initializable {
             }
         });
 
+        filtersPanel.setVisible(false);
         HandleOutsideClickListener();
+    }
+
+    // Toggle the visibility of the advanced filter panel
+    @FXML
+    private void toggleFilters() {
+        filtersPanel.setVisible(!filtersPanel.isVisible());
+        if (filtersPanel.isVisible()) {
+            filtersPanel.toFront();
+        }
+    }
+
+    // Handle search action with the text from search bar
+    @FXML
+    private void handleSearchAction() {
+        String searchTerm = searchBar.getText();
+        loadSearchedDocuments(searchTerm);
+    }
+
+    @FXML
+    private void clearSearchTerm() {
+        searchBar.clear();
+        loadDocuments(docTypeBox.getValue());
+    }
+
+    // Apply filters based on user inputs
+    @FXML
+    private void applyFilters() {
+        String title = titleFilter.getText();
+        String author = authorFilter.getText();
+        String category = categoryFilter.getText();
+        String isbn10 = isbn10Filter.getText();
+        String isbn13 = isbn13Filter.getText();
+        String startYear = (startDateFilter.getValue() != null) ? String.valueOf(startDateFilter.getValue().getYear()) : null;
+        String endYear = (endDateFilter.getValue() != null) ? String.valueOf(endDateFilter.getValue().getYear()) : null;
+        filtersPanel.setVisible(false);
+        loadDocuments(title, author, category, startYear, endYear, isbn10, isbn13);
+    }
+
+    // Clear all filters
+    @FXML
+    private void clearFilters() {
+        titleFilter.clear();
+        authorFilter.clear();
+        categoryFilter.clear();
+        isbn10Filter.clear();
+        isbn13Filter.clear();
+        startDateFilter.setValue(null);
+        endDateFilter.setValue(null);
+        loadDocuments(docTypeBox.getValue());
     }
 
     // load documents base on type chosen from comboBox
@@ -114,5 +173,27 @@ public abstract class DocumentsController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void loadDocuments(String title, String author, String category, String startYear, String endYear, String isbn10, String isbn13) {
+        ObservableList<Document> documents;
+        if (docTypeBox.getValue().equals("Books")) {
+            documents = bookRepository.getFilteredDocuments(title, author, category, startYear, endYear, isbn10, isbn13);
+            docsTable.setItems(documents);
+        } else {
+            documents = thesisRepository.getFilteredDocuments(title, author, category, startYear, endYear, isbn10, isbn13);
+        }
+        docsTable.setItems(documents);
+    }
+
+    private void loadSearchedDocuments(String searchTerm) {
+        ObservableList<Document> documents;
+        if (docTypeBox.getValue().equals("Books")) {
+            documents = bookRepository.searchDocument(searchTerm);
+            docsTable.setItems(documents);
+        } else {
+            documents = thesisRepository.searchDocument(searchTerm);
+        }
+        docsTable.setItems(documents);
     }
 }

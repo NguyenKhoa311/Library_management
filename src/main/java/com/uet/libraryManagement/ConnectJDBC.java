@@ -37,7 +37,7 @@ public class ConnectJDBC {
             for (int i = 0; i < params.length; i++) {
                 if(query.contains("LIKE ?"))
                 {
-                    statement.setObject(i + 1, params[i] + "%");
+                    statement.setObject(i + 1, "%" + params[i] + "%");
                 }
                 else statement.setObject(i + 1, params[i]);
             }

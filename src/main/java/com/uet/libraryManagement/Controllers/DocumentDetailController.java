@@ -17,15 +17,7 @@ public class DocumentDetailController {
     @FXML
     private ImageView thumbnailImageView;
     @FXML
-    private Label titleLabel;
-    @FXML
-    private Label authorLabel;
-    @FXML
-    private Label publisherLabel;
-    @FXML
-    private Label publishedDateLabel;
-    @FXML
-    private Label genreLabel;
+    private Label titleLabel, authorLabel, publisherLabel, publishedDateLabel, genreLabel, isbn10Label, isbn13Label;
 
 
     public void setDocumentDetails(Document document) {
@@ -38,6 +30,8 @@ public class DocumentDetailController {
         } else if (document instanceof Thesis) {
             genreLabel.setText("Field: " + document.getCategory());
         }
+        isbn10Label.setText("Isbn 10: " + document.getIsbn10());
+        isbn13Label.setText("Isbn 13: " + document.getIsbn13());
         descriptionArea.setText(document.getDescription());
 
         // Load thumbnail image

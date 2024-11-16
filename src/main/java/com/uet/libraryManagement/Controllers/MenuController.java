@@ -99,7 +99,7 @@ public class MenuController {
 
     @FXML
     private void Documents() throws IOException {
-        SceneManager.getInstance().setSubScene("AdminDocuments.fxml");
+        SceneManager.getInstance().setSubScene("UserDocuments.fxml");
         Title_page.setText("Documents");
         hideMenuBox();
     }

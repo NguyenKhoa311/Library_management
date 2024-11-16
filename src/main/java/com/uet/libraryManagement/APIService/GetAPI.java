@@ -15,9 +15,9 @@ import com.uet.libraryManagement.ThesisRepository;
 public class GetAPI {
     public static void main(String[] args) {
 //        BookRepository bookRepository = new BookRepository();
-        ThesisRepository thesisRepository = new ThesisRepository();
+//        ThesisRepository thesisRepository = new ThesisRepository();
         String apiKey = "AIzaSyB5gHzt3vVKJHxU4R-g8MEMibYNtxtIRC4";
-        String query = "thesis";
+        String query = "C++";
         try {
             String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8.toString());
             String urlString = "https://www.googleapis.com/books/v1/volumes?q=" + encodedQuery + "&key=" + apiKey;
@@ -73,19 +73,19 @@ public class GetAPI {
                             }
                         }
                     }
-                    Thesis newThesis = new Thesis(title, authors, publisher, description, publishedDate, categories, thumbnail, isbn10, isbn13);
+//                    Thesis newThesis = new Thesis(title, authors, publisher, description, publishedDate, categories, thumbnail, isbn10, isbn13);
 //                    Book newBook = new Book(title, authors, publisher, description, publishedDate, categories, thumbnail, isbn10, isbn13);
-                    thesisRepository.create(newThesis);
+//                    thesisRepository.create(newThesis);
                     // Print out result sets
-                    System.out.println("Title: " + newThesis.getTitle());
-                    System.out.println("Authors: " + newThesis.getAuthor());
-                    System.out.println("Published Date: " + newThesis.getYear());
-                    System.out.println("Publisher: " + newThesis.getPublisher());
-                    System.out.println("Description: " + newThesis.getDescription());
-                    System.out.println("Categories: " + newThesis.getField());
-                    System.out.println("Thumbnail: " + newThesis.getThumbnailUrl());
-                    System.out.println("ISBN-10: " + newThesis.getIsbn10());
-                    System.out.println("ISBN-13: " + newThesis.getIsbn13());
+                    System.out.println("Title: " + title);
+                    System.out.println("Authors: " + authors);
+                    System.out.println("Published Date: " + publishedDate);
+                    System.out.println("Publisher: " + publisher);
+                    System.out.println("Description: " + description);
+                    System.out.println("Categories: " + categories);
+                    System.out.println("Thumbnail: " + thumbnail);
+                    System.out.println("ISBN-10: " + isbn10);
+                    System.out.println("ISBN-13: " + isbn13);
                     System.out.println();
                 }
 
