@@ -21,7 +21,7 @@ public class DocumentFormController {
     @FXML
     private TextArea descriptionArea;
     @FXML
-    private ImageView thumbnailImageView;
+    private ImageView thumbnailImage;
     @FXML
     private TextField titleField, authorField, publisherField, dateField, categoryField, isbn10Field, isbn13Field;
 
@@ -62,17 +62,17 @@ public class DocumentFormController {
                 && !document.getThumbnailUrl().equalsIgnoreCase("No Thumbnail")) {
             if (document.getThumbnailUrl().startsWith("http")) {
                 Image image = new Image(document.getThumbnailUrl(), true);
-                thumbnailImageView.setImage(image);
+                thumbnailImage.setImage(image);
             } else {
                 File file = new File(document.getThumbnailUrl());
                 Image image = new Image(file.toURI().toString(), true);
-                thumbnailImageView.setImage(image);
+                thumbnailImage.setImage(image);
             }
         } else {
             Image image = new Image(getClass().getResource("/com/uet/libraryManagement/icons/no_image.png").toExternalForm());
-            thumbnailImageView.setFitHeight(150);
-            thumbnailImageView.setFitWidth(150);
-            thumbnailImageView.setImage(image); // set no thumbnail image
+            thumbnailImage.setFitHeight(150);
+            thumbnailImage.setFitWidth(150);
+            thumbnailImage.setImage(image); // set no thumbnail image
         }
     }
 
@@ -86,7 +86,7 @@ public class DocumentFormController {
         descriptionArea.clear();
         isbn10Field.clear();
         isbn13Field.clear();
-        thumbnailImageView.setImage(null);
+        thumbnailImage.setImage(null);
         thumbnailFilePath = null;
     }
 
@@ -97,22 +97,13 @@ public class DocumentFormController {
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
         );
 
-        File selectedFile = fileChooser.showOpenDialog(thumbnailImageView.getScene().getWindow());
+        File selectedFile = fileChooser.showOpenDialog(thumbnailImage.getScene().getWindow());
         if (selectedFile != null) {
-            try {
-                // Copy file to application directory
-                Path targetDir = Paths.get("user_data/thumbnails"); // Ensure this directory exists in your project
-                Files.createDirectories(targetDir);
-                Path targetPath = targetDir.resolve(selectedFile.getName());
-                Files.copy(selectedFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+            thumbnailFilePath = selectedFile.getAbsolutePath(); // save temporary image path
 
-                thumbnailFilePath = "user_data/thumbnails/" + selectedFile.getName(); // Save relative path
-                Image thumbnailImage = new Image(targetPath.toUri().toString());
-                thumbnailImageView.setImage(thumbnailImage); // Display the image in the ImageView
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert("Error copying image file.");
-            }
+            // show temporary image, not yet save to local folder
+            Image img = new Image(new File(thumbnailFilePath).toURI().toString());
+            thumbnailImage.setImage(img);
         }
     }
 
@@ -152,11 +143,21 @@ public class DocumentFormController {
             document.setIsbn10(isbn10);
             document.setIsbn13(isbn13);
 
-            if (thumbnailFilePath == null || thumbnailFilePath.isEmpty()) {
-                // Giữ nguyên thumbnail cũ nếu không có thay đổi
-                thumbnailFilePath = document.getThumbnailUrl();  // Lấy giá trị thumbnail cũ
+            // copy image to thumbnails folder if new thumbnail is inserted
+            if (thumbnailFilePath != null && !thumbnailFilePath.isEmpty() && !thumbnailFilePath.equals(document.getThumbnailUrl())) {
+                try {
+                    Path targetDir = Paths.get("user_data/thumbnails");
+                    Files.createDirectories(targetDir);
+                    Path targetPath = targetDir.resolve(new File(thumbnailFilePath).getName());
+                    Files.copy(Paths.get(thumbnailFilePath), targetPath, StandardCopyOption.REPLACE_EXISTING);
+
+                    document.setThumbnailUrl("user_data/thumbnails/" + new File(thumbnailFilePath).getName());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    showAlert("Error copying image file.");
+                    return;
+                }
             }
-            document.setThumbnailUrl(thumbnailFilePath);
 
             if (document instanceof Book) {
                 bookRepository.update(document);

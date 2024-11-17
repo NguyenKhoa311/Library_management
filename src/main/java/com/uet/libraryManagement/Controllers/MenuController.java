@@ -22,23 +22,21 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class MenuController {
-    public Label Title_page;
-    private boolean isLight = false;
-    public JFXButton DL_mode;
-    public ImageView DL_image;
-    @FXML
-    private AnchorPane overlayPane;
-
     private boolean isMenuVisible = false;
-    public VBox menuBox;
-    @FXML
-    private AnchorPane contentPane;
+    private boolean isLight = false;
+
+    @FXML private Label Title_page;
+    @FXML private JFXButton DL_mode;
+    @FXML private ImageView DL_image;
+    @FXML private AnchorPane overlayPane;
+    @FXML private VBox menuBox;
+    @FXML private AnchorPane contentPane;
 
     @FXML
     private void initialize() throws IOException {
         SceneManager.getInstance().setContentPane(contentPane);
         menuBox.setTranslateX(-menuBox.getPrefWidth());
-        Title_page.setText("Welcome to UET Library Management");
+        Title_page.setText("Welcome to UET Library");
     }
 
     @FXML
@@ -100,6 +98,7 @@ public class MenuController {
     @FXML
     private void Documents() throws IOException {
         SceneManager.getInstance().setSubScene("UserDocuments.fxml");
+//        SceneManager.getInstance().setSubScene("AdminDocuments.fxml");
         Title_page.setText("Documents");
         hideMenuBox();
     }

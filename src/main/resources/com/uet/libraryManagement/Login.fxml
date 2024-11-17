@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.LoginController">
    <children>
-      <TextField fx:id="username_textfield" layoutX="225.0" layoutY="138.0" prefHeight="26.0" prefWidth="150.0" promptText="Username" />
-      <TextField fx:id="password_textfield" layoutX="226.0" layoutY="174.0" promptText="Password" />
-      <Button fx:id="Login_button" layoutX="277.0" layoutY="211.0" mnemonicParsing="false" text="Login" />
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
+         <children>
+            <ImageView fitHeight="235.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <image>
+                  <Image url="@icons/uet.png" />
+               </image>
+            </ImageView>
+            <AnchorPane prefHeight="206.0" prefWidth="300.0">
+               <children>
+                  <JFXButton alignment="CENTER" layoutX="118.0" layoutY="109.0" onAction="#handleRegister" prefHeight="40.0" prefWidth="100.0" text="Register">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/register.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" layoutX="118.0" layoutY="69.0" onAction="#handleLogin" prefHeight="40.0" prefWidth="100.0" text="Login">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/login.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <Label layoutX="57.0" layoutY="11.0" text="Username" />
+                  <TextField fx:id="username_textfield" layoutX="118.0" layoutY="6.0" prefHeight="26.0" prefWidth="150.0" promptText="Username" />
+                  <Label layoutX="58.0" layoutY="47.0" text="Password" />
+                  <PasswordField fx:id="password_textfield" layoutX="118.0" layoutY="43.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
+                  <Label fx:id="messageLabel" layoutX="26.0" layoutY="158.0" prefHeight="26.0" prefWidth="255.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

@@ -33,6 +33,18 @@ public class SceneManager {
         SceneManager.rootStage = stage;
     }
 
+    public void setLoginScene(String sceneName) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(sceneName));
+
+        scene = new Scene(fxmlLoader.load(), 300, 400);
+
+        setDL_Mode(isLight);
+
+        rootStage.setTitle("UET Library");
+        rootStage.setScene(scene);
+        rootStage.show();
+    }
+
     public void setScene(String sceneName) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(sceneName));
 

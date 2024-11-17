@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.RegisterController">
+    <children>
+        <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
+            <children>
+                <ImageView fitHeight="235.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true">
+                    <VBox.margin>
+                        <Insets top="30.0" />
+                    </VBox.margin>
+                    <image>
+                        <Image url="@icons/uet.png" />
+                    </image>
+                </ImageView>
+                <AnchorPane prefHeight="170.0" prefWidth="300.0">
+                    <children>
+                        <TextField fx:id="usernameField" layoutX="84.0" layoutY="1.0" prefHeight="26.0" prefWidth="150.0" promptText="Username" />
+                        <PasswordField fx:id="passwordField" layoutX="84.0" layoutY="33.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
+                  <PasswordField fx:id="cf_passwordField" layoutX="84.0" layoutY="67.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
+                  <TextField fx:id="emailField" layoutX="84.0" layoutY="103.0" prefHeight="26.0" prefWidth="150.0" promptText="Email" />
+                  <JFXButton layoutX="234.0" layoutY="139.0" onAction="#submitRegister" text="Register" />
+                  <Label fx:id="messageLabel" layoutX="29.0" layoutY="139.0" prefHeight="25.0" prefWidth="202.0" />
+                    </children>
+                </AnchorPane>
+            <AnchorPane prefHeight="38.0" prefWidth="300.0">
+               <children>
+                  <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#cancelRegister" text="Button">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/back.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

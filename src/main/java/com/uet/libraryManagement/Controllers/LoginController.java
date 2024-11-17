@@ -1,14 +1,12 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.SceneManager;
+import com.uet.libraryManagement.SessionManager;
+import com.uet.libraryManagement.User;
+import com.uet.libraryManagement.UserRepository;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class LoginController {
@@ -17,12 +15,14 @@ public class LoginController {
     @FXML
     private TextField password_textfield;
     @FXML
-    public Button Login_button;
+    private Label messageLabel;
+
+    private final UserRepository userRepository = new UserRepository();
+
 
     @FXML
     public void initialize() {
-        // Gán sự kiện cho nút đăng nhập
-        Login_button.setOnAction(event -> handleLoginButtonAction());
+
     }
 
     public boolean validateLogin() {
@@ -34,23 +34,39 @@ public class LoginController {
         return true;
     }
 
-    // Phương thức xử lý sự kiện nút đăng nhập
-    private void handleLoginButtonAction() {
-        // Kiểm tra tài khoản đăng nhập
+    // handle login
+    @FXML
+    private void handleLogin() {
         String username = username_textfield.getText();
         String password = password_textfield.getText();
-        // Giả định tài khoản hợp lệ (bạn có thể thêm kiểm tra xác thực tài khoản tại đây)
-        if (validateLogin()) {
+
+        // Check if username and password fields are empty
+        if (username.isEmpty() || password.isEmpty()) {
+            messageLabel.setText("Please enter both username and password.");
+            return;
+        }
+
+        // Authenticate the user
+        User user = userRepository.validateUser(username, password);
+
+        if (user != null && user.getRole().equals("user")) {
+            // Successful login, proceed to the main application scene
+            SessionManager.getInstance().setUser(user);
             try {
                 SceneManager.getInstance().setScene("UserMenu.fxml");
                 SceneManager.getInstance().setSubScene("Home.fxml");
-
             } catch (IOException e) {
                 e.printStackTrace();
+                messageLabel.setText("Failed to load the application.");
             }
         } else {
-            System.out.println("Sai tên đăng nhập hoặc mật khẩu!");
-            // Bạn có thể hiển thị thông báo lỗi cho người dùng ở đây
+            // Failed login
+            messageLabel.setText("Invalid username or password.");
         }
+    }
+
+    @FXML
+    private void handleRegister() throws IOException {
+        SceneManager.getInstance().setLoginScene("Register.fxml");
     }
 }

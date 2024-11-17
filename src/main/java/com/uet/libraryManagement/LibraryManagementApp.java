@@ -11,8 +11,8 @@ public class LibraryManagementApp extends Application {
     public void start(Stage stage) throws IOException {
 
         SceneManager.getInstance().setStage(stage);
-//        SceneManager.getInstance().setScene("Login.fxml");
-        SceneManager.getInstance().setScene("UserMenu.fxml");
+        SceneManager.getInstance().setLoginScene("Login.fxml");
+//        SceneManager.getInstance().setScene("UserMenu.fxml");
 
         stage.setOnCloseRequest(event -> {
             event.consume();
