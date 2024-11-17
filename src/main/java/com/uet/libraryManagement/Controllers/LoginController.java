@@ -17,21 +17,9 @@ public class LoginController {
     @FXML
     private Label messageLabel;
 
-    private final UserRepository userRepository = new UserRepository();
-
-
     @FXML
     public void initialize() {
 
-    }
-
-    public boolean validateLogin() {
-        String username = username_textfield.getText();
-        String password = password_textfield.getText();
-
-        // Kiểm tra thông tin đăng nhập (ở đây giả định tài khoản hợp lệ là admin/password)
-        //return "admin".equals(username) && "1".equals(password);
-        return true;
     }
 
     // handle login
@@ -47,7 +35,7 @@ public class LoginController {
         }
 
         // Authenticate the user
-        User user = userRepository.validateUser(username, password);
+        User user = UserRepository.getInstance().validateUser(username, password);
 
         if (user != null && user.getRole().equals("user")) {
             // Successful login, proceed to the main application scene
@@ -59,7 +47,17 @@ public class LoginController {
                 e.printStackTrace();
                 messageLabel.setText("Failed to load the application.");
             }
-        } else {
+        } else if (user != null && user.getRole().equals("admin"))  {
+            SessionManager.getInstance().setUser(user);
+            try {
+                SceneManager.getInstance().setScene("AdminMenu.fxml");
+                SceneManager.getInstance().setSubScene("Home.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+                messageLabel.setText("Failed to load the application.");
+            }
+        }
+        else {
             // Failed login
             messageLabel.setText("Invalid username or password.");
         }

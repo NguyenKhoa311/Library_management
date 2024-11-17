@@ -11,16 +11,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.EditProfileController">
+<AnchorPane prefHeight="400.0" prefWidth="414.0" style="-fx-background-color: #8eccf5;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.EditProfileController">
     <VBox alignment="CENTER" prefHeight="330.0" prefWidth="200.0" spacing="10">
-        <ImageView fx:id="avatarImage" fitHeight="180.0" fitWidth="150">
+        <ImageView fx:id="avatarImage" fitHeight="180.0" fitWidth="150" focusTraversable="true">
             <VBox.margin>
                 <Insets top="20.0" />
             </VBox.margin>
          <image>
             <Image url="@icons/profile.png" />
          </image></ImageView>
-        <JFXButton onAction="#insertImg" text="Insert avatar">
+        <JFXButton onAction="#insertImg" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Insert avatar">
             <graphic>
                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -39,7 +39,7 @@
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Label>
-        <JFXButton onAction="#saveChanges" text="Save">
+        <JFXButton onAction="#saveChanges" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Save">
             <graphic>
                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                     <image>

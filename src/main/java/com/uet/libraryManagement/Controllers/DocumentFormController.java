@@ -32,9 +32,6 @@ public class DocumentFormController {
     @FXML
     private String thumbnailFilePath;
 
-    private final BookRepository bookRepository = new BookRepository();
-    private final ThesisRepository thesisRepository = new ThesisRepository();
-
     public void setMode(String mode) {
         this.mode = mode;
         if ("add".equals(mode)) {
@@ -125,11 +122,11 @@ public class DocumentFormController {
         if ("add".equals(mode)) {
             if ("Books".equals(docType)) {
                 document = new Book(title, author, publisher, description, publishDate, category, thumbnailFilePath, isbn10, isbn13);
-                bookRepository.create(document);
+                BookRepository.getInstance().create(document);
                 System.out.println("Book added");
             } else if ("Theses".equals(docType)) {
                 document = new Thesis(title, author, publisher, description, publishDate, category, thumbnailFilePath, isbn10, isbn13);
-                thesisRepository.create(document);
+                ThesisRepository.getInstance().create(document);
                 System.out.println("Thesis added");
             }
         } else if ("edit".equals(mode) && document != null) {
@@ -160,9 +157,9 @@ public class DocumentFormController {
             }
 
             if (document instanceof Book) {
-                bookRepository.update(document);
+                BookRepository.getInstance().update(document);
             } else if (document instanceof Thesis) {
-                thesisRepository.update(document);
+                ThesisRepository.getInstance().update(document);
             }
         }
 

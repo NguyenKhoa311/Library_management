@@ -1,17 +1,20 @@
 package com.uet.libraryManagement;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.sql.*;
-
 public class BookRepository extends DocumentRepository {
     protected String db_table;
     protected final ConnectJDBC connectJDBC;
+    private static BookRepository instance;
 
     public BookRepository() {
         this.connectJDBC = new ConnectJDBC();
         loadDatabase();
+    }
+
+    public static synchronized BookRepository getInstance() {
+        if (instance == null) {
+            instance = new BookRepository();
+        }
+        return instance;
     }
 
     @Override

@@ -31,7 +31,6 @@ public class EditProfileController {
 
     private String avatarPath;
     private final User currentUser = SessionManager.getInstance().getUser();
-    private final UserRepository userRepository = new UserRepository();
 
     public void initialize() {
         loadUserInfo();
@@ -85,7 +84,7 @@ public class EditProfileController {
             }
         }
 
-        userRepository.updateProfile(currentUser);
+        UserRepository.getInstance().updateProfile(currentUser);
         showAlert("Profile changed successfully.");
         closeForm();
     }

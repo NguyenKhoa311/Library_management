@@ -17,7 +17,6 @@ public class ChangePasswordController {
     @FXML private Label messageLabel;
 
     private final User currentUser = SessionManager.getInstance().getUser();
-    private final UserRepository userRepository = new UserRepository();
 
     @FXML
     private void savePassword() {
@@ -39,7 +38,7 @@ public class ChangePasswordController {
 
         // Update password in the user and database
         currentUser.setPassword(newPassword);
-        userRepository.updatePassword(currentUser);
+        UserRepository.getInstance().updatePassword(currentUser);
 
         showAlert("Password changed successfully.");
         closeForm();

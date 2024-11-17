@@ -23,9 +23,9 @@ public class AdminDocumentsController extends DocumentsController {
 
             if (confirmAlert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
                 if (selectedDocument instanceof Book) {
-                    bookRepository.delete(selectedDocument);
+                    BookRepository.getInstance().delete(selectedDocument);
                 } else if (selectedDocument instanceof Thesis) {
-                    thesisRepository.delete(selectedDocument);
+                    ThesisRepository.getInstance().delete(selectedDocument);
                 }
                 // Refresh the document list after deletion
                 loadDocuments(docTypeBox.getValue());

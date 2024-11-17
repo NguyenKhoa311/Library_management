@@ -16,11 +16,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDocumentsController">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" style="-fx-background-color: #8eccf5; -fx-border-color: black;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDocumentsController">
    <children>
        <!-- Search Bar -->
-       <HBox alignment="CENTER" layoutX="10" layoutY="10" prefHeight="33.0" prefWidth="468.0" style="-fx-background-color: #F4F4F4;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="222.0">
-         <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#handleSearchAction" style="-fx-background-color: #F4F4F4;">
+       <HBox alignment="CENTER" layoutX="10" layoutY="10" prefHeight="33.0" prefWidth="468.0" style="-fx-background-color: #8eccf5;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="222.0">
+         <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-custom" stylesheets="@CSS/styles.css">
             <graphic>
                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -29,11 +29,11 @@
                </ImageView>
             </graphic>
          </JFXButton>
-           <TextField fx:id="searchBar" prefHeight="25.0" prefWidth="184.0" promptText="Search documents...">
+           <TextField fx:id="searchBar" focusTraversable="false" prefHeight="25.0" prefWidth="184.0" promptText="Search documents...">
             <HBox.margin>
                <Insets />
             </HBox.margin></TextField>
-         <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#clearSearchTerm" style="-fx-background-color: #F4F4F4;">
+         <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-custom" stylesheets="@CSS/styles.css">
             <graphic>
                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -42,7 +42,7 @@
                </ImageView>
             </graphic>
          </JFXButton>
-         <JFXButton contentDisplay="RIGHT" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: #F4F4F4;" text="Advanced Search">
+         <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Advanced Search">
             <graphic>
                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -60,28 +60,28 @@
        <VBox fx:id="filtersPanel" layoutX="10" layoutY="50.0" prefHeight="280.0" prefWidth="470.0" spacing="10" style="-fx-background-color: #b1dff2;" visible="false">
            <Text text="Advanced Search Filters" />
            <HBox spacing="10">
-               <Label prefHeight="25.0" text="Title:" />
-               <TextField fx:id="titleFilter" promptText="Filter by title" />
+               <Label focusTraversable="false" prefHeight="25.0" text="Title:" />
+               <TextField fx:id="titleFilter" focusTraversable="false" promptText="Filter by title" />
            </HBox>
            <HBox spacing="10">
-               <Label alignment="CENTER" prefHeight="25.0" text="Author:" />
-               <TextField fx:id="authorFilter" promptText="Filter by author" />
+               <Label alignment="CENTER" focusTraversable="false" prefHeight="25.0" text="Author:" />
+               <TextField fx:id="authorFilter" focusTraversable="false" promptText="Filter by author" />
            </HBox>
            <HBox prefHeight="25.0" prefWidth="445.0" spacing="10.0">
-               <Label alignment="CENTER" prefHeight="25.0" text="Category:" />
-               <TextField fx:id="categoryFilter" promptText="Filter by category" />
+               <Label alignment="CENTER" focusTraversable="false" prefHeight="25.0" text="Category:" />
+               <TextField fx:id="categoryFilter" focusTraversable="false" promptText="Filter by category" />
            </HBox>
            <HBox prefHeight="25.0" prefWidth="445.0" spacing="10.0">
-               <Label alignment="CENTER" prefHeight="25.0" text="Isbn 10:" />
-               <TextField fx:id="isbn10Filter" promptText="Filter by isbn10" />
+               <Label alignment="CENTER" focusTraversable="false" prefHeight="25.0" text="Isbn 10:" />
+               <TextField fx:id="isbn10Filter" focusTraversable="false" promptText="Filter by isbn10" />
            </HBox>
            <HBox prefHeight="25.0" prefWidth="445.0" spacing="10.0">
-               <Label alignment="CENTER" prefHeight="25.0" text="Isbn 13:" />
-               <TextField fx:id="isbn13Filter" promptText="Filter by isbn13" />
+               <Label alignment="CENTER" focusTraversable="false" prefHeight="25.0" text="Isbn 13:" />
+               <TextField fx:id="isbn13Filter" focusTraversable="false" promptText="Filter by isbn13" />
            </HBox>
            <HBox spacing="5.0">
-               <Label alignment="CENTER" prefHeight="25.0" text="Year:" />
-               <DatePicker fx:id="startDateFilter" prefWidth="185.0" promptText="Start Year">
+               <Label alignment="CENTER" focusTraversable="false" prefHeight="25.0" text="Year:" />
+               <DatePicker fx:id="startDateFilter" focusTraversable="false" prefWidth="185.0" promptText="Start Year">
                <HBox.margin>
                   <Insets />
                </HBox.margin></DatePicker>
@@ -89,10 +89,10 @@
                <font>
                   <Font size="14.0" />
                </font></Text>
-               <DatePicker fx:id="endDateFilter" promptText="End Year" />
+               <DatePicker fx:id="endDateFilter" focusTraversable="false" promptText="End Year" />
            </HBox>
            <HBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #b1dff2;">
-            <JFXButton onAction="#applyFilters" prefWidth="115.0" style="-fx-background-color: #b1dff2;" text="Search">
+            <JFXButton focusTraversable="false" onAction="#applyFilters" prefWidth="115.0" style="-fx-background-color: #b1dff2;" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Search">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -101,7 +101,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton onAction="#clearFilters" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #b1dff2;" text="Clear filters">
+            <JFXButton focusTraversable="false" onAction="#clearFilters" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #b1dff2;" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Clear filters">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -116,7 +116,7 @@
          </padding>
        </VBox>
 
-      <TableView fx:id="docsTable" layoutX="15.0" layoutY="50.0" prefHeight="390.0" prefWidth="670.0">
+      <TableView fx:id="docsTable" focusTraversable="false" layoutX="15.0" layoutY="50.0" prefHeight="390.0" prefWidth="670.0">
         <columns>
           <TableColumn fx:id="idCol" prefWidth="40.0" text="ID" />
           <TableColumn fx:id="titleCol" prefWidth="145.0" text="Title" />
@@ -128,6 +128,6 @@
             <TableColumn fx:id="isbn13Col" prefWidth="75.0" text="Isbn13" />
         </columns>
       </TableView>
-      <ComboBox fx:id="docTypeBox" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
+      <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
    </children>
 </AnchorPane>

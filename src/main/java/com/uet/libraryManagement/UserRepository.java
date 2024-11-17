@@ -4,10 +4,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserRepository {
+    private static UserRepository instance;
     private final ConnectJDBC connectJDBC;
 
     public UserRepository() {
         this.connectJDBC = new ConnectJDBC();
+    }
+
+    public static synchronized UserRepository getInstance() {
+        if (instance == null) {
+            instance = new UserRepository();
+        }
+        return instance;
     }
 
     // check existed user

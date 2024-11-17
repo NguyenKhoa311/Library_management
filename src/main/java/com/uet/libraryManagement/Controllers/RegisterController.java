@@ -18,8 +18,6 @@ public class RegisterController {
     @FXML private TextField emailField;
     @FXML private Label messageLabel;
 
-    private final UserRepository userRepository = new UserRepository();
-
     @FXML
     private void submitRegister(ActionEvent actionEvent) {
         String username = usernameField.getText();
@@ -39,9 +37,8 @@ public class RegisterController {
 
         User user = new User(username, password, email);
 
-        if (userRepository.create(user)) {
-            messageLabel.setText("Registration successful! Please login.");
-            // Optional: Redirect to login scene
+        if (UserRepository.getInstance().create(user)) {
+            messageLabel.setText("Registration successful!");
         }
     }
 
