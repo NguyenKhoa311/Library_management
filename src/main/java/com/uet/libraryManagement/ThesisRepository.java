@@ -7,11 +7,9 @@ import java.sql.*;
 
 public class ThesisRepository extends DocumentRepository {
     protected String db_table;
-    protected final ConnectJDBC connectJDBC;
     private static ThesisRepository instance;
 
     public ThesisRepository() {
-        this.connectJDBC = new ConnectJDBC();
         loadDatabase();
     }
 

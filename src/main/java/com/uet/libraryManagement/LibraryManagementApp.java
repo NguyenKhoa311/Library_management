@@ -10,6 +10,7 @@ public class LibraryManagementApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+        ConnectJDBC.getConnection();
         SceneManager.getInstance().setStage(stage);
         SceneManager.getInstance().setLoginScene("Login.fxml");
 //        SceneManager.getInstance().setScene("UserMenu.fxml");

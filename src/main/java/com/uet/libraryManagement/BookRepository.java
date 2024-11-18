@@ -2,11 +2,9 @@ package com.uet.libraryManagement;
 
 public class BookRepository extends DocumentRepository {
     protected String db_table;
-    protected final ConnectJDBC connectJDBC;
     private static BookRepository instance;
 
     public BookRepository() {
-        this.connectJDBC = new ConnectJDBC();
         loadDatabase();
     }
 

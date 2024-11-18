@@ -5,11 +5,8 @@ import java.sql.SQLException;
 
 public class UserRepository {
     private static UserRepository instance;
-    private final ConnectJDBC connectJDBC;
 
-    public UserRepository() {
-        this.connectJDBC = new ConnectJDBC();
-    }
+    public UserRepository() {}
 
     public static synchronized UserRepository getInstance() {
         if (instance == null) {
@@ -21,7 +18,7 @@ public class UserRepository {
     // check existed user
     public User validateUser(String username, String password) {
         String query = "SELECT * FROM users WHERE user_name = ? AND password = ?";
-        try (ResultSet rs = connectJDBC.executeQueryWithParams(query, username, password)) {
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, username, password)) {
             if (rs.next()) {
                 // Retrieve user data if login is successful
                 int id = rs.getInt("id");
@@ -44,7 +41,7 @@ public class UserRepository {
     // create new document
     public boolean create(User user) {
         String insertQuery = "INSERT INTO users (user_name, password, email, role) VALUES (?, ?, ?, ?)";
-        connectJDBC.executeUpdate(insertQuery, user.getUsername(), user.getPassword(), user.getEmail(), user.getRole());
+        ConnectJDBC.executeUpdate(insertQuery, user.getUsername(), user.getPassword(), user.getEmail(), user.getRole());
         System.out.println("User registered successfully.");
         return true;
     }
@@ -52,17 +49,17 @@ public class UserRepository {
     // edit document
     public void updateProfile(User user) {
         String query = "UPDATE users SET fullName = ?, birthday = ?, email = ?, image = ?, phone = ? WHERE id = ?";
-        connectJDBC.executeUpdate(query, user.getFullName(), user.getBirthday(), user.getEmail(), user.getAvatarUrl(), user.getPhone(), user.getId());
+        ConnectJDBC.executeUpdate(query, user.getFullName(), user.getBirthday(), user.getEmail(), user.getAvatarUrl(), user.getPhone(), user.getId());
     }
 
     public void updatePassword(User user) {
         String query = "UPDATE users SET password = ? WHERE id = ?";
-        connectJDBC.executeUpdate(query, user.getPassword(), user.getId());
+        ConnectJDBC.executeUpdate(query, user.getPassword(), user.getId());
     }
 
     // delete document
     public void delete(User user) {
         String query = "DELETE FROM users WHERE id = ?";
-        connectJDBC.executeUpdate(query, user.getId());
+        ConnectJDBC.executeUpdate(query, user.getId());
     }
 }

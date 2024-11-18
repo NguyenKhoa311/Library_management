@@ -10,10 +10,8 @@ import java.util.List;
 
 public abstract class DocumentRepository {
     protected String dbTable;
-    protected final ConnectJDBC connectJDBC;
 
     public DocumentRepository() {
-        this.connectJDBC = new ConnectJDBC();
         loadDatabase();
     }
 
@@ -29,7 +27,7 @@ public abstract class DocumentRepository {
         ObservableList<Document> books = FXCollections.observableArrayList();
         String query = "SELECT * FROM " + getDbTable();
 
-        try (ResultSet rs = connectJDBC.executeQuery(query)) {
+        try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
             getDocuments(rs, books);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,7 +40,7 @@ public abstract class DocumentRepository {
         ObservableList<Document> theses = FXCollections.observableArrayList();
         String query = "SELECT * FROM " + getDbTable();
 
-        try (ResultSet rs = connectJDBC.executeQuery(query)) {
+        try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
             getDocuments(rs, theses);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,7 +89,7 @@ public abstract class DocumentRepository {
         }
 
         // Execute the query with the parameters
-        try (ResultSet rs = connectJDBC.executeQueryWithParams(query, parameters.toArray())) {
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, parameters.toArray())) {
             getDocuments(rs, documents);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,7 +111,7 @@ public abstract class DocumentRepository {
                 + " OR isbn13 LIKE ?";
 
         // Execute the query with the parameters
-        try (ResultSet rs = connectJDBC.executeQueryWithParams(query, search, search, search, search, search, search)) {
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, search, search, search, search, search, search)) {
             getDocuments(rs, documents);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -130,17 +128,17 @@ public abstract class DocumentRepository {
 
         // check and reset AUTO_INCREMENT if needed
         String maxIdQuery = "SELECT MAX(id) FROM " + getDbTable();
-        try (ResultSet maxIdRs = connectJDBC.executeQuery(maxIdQuery)) {
+        try (ResultSet maxIdRs = ConnectJDBC.executeQuery(maxIdQuery)) {
             if (maxIdRs.next()) {
                 int maxId = maxIdRs.getInt(1);
                 String resetAutoIncrementQuery = "ALTER TABLE " + getDbTable() + " AUTO_INCREMENT = " + (maxId + 1);
-                connectJDBC.executeUpdate(resetAutoIncrementQuery);
+                ConnectJDBC.executeUpdate(resetAutoIncrementQuery);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        try (ResultSet rs = connectJDBC.executeQueryWithParams(checkQuery, document.getIsbn10(), document.getIsbn13())) {
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(checkQuery, document.getIsbn10(), document.getIsbn13())) {
             // check if document already exists
             if (rs.next() && rs.getInt(1) > 0) {
                 System.out.println("Document already exists in the database.");
@@ -148,7 +146,7 @@ public abstract class DocumentRepository {
             }
 
             // add new document
-            connectJDBC.executeUpdate(insertQuery, document.getTitle(), document.getAuthor(), document.getPublisher(),
+            ConnectJDBC.executeUpdate(insertQuery, document.getTitle(), document.getAuthor(), document.getPublisher(),
                     document.getYear(), document.getDescription(), document.getCategory(),
                     document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13());
             System.out.println("Document inserted successfully.");
@@ -161,7 +159,7 @@ public abstract class DocumentRepository {
     public void update(Document document) {
         String query = "UPDATE " + getDbTable() + " SET title = ?, author = ?, publisher = ?, publishDate = ?, description = ?, "
                 + (getDbTable().equals("books") ? "genre" : "field") + " = ?, thumbnail = ?, isbn10 = ?, isbn13 = ? WHERE id = ?";
-        connectJDBC.executeUpdate(query, document.getTitle(), document.getAuthor(), document.getPublisher(),
+        ConnectJDBC.executeUpdate(query, document.getTitle(), document.getAuthor(), document.getPublisher(),
                 document.getYear(), document.getDescription(), document.getCategory(),
                 document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13(), document.getId());
     }
@@ -169,12 +167,12 @@ public abstract class DocumentRepository {
     // delete document
     public void delete(Document document) {
         String query = "DELETE FROM " + getDbTable() + " WHERE id = ?";
-        connectJDBC.executeUpdate(query, document.getId());
+        ConnectJDBC.executeUpdate(query, document.getId());
     }
 
     public void deleteAll() {
         String query = "DELETE FROM " + getDbTable();
-        connectJDBC.executeUpdate(query);
+        ConnectJDBC.executeUpdate(query);
     }
 
     public void getDocuments(ResultSet rs, ObservableList<Document> documents) throws SQLException {

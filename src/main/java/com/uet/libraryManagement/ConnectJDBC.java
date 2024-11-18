@@ -9,47 +9,54 @@ public class ConnectJDBC {
     private static final String DB_USERNAME = "admin";
     private static final String DB_PASSWORD = "admindeptrai123";
 
-    public static Connection connect() {
-        Connection connection = null;
+    private static Connection connection;
+
+    // Phương thức khởi tạo kết nối (chỉ tạo một lần)
+    static {
         try {
             // Nạp driver MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Kết nối với cơ sở dữ liệu
+            // Tạo kết nối
             connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-
             System.out.println("Kết nối thành công tới AWS RDS!");
         } catch (ClassNotFoundException e) {
             System.err.println("Không tìm thấy driver MySQL: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("Lỗi khi kết nối tới cơ sở dữ liệu: " + e.getMessage());
         }
+    }
+
+    // Phương thức trả về kết nối duy nhất
+    public static Connection getConnection() {
         return connection;
     }
 
-    public ResultSet executeQuery(String query) {
+    public static ResultSet executeQuery(String query) {
         Statement statement;
         ResultSet rs;
         try {
-            statement = connect().createStatement();
+            statement = connection.createStatement();
             rs = statement.executeQuery(query);
+            System.out.println("executeQuery: " + query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return rs;
     }
 
-    public ResultSet executeQueryWithParams(String query, Object... params) {
+    public static ResultSet executeQueryWithParams(String query, Object... params) {
         PreparedStatement statement;
         ResultSet rs;
         try {
-            statement = connect().prepareStatement(query);
+            statement = connection.prepareStatement(query);
             for (int i = 0; i < params.length; i++) {
                 if(query.contains("LIKE ?"))
                 {
                     statement.setObject(i + 1, "%" + params[i] + "%");
                 }
                 else statement.setObject(i + 1, params[i]);
+                System.out.println("executeQueryWithParams: " + query);
             }
 
             rs = statement.executeQuery();
@@ -59,14 +66,14 @@ public class ConnectJDBC {
         return rs;
     }
 
-    public void executeUpdate(String query, Object... params) {
+    public static void executeUpdate(String query, Object... params) {
         PreparedStatement statement;
         try {
-            statement = connect().prepareStatement(query);
+            statement = connection.prepareStatement(query);
             for (int i = 0; i < params.length; i++) {
                 statement.setObject(i + 1, params[i]);
             }
-
+            System.out.println("UPDATE: " + query);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
