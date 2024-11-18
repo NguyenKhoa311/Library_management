@@ -37,9 +37,6 @@ public abstract class DocumentsController implements Initializable {
     @FXML
     protected VBox filtersPanel;
 
-    protected final BookRepository bookRepository = new BookRepository();
-    protected final ThesisRepository thesisRepository = new ThesisRepository();
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -124,9 +121,9 @@ public abstract class DocumentsController implements Initializable {
     protected void loadDocuments(String docType) {
         ObservableList<Document> documents;
         if ("Books".equals(docType)) {
-            documents = bookRepository.getAllBooks();
+            documents = BookRepository.getInstance().getAllBooks();
         } else {
-            documents = thesisRepository.getAllTheses();
+            documents = ThesisRepository.getInstance().getAllTheses();
         }
         docsTable.setItems(documents);
     }
@@ -178,10 +175,10 @@ public abstract class DocumentsController implements Initializable {
     private void loadDocuments(String title, String author, String category, String startYear, String endYear, String isbn10, String isbn13) {
         ObservableList<Document> documents;
         if (docTypeBox.getValue().equals("Books")) {
-            documents = bookRepository.getFilteredDocuments(title, author, category, startYear, endYear, isbn10, isbn13);
+            documents = BookRepository.getInstance().getFilteredDocuments(title, author, category, startYear, endYear, isbn10, isbn13);
             docsTable.setItems(documents);
         } else {
-            documents = thesisRepository.getFilteredDocuments(title, author, category, startYear, endYear, isbn10, isbn13);
+            documents = ThesisRepository.getInstance().getFilteredDocuments(title, author, category, startYear, endYear, isbn10, isbn13);
         }
         docsTable.setItems(documents);
     }
@@ -189,10 +186,10 @@ public abstract class DocumentsController implements Initializable {
     private void loadSearchedDocuments(String searchTerm) {
         ObservableList<Document> documents;
         if (docTypeBox.getValue().equals("Books")) {
-            documents = bookRepository.searchDocument(searchTerm);
+            documents = BookRepository.getInstance().searchDocument(searchTerm);
             docsTable.setItems(documents);
         } else {
-            documents = thesisRepository.searchDocument(searchTerm);
+            documents = ThesisRepository.getInstance().searchDocument(searchTerm);
         }
         docsTable.setItems(documents);
     }

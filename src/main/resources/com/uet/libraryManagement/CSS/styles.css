@@ -1,27 +1,52 @@
 .root {
     -fx-background-color: #669999;
 }
+
 .text-field {
     -fx-text-fill: black;
 }
+
 .label {
     -fx-font-size: 20;
     -fx-font-family: Calibri;
     -fx-text-fill: black;
     -fx-alignment-baseline: middle;
 }
+
 .TextField {
     -fx-alignment: center;
 }
+
 .buttons {
-    -fx-text-fill: white;
+    -fx-background-color: #F4F4F4;
 }
 
-.jfx-button {
-    -fx-background-color: #669999;
-    -fx-text-fill: white;
+.buttons:hover {
+    -fx-background-color: #bababa;
 }
 
+.jfx-button-custom {
+    -fx-background-color: #2d97fa;
+}
+
+.jfx-button-custom:hover {
+    -fx-cursor: hand; /* Show hand cursor on hover */
+}
+
+.jfx-button-style1 {
+    -fx-background-color: #8eccf5;
+    -fx-border-color: #ffffff; /* Set border color */
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+/* Hover effect for JFXButton */
+.jfx-button-style1:hover {
+    -fx-background-color: #8eccf5; /* Change color on hover */
+    -fx-border-color: #196893; /* Change border color on hover */
+    -fx-cursor: hand; /* Show hand cursor on hover */
+}
 #titleLabel {
     -fx-text-fill: white;
     -fx-font-size: 50;

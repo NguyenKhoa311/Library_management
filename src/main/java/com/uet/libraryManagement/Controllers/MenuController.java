@@ -2,6 +2,7 @@ package com.uet.libraryManagement.Controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.uet.libraryManagement.SceneManager;
+import com.uet.libraryManagement.SessionManager;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -36,7 +37,9 @@ public class MenuController {
     private void initialize() throws IOException {
         SceneManager.getInstance().setContentPane(contentPane);
         menuBox.setTranslateX(-menuBox.getPrefWidth());
-        Title_page.setText("Welcome to UET Library");
+        String fullName = SessionManager.getInstance().getUser().getFullName();
+        String username = SessionManager.getInstance().getUser().getUsername();
+        Title_page.setText("Welcome " + (fullName == null ? username : fullName) + " !");
     }
 
     @FXML
@@ -63,7 +66,6 @@ public class MenuController {
         alert.setContentText("Choose OK to exit the application.");
 
         if (alert.showAndWait().get() == ButtonType.OK) {
-            System.out.println("Logged out successfully");
             stage.close();
         }
     }
@@ -97,8 +99,11 @@ public class MenuController {
 
     @FXML
     private void Documents() throws IOException {
-        SceneManager.getInstance().setSubScene("UserDocuments.fxml");
-//        SceneManager.getInstance().setSubScene("AdminDocuments.fxml");
+        if (SessionManager.getInstance().getUser().getRole().equals("user")) {
+            SceneManager.getInstance().setSubScene("UserDocuments.fxml");
+        } else {
+            SceneManager.getInstance().setSubScene("AdminDocuments.fxml");
+        }
         Title_page.setText("Documents");
         hideMenuBox();
     }
@@ -126,9 +131,24 @@ public class MenuController {
 
     @FXML
     private void LogOut() {
-        SceneManager.getInstance().setSubScene("Logout.fxml");
-        Title_page.setText("Logout");
-        hideMenuBox();
+        // Hiển thị cửa sổ xác nhận đăng xuất
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Log Out Confirmation");
+        alert.setHeaderText("Do you really want to log out?");
+        alert.setContentText("Choose OK to log out.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // set current user to null
+            SessionManager.getInstance().logout();
+
+            // move to log in scene
+            try {
+                SceneManager.getInstance().setLoginScene("Login.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
