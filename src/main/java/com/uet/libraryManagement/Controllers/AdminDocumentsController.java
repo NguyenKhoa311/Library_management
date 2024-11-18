@@ -40,7 +40,7 @@ public class AdminDocumentsController extends DocumentsController {
         Document selectedDocument = docsTable.getSelectionModel().getSelectedItem();
         if (selectedDocument != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/DocumentForm.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentForm.fxml"));
                 Parent formRoot = loader.load();
 
                 // Get the controller and set the mode to edit
@@ -70,7 +70,7 @@ public class AdminDocumentsController extends DocumentsController {
     @FXML
     private void addDoc(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/DocumentForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentForm.fxml"));
             Parent formRoot = loader.load();
 
             // Get the controller and set the mode to add

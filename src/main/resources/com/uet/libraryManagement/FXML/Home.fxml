@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="294.0" fitWidth="200.0" layoutX="54.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@icons/C++.jpeg" />
+            <Image url="@../ICONS/C++.jpeg" />
          </image>
       </ImageView>
       <Label fx:id="version_label" layoutX="350.0" layoutY="62.0" prefHeight="18.0" prefWidth="200.0" text="Phiên bản: demo" />

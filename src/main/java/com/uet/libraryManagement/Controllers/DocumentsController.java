@@ -152,7 +152,7 @@ public abstract class DocumentsController implements Initializable {
         Document selectedDocument = docsTable.getSelectionModel().getSelectedItem();
         if (selectedDocument != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/DocumentDetail.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentDetail.fxml"));
                 Parent detailRoot = loader.load();
 
                 // Get the controller and set the selected book

@@ -18,13 +18,13 @@
                 <Insets top="20.0" />
             </VBox.margin>
          <image>
-            <Image url="@icons/profile.png" />
+            <Image url="@../ICONS/profile.png" />
          </image></ImageView>
-        <JFXButton onAction="#insertImg" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Insert avatar">
+        <JFXButton onAction="#insertImg" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Insert avatar">
             <graphic>
                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@icons/addImg.png" />
+                        <Image url="@../ICONS/addImg.png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -39,11 +39,11 @@
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Label>
-        <JFXButton onAction="#saveChanges" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Save">
+        <JFXButton onAction="#saveChanges" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Save">
             <graphic>
                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@icons/save.png" />
+                        <Image url="@../ICONS/save.png" />
                     </image>
                 </ImageView>
             </graphic>

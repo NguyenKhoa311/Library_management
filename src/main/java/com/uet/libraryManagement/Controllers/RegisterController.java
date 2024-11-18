@@ -44,6 +44,6 @@ public class RegisterController {
 
     @FXML
     private void cancelRegister(ActionEvent actionEvent) throws IOException {
-        SceneManager.getInstance().setLoginScene("Login.fxml");
+        SceneManager.getInstance().setLoginScene("FXML/Login.fxml");
     }
 }

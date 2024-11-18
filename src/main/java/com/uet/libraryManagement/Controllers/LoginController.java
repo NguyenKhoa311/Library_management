@@ -41,8 +41,8 @@ public class LoginController {
             // Successful login, proceed to the main application scene
             SessionManager.getInstance().setUser(user);
             try {
-                SceneManager.getInstance().setScene("UserMenu.fxml");
-                SceneManager.getInstance().setSubScene("Home.fxml");
+                SceneManager.getInstance().setScene("FXML/UserMenu.fxml");
+                SceneManager.getInstance().setSubScene("FXML/Home.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
                 messageLabel.setText("Failed to load the application.");
@@ -50,8 +50,8 @@ public class LoginController {
         } else if (user != null && user.getRole().equals("admin"))  {
             SessionManager.getInstance().setUser(user);
             try {
-                SceneManager.getInstance().setScene("AdminMenu.fxml");
-                SceneManager.getInstance().setSubScene("Home.fxml");
+                SceneManager.getInstance().setScene("FXML/AdminMenu.fxml");
+                SceneManager.getInstance().setSubScene("FXML/Home.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
                 messageLabel.setText("Failed to load the application.");
@@ -65,6 +65,6 @@ public class LoginController {
 
     @FXML
     private void handleRegister() throws IOException {
-        SceneManager.getInstance().setLoginScene("Register.fxml");
+        SceneManager.getInstance().setLoginScene("FXML/Register.fxml");
     }
 }

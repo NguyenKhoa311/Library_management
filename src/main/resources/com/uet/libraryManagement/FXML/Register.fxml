@@ -19,7 +19,7 @@
                         <Insets top="30.0" />
                     </VBox.margin>
                     <image>
-                        <Image url="@icons/uet.png" />
+                        <Image url="@../ICONS/uet.png" />
                     </image>
                 </ImageView>
                 <AnchorPane prefHeight="170.0" prefWidth="300.0">
@@ -28,7 +28,7 @@
                         <PasswordField fx:id="passwordField" layoutX="84.0" layoutY="33.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                   <PasswordField fx:id="cf_passwordField" layoutX="84.0" layoutY="67.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                   <TextField fx:id="emailField" layoutX="84.0" layoutY="103.0" prefHeight="26.0" prefWidth="150.0" promptText="Email" />
-                  <JFXButton layoutX="228.0" layoutY="137.0" onAction="#submitRegister" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Register" />
+                  <JFXButton layoutX="228.0" layoutY="137.0" onAction="#submitRegister" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Register" />
                   <Label fx:id="messageLabel" layoutX="16.0" layoutY="139.0" prefHeight="25.0" prefWidth="202.0" />
                     </children>
                 </AnchorPane>
@@ -38,7 +38,7 @@
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/back.png" />
+                              <Image url="@../ICONS/back.png" />
                            </image>
                         </ImageView>
                      </graphic>

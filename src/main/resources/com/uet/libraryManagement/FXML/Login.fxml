@@ -19,7 +19,7 @@
                   <Insets top="30.0" />
                </VBox.margin>
                <image>
-                  <Image url="@icons/uet.png" />
+                  <Image url="@../ICONS/uet.png" />
                </image>
             </ImageView>
             <AnchorPane prefHeight="217.0" prefWidth="300.0">
@@ -28,20 +28,20 @@
                   <TextField fx:id="username_textfield" layoutX="118.0" layoutY="6.0" prefHeight="26.0" prefWidth="150.0" promptText="Username" />
                   <Label layoutX="58.0" layoutY="47.0" text="Password" />
                   <PasswordField fx:id="password_textfield" layoutX="118.0" layoutY="43.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
-                  <JFXButton alignment="CENTER" layoutX="118.0" layoutY="75.0" onAction="#handleLogin" prefHeight="42.0" prefWidth="110.0" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Login">
+                  <JFXButton alignment="CENTER" layoutX="118.0" layoutY="75.0" onAction="#handleLogin" prefHeight="42.0" prefWidth="110.0" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Login">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/login.png" />
+                              <Image url="@../ICONS/login.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton alignment="CENTER" layoutX="118.0" layoutY="125.0" onAction="#handleRegister" prefHeight="42.0" prefWidth="110.0" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Register">
+                  <JFXButton alignment="CENTER" layoutX="118.0" layoutY="125.0" onAction="#handleRegister" prefHeight="42.0" prefWidth="110.0" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Register">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/register.png" />
+                              <Image url="@../ICONS/register.png" />
                            </image>
                         </ImageView>
                      </graphic>

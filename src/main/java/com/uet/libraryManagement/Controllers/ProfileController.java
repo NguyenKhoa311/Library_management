@@ -31,7 +31,7 @@ public class ProfileController {
 
     public void handleEditProfile(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/EditProfile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/EditProfile.fxml"));
             Parent editProfileRoot = loader.load();
 
             Stage stage = new Stage();
@@ -48,7 +48,7 @@ public class ProfileController {
 
     public void handlePassword(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/ChangePassword.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/ChangePassword.fxml"));
             Parent changePasswordRoot = loader.load();
 
             Stage stage = new Stage();

@@ -19,11 +19,11 @@
    <children>
        <!-- Search Bar -->
        <HBox alignment="CENTER" layoutX="10" layoutY="10" prefHeight="33.0" prefWidth="468.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="222.0">
-           <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-custom" stylesheets="@CSS/styles.css">
+           <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-custom" stylesheets="@../CSS/styles.css">
                <graphic>
                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                        <image>
-                           <Image url="@icons/search.png" />
+                           <Image url="@../ICONS/search.png" />
                        </image>
                    </ImageView>
                </graphic>
@@ -32,20 +32,20 @@
                <HBox.margin>
                    <Insets />
                </HBox.margin></TextField>
-           <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-custom" stylesheets="@CSS/styles.css">
+           <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-custom" stylesheets="@../CSS/styles.css">
                <graphic>
                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                        <image>
-                           <Image url="@icons/clear.png" />
+                           <Image url="@../ICONS/clear.png" />
                        </image>
                    </ImageView>
                </graphic>
            </JFXButton>
-           <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Advanced Search">
+           <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Advanced Search">
                <graphic>
                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                        <image>
-                           <Image url="@icons/advanced_search.png" />
+                           <Image url="@../ICONS/advanced_search.png" />
                        </image>
                    </ImageView>
                </graphic>
@@ -85,20 +85,20 @@
                <DatePicker fx:id="endDateFilter" focusTraversable="false" promptText="End Year" />
            </HBox>
            <HBox alignment="CENTER" spacing="20.0">
-               <JFXButton focusTraversable="false" onAction="#applyFilters" prefWidth="115.0" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Search">
+               <JFXButton focusTraversable="false" onAction="#applyFilters" prefWidth="115.0" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Search">
                    <graphic>
                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                               <Image url="@icons/search.png" />
+                               <Image url="@../ICONS/search.png" />
                            </image>
                        </ImageView>
                    </graphic>
                </JFXButton>
-               <JFXButton focusTraversable="false" onAction="#clearFilters" prefHeight="25.0" prefWidth="115.0" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Clear filters">
+               <JFXButton focusTraversable="false" onAction="#clearFilters" prefHeight="25.0" prefWidth="115.0" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Clear filters">
                    <graphic>
                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                               <Image url="@icons/clear_filters.png" />
+                               <Image url="@../ICONS/clear_filters.png" />
                            </image>
                        </ImageView>
                    </graphic>
@@ -119,29 +119,29 @@
         </columns>
       </TableView>
       <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
-      <JFXButton focusTraversable="false" layoutX="282.0" layoutY="418.0" onAction="#deleteDoc" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Delete document">
+      <JFXButton focusTraversable="false" layoutX="282.0" layoutY="418.0" onAction="#deleteDoc" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Delete document">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@icons/deleteDoc.png" />
+                  <Image url="@../ICONS/deleteDoc.png" />
                </image>
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton focusTraversable="false" layoutX="487.0" layoutY="418.0" onAction="#editDoc" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Edit document">
+      <JFXButton focusTraversable="false" layoutX="487.0" layoutY="418.0" onAction="#editDoc" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Edit document">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@icons/editDoc.png" />
+                  <Image url="@../ICONS/editDoc.png" />
                </image>
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton focusTraversable="false" layoutX="88.0" layoutY="418.0" onAction="#addDoc" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Add document">
+      <JFXButton focusTraversable="false" layoutX="88.0" layoutY="418.0" onAction="#addDoc" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Add document">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@icons/addDoc.png" />
+                  <Image url="@../ICONS/addDoc.png" />
                </image>
             </ImageView>
          </graphic>

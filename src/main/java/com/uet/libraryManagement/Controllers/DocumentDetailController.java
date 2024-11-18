@@ -46,7 +46,7 @@ public class DocumentDetailController {
                 thumbnailImageView.setImage(image);
             }
         } else {
-            Image image = new Image(getClass().getResource("/com/uet/libraryManagement/icons/no_image.png").toExternalForm());
+            Image image = new Image(getClass().getResource("/com/uet/libraryManagement/ICONS/no_image.png").toExternalForm());
             thumbnailImageView.setFitHeight(150);
             thumbnailImageView.setFitWidth(150);
             thumbnailImageView.setImage(image); // set no thumbnail image

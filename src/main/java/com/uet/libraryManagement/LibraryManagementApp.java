@@ -12,7 +12,7 @@ public class LibraryManagementApp extends Application {
 
         ConnectJDBC.getConnection();
         SceneManager.getInstance().setStage(stage);
-        SceneManager.getInstance().setLoginScene("Login.fxml");
+        SceneManager.getInstance().setLoginScene("FXML/Login.fxml");
 //        SceneManager.getInstance().setScene("UserMenu.fxml");
 
         stage.setOnCloseRequest(event -> {

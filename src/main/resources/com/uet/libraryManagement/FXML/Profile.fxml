@@ -18,7 +18,7 @@
                <children>
                     <ImageView fx:id="profileImage" fitHeight="120.0" fitWidth="120.0" focusTraversable="true">
                      <image>
-                        <Image url="@icons/profile.png" />
+                        <Image url="@../ICONS/profile.png" />
                      </image>
                      <VBox.margin>
                         <Insets top="40.0" />
@@ -29,20 +29,20 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="239.0" prefWidth="158.0" spacing="10.0">
                <children>
-                  <JFXButton onAction="#handleEditProfile" prefHeight="40.0" prefWidth="110.0" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Edit profile">
+                  <JFXButton onAction="#handleEditProfile" prefHeight="40.0" prefWidth="110.0" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Edit profile">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/edit.png" />
+                              <Image url="@../ICONS/edit.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton onAction="#handlePassword" prefHeight="40.0" prefWidth="110.0" styleClass="jfx-button-style1" stylesheets="@CSS/styles.css" text="Password">
+                  <JFXButton onAction="#handlePassword" prefHeight="40.0" prefWidth="110.0" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Password">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/password.png" />
+                              <Image url="@../ICONS/password.png" />
                            </image>
                         </ImageView>
                      </graphic>

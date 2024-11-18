@@ -73,11 +73,11 @@ public class MenuController {
     public void DL_mode(ActionEvent event) {
         if (isLight) {
             SceneManager.getInstance().setDL_Mode(isLight);
-            DL_image.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/uet/libraryManagement/icons/dark.png")).toExternalForm()));
+            DL_image.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/uet/libraryManagement/ICONS/dark.png")).toExternalForm()));
             isLight = false;
         } else {
             SceneManager.getInstance().setDL_Mode(isLight);
-            Image image = new Image(Objects.requireNonNull(getClass().getResource("/com/uet/libraryManagement/icons/light.png")).toExternalForm());
+            Image image = new Image(Objects.requireNonNull(getClass().getResource("/com/uet/libraryManagement/ICONS/light.png")).toExternalForm());
             DL_image.setImage(image);
             isLight = true;
         }
@@ -85,14 +85,14 @@ public class MenuController {
 
     @FXML
     private void Home() {
-        SceneManager.getInstance().setSubScene("Home.fxml");
+        SceneManager.getInstance().setSubScene("FXML/Home.fxml");
         Title_page.setText("Home");
         hideMenuBox();
     }
 
     @FXML
     private void Profile() {
-        SceneManager.getInstance().setSubScene("Profile.fxml");
+        SceneManager.getInstance().setSubScene("FXML/Profile.fxml");
         Title_page.setText("Profile");
         hideMenuBox();
     }
@@ -100,9 +100,9 @@ public class MenuController {
     @FXML
     private void Documents() throws IOException {
         if (SessionManager.getInstance().getUser().getRole().equals("user")) {
-            SceneManager.getInstance().setSubScene("UserDocuments.fxml");
+            SceneManager.getInstance().setSubScene("FXML/UserDocuments.fxml");
         } else {
-            SceneManager.getInstance().setSubScene("AdminDocuments.fxml");
+            SceneManager.getInstance().setSubScene("FXML/AdminDocuments.fxml");
         }
         Title_page.setText("Documents");
         hideMenuBox();
@@ -110,21 +110,21 @@ public class MenuController {
 
     @FXML
     private void Issue() {
-        SceneManager.getInstance().setSubScene("IssueBook.fxml");
+        SceneManager.getInstance().setSubScene("FXML/IssueBook.fxml");
         Title_page.setText("Issue");
         hideMenuBox();
     }
 
     @FXML
     private void Manage() {
-        SceneManager.getInstance().setSubScene("ManageDocuments.fxml");
+        SceneManager.getInstance().setSubScene("FXML/ManageDocuments.fxml");
         Title_page.setText("Manage");
         hideMenuBox();
     }
 
     @FXML
     private void History() {
-        SceneManager.getInstance().setSubScene("History.fxml");
+        SceneManager.getInstance().setSubScene("FXML/History.fxml");
         Title_page.setText("History");
         hideMenuBox();
     }
@@ -144,7 +144,7 @@ public class MenuController {
 
             // move to log in scene
             try {
-                SceneManager.getInstance().setLoginScene("Login.fxml");
+                SceneManager.getInstance().setLoginScene("FXML/Login.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
