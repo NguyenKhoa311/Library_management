@@ -6,96 +6,51 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.ArrayList;
 import com.google.gson.*;
-import com.uet.libraryManagement.Book;
-import com.uet.libraryManagement.BookRepository;
-import com.uet.libraryManagement.Thesis;
-import com.uet.libraryManagement.ThesisRepository;
 
 public class GetAPI {
-    public static void main(String[] args) {
-//        BookRepository bookRepository = new BookRepository();
-//        ThesisRepository thesisRepository = new ThesisRepository();
-        String apiKey = "AIzaSyB5gHzt3vVKJHxU4R-g8MEMibYNtxtIRC4";
-        String query = "C++";
+    private static final String API_KEY = "AIzaSyB5gHzt3vVKJHxU4R-g8MEMibYNtxtIRC4";
+
+    public static List<Volume> searchVolumes(String query) {
+        List<Volume> volumes = new ArrayList<>();
+
         try {
             String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8.toString());
-            String urlString = "https://www.googleapis.com/books/v1/volumes?q=" + encodedQuery + "&key=" + apiKey;
-            // Create url to connect
+            String urlString = "https://www.googleapis.com/books/v1/volumes?q=" + encodedQuery + "&key=" + API_KEY + "&maxResults=25";
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
 
-            // Checking connection
             int responseCode = conn.getResponseCode();
-            if (responseCode != 200) {
-                BufferedReader errorReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-                String errorLine;
-                while ((errorLine = errorReader.readLine()) != null) {
-                    System.out.println("Error: " + errorLine);
-                }
-                throw new RuntimeException("HttpResponseCode: " + responseCode);
-            } else {
-                // Get data from API
-                System.out.println("Successfully retrieved the volumes from the Google API.");
+            if (responseCode == 200) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder content = new StringBuilder();
                 String inputLine;
-                StringBuffer content = new StringBuffer();
                 while ((inputLine = in.readLine()) != null) {
                     content.append(inputLine);
                 }
 
-                // create GSON objecet and parse JSON from API
                 Gson gson = new GsonBuilder().create();
                 VolumeResponse volumeResponse = gson.fromJson(content.toString(), VolumeResponse.class);
 
-                // Duyệt qua từng volume và in thông tin cần thiết
-                // iterating through each volume to get information
-                for (Volume volume : volumeResponse.items) {
-                    VolumeInfo volumeInfo = volume.volumeInfo;
-                    String title = volumeInfo.title != null ? volumeInfo.title : "N/A";
-                    String authors = volumeInfo.authors != null ? String.join(", ", volumeInfo.authors) : "N/A";
-                    String publishedDate = volumeInfo.publishedDate != null ? volumeInfo.publishedDate : "N/A";
-                    String publisher = volumeInfo.publisher != null ? volumeInfo.publisher : "N/A";
-                    String description = volumeInfo.description != null ? volumeInfo.description : "N/A";
-                    String categories = volumeInfo.categories != null ? String.join(", ", volumeInfo.categories) : "N/A";
-                    String thumbnail = volumeInfo.imageLinks != null ? volumeInfo.imageLinks.thumbnail : "No Thumbnail";
-
-                    String isbn10 = "N/A";
-                    String isbn13 = "N/A";
-                    if (volumeInfo.industryIdentifiers != null) {
-                        for (IndustryIdentifier id : volumeInfo.industryIdentifiers) {
-                            if ("ISBN_10".equals(id.type)) {
-                                isbn10 = id.identifier;
-                            } else if ("ISBN_13".equals(id.type)) {
-                                isbn13 = id.identifier;
-                            }
-                        }
-                    }
-//                    Thesis newThesis = new Thesis(title, authors, publisher, description, publishedDate, categories, thumbnail, isbn10, isbn13);
-//                    Book newBook = new Book(title, authors, publisher, description, publishedDate, categories, thumbnail, isbn10, isbn13);
-//                    thesisRepository.create(newThesis);
-                    // Print out result sets
-                    System.out.println("Title: " + title);
-                    System.out.println("Authors: " + authors);
-                    System.out.println("Published Date: " + publishedDate);
-                    System.out.println("Publisher: " + publisher);
-                    System.out.println("Description: " + description);
-                    System.out.println("Categories: " + categories);
-                    System.out.println("Thumbnail: " + thumbnail);
-                    System.out.println("ISBN-10: " + isbn10);
-                    System.out.println("ISBN-13: " + isbn13);
-                    System.out.println();
+                if (volumeResponse != null && volumeResponse.items != null) {
+                    volumes.addAll(volumeResponse.items);
+                } else {
+                    System.out.println("No volumes found for the query: " + query);
                 }
-
-                // Stop connecting
                 in.close();
-                conn.disconnect();
+            } else {
+                System.out.println("Error: HTTP response code " + responseCode);
             }
+            conn.disconnect();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return volumes;
     }
 }

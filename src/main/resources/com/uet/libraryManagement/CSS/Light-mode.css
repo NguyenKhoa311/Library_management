@@ -10,7 +10,7 @@
 .label {
     -fx-font-size: 20;
     -fx-font-family: Calibri;
-    -fx-text-fill: #EEEEEE;
+    -fx-text-fill: #2d48dd;
     -fx-alignment-baseline: middle;
     -fx-border-width: 2px; /* Optional rounded corners */
     -fx-background-radius: 5px;

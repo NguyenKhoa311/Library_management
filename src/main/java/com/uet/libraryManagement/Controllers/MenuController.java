@@ -39,7 +39,7 @@ public class MenuController {
         menuBox.setTranslateX(-menuBox.getPrefWidth());
         String fullName = SessionManager.getInstance().getUser().getFullName();
         String username = SessionManager.getInstance().getUser().getUsername();
-        Title_page.setText("Welcome " + (fullName == null ? username : fullName) + " !");
+        Title_page.setText("Welcome " + ((fullName == null || fullName.equals("N/A")) ? username : fullName) + " !");
     }
 
     @FXML
@@ -105,6 +105,13 @@ public class MenuController {
             SceneManager.getInstance().setSubScene("FXML/AdminDocuments.fxml");
         }
         Title_page.setText("Documents");
+        hideMenuBox();
+    }
+
+    @FXML
+    private void SearchDocuments() {
+        SceneManager.getInstance().setSubScene("FXML/SearchDocuments.fxml");
+        Title_page.setText("Search Documents");
         hideMenuBox();
     }
 

@@ -2,6 +2,7 @@ package com.uet.libraryManagement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -122,7 +123,9 @@ public abstract class DocumentRepository {
 
     // create new document
     public void create(Document document) {
-        String checkQuery = "SELECT COUNT(*) FROM " + getDbTable() + " WHERE isbn10 = ? OR isbn13 = ?";
+        Object[] params;
+        String checkQuery;
+//        String checkQuery = "SELECT COUNT(*) FROM " + getDbTable() + " WHERE isbn10 = ? OR isbn13 = ?";
         String insertQuery = "INSERT INTO " + getDbTable() + " (title, author, publisher, publishDate, description, "
                 + (getDbTable().equals("books") ? "genre" : "field") + ", thumbnail, isbn10, isbn13) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -138,9 +141,30 @@ public abstract class DocumentRepository {
             e.printStackTrace();
         }
 
-        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(checkQuery, document.getIsbn10(), document.getIsbn13())) {
+        // Special handling for "N/A" ISBN
+        if ("N/A".equals(document.getIsbn10()) && "N/A".equals(document.getIsbn13())) {
+            // If both ISBNs are N/A, use a different uniqueness check
+            checkQuery = "SELECT COUNT(*) FROM " + getDbTable() +
+                    " WHERE title = ? AND author = ? AND publishDate = ?";
+            params = new Object[]{
+                    document.getTitle(),
+                    document.getAuthor(),
+                    document.getYear()
+            };
+        } else {
+            // Original ISBN-based check
+            checkQuery = "SELECT COUNT(*) FROM " + getDbTable() +
+                    " WHERE (isbn10 = ? OR isbn13 = ?) AND isbn10 != 'N/A' AND isbn13 != 'N/A'";
+            params = new Object[]{
+                    document.getIsbn10(),
+                    document.getIsbn13()
+            };
+        }
+
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(checkQuery, params)) {
             // check if document already exists
             if (rs.next() && rs.getInt(1) > 0) {
+                showAlert("Document already exists in the database !");
                 System.out.println("Document already exists in the database.");
                 return;
             }
@@ -149,6 +173,7 @@ public abstract class DocumentRepository {
             ConnectJDBC.executeUpdate(insertQuery, document.getTitle(), document.getAuthor(), document.getPublisher(),
                     document.getYear(), document.getDescription(), document.getCategory(),
                     document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13());
+            showAlert("Document inserted successfully !");
             System.out.println("Document inserted successfully.");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -192,5 +217,11 @@ public abstract class DocumentRepository {
                     new Thesis(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value);
             documents.add(document);
         }
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

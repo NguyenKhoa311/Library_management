@@ -52,10 +52,10 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" onAction="#History" prefHeight="50.0" prefWidth="110.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="History">
+      <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" onAction="#SearchDocuments" prefHeight="50.0" prefWidth="110.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Search documents">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../ICONS/history.png" />
+               <Image url="@../ICONS/search_document.png" />
             </ImageView>
          </graphic>
       </JFXButton>
