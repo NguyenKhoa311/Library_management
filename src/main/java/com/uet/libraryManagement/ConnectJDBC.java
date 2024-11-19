@@ -56,10 +56,9 @@ public class ConnectJDBC {
                     statement.setObject(i + 1, "%" + params[i] + "%");
                 }
                 else statement.setObject(i + 1, params[i]);
-                System.out.println("executeQueryWithParams: " + query);
             }
-
             rs = statement.executeQuery();
+            System.out.println("executeQueryWithParams: " + query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #8eccf5;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.RegisterController">
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.RegisterController">
     <children>
         <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
             <children>
@@ -28,7 +28,7 @@
                         <PasswordField fx:id="passwordField" layoutX="84.0" layoutY="33.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                   <PasswordField fx:id="cf_passwordField" layoutX="84.0" layoutY="67.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                   <TextField fx:id="emailField" layoutX="84.0" layoutY="103.0" prefHeight="26.0" prefWidth="150.0" promptText="Email" />
-                  <JFXButton layoutX="228.0" layoutY="137.0" onAction="#submitRegister" styleClass="jfx-button-style1" stylesheets="@../CSS/styles.css" text="Register" />
+                  <JFXButton layoutX="228.0" layoutY="137.0" onAction="#submitRegister" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Register" />
                   <Label fx:id="messageLabel" layoutX="16.0" layoutY="139.0" prefHeight="25.0" prefWidth="202.0" />
                     </children>
                 </AnchorPane>

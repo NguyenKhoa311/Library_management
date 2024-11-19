@@ -1,25 +1,84 @@
 .root {
-    -fx-background-color: whitesmoke;
+    -fx-background-color: #EEEEEE;
+
+}
+
+.text-field {
+    -fx-text-fill: black;
 }
 
 .label {
-    -fx-text-fill: black;
-    -fx-font-family: Arial;
+    -fx-font-size: 20;
+    -fx-font-family: Calibri;
+    -fx-text-fill: #EEEEEE;
+    -fx-alignment-baseline: middle;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+.TextField {
+    -fx-alignment: center;
 }
 
 .buttons {
-    -fx-text-fill: black;
+    -fx-background-color: #EEEEEE;
 }
 
-.jfx-button {
-    -fx-background-color: white;
-    -fx-text-fill: black;
+.buttons:hover {
+    -fx-border-color: #31363F;
+    -fx-background-color: #EEEEEE;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
 }
 
+.jfx-button-custom {
+    -fx-background-color: #76ABAE;
+    -fx-border-color: #31363F;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+.jfx-button-custom:hover {
+    -fx-background-color: #76ABAE;
+    -fx-cursor: hand; /* Show hand cursor on hover */
+}
+
+/*chưa di chuột*/
+.jfx-menu-button-style {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+/* di chuột vào */
+.jfx-menu-button-style:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-font-size: 15;/* Show hand cursor on hover */
+}
+
+.jfx-menu-icon-style {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+#menuBox {
+    -fx-background-color: #76ABAE;
+}
+
+/*Tiêu đề*/
 #Title_page {
     -fx-font-size: 30;
     -fx-font-family: Montserrat;
     -fx-font-weight: bold;
-    -fx-text-fill: #1573ef;
+    -fx-text-fill: #222831;
     -fx-alignment: center;
+    -fx-background-color: #76ABAE;
+    -fx-alignment-baseline: middle;
 }
