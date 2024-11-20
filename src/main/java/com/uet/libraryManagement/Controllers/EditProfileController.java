@@ -1,6 +1,7 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
+import com.uet.libraryManagement.APIService.GitHubUpload;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -14,10 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
 public class EditProfileController {
@@ -28,7 +25,7 @@ public class EditProfileController {
     @FXML private TextField nameField;
     @FXML private DatePicker birthdayField;
 
-
+    private byte[] tmpAvatar;
     private String avatarPath;
     private final User currentUser = SessionManager.getInstance().getUser();
 
@@ -47,13 +44,21 @@ public class EditProfileController {
         if (selectedFile != null) {
             avatarPath = selectedFile.getAbsolutePath(); // Lưu tạm đường dẫn ảnh
 
-            // Hiển thị ảnh trong ImageView mà không sao chép vào thư mục đích ngay
-            Image thumbnailImage = new Image(new File(avatarPath).toURI().toString());
-            avatarImage.setImage(thumbnailImage);
+            try {
+                // Đọc ảnh thành mảng byte
+                tmpAvatar = java.nio.file.Files.readAllBytes(selectedFile.toPath());
+
+                // Hiển thị ảnh trong ImageView
+                Image thumbnailImage = new Image(new File(avatarPath).toURI().toString());
+                avatarImage.setImage(thumbnailImage);
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert("Error reading image file.");
+            }
         }
     }
 
-    public void saveChanges(ActionEvent actionEvent) {
+    public void saveChanges(ActionEvent actionEvent) throws IOException {
         String phone = phoneField.getText();
         String email = emailField.getText();
         String name = nameField.getText();
@@ -67,21 +72,8 @@ public class EditProfileController {
         currentUser.setPhone(phone);
         currentUser.setEmail(email);
         currentUser.setBirthday(birthday);
-
-        // copy image to avatars folder if new avatar is inserted
-        if (avatarPath != null && !avatarPath.isEmpty() && !avatarPath.equals(currentUser.getAvatarUrl())) {
-            try {
-                Path targetDir = Paths.get("user_data/avatars");
-                Files.createDirectories(targetDir);
-                Path targetPath = targetDir.resolve(new File(avatarPath).getName());
-                Files.copy(Paths.get(avatarPath), targetPath, StandardCopyOption.REPLACE_EXISTING);
-
-                currentUser.setAvatarUrl("user_data/avatars/" + new File(avatarPath).getName());
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert("Error copying image file.");
-                return;
-            }
+        if (tmpAvatar != null) {
+            currentUser.setAvatar(tmpAvatar);
         }
 
         UserRepository.getInstance().updateProfile(currentUser);
@@ -103,9 +95,9 @@ public class EditProfileController {
             birthdayField.setPromptText("N/A");
         }
 
-        if (currentUser.getAvatarUrl() != null && !currentUser.getAvatarUrl().isEmpty()) {
-            File file = new File(currentUser.getAvatarUrl());
-            Image image = new Image(file.toURI().toString(), true);
+        if (currentUser.getAvatar() != null) {
+            // Hiển thị avatar từ byte[]
+            Image image = new Image(new java.io.ByteArrayInputStream(currentUser.getAvatar()));
             avatarImage.setImage(image);
         }
     }

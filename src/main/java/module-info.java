@@ -6,7 +6,6 @@ module com.example.librarymanagement_demo {
     requires jdk.compiler;
     requires java.sql;
 
-
     opens com.uet.libraryManagement to javafx.fxml;
     exports com.uet.libraryManagement;
     exports com.uet.libraryManagement.Controllers;

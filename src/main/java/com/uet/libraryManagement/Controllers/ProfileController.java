@@ -12,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 
 public class ProfileController {
@@ -67,9 +66,9 @@ public class ProfileController {
         phoneLabel.setText("Phone: " + ((currentUser.getPhone() == null) ? "N/A" : currentUser.getPhone()));
         emailLabel.setText("Email: " + ((currentUser.getEmail() == null) ? "N/A" : currentUser.getEmail()));
 
-        if (currentUser.getAvatarUrl() != null && !currentUser.getAvatarUrl().isEmpty()) {
-            File file = new File(currentUser.getAvatarUrl());
-            Image image = new Image(file.toURI().toString(), true);
+        if (currentUser.getAvatar() != null) {
+            // Hiển thị avatar từ byte[]
+            Image image = new Image(new java.io.ByteArrayInputStream(currentUser.getAvatar()));
             profileImage.setImage(image);
         }
     }

@@ -1,6 +1,8 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
+import com.uet.libraryManagement.APIService.GitHubUpload;
+import com.uet.libraryManagement.APIService.ImgurUpload;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -18,6 +20,7 @@ import java.nio.file.StandardCopyOption;
 
 
 public class DocumentFormController {
+    private static String FOLDER = "thumbnails";
     @FXML
     private TextArea descriptionArea;
     @FXML
@@ -98,7 +101,7 @@ public class DocumentFormController {
         if (selectedFile != null) {
             thumbnailFilePath = selectedFile.getAbsolutePath(); // save temporary image path
 
-            // show temporary image, not yet save to local folder
+            // show temporary image
             Image img = new Image(new File(thumbnailFilePath).toURI().toString());
             thumbnailImage.setImage(img);
         }
@@ -120,12 +123,23 @@ public class DocumentFormController {
         }
 
         if ("add".equals(mode)) {
+            String imgurUrl = null;
+            // Nếu thumbnail đã được chọn, tải lên Imgur và lấy URL trả về
+            if (thumbnailFilePath != null && !thumbnailFilePath.isEmpty()) {
+                try {
+                    imgurUrl = ImgurUpload.uploadImage(new File(thumbnailFilePath)); // Tải ảnh lên Imgur và nhận URL
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    showAlert("Error uploading thumbnail image to Imgur.");
+                    return; // Dừng lại nếu không thể tải ảnh lên Imgur
+                }
+            }
             if ("Books".equals(docType)) {
-                document = new Book(title, author, publisher, description, publishDate, category, thumbnailFilePath, isbn10, isbn13);
+                document = new Book(title, author, publisher, description, publishDate, category, imgurUrl, isbn10, isbn13);
                 BookRepository.getInstance().create(document);
                 System.out.println("Book added");
             } else if ("Theses".equals(docType)) {
-                document = new Thesis(title, author, publisher, description, publishDate, category, thumbnailFilePath, isbn10, isbn13);
+                document = new Thesis(title, author, publisher, description, publishDate, category, imgurUrl, isbn10, isbn13);
                 ThesisRepository.getInstance().create(document);
                 System.out.println("Thesis added");
             }
@@ -140,18 +154,14 @@ public class DocumentFormController {
             document.setIsbn10(isbn10);
             document.setIsbn13(isbn13);
 
-            // copy image to thumbnails folder if new thumbnail is inserted
+            // upload image to imgur
             if (thumbnailFilePath != null && !thumbnailFilePath.isEmpty() && !thumbnailFilePath.equals(document.getThumbnailUrl())) {
                 try {
-                    Path targetDir = Paths.get("user_data/thumbnails");
-                    Files.createDirectories(targetDir);
-                    Path targetPath = targetDir.resolve(new File(thumbnailFilePath).getName());
-                    Files.copy(Paths.get(thumbnailFilePath), targetPath, StandardCopyOption.REPLACE_EXISTING);
-
-                    document.setThumbnailUrl("user_data/thumbnails/" + new File(thumbnailFilePath).getName());
+                    String imgurUrl = ImgurUpload.uploadImage(new File(thumbnailFilePath)); // Upload image to Imgur
+                    document.setThumbnailUrl(imgurUrl);  // Set the new Imgur URL
                 } catch (IOException e) {
                     e.printStackTrace();
-                    showAlert("Error copying image file.");
+                    showAlert("Error uploading thumbnail image to Imgur.");
                     return;
                 }
             }

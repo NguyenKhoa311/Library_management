@@ -1,5 +1,6 @@
 package com.uet.libraryManagement;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -27,7 +28,7 @@ public class UserRepository {
                 String fullName = rs.getString("fullName"); // can be null
                 String email = rs.getString("email");
                 String birthday = rs.getString("birthday"); // Can be null
-                String image = rs.getString("image"); // Can be null
+                byte[] image = rs.getBytes("image"); // Can be null
                 String phone = rs.getString("phone"); // Can be null
                 String role = rs.getString("role");
                 return new User(id, userName, pass, fullName, birthday, email, image, phone, role); // Adjust the constructor if necessary
@@ -47,9 +48,9 @@ public class UserRepository {
     }
 
     // edit document
-    public void updateProfile(User user) {
+    public void updateProfile(User user) throws IOException {
         String query = "UPDATE users SET fullName = ?, birthday = ?, email = ?, image = ?, phone = ? WHERE id = ?";
-        ConnectJDBC.executeUpdate(query, user.getFullName(), user.getBirthday(), user.getEmail(), user.getAvatarUrl(), user.getPhone(), user.getId());
+        ConnectJDBC.executeUpdate(query, user.getFullName(), user.getBirthday(), user.getEmail(), user.getAvatar(), user.getPhone(), user.getId());
     }
 
     public void updatePassword(User user) {

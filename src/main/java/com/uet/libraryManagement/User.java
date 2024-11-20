@@ -9,7 +9,7 @@ public class User {
     private String email;
     private String phone;
     private String role;
-    private String avatarUrl;
+    private byte[] avatar;
 
     public User(String username, String password, String email) {
         this.username = username;
@@ -33,7 +33,7 @@ public class User {
         this.role = role;
     }
 
-    public User(int id, String username, String password, String fullName, String birthday, String email, String avatarUrl, String phone, String role) {
+    public User(int id, String username, String password, String fullName, String birthday, String email, byte[] avatarUrl, String phone, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -42,7 +42,7 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.role = role;
-        this.avatarUrl = avatarUrl;
+        this.avatar = avatarUrl;
     }
 
     // Getters and Setters
@@ -86,12 +86,12 @@ public class User {
         this.phone = phone;
     }
 
-    public String getAvatarUrl() {
-        return avatarUrl;
+    public byte[] getAvatar() {
+        return avatar;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
     }
 
     public int getId() {
