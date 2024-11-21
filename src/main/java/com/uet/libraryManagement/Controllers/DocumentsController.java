@@ -55,7 +55,7 @@ public abstract class DocumentsController implements Initializable {
 
         // set default to show books
         docTypeBox.getSelectionModel().select("Books");
-        loadDocuments("Books");
+//        loadDocuments("Books");
 
         // handle double-clicked to show document details
         docsTable.setOnMouseClicked(event -> {
@@ -192,5 +192,11 @@ public abstract class DocumentsController implements Initializable {
             documents = ThesisRepository.getInstance().searchDocument(searchTerm);
         }
         docsTable.setItems(documents);
+    }
+
+    public void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

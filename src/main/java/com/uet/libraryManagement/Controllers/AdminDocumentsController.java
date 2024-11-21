@@ -92,11 +92,4 @@ public class AdminDocumentsController extends DocumentsController {
             e.printStackTrace();
         }
     }
-
-    // Helper method to show alerts
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }
