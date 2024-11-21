@@ -1,10 +1,5 @@
 package com.uet.libraryManagement;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.sql.*;
-
 public class ThesisRepository extends DocumentRepository {
     protected String db_table;
     private static ThesisRepository instance;

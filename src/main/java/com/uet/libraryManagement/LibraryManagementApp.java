@@ -9,11 +9,8 @@ public class LibraryManagementApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
-//        ConnectJDBC.getConnection();
         SceneManager.getInstance().setStage(stage);
         SceneManager.getInstance().setLoginScene("FXML/Login.fxml");
-//        SceneManager.getInstance().setScene("UserMenu.fxml");
 
         stage.setOnCloseRequest(event -> {
             event.consume();

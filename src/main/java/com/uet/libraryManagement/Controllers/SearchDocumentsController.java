@@ -1,7 +1,7 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
-import com.uet.libraryManagement.APIService.GetAPI;
+import com.uet.libraryManagement.APIService.BookAPI;
 import com.uet.libraryManagement.APIService.Volume;
 import com.uet.libraryManagement.APIService.VolumeInfo;
 import com.uet.libraryManagement.APIService.IndustryIdentifier;
@@ -107,7 +107,7 @@ public class SearchDocumentsController implements Initializable {
     private void handleSearchAction() {
         String searchTerm = searchBar.getText();
         if (searchTerm != null && !searchTerm.isEmpty()) {
-            List<Volume> volumes = GetAPI.searchVolumes(searchTerm);
+            List<Volume> volumes = BookAPI.searchVolumes(searchTerm);
             ObservableList<Document> documents = convertVolumesToDocuments(volumes);
 
             if (documents.isEmpty()) {
@@ -198,7 +198,7 @@ public class SearchDocumentsController implements Initializable {
             searchTerm.setLength(searchTerm.length() - 1);
         }
 
-        List<Volume> volumes = GetAPI.searchVolumes(searchTerm.toString());
+        List<Volume> volumes = BookAPI.searchVolumes(searchTerm.toString());
         ObservableList<Document> documents = convertVolumesToDocuments(volumes);
         filtersPanel.setVisible(false);
 

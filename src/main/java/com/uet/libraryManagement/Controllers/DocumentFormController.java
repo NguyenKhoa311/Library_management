@@ -1,7 +1,6 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
-import com.uet.libraryManagement.APIService.GitHubUpload;
 import com.uet.libraryManagement.APIService.ImgurUpload;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,14 +12,9 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 
 public class DocumentFormController {
-    private static String FOLDER = "thumbnails";
     @FXML
     private TextArea descriptionArea;
     @FXML
