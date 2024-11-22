@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Book extends Document {
     // attribute
-    private SimpleStringProperty genre;
+    private final SimpleStringProperty genre;
 
     // constructors
     public Book() {

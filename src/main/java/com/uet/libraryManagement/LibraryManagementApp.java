@@ -1,7 +1,7 @@
 package com.uet.libraryManagement;
 
 import com.uet.libraryManagement.Controllers.MenuController;
-import com.uet.libraryManagement.Manager.SceneManager;
+import com.uet.libraryManagement.Managers.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import java.io.IOException;

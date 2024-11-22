@@ -1,10 +1,11 @@
 package com.uet.libraryManagement.Controllers;
 
-import com.uet.libraryManagement.Manager.SceneManager;
+import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.User;
 import com.uet.libraryManagement.Repositories.UserRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -19,7 +20,7 @@ public class RegisterController {
     @FXML private Label messageLabel;
 
     @FXML
-    private void submitRegister(ActionEvent actionEvent) {
+    private void submitRegister() {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = cf_passwordField.getText();

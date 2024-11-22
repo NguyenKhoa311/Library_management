@@ -3,7 +3,7 @@ package com.uet.libraryManagement.Controllers;
 import com.uet.libraryManagement.Book;
 import com.uet.libraryManagement.Repositories.BorrowRepository;
 import com.uet.libraryManagement.Document;
-import com.uet.libraryManagement.Manager.SessionManager;
+import com.uet.libraryManagement.Managers.SessionManager;
 import javafx.fxml.FXML;
 
 public class UserDocumentsController extends DocumentsController {

@@ -6,14 +6,14 @@ import javafx.beans.property.SimpleStringProperty;
 public class Document {
     // attributes
     private SimpleIntegerProperty id;
-    private SimpleStringProperty title;
-    private SimpleStringProperty author;
-    private SimpleStringProperty publisher;
-    private SimpleStringProperty description;
-    private SimpleStringProperty publishedDate;
-    private SimpleStringProperty thumbnailUrl;
-    private SimpleStringProperty isbn10;
-    private SimpleStringProperty isbn13;
+    private final SimpleStringProperty title;
+    private final SimpleStringProperty author;
+    private final SimpleStringProperty publisher;
+    private final SimpleStringProperty description;
+    private final SimpleStringProperty publishedDate;
+    private final SimpleStringProperty thumbnailUrl;
+    private final SimpleStringProperty isbn10;
+    private final SimpleStringProperty isbn13;
 
     //constructors
     public Document() {

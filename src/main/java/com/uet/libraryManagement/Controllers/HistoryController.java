@@ -1,17 +1,19 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
-import com.uet.libraryManagement.Manager.SessionManager;
+import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.Repositories.BorrowRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -40,6 +42,8 @@ public class HistoryController implements Initializable {
     @FXML
     private ComboBox<String> docTypeBox;
 
+    private Integer selectedUserId = null;  // `null` means session user will be used
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         titleCol.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
@@ -63,7 +67,8 @@ public class HistoryController implements Initializable {
         statusChoice.getItems().addAll("Borrowed", "Overdue", "Returned");
         docTypeBox.getItems().addAll("Books", "Theses");
         docTypeBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-            loadHistory(SessionManager.getInstance().getUser().getId(), newValue);
+//            loadHistory(SessionManager.getInstance().getUser().getId(), newValue);
+            loadHistory(selectedUserId != null ? selectedUserId : SessionManager.getInstance().getUser().getId(), newValue);
         });
 
         docTypeBox.getSelectionModel().select("Books");
@@ -72,11 +77,17 @@ public class HistoryController implements Initializable {
                 showDocumentDetails();
             }
         });
+        HandleOutsideClickListener();
+    }
+
+    // Setter method to set the selected user's ID and flag
+    public void setSelectedUserId(int userId) {
+        this.selectedUserId = userId;
     }
 
     private void showDocumentDetails() {
         BorrowHistory borrowHistory = historyTable.getSelectionModel().getSelectedItem();
-        int userId = SessionManager.getInstance().getUser().getId();
+        int userId = (selectedUserId != null) ? selectedUserId : SessionManager.getInstance().getUser().getId();
         int borrow_id = borrowHistory.getId();
         String docType = docTypeBox.getValue();
         Document document = BorrowRepository.getInstance().getDocument(userId, borrow_id, docType);
@@ -95,7 +106,6 @@ public class HistoryController implements Initializable {
                 detailStage.setScene(new Scene(detailRoot));
                 detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
                 detailStage.showAndWait();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -104,8 +114,9 @@ public class HistoryController implements Initializable {
 
     // Load borrowing history from the database
     public void loadHistory(int currentUserId, String docType) {
+        int userIdToUse = (selectedUserId != null) ? selectedUserId : currentUserId;
         ObservableList<BorrowHistory> historyList = FXCollections.observableArrayList(
-                BorrowRepository.getInstance().getAllHistoryByUserId(currentUserId, docType)
+                BorrowRepository.getInstance().getAllHistoryByUserId(userIdToUse, docType)
         );
         historyTable.setItems(historyList);
     }
@@ -137,25 +148,26 @@ public class HistoryController implements Initializable {
     // Handle search functionality
 
     public void handleSearchAction() {
+        int userIdToUse = (selectedUserId != null) ? selectedUserId : SessionManager.getInstance().getUser().getId();
         String searchTerm = searchBar.getText();
         if (searchTerm != null && !searchTerm.isEmpty()) {
-            int currentUserId = SessionManager.getInstance().getUser().getId();
             String docType = docTypeBox.getValue();
 
             // Load history with search term
             ObservableList<BorrowHistory> historyList = FXCollections.observableArrayList(
-                    BorrowRepository.getInstance().getAllHistoryByTitle(currentUserId, docType, searchTerm)
+                    BorrowRepository.getInstance().getAllHistoryByTitle(userIdToUse, docType, searchTerm)
             );
             historyTable.setItems(historyList);
         } else {
             // If search is cleared, reload full history
-            loadHistory(SessionManager.getInstance().getUser().getId(), docTypeBox.getValue());
+            loadHistory(userIdToUse, docTypeBox.getValue());
         }
     }
 
     public void clearSearchTerm() {
+        int userIdToUse = (selectedUserId != null) ? selectedUserId : SessionManager.getInstance().getUser().getId();
         searchBar.clear();
-        loadHistory(SessionManager.getInstance().getUser().getId() ,docTypeBox.getValue());
+        loadHistory(userIdToUse ,docTypeBox.getValue());
     }
 
     public void toggleFilters() {
@@ -166,9 +178,9 @@ public class HistoryController implements Initializable {
     }
 
     public void applyFilters() {
-        int currentUserId = SessionManager.getInstance().getUser().getId();
         String docType = docTypeBox.getValue();
         boolean isBook = "Books".equalsIgnoreCase(docType);
+        int userIdToUse = (selectedUserId != null) ? selectedUserId : SessionManager.getInstance().getUser().getId();
 
         // Start building the query with the initial structure
         String query = "SELECT borrow_history.id, ";
@@ -180,7 +192,7 @@ public class HistoryController implements Initializable {
 
         // List of parameters to pass to the query
         List<Object> params = new ArrayList<>();
-        params.add(currentUserId);
+        params.add(userIdToUse);
 
         // Add filters to the query if they are set
         if (titleFilter.getText() != null && !titleFilter.getText().isEmpty()) {
@@ -225,6 +237,7 @@ public class HistoryController implements Initializable {
     }
 
     public void clearFilters() {
+        int userIdToUse = (selectedUserId != null) ? selectedUserId : SessionManager.getInstance().getUser().getId();
         titleFilter.clear();
         statusChoice.getItems().clear();
         borrowStart.setValue(null);
@@ -233,7 +246,26 @@ public class HistoryController implements Initializable {
         dueEnd.setValue(null);
         returnStart.setValue(null);
         returnEnd.setValue(null);
-        loadHistory(SessionManager.getInstance().getUser().getId(), docTypeBox.getValue());
+        loadHistory(userIdToUse, docTypeBox.getValue());
+    }
+
+    private void HandleOutsideClickListener() {
+        historyTable.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    if (event.getTarget() instanceof Node) {
+                        Node target = (Node) event.getTarget();
+                        while (target != null) {
+                            if (target == historyTable) { // clicked on table view
+                                return;
+                            }
+                            target = target.getParent();
+                        }
+                        historyTable.getSelectionModel().clearSelection(); // clicked outside tableview --> cancel selection
+                    }
+                });
+            }
+        });
     }
 
     private void showAlert(String message) {

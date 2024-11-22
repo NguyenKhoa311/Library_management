@@ -1,4 +1,4 @@
-package com.uet.libraryManagement.Manager;
+package com.uet.libraryManagement.Managers;
 
 import com.uet.libraryManagement.User;
 

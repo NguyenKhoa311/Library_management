@@ -45,6 +45,15 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" onAction="#Users" prefHeight="50.0" prefWidth="110.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Users">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ICONS/manage.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
       <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" onAction="#Documents" prefHeight="50.0" prefWidth="110.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Documents">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
