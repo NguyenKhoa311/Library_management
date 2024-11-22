@@ -1,4 +1,6 @@
-package com.uet.libraryManagement;
+package com.uet.libraryManagement.Repositories;
+
+import com.uet.libraryManagement.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

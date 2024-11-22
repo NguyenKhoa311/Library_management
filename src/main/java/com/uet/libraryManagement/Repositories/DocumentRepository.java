@@ -1,5 +1,9 @@
-package com.uet.libraryManagement;
+package com.uet.libraryManagement.Repositories;
 
+import com.uet.libraryManagement.Book;
+import com.uet.libraryManagement.ConnectJDBC;
+import com.uet.libraryManagement.Document;
+import com.uet.libraryManagement.Thesis;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;

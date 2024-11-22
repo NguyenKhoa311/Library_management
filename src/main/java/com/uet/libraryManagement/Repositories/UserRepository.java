@@ -1,4 +1,7 @@
-package com.uet.libraryManagement;
+package com.uet.libraryManagement.Repositories;
+
+import com.uet.libraryManagement.ConnectJDBC;
+import com.uet.libraryManagement.User;
 
 import java.io.IOException;
 import java.sql.ResultSet;

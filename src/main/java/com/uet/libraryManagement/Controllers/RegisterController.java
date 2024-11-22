@@ -1,8 +1,8 @@
 package com.uet.libraryManagement.Controllers;
 
-import com.uet.libraryManagement.SceneManager;
+import com.uet.libraryManagement.Manager.SceneManager;
 import com.uet.libraryManagement.User;
-import com.uet.libraryManagement.UserRepository;
+import com.uet.libraryManagement.Repositories.UserRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

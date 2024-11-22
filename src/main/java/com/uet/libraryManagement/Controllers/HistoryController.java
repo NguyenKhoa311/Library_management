@@ -1,6 +1,8 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
+import com.uet.libraryManagement.Manager.SessionManager;
+import com.uet.libraryManagement.Repositories.BorrowRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

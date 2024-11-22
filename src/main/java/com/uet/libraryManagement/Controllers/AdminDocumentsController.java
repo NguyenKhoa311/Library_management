@@ -1,6 +1,8 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
+import com.uet.libraryManagement.Repositories.BookRepository;
+import com.uet.libraryManagement.Repositories.ThesisRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

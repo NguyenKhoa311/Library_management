@@ -1,8 +1,8 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.uet.libraryManagement.SceneManager;
-import com.uet.libraryManagement.SessionManager;
+import com.uet.libraryManagement.Manager.SceneManager;
+import com.uet.libraryManagement.Manager.SessionManager;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;

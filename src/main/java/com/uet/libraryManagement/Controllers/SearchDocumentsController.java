@@ -5,6 +5,8 @@ import com.uet.libraryManagement.APIService.BookAPI;
 import com.uet.libraryManagement.APIService.Volume;
 import com.uet.libraryManagement.APIService.VolumeInfo;
 import com.uet.libraryManagement.APIService.IndustryIdentifier;
+import com.uet.libraryManagement.Repositories.BookRepository;
+import com.uet.libraryManagement.Repositories.ThesisRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
