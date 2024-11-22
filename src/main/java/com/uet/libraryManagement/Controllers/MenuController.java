@@ -116,20 +116,6 @@ public class MenuController {
     }
 
     @FXML
-    private void Issue() {
-        SceneManager.getInstance().setSubScene("FXML/IssueBook.fxml");
-        Title_page.setText("Issue");
-        hideMenuBox();
-    }
-
-    @FXML
-    private void Manage() {
-        SceneManager.getInstance().setSubScene("FXML/ManageDocuments.fxml");
-        Title_page.setText("Manage");
-        hideMenuBox();
-    }
-
-    @FXML
     private void History() {
         SceneManager.getInstance().setSubScene("FXML/History.fxml");
         Title_page.setText("History");
