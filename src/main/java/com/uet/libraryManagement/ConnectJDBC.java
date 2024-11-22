@@ -55,13 +55,9 @@ public class ConnectJDBC {
         try {
             statement = connection.prepareStatement(query);
             for (int i = 0; i < params.length; i++) {
-                if(query.contains("LIKE ?"))
-                {
-                    statement.setObject(i + 1, "%" + params[i] + "%");
-                }
-                else statement.setObject(i + 1, params[i]);
+                statement.setObject(i + 1, params[i]);
             }
-            System.out.println("executeQueryWithParams: " + query);
+            System.out.println("Executing prepared statement: " + statement.toString());
             rs = statement.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);

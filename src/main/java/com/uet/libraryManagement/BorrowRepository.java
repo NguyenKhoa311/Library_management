@@ -117,18 +117,14 @@ public class BorrowRepository {
                     + "WHERE borrow_history.user_id = ? AND doc_type = 'thesis' AND theses.title LIKE ?";
         }
 
-        System.out.println("Executing Query: " + query); // Debugging output
-        System.out.println("User ID: " + userId);
-        System.out.println("Doc Type: " + docType);
-        System.out.println("Title Search Term: " + title);
-
-        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, userId, title)) {
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, userId, "%" + title + "%")) {
             while (rs.next()) {
                 historyList.add(getBorrowHistory(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return historyList;
     }
 
@@ -140,11 +136,6 @@ public class BorrowRepository {
         String dueDate = rs.getString("due_date");
         String returnDate = rs.getString("return_date");
         String status = rs.getString("status");
-        System.out.println("Title: " + docTitle);
-        System.out.println("Date: " + borrowDate);
-        System.out.println("Due: " + dueDate);
-        System.out.println("Return: " + returnDate);
-        System.out.println("Status: " + status);
         return new BorrowHistory(id, docTitle, borrowDate, dueDate, returnDate, status);
     }
 

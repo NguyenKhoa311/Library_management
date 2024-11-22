@@ -112,6 +112,13 @@ public class HistoryController implements Initializable {
     private void returnDoc() {
         BorrowHistory borrowHistory = historyTable.getSelectionModel().getSelectedItem();
         if (borrowHistory != null) {
+            // check if already returned
+            String status = borrowHistory.getStatus();
+            if ("returned".equalsIgnoreCase(status)) {
+                showAlert("This document has already been returned!");
+                return;
+            }
+
             int borrowId = borrowHistory.getId();
             // Update the return date and status in the borrow_history table
             String query = "UPDATE borrow_history SET return_date = CURRENT_DATE, status = 'returned' WHERE id = ?";
@@ -176,7 +183,7 @@ public class HistoryController implements Initializable {
         // Add filters to the query if they are set
         if (titleFilter.getText() != null && !titleFilter.getText().isEmpty()) {
             query += " AND " + (isBook ? "books.title" : "theses.title") + " LIKE ?";
-            params.add(titleFilter.getText());
+            params.add("%" + titleFilter.getText() + "%");
         }
         if (statusChoice.getValue() != null) {
             query += " AND status = ?";

@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class DocumentRepository {
-    protected String dbTable;
-
     public DocumentRepository() {
         loadDatabase();
     }
@@ -81,11 +79,11 @@ public abstract class DocumentRepository {
             parameters.add(endYear);
         }
         if (isbn10 != null && !isbn10.isEmpty()) {
-            query += " AND isbn LIKE ?";
+            query += " AND isbn = ?";
             parameters.add(isbn10);
         }
         if (isbn13 != null && !isbn13.isEmpty()) {
-            query += " AND isbn13 LIKE ?";
+            query += " AND isbn13 = ?";
             parameters.add(isbn13);
         }
 
@@ -101,7 +99,7 @@ public abstract class DocumentRepository {
 
     public ObservableList<Document> searchDocument(String search) {
         ObservableList<Document> documents = FXCollections.observableArrayList();
-
+        search = "%" + search + "%";
         // Start the base query
         String query = "SELECT * FROM " + getDbTable()
                 + " WHERE title LIKE ?"
