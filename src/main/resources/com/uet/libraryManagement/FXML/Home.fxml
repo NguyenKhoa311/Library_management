@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.HomeController">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" styleClass="root" stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.HomeController">
    <children>
-      <ImageView fitHeight="294.0" fitWidth="200.0" layoutX="54.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../ICONS/C++.jpeg" />
-         </image>
-      </ImageView>
-      <Label fx:id="version_label" layoutX="350.0" layoutY="62.0" prefHeight="18.0" prefWidth="200.0" text="Phiên bản: demo" />
-      <Label fx:id="appname_label" layoutX="350.0" layoutY="37.0" prefHeight="18.0" prefWidth="200.0" text="Ứng dụng quản lý thư viện" />
-      <Label fx:id="authors_label" layoutX="350.0" layoutY="89.0" prefHeight="18.0" prefWidth="200.0" text="Tác giả: H-K-K" />
-      <Label fx:id="time_label" layoutX="350.0" layoutY="115.0" prefHeight="18.0" prefWidth="187.0" text="dd:MM:yyyy HH:mm:ss" />
+      <VBox layoutX="29.0" layoutY="307.0" prefHeight="150.0" prefWidth="638.0" styleClass="Home-VBox" stylesheets="@../CSS/Light-mode.css">
+         <children>
+            <Label alignment="CENTER" prefHeight="19.0" prefWidth="616.0" styleClass="Home-Label-Title" stylesheets="@../CSS/Light-mode.css" text="Tình trạng sách mượn" />
+            <TableView prefHeight="139.0" prefWidth="583.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="29.0" layoutY="37.0" prefHeight="258.0" prefWidth="262.0" styleClass="Home-VBox" stylesheets="@../CSS/Light-mode.css">
+         <children>
+            <ImageView fitHeight="241.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" styleClass="Home-ImageView">
+               <image>
+                  <Image url="@../ICONS/C++.jpeg" />
+               </image>
+            </ImageView>
+            <Label prefHeight="18.0" prefWidth="200.0" styleClass="Home-Label-Title" stylesheets="@../CSS/Light-mode.css" text="Giới thiệu sách mới" />
+         </children>
+      </VBox>
+      <VBox layoutX="317.0" layoutY="37.0" prefHeight="261.0" prefWidth="350.0" styleClass="Home-VBox" stylesheets="@../CSS/Light-mode.css">
+         <children>
+            <Label fx:id="appname_label" prefHeight="18.0" prefWidth="200.0" styleClass="Home-Label" stylesheets="@../CSS/Light-mode.css" text="Ứng dụng quản lý thư viện" />
+            <Label fx:id="version_label" prefHeight="18.0" prefWidth="200.0" styleClass="Home-Label" stylesheets="@../CSS/Light-mode.css" text="Phiên bản: demo" />
+            <Label fx:id="authors_label" prefHeight="18.0" prefWidth="200.0" styleClass="Home-Label" stylesheets="@../CSS/Light-mode.css" text="Tác giả: H-K-K" />
+            <Label fx:id="time_label" prefHeight="18.0" prefWidth="187.0" styleClass="Home-Label" stylesheets="@../CSS/Light-mode.css" text="dd:MM:yyyy HH:mm:ss" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="360.0" styleClass="Home-Label-Title" stylesheets="@../CSS/Light-mode.css" text="Thông báo" />
+                  <TextFlow prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

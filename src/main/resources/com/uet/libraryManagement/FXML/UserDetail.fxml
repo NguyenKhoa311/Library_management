@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="406.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDetailController">
-    <VBox alignment="CENTER" prefHeight="406.0" prefWidth="200.0" spacing="10">
+<AnchorPane prefHeight="406.0" prefWidth="450.0" styleClass="root" stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDetailController">
+    <VBox alignment="CENTER" prefHeight="410.0" prefWidth="200.0" spacing="10" styleClass="UserDetail-VBox-avatar" stylesheets="@../CSS/Light-mode.css">
         <ImageView fx:id="userAva" fitHeight="168.0" fitWidth="159.0">
          <image>
             <Image url="@../ICONS/profile.png" />
          </image></ImageView>
-        <Label fx:id="userNameLabel" alignment="CENTER" text="User Name" wrapText="true">
+        <Label fx:id="userNameLabel" alignment="CENTER" styleClass="UserDetail-Label-Title" stylesheets="@../CSS/Light-mode.css" text="User Name" wrapText="true">
             <VBox.margin>
                 <Insets />
             </VBox.margin>
@@ -24,7 +24,7 @@
     </VBox>
    <VBox layoutX="200.0" prefHeight="406.0" prefWidth="250.0" spacing="30.0">
       <children>
-         <Label prefHeight="33.0" prefWidth="540.0" text="User profile">
+         <Label prefHeight="33.0" prefWidth="540.0" styleClass="UserDetail-Label-Title" stylesheets="@../CSS/Light-mode.css" text="User profile">
             <font>
                <Font name="System Bold" size="28.0" />
             </font>
@@ -37,7 +37,7 @@
          </Label>
          <VBox prefHeight="140.0" prefWidth="540.0">
             <children>
-               <Label prefHeight="43.0" prefWidth="540.0" text="Profile details">
+               <Label prefHeight="43.0" prefWidth="540.0" styleClass="UserDetail-Label-Title" stylesheets="@../CSS/Light-mode.css" text="Profile details">
                   <font>
                      <Font name="System Bold" size="20.0" />
                   </font>
@@ -48,7 +48,7 @@
                      <Insets bottom="10.0" left="20.0" top="10.0" />
                   </padding>
                </Label>
-               <Label fx:id="usernameLabel" prefHeight="41.0" prefWidth="540.0" text="Full Name: ">
+               <Label fx:id="usernameLabel" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail-Label" stylesheets="@../CSS/Light-mode.css" text="Full Name: ">
                   <padding>
                      <Insets bottom="10.0" left="20.0" top="10.0" />
                   </padding>
@@ -56,7 +56,7 @@
                      <Font size="16.0" />
                   </font>
                </Label>
-               <Label fx:id="birthdayLabel" prefHeight="41.0" prefWidth="540.0" text="Date of birth: ">
+               <Label fx:id="birthdayLabel" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail-Label" stylesheets="@../CSS/Light-mode.css" text="Date of birth: ">
                   <padding>
                      <Insets bottom="10.0" left="20.0" top="10.0" />
                   </padding>
@@ -64,7 +64,7 @@
                      <Font size="16.0" />
                   </font>
                </Label>
-               <Label prefHeight="43.0" prefWidth="540.0" text="Contact info">
+               <Label prefHeight="43.0" prefWidth="540.0" styleClass="UserDetail-Label-Title" stylesheets="@../CSS/Light-mode.css" text="Contact info">
                   <font>
                      <Font name="System Bold" size="20.0" />
                   </font>
@@ -75,7 +75,7 @@
                      <Insets bottom="10.0" left="20.0" top="10.0" />
                   </padding>
                </Label>
-               <Label fx:id="phoneLabel" prefHeight="41.0" prefWidth="540.0" text="Phone: ">
+               <Label fx:id="phoneLabel" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail-Label" stylesheets="@../CSS/Light-mode.css" text="Phone: ">
                   <padding>
                      <Insets bottom="10.0" left="20.0" top="10.0" />
                   </padding>
@@ -83,7 +83,7 @@
                      <Font size="16.0" />
                   </font>
                </Label>
-               <Label fx:id="emailLabel" prefHeight="41.0" prefWidth="540.0" text="Email:">
+               <Label fx:id="emailLabel" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail-Label" stylesheets="@../CSS/Light-mode.css" text="Email:">
                   <padding>
                      <Insets bottom="10.0" left="20.0" top="10.0" />
                   </padding>

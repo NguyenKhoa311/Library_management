@@ -71,23 +71,11 @@
     -fx-background-color: #76ABAE;
 }
 
-/*Tiêu đề*/
-#Title_page {
-    -fx-font-size: 30;
+.Login-Label-message {
     -fx-font-family: Montserrat;
     -fx-font-weight: bold;
-    -fx-text-fill: #222831;
-    -fx-alignment: center;
-    -fx-background-color: #76ABAE;
-    -fx-alignment-baseline: middle;
-}
-
-
-.jfx-register-button {
-    -fx-background-color: #76ABAE; /* Set border color */
-    -fx-font-size: 13;
-    -fx-border-width: 2px; /* Optional rounded corners */
-    -fx-background-radius: 5px;
+    -fx-font-size: 11;
+    -fx-font-fill: #31363F;
 }
 
 .Login-label-username {
@@ -102,20 +90,22 @@
     -fx-text-fill: #31363F;
 }
 
-.Login-JFXButton-Login {
+.Login-JFXButton {
     -fx-background-color: #76ABAE; /* Set border color */
     -fx-font-size: 13;
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-width: 1px; /* Optional rounded corners */
     -fx-background-radius: 5px;
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
 }
 
 /* di chuột vào */
-.Login-JFXButton-Login:hover {
+.Login-JFXButton:hover {
     -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
     -fx-cursor: hand;
     -fx-font-weight: bold; ;
     -fx-font-fill: #76ABAE;
-    -fx-font-size: 15;/* Show hand cursor on hover */
+    -fx-font-size: 13;/* Show hand cursor on hover */
     -fx-border-color: #31363F;
     -fx-border-radius: 5px;
     -fx-border-width: 2px; /* Optional rounded corners */
@@ -158,6 +148,10 @@
     -fx-text-fill: #31363F; /* Text color for the header */
     -fx-font-weight: bold; /* Font weight for header */
     -fx-alignment: center; /* Center align header text */
+    -fx-border-color: #31363F; /* Border color */
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px; /* Border width */
+    -fx-background-radius: 5px;
 }
 
 .Documents-TableView .table-row-cell {
@@ -223,3 +217,705 @@
     -fx-font-weight: bold; /* Làm đậm chữ khi hover */
     -fx-cursor: hand; /* Thay đổi con trỏ khi hover */
 }
+
+.Documents-VBox {
+    -fx-background-color: #76ABAE; /* Nền của HBox */
+    -fx-border-color: #31363F; /* Màu viền */
+    -fx-border-radius: 5px; /* Độ cong của viền */
+    -fx-border-width: 1px; /* Độ rộng viền */
+    -fx-padding: 5px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+}
+
+.Users-TableView {
+    -fx-background-color: #EEEEEE; /* Background color of the table */
+    -fx-border-color: #31363F; /* Border color */
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px; /* Border width */
+    -fx-table-cell-border-color: #31363F; /* Border between cells */
+    -fx-text-fill: #31363F;
+    -fx-padding: 5px;
+
+}
+
+.Users-TableView .column-header {
+    -fx-background-color: #76ABAE; /* Header background color */
+    -fx-text-fill: #31363F; /* Header text color */
+    -fx-font-weight: bold; /* Header font weight */
+    -fx-alignment: center; /* Align header text */
+    -fx-padding: 5px; /* Ensure consistent padding */
+    -fx-background-radius: 5px;
+    -fx-border-color: #31363F; /* Header border color */
+    -fx-border-width: 1px;
+}
+
+.Users-TableView .table-cell {
+    -fx-alignment: center; /* Align cell text */
+    -fx-padding: 5px; /* Ensure consistent padding */
+    -fx-font-size: 14px; /* Font size for table cells */
+    -fx-text-fill: #31363F;
+}
+
+
+.Users-TableView .table-row-cell {
+    -fx-background-color: #EEEEEE; /* Background color for rows */
+    -fx-alternate-row-fill-visible: true;
+    -fx-alternate-row-fill: #EEEEEE; /* Background color for alternate rows */
+    -fx-padding: 5px; /* Padding inside the rows */
+    -fx-text-fill: #31363F;
+
+}
+
+.Users-TableView .table-row-cell:odd {
+    -fx-background-color: #EEEEEE; /* Alternate row background */
+}
+
+.Users-TableView .table-row-cell:selected {
+    -fx-background-color: #76ABAE; /* Selected row background */
+    -fx-text-fill: #EEEEEE; /* Selected row text color */
+}
+
+.Users-TableView .table-row-cell:hover {
+    -fx-background-color: #B0D4D6; /* Màu nền khi hover */
+    -fx-text-fill: #31363F; /* Màu văn bản khi hover */
+}
+
+.Users-TableView .table-cell:selected {
+    -fx-background-color: #76ABAE; /* Selected cell background */
+    -fx-text-fill: #EEEEEE; /* Selected cell text color */
+    -fx-font-weight: bold;
+}
+
+/* Cài đặt cho HBox */
+.Users-HBox {
+    -fx-background-color: #EEEEEE; /* Nền của HBox */
+    -fx-border-color: #31363F; /* Màu viền */
+    -fx-border-radius: 5px; /* Độ cong của viền */
+    -fx-border-width: 1px; /* Độ rộng viền */
+    -fx-padding: 5px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+}
+
+/* Cài đặt cho các phần tử bên trong HBox */
+.Users-HBox .button {
+    -fx-background-color: #76ABAE; /* Màu nền cho các nút */
+    -fx-font-size: 12px; /* Kích thước chữ */
+    -fx-border-width: 1px; /* Độ dày viền */
+    -fx-border-radius: 5px; /* Độ cong viền nút */
+    -fx-text-fill: #31363F; /* Màu chữ */
+    -fx-padding: 0px 0px; /* Khoảng cách bên trong nút */
+}
+
+/* Cài đặt khi hover trên các nút trong HBox */
+.Users-HBox .button:hover {
+    -fx-background-color: #EEEEEE; /* Màu nền khi hover */
+    -fx-text-fill: #31363F; /* Màu chữ khi hover */
+    -fx-border-color: #31363F; /* Màu viền khi hover */
+    -fx-font-weight: bold; /* Làm đậm chữ khi hover */
+    -fx-cursor: hand; /* Thay đổi con trỏ khi hover */
+}
+
+.Users-JFXButton {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 1px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+}
+
+.Users-JFXButton:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-border-color: #31363F;
+    -fx-font-size: 12;/* Show hand cursor on hover */
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Lớp chính cho VBox */
+.UserMenu-VBox {
+    -fx-background-color: #EEEEEE; /* Màu nền cho VBox */
+    -fx-border-color: #31363F; /* Màu viền */
+    /*-fx-border-width: 2px; !* Độ dày viền *!*/
+    /*-fx-border-radius: 5px; !* Bo góc viền *!*/
+    -fx-padding: 15px; /* Khoảng cách bên trong */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con */
+}
+
+/* Hiệu ứng khi di chuột qua VBox */
+.UserMenu-VBox:hover {
+    -fx-background-color: #76ABAE; /* Thay đổi màu nền khi di chuột */
+    -fx-cursor: hand; /* Hiển thị biểu tượng bàn tay */
+}
+
+/* Hiệu ứng cho các phần tử con */
+.UserMenu-VBox > .label {
+    -fx-text-fill: #31363F; /* Màu chữ */
+    -fx-font-weight: bold; /* Đậm chữ */
+    -fx-font-size: 14px; /* Kích thước chữ */
+    -fx-padding: 5px 0; /* Khoảng cách bên trong mỗi Label */
+}
+
+/* Hiệu ứng cho các nút */
+.UserMenu-VBox > .button {
+    -fx-background-color: #EEEEEE;  /* Màu nền của nút */
+    -fx-text-fill: #31363F; /* Màu chữ */
+    -fx-background-radius: 5px; /* Bo góc nền */
+    -fx-padding: 10px 15px; /* Khoảng cách bên trong nút */
+    -fx-border-color: #31363F; /* Màu viền */
+    -fx-font-size: 12px; /* Kích thước chữ */
+    -fx-border-width: 1px; /* Độ dày viền */
+    -fx-border-radius: 5px; /* Bo góc viền */
+
+}
+
+/* Hiệu ứng khi di chuột qua nút */
+.UserMenu-VBox > .button:hover {
+    -fx-background-color: #B0D4D6; /* Thay đổi màu nền khi hover */
+    -fx-text-fill: #31363F; /* Thay đổi màu chữ khi hover */
+    -fx-border-color: #31363F; /* Thêm viền khi hover */
+    -fx-padding: 10px 15px; /* Khoảng cách bên trong nút */
+    -fx-font-weight: bold; /* Đậm chữ */
+    -fx-border-width: 2px; /* Độ dày viền */
+    -fx-border-radius: 5px; /* Bo góc viền */
+    -fx-font-size: 12px; /* Kích thước chữ */
+}
+
+.UserMenu-JFXButton-menuButton {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13; /* Optional rounded corners */
+
+}
+
+.UserMenu-JFXButton-menuButton:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-font-size: 12;/* Show hand cursor on hover */
+}
+
+/*Tiêu đề*/
+.UserMenu-Label-Title_page {
+    -fx-font-size: 30;
+    -fx-font-family: Montserrat;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222831;
+    -fx-alignment: center;
+    -fx-background-color: #76ABAE;
+    -fx-alignment-baseline: middle;
+    -fx-border-color: #31363F; /* Màu viền */
+    -fx-border-width: 2px; /* Độ dày viền */
+}
+
+.UserMenu-AnchorPane-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ trong suốt 50% */
+}
+
+.AddUser-JFXButton-Login {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* di chuột vào */
+.AddUser-JFXButton-Login:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-font-size: 11;/* Show hand cursor on hover */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+/* Lớp chính cho ComboBox */
+.AddUser-ComboBox {
+    -fx-background-color: #EEEEEE; /* Màu nền chính */
+    -fx-font-size: 13px; /* Kích thước chữ */
+    -fx-text-fill: #31363F; /* Màu chữ */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px; /* Optional rounded corners */
+}
+
+/* Hiệu ứng khi di chuột qua ComboBox */
+.AddUser-ComboBox:hover {
+    -fx-background-color: #B0D4D6; /* Thay đổi màu nền khi hover */
+    -fx-border-color: #76ABAE; /* Thay đổi màu viền khi hover */
+    -fx-cursor: hand; /* Hiển thị con trỏ bàn tay */
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px; /* Optional rounded corners */
+}
+
+/* Lớp cho danh sách thả xuống (dropdown) */
+.AddUser-ComboBox .list-cell {
+    -fx-background-color: #EEEEEE; /* Màu nền của danh sách */
+    -fx-text-fill: #31363F; /* Màu chữ */
+    -fx-font-size: 13px; /* Kích thước chữ */
+    -fx-padding: 5px; /* Khoảng cách bên trong mỗi mục */
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+/* Hiệu ứng khi di chuột qua một mục trong danh sách */
+.AddUser-ComboBox .list-cell:hover {
+    -fx-background-color: #B0D4D6; /* Thay đổi màu nền khi hover */
+    -fx-text-fill: #31363F; /* Thay đổi màu chữ khi hover */
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px; /* Optional rounded corners */
+}
+
+/* Hiệu ứng khi chọn một mục */
+.AddUser-ComboBox .list-cell:selected {
+    -fx-background-color: #76ABAE; /* Thay đổi màu nền khi hover */
+    -fx-text-fill: #31363F; /* Thay đổi màu chữ khi hover */
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px; /* Optional rounded corners */
+}
+
+.History-TableView {
+    -fx-background-color: #EEEEEE; /* Background color of the table */
+    -fx-border-color: #31363F; /* Border color */
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px; /* Border width */
+    -fx-table-cell-border-color: #31363F; /* Border between cells */
+    -fx-text-fill: #31363F;
+    -fx-padding: 5px;
+}
+
+.History-TableView .column-header {
+    -fx-background-color: #76ABAE; /* Header background color */
+    -fx-text-fill: #31363F; /* Text color for the header */
+    -fx-font-weight: bold; /* Font weight for header */
+    -fx-alignment: center; /* Center align header text */
+    -fx-border-color: #31363F; /* Border color */
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px; /* Border width */
+    -fx-background-radius: 5px;
+}
+
+.History-TableView .table-row-cell {
+    -fx-background-color: #EEEEEE; /* Background color for rows */
+    -fx-alternate-row-fill-visible: true;
+    -fx-alternate-row-fill: #EEEEEE; /* Background color for alternate rows */
+    -fx-padding: 5px; /* Padding inside the rows */
+    -fx-text-fill: #31363F;
+}
+
+.History-TableView .table-row-cell:odd {
+    -fx-background-color: #EEEEEE; /* Alternate row background */
+}
+
+.History-TableView .table-row-cell:selected {
+    -fx-background-color: #76ABAE; /* Selected row background */
+    -fx-text-fill: #EEEEEE; /* Selected row text color */
+}
+
+.History-TableView .table-row-cell:hover {
+    -fx-background-color: #B0D4D6; /* Màu nền khi hover */
+    -fx-text-fill: #31363F; /* Màu văn bản khi hover */
+}
+
+.History-TableView .table-cell {
+    -fx-alignment: center-left; /* Alignment for cell content */
+    -fx-padding: 5px; /* Padding inside the cells */
+    -fx-font-size: 14px; /* Font size for cell text */
+    -fx-text-fill: #31363F;
+}
+
+.History-TableView .table-cell:selected {
+    -fx-background-color: #76ABAE; /* Selected cell background */
+    -fx-text-fill: #EEEEEE; /* Selected cell text color */
+    -fx-font-weight: bold;
+}
+
+.History-HBox {
+    -fx-background-color: #EEEEEE; /* Nền của HBox */
+    -fx-border-color: #31363F; /* Màu viền */
+    -fx-border-radius: 5px; /* Độ cong của viền */
+    -fx-border-width: 1px; /* Độ rộng viền */
+    -fx-padding: 5px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+}
+
+/* Cài đặt cho các phần tử bên trong HBox */
+.History-HBox .button {
+    -fx-background-color: #76ABAE; /* Màu nền cho các nút */
+    -fx-font-size: 12px; /* Kích thước chữ */
+    -fx-border-width: 1px; /* Độ dày viền */
+    -fx-border-radius: 5px; /* Độ cong viền nút */
+    -fx-text-fill: #31363F; /* Màu chữ */
+    -fx-padding: 0px 0px; /* Khoảng cách bên trong nút */
+}
+
+/* Cài đặt khi hover trên các nút trong HBox */
+.History-HBox .button:hover {
+    -fx-background-color: #EEEEEE; /* Màu nền khi hover */
+    -fx-text-fill: #31363F; /* Màu chữ khi hover */
+    -fx-border-color: #31363F; /* Màu viền khi hover */
+    -fx-font-weight: bold; /* Làm đậm chữ khi hover */
+    -fx-cursor: hand; /* Thay đổi con trỏ khi hover */
+}
+
+.History-VBox {
+    -fx-background-color: #76ABAE; /* Nền của HBox */
+    -fx-border-color: #31363F; /* Màu viền */
+    -fx-border-radius: 5px; /* Độ cong của viền */
+    -fx-border-width: 1px; /* Độ rộng viền */
+    -fx-padding: 5px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+}
+
+.History-JFXButton {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 1px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+}
+
+.History-JFXButton:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-border-color: #31363F;
+    -fx-font-size: 12;/* Show hand cursor on hover */
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.ChangePassword-JFXButton {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* di chuột vào */
+.ChangePassword-JFXButton:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-font-size: 11;/* Show hand cursor on hover */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+.DocumentsDetail-Label-title {
+    -fx-font-family: Montserrat;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+}
+
+.DocumentsDetail-Label {
+    -fx-font-family: Montserrat;
+    -fx-font-size: 12;
+}
+
+
+.DocumentsDetail-ImageView {
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+    -fx-background-color: #76ABAE;
+}
+
+.DocumentForm-JFXButton {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* di chuột vào */
+.DocumentForm-JFXButton:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-font-size: 11;/* Show hand cursor on hover */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+.DocumentForm-Label {
+    -fx-font-family: Montserrat;
+    -fx-font-size: 11;
+}
+
+.EditProfile-JFXButton {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* di chuột vào */
+.EditProfile-JFXButton:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-font-size: 11;/* Show hand cursor on hover */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+.EditProfile-Label {
+    -fx-font-family: Montserrat;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.EditProfile-HBox {
+    -fx-font-family: Montserrat;
+    -fx-font-size: 11;
+    -fx-background-color: #EEEEEE; /* Nền của HBox */
+    -fx-padding: 5px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+    -fx-alignment: center-right; /* Center align header text */
+}
+
+.EditProfile-HBox .label {
+    -fx-font-family: Montserrat;
+    -fx-font-size: 11;
+}
+
+.Home-VBox {
+    -fx-font-family: Montserrat;
+    -fx-font-size: 11;
+    -fx-background-color: #76ABAE; /* Nền của HBox */
+    -fx-padding: 10px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius:  5px;
+}
+
+.Home-ImageView {
+    -fx-border-color: #31363F; /* Màu viền */
+    -fx-border-width: 2px; /* Độ dày viền */
+    -fx-border-radius: 10px; /* Bo góc cho viền */
+    -fx-padding: 5px; /* Khoảng cách giữa viền và ảnh */
+}
+
+.Home-Label {
+    -fx-font-family: Montserrat-Regular;
+    -fx-font-size: 12;
+}
+
+.Home-Label-Title {
+    -fx-alignment: center;
+    -fx-font-family: Montserrat;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+    -fx-text-alignment: center;
+}
+
+.Profile-VBox-avatar {
+    -fx-font-family: Montserrat;
+    -fx-font-size: 11;
+    -fx-background-color: #76ABAE; /* Nền của HBox */
+    -fx-padding: 10px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius:  5px;
+}
+
+.Profile-VBox-button {
+    -fx-font-family: Montserrat;
+    -fx-font-size: 11;
+    -fx-background-color: #EEEEEE; /* Nền của HBox */
+    -fx-padding: 10px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius:  5px;
+}
+
+.Profile-Label {
+    -fx-font-family: Montserrat-Regular;
+    -fx-font-size: 14;
+}
+
+.Profile-Label-Title {
+    -fx-alignment: center;
+    -fx-font-family: Montserrat;
+    -fx-font-weight: bold;
+    -fx-font-size: 17;
+    -fx-text-alignment: center;
+}
+
+.Profile-JFXButton {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* di chuột vào */
+.Profile-JFXButton:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-font-size: 11;/* Show hand cursor on hover */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+.Register-JFXButton {
+    -fx-font-family: Montserrat;
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 1px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+
+}
+
+/* di chuột vào */
+.Register-JFXButton:hover {
+    -fx-font-family: Montserrat;
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-font-size: 13;/* Show hand cursor on hover */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+.Register-Label-message {
+    -fx-font-family: Montserrat;
+    -fx-font-weight: bold;
+    -fx-font-size: 11;
+    -fx-font-fill: #31363F;
+}
+
+.UserDetail-VBox-avatar {
+    -fx-font-family: Montserrat;
+    -fx-font-size: 11;
+    -fx-background-color: #76ABAE; /* Nền của HBox */
+    -fx-padding: 10px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius:  5px;
+}
+
+.UserDetail-Label {
+    -fx-font-family: Montserrat-Regular;
+    -fx-font-size: 14;
+}
+
+.UserDetail-Label-Title {
+    -fx-alignment: center;
+    -fx-font-family: Montserrat;
+    -fx-font-weight: bold;
+    -fx-font-size: 17;
+    -fx-text-alignment: center;
+}
+
+.UserForm-VBox-avatar {
+    -fx-font-family: Montserrat;
+    -fx-font-size: 11;
+    -fx-background-color: #76ABAE; /* Nền của HBox */
+    -fx-padding: 10px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius:  5px;
+}
+
+.UserForm-VBox-button {
+    -fx-font-family: Montserrat;
+    -fx-font-size: 11;
+    -fx-background-color: #EEEEEE; /* Nền của HBox */
+    -fx-padding: 10px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius:  5px;
+}
+
+.UserForm-Label {
+    -fx-font-family: Montserrat-Regular;
+    -fx-font-size: 14;
+}
+
+.UserForm-Label-Title {
+    -fx-alignment: center;
+    -fx-font-family: Montserrat;
+    -fx-font-weight: bold;
+    -fx-font-size: 17;
+    -fx-text-alignment: center;
+}
+
+.UserForm-JFXButton {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* di chuột vào */
+.UserForm-JFXButton:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-font-size: 11;/* Show hand cursor on hover */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+

@@ -8,15 +8,16 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.DocumentFormController">
-<VBox alignment="CENTER" prefHeight="330.0" prefWidth="200.0" spacing="10">
-    <ImageView fx:id="thumbnailImage" fitHeight="200" fitWidth="150" focusTraversable="true">
+<AnchorPane prefHeight="400.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.DocumentFormController">
+<VBox alignment="CENTER" layoutX="14.0" layoutY="18.0" prefHeight="350.0" prefWidth="178.0" spacing="10">
+    <ImageView fx:id="thumbnailImage" fitHeight="175.0" fitWidth="150" focusTraversable="true">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin></ImageView>
-      <JFXButton onAction="#insertImg" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Insert thumbnail">
+      <JFXButton alignment="CENTER" onAction="#insertImg" prefHeight="38.0" prefWidth="179.0" styleClass="DocumentForm-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Insert thumbnail">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -25,17 +26,8 @@
             </ImageView>
          </graphic>
       </JFXButton>
-    <Label alignment="CENTER" contentDisplay="RIGHT" text="Title" wrapText="true">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-         <padding>
-            <Insets bottom="2.0" left="10.0" right="10.0" />
-         </padding>
-         <graphic>
-            <TextField fx:id="titleField" prefHeight="35.0" prefWidth="135.0" />
-         </graphic></Label>
-      <JFXButton onAction="#saveDoc" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Save">
+      <TextField fx:id="titleField" prefHeight="35.0" prefWidth="164.0" text="Title" />
+      <JFXButton onAction="#saveDoc" prefHeight="38.0" prefWidth="186.0" styleClass="DocumentForm-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Save">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,42 +36,46 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <HBox prefHeight="100.0" prefWidth="200.0" />
 </VBox>
-    <VBox layoutX="200.0" layoutY="-1.0" prefHeight="400.0" prefWidth="213.0" spacing="8.0">
-        <Label contentDisplay="RIGHT" text="Author:" wrapText="true">
-             <VBox.margin>
-                 <Insets top="15.0" />
-             </VBox.margin>
-             <graphic>
-                 <TextField fx:id="authorField" />
-             </graphic>
-        </Label>
-        <Label contentDisplay="RIGHT" text="Publisher:" wrapText="true">
-             <graphic>
-                 <TextField fx:id="publisherField" prefHeight="25.0" prefWidth="145.0" />
-             </graphic>
-        </Label>
-        <Label contentDisplay="RIGHT" text="Published Date:" wrapText="true">
-             <graphic>
-                 <TextField fx:id="dateField" prefHeight="25.0" prefWidth="112.0" />
-             </graphic>
-        </Label>
-        <Label contentDisplay="RIGHT" text="Genre:" wrapText="true">
-             <graphic>
-                 <TextField fx:id="categoryField" prefHeight="25.0" />
-             </graphic>
-        </Label>
-      <Label contentDisplay="RIGHT" text="Isbn 10:" wrapText="true">
-         <graphic>
+    <VBox layoutX="200.0" layoutY="25.0" prefHeight="350.0" prefWidth="202.0" spacing="8.0">
+      <HBox alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="210.0">
+         <children>
+              <Label contentDisplay="RIGHT" prefHeight="18.0" prefWidth="100.0" styleClass="DocumentForm-Label" stylesheets="@../CSS/Light-mode.css" text="Author:" wrapText="true" />
+                 <TextField fx:id="authorField" prefHeight="26.0" prefWidth="114.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="10.0" prefWidth="210.0">
+         <children>
+              <Label contentDisplay="RIGHT" prefHeight="18.0" prefWidth="100.0" styleClass="DocumentForm-Label" stylesheets="@../CSS/Light-mode.css" text="Publisher:" wrapText="true" />
+                 <TextField fx:id="publisherField" prefHeight="26.0" prefWidth="114.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="210.0">
+         <children>
+              <Label contentDisplay="RIGHT" prefHeight="18.0" prefWidth="118.0" styleClass="DocumentForm-Label" stylesheets="@../CSS/Light-mode.css" text="Published Date:" wrapText="true" />
+                 <TextField fx:id="dateField" prefHeight="26.0" prefWidth="132.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="210.0">
+         <children>
+              <Label contentDisplay="RIGHT" prefHeight="18.0" prefWidth="106.0" styleClass="DocumentForm-Label" stylesheets="@../CSS/Light-mode.css" text="Genre:" wrapText="true" />
+                 <TextField fx:id="categoryField" prefHeight="26.0" prefWidth="120.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="210.0">
+         <children>
+            <Label contentDisplay="RIGHT" prefHeight="18.0" prefWidth="140.0" styleClass="DocumentForm-Label" stylesheets="@../CSS/Light-mode.css" text="Isbn 10:" wrapText="true" />
             <TextField fx:id="isbn10Field" prefHeight="25.0" prefWidth="154.0" />
-         </graphic>
-      </Label>
-      <Label contentDisplay="RIGHT" text="Isbn 13:" wrapText="true">
-         <graphic>
-            <TextField fx:id="isbn13Field" prefHeight="25.0" prefWidth="155.0" />
-         </graphic>
-      </Label>
-        <Label contentDisplay="RIGHT" text="Description:" />
-        <TextArea fx:id="descriptionArea" prefHeight="154.0" prefWidth="213.0" wrapText="true" />
+         </children>
+      </HBox>
+      <HBox prefHeight="6.0" prefWidth="210.0">
+         <children>
+            <Label contentDisplay="RIGHT" prefHeight="18.0" prefWidth="139.0" styleClass="DocumentForm-Label" stylesheets="@../CSS/Light-mode.css" text="Isbn 13:" wrapText="true" />
+            <TextField fx:id="isbn13Field" alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="154.0" />
+         </children>
+      </HBox>
+        <Label contentDisplay="RIGHT" styleClass="DocumentForm-Label" stylesheets="@../CSS/Light-mode.css" text="Description:" />
+        <TextArea fx:id="descriptionArea" prefHeight="126.0" prefWidth="217.0" wrapText="true" />
     </VBox>
 </AnchorPane>

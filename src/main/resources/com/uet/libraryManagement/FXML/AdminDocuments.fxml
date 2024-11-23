@@ -18,7 +18,7 @@
 <AnchorPane prefHeight="464.0" prefWidth="700.0" styleClass="root" stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDocumentsController">
    <children>
        <!-- Search Bar -->
-       <HBox alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="33.0" prefWidth="468.0" styleClass="Documents-HBox" stylesheets="@../CSS/Light-mode.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="217.80000000000007">
+       <HBox alignment="CENTER" layoutX="14.0" layoutY="7.0" prefHeight="33.0" prefWidth="468.0" styleClass="Documents-HBox" stylesheets="@../CSS/Light-mode.css" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="218.80000000000007">
            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="Documents-JFXButton" stylesheets="@../CSS/Light-mode.css">
                <graphic>
                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="AdminDocuments-JFXButton-Add_document">
@@ -106,7 +106,7 @@
            </HBox>
        </VBox>
 
-      <TableView fx:id="docsTable" focusTraversable="false" layoutX="14.0" layoutY="58.0" prefHeight="360.0" prefWidth="670.0" styleClass="Documents-TableView" stylesheets="@../CSS/Light-mode.css">
+      <TableView fx:id="docsTable" focusTraversable="false" layoutX="14.0" layoutY="55.0" prefHeight="364.0" prefWidth="670.0" styleClass="Documents-TableView" stylesheets="@../CSS/Light-mode.css">
         <columns>
           <TableColumn fx:id="idCol" prefWidth="40.0" text="ID" />
           <TableColumn fx:id="titleCol" prefWidth="145.0" text="Title" />

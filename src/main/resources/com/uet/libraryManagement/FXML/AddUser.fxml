@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AddUserController">
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AddUserController">
     <children>
         <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
             <children>
@@ -28,8 +28,8 @@
                         <PasswordField fx:id="passwordField" layoutX="84.0" layoutY="33.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                         <PasswordField fx:id="cf_passwordField" layoutX="84.0" layoutY="67.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                         <TextField fx:id="emailField" layoutX="84.0" layoutY="103.0" prefHeight="26.0" prefWidth="150.0" promptText="Email" />
-                        <JFXButton layoutX="118.0" layoutY="174.0" onAction="#addUser" prefHeight="25.0" prefWidth="80.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Add" />
-                  <ComboBox fx:id="roleBox" layoutX="84.0" layoutY="141.0" prefWidth="150.0" promptText="Role" />
+                        <JFXButton layoutX="119.0" layoutY="175.0" onAction="#addUser" prefHeight="25.0" prefWidth="80.0" styleClass="AddUser-JFXButton-Login" stylesheets="@../CSS/Light-mode.css" text="Add" />
+                  <ComboBox fx:id="roleBox" layoutX="84.0" layoutY="134.0" prefHeight="27.0" prefWidth="150.0" promptText="Role" styleClass="AddUser-ComboBox" stylesheets="@../CSS/Light-mode.css" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="38.0" prefWidth="300.0" />

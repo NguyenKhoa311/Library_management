@@ -28,7 +28,7 @@
                   <TextField fx:id="username_textfield" layoutX="98.0" layoutY="6.0" prefHeight="26.0" prefWidth="150.0" promptText="Username" />
                   <Label layoutX="27.0" layoutY="49.0" styleClass="Login-label-password" stylesheets="@../CSS/Light-mode.css" text="Password" />
                   <PasswordField fx:id="password_textfield" layoutX="98.0" layoutY="43.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
-                  <JFXButton alignment="CENTER" layoutX="111.0" layoutY="87.0" onAction="#handleLogin" prefHeight="42.0" prefWidth="110.0" styleClass="Login-JFXButton-Login" stylesheets="@../CSS/Light-mode.css" text="Login">
+                  <JFXButton alignment="CENTER" layoutX="98.0" layoutY="87.0" onAction="#handleLogin" prefHeight="42.0" prefWidth="150.0" styleClass="Login-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Login">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -37,7 +37,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton alignment="CENTER" layoutX="111.0" layoutY="135.0" onAction="#handleRegister" prefHeight="42.0" prefWidth="110.0" styleClass="Login-JFXButton-Login" stylesheets="@../CSS/Light-mode.css" text="Register">
+                  <JFXButton alignment="CENTER" layoutX="98.0" layoutY="135.0" onAction="#handleRegister" prefHeight="42.0" prefWidth="150.0" styleClass="Login-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Register">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -46,7 +46,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <Label fx:id="messageLabel" layoutX="26.0" layoutY="178.0" prefHeight="26.0" prefWidth="255.0" />
+                  <Label fx:id="messageLabel" layoutX="26.0" layoutY="178.0" prefHeight="26.0" prefWidth="255.0" styleClass="Login-Label-message" stylesheets="@../CSS/Light-mode.css" />
                </children>
             </AnchorPane>
          </children>

@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.ProfileController">
-   <BorderPane prefHeight="464.0" prefWidth="700.0" AnchorPane.topAnchor="0.0">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" styleClass="root" stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.ProfileController">
+   <BorderPane layoutX="6.0" layoutY="7.2" prefHeight="450.0" prefWidth="686.0" AnchorPane.topAnchor="7.0">
       <left>
-          <VBox alignment="TOP_CENTER" prefHeight="462.0" prefWidth="160.0" spacing="18.0" BorderPane.alignment="CENTER">
-            <VBox alignment="TOP_CENTER" prefHeight="197.0" prefWidth="158.0" spacing="8.0">
+          <VBox alignment="TOP_CENTER" prefHeight="432.0" prefWidth="162.0" spacing="18.0" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="140.0" prefWidth="162.0" spacing="8.0" styleClass="Profile-VBox-avatar" stylesheets="@../CSS/Light-mode.css">
                <children>
                     <ImageView fx:id="profileImage" fitHeight="120.0" fitWidth="120.0" focusTraversable="true">
                      <image>
@@ -24,12 +24,12 @@
                         <Insets top="40.0" />
                      </VBox.margin>
                   </ImageView>
-                    <Label fx:id="userName" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="User Name" />
+                    <Label fx:id="userName" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="Profile-Label-Title" stylesheets="@../CSS/Light-mode.css" text="User Name" />
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="239.0" prefWidth="158.0" spacing="10.0">
+            <VBox alignment="TOP_CENTER" prefHeight="239.0" prefWidth="162.0" spacing="10.0" styleClass="Profile-VBox-button" stylesheets="@../CSS/Light-mode.css">
                <children>
-                  <JFXButton onAction="#handleEditProfile" prefHeight="40.0" prefWidth="110.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Edit profile">
+                  <JFXButton onAction="#handleEditProfile" prefHeight="40.0" prefWidth="137.0" styleClass="Profile-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Edit profile">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -38,7 +38,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton onAction="#handlePassword" prefHeight="40.0" prefWidth="110.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Password">
+                  <JFXButton onAction="#handlePassword" prefHeight="40.0" prefWidth="142.0" styleClass="Profile-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Password">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -54,7 +54,7 @@
       <center>
          <VBox prefHeight="464.0" prefWidth="539.0" spacing="30.0" BorderPane.alignment="CENTER">
             <children>
-               <Label prefHeight="33.0" prefWidth="540.0" text="User profile">
+               <Label prefHeight="33.0" prefWidth="540.0" styleClass="Profile-Label-Title" stylesheets="@../CSS/Light-mode.css" text="User profile">
                   <font>
                      <Font name="System Bold" size="28.0" />
                   </font>
@@ -67,7 +67,7 @@
                </Label>
                <VBox prefHeight="140.0" prefWidth="540.0">
                   <children>
-                     <Label prefHeight="43.0" prefWidth="540.0" text="Profile details">
+                     <Label prefHeight="43.0" prefWidth="540.0" styleClass="Profile-Label" stylesheets="@../CSS/Light-mode.css" text="Profile details">
                         <font>
                            <Font name="System Bold" size="20.0" />
                         </font>
@@ -78,7 +78,7 @@
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>
                      </Label>
-                     <Label fx:id="usernameLabel" prefHeight="41.0" prefWidth="540.0" text="Full Name: ">
+                     <Label fx:id="usernameLabel" prefHeight="41.0" prefWidth="540.0" styleClass="Profile-Label" stylesheets="@../CSS/Light-mode.css" text="Full Name: ">
                         <padding>
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>
@@ -86,7 +86,7 @@
                            <Font size="16.0" />
                         </font>
                      </Label>
-                     <Label fx:id="birthdayLabel" prefHeight="41.0" prefWidth="540.0" text="Date of birth: ">
+                     <Label fx:id="birthdayLabel" prefHeight="41.0" prefWidth="540.0" styleClass="Profile-Label" stylesheets="@../CSS/Light-mode.css" text="Date of birth: ">
                         <padding>
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>
@@ -94,7 +94,7 @@
                            <Font size="16.0" />
                         </font>
                      </Label>
-                     <Label prefHeight="43.0" prefWidth="540.0" text="Contact info">
+                     <Label prefHeight="43.0" prefWidth="540.0" styleClass="Profile-Label" stylesheets="@../CSS/Light-mode.css" text="Contact info">
                         <font>
                            <Font name="System Bold" size="20.0" />
                         </font>
@@ -105,7 +105,7 @@
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>
                      </Label>
-                     <Label fx:id="phoneLabel" prefHeight="41.0" prefWidth="540.0" text="Phone: ">
+                     <Label fx:id="phoneLabel" prefHeight="41.0" prefWidth="540.0" styleClass="Profile-Label" stylesheets="@../CSS/Light-mode.css" text="Phone: ">
                         <padding>
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>
@@ -113,7 +113,7 @@
                            <Font size="16.0" />
                         </font>
                      </Label>
-                     <Label fx:id="emailLabel" prefHeight="41.0" prefWidth="540.0" text="Email:">
+                     <Label fx:id="emailLabel" prefHeight="41.0" prefWidth="540.0" styleClass="Profile-Label" stylesheets="@../CSS/Light-mode.css" text="Email:">
                         <padding>
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>

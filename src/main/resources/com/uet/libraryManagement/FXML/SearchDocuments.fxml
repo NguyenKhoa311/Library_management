@@ -15,10 +15,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" style="-fx-background-color: #8eccf5; -fx-border-color: black;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.SearchDocumentsController">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" styleClass="root" stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.SearchDocumentsController">
     <children>
         <!-- Search Bar -->
-        <HBox alignment="CENTER" layoutX="10" layoutY="10" prefHeight="33.0" prefWidth="468.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="222.0">
+        <HBox alignment="CENTER" layoutX="15.0" layoutY="7.0" prefHeight="33.0" prefWidth="468.0" styleClass="Documents-HBox" stylesheets="@../CSS/Light-mode.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="217.79999999999995">
             <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="jfx-button-custom" stylesheets="@../CSS/Light-mode.css">
                 <graphic>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -106,7 +106,7 @@
             </HBox>
         </VBox>
 
-        <TableView fx:id="docsTable" focusTraversable="false" layoutX="15.0" layoutY="50.0" prefHeight="360.0" prefWidth="670.0">
+        <TableView fx:id="docsTable" focusTraversable="false" layoutX="15.0" layoutY="50.0" prefHeight="360.0" prefWidth="670.0" styleClass="Documents-TableView" stylesheets="@../CSS/Light-mode.css">
             <columns>
                 <TableColumn fx:id="noCol" prefWidth="40.0" text="No." />
                 <TableColumn fx:id="titleCol" prefWidth="145.0" text="Title" />
@@ -119,7 +119,7 @@
             </columns>
         </TableView>
         <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
-        <JFXButton focusTraversable="false" layoutX="287.0" layoutY="417.0" onAction="#addDoc" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-custom" stylesheets="@../CSS/Light-mode.css" text="Add document">
+        <JFXButton focusTraversable="false" layoutX="287.0" layoutY="417.0" onAction="#addDoc" styleClass="Documents-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Add document">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>

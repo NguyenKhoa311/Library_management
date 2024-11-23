@@ -16,13 +16,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDocumentsController">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" styleClass="root" stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDocumentsController">
    <children>
        <!-- Search Bar -->
-       <HBox alignment="CENTER" layoutX="10" layoutY="10" prefHeight="33.0" prefWidth="468.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="222.0">
+       <HBox alignment="CENTER" layoutX="15.0" layoutY="7.0" prefHeight="33.0" prefWidth="468.0" styleClass="Documents-HBox" stylesheets="@../CSS/Light-mode.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="217.79999999999995">
          <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="jfx-button-custom" stylesheets="@../CSS/Light-mode.css">
             <graphic>
-               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="Documents-JFXButton">
                   <image>
                      <Image url="@../ICONS/search.png" />
                   </image>
@@ -35,14 +35,14 @@
             </HBox.margin></TextField>
          <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" styleClass="jfx-button-custom" stylesheets="@../CSS/Light-mode.css">
             <graphic>
-               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="Documents-JFXButton">
                   <image>
                      <Image url="@../ICONS/clear.png" />
                   </image>
                </ImageView>
             </graphic>
          </JFXButton>
-         <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Advanced Search">
+         <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="Documents-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Advanced Search">
             <graphic>
                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -57,7 +57,7 @@
        </HBox>
 
                 <!-- Advanced Filters (Collapsible) -->
-       <VBox fx:id="filtersPanel" layoutX="10" layoutY="50.0" prefHeight="280.0" prefWidth="470.0" spacing="10" visible="false">
+       <VBox fx:id="filtersPanel" layoutX="10" layoutY="50.0" prefHeight="280.0" prefWidth="470.0" spacing="10" styleClass="Documents-VBox" stylesheets="@../CSS/Light-mode.css" visible="false">
            <Text text="Advanced Search Filters" />
            <HBox spacing="10">
                <Label focusTraversable="false" prefHeight="25.0" text="Title:" />
@@ -116,7 +116,7 @@
          </padding>
        </VBox>
 
-      <TableView fx:id="docsTable" focusTraversable="false" layoutX="15.0" layoutY="50.0" prefHeight="390.0" prefWidth="670.0">
+      <TableView fx:id="docsTable" focusTraversable="false" layoutX="15.0" layoutY="50.0" prefHeight="390.0" prefWidth="670.0" styleClass="Documents-TableView" stylesheets="@../CSS/Light-mode.css">
         <columns>
           <TableColumn fx:id="idCol" prefWidth="40.0" text="ID" />
           <TableColumn fx:id="titleCol" prefWidth="145.0" text="Title" />
@@ -129,7 +129,7 @@
         </columns>
       </TableView>
       <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
-      <JFXButton layoutX="491.0" layoutY="12.0" onAction="#takeDoc" prefHeight="33.0" prefWidth="90.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Take">
+      <JFXButton layoutX="490.0" layoutY="9.0" onAction="#takeDoc" prefHeight="34.0" prefWidth="90.0" styleClass="Documents-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Take">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
