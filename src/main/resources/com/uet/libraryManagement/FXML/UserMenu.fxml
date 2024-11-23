@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.MenuController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.MenuController">
    <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#menuButton" prefHeight="45.0" prefWidth="134.0" styleClass="jfx-menu-icon-style" stylesheets="@../CSS/Light-mode.css">
       <graphic>
          <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true">
@@ -28,10 +28,10 @@
       <opaqueInsets>
          <Insets />
       </opaqueInsets>
-      <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" onAction="#Home" prefHeight="50.0" prefWidth="140.0" styleClass="jfx-button-style1" stylesheets="@../CSS/Light-mode.css" text="Home">
+      <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" onAction="#Home" prefHeight="50.0" prefWidth="140.0" styleClass="jfx-button-style1" stylesheets="@../CSS/Light-mode.css" text="Dashboard">
          <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../ICONS/home.png" />
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../ICONS/dashboard.png" />
             </ImageView>
          </graphic>
          <VBox.margin>
@@ -40,28 +40,28 @@
       </JFXButton>
       <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" onAction="#Profile" prefHeight="50.0" prefWidth="150.0" styleClass="jfx-button-style1" stylesheets="@../CSS/Light-mode.css" text="Profile">
          <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../ICONS/profile.png" />
             </ImageView>
          </graphic>
       </JFXButton>
       <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" onAction="#Documents" prefHeight="50.0" prefWidth="142.0" styleClass="jfx-button-style1" stylesheets="@../CSS/Light-mode.css" text="Documents">
          <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../ICONS/documents.png" />
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../ICONS/books.png" />
             </ImageView>
          </graphic>
       </JFXButton>
       <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" onAction="#History" prefHeight="50.0" prefWidth="143.0" styleClass="jfx-button-style1" stylesheets="@../CSS/Light-mode.css" text="History">
          <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../ICONS/history.png" />
             </ImageView>
          </graphic>
       </JFXButton>
       <JFXButton alignment="BASELINE_LEFT" focusTraversable="false" onAction="#LogOut" prefHeight="50.0" prefWidth="147.0" styleClass="jfx-button-style1" stylesheets="@../CSS/Light-mode.css" text="Log out">
          <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../ICONS/exit.png" />
             </ImageView>
          </graphic>

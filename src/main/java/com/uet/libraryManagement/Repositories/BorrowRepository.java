@@ -20,7 +20,21 @@ public class BorrowRepository {
         return instance;
     }
 
+    public int getUserIssuedDocs(int userId) {
+        String query = "SELECT COUNT(*) FROM borrow_history WHERE user_id = ?";
+        int count = 0;
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, userId)) {
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
     public int getNumberOfDocBorrowed() {
+        updateOverdueStatus();
         String query = "SELECT COUNT(*) FROM borrow_history WHERE status = 'borrowed'";
         int count = 0;
         try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
@@ -33,7 +47,30 @@ public class BorrowRepository {
         return count;
     }
 
+    public List<BorrowHistory> getUserBorrowRecords(int currentUserId) {
+        updateOverdueStatus();
+        List<BorrowHistory> borrowRecords = new ArrayList<>();
+        String query = "SELECT borrow_history.id, borrow_date, due_date, return_date, status, " +
+                "CASE WHEN doc_type = 'book' THEN books.title " +
+                "WHEN doc_type = 'thesis' THEN theses.title END AS docTitle " +
+                "FROM borrow_history " +
+                "LEFT JOIN books ON borrow_history.doc_id = books.id AND doc_type = 'book' " +
+                "LEFT JOIN theses ON borrow_history.doc_id = theses.id AND doc_type = 'thesis' " +
+                "WHERE user_id = ? AND status = 'borrowed'" +
+                "ORDER BY borrow_date DESC";
+
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, currentUserId)) {
+            while (rs.next()) {
+                borrowRecords.add(getBorrowHistory(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return borrowRecords;
+    }
+
     public List<BorrowHistory> getAllHistoryByUserId(int userId, String docType) {
+        updateOverdueStatus();
         List<BorrowHistory> historyList = new ArrayList<>();
         String query;
 
@@ -169,7 +206,12 @@ public class BorrowRepository {
     }
 
     public void borrowDocument(int userId, int docId, String docType) {
-        String query = "INSERT INTO borrow_history (user_id, doc_type, doc_id, borrow_date, due_date, status) VALUES (?, ?, ?, CURRENT_DATE, DATE_ADD(CURRENT_DATE, INTERVAL 1 MONTH), 'borrowed')";
+        String query = "INSERT INTO borrow_history (user_id, doc_type, doc_id, borrow_date, due_date, status) VALUES (?, ?, ?, CURRENT_DATE, DATE_ADD(CURRENT_DATE, INTERVAL 14 DAY), 'borrowed')";
         ConnectJDBC.executeUpdate(query, userId, docType, docId);
+    }
+
+    public void updateOverdueStatus() {
+        String query = "UPDATE borrow_history SET status = 'overdue' WHERE due_date <= CURRENT_DATE AND status = 'borrowed'";
+        ConnectJDBC.executeUpdate(query);
     }
 }

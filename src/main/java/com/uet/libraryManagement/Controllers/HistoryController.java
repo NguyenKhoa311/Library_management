@@ -67,7 +67,6 @@ public class HistoryController implements Initializable {
         statusChoice.getItems().addAll("Borrowed", "Overdue", "Returned");
         docTypeBox.getItems().addAll("Books", "Theses");
         docTypeBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-//            loadHistory(SessionManager.getInstance().getUser().getId(), newValue);
             loadHistory(selectedUserId != null ? selectedUserId : SessionManager.getInstance().getUser().getId(), newValue);
         });
 

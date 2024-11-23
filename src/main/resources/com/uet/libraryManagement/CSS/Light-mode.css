@@ -286,3 +286,237 @@
 .default-color1.chart-bar {
     -fx-bar-fill: #4ecdc4;
 }
+
+/* user dashboard */
+/* start */
+.dashboard {
+    -fx-background-color: #f5f5f5;
+    -fx-max-height: 464.0;
+    -fx-min-height: 464.0;
+    -fx-max-width: 700.0;
+    -fx-min-width: 700.0;
+}
+
+.header {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.header-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-background-radius: 5;
+    -fx-max-width: 120;
+    -fx-min-width: 120;
+}
+
+.stat-circle {
+    -fx-fill: transparent;
+    -fx-stroke-width: 8;
+}
+
+.stat-circle-bg {
+    -fx-stroke: #f0f0f0;
+}
+
+.borrowed-circle {
+    -fx-stroke: #4ecdc4;
+}
+
+.due-soon-circle {
+    -fx-stroke: #ffd93d;
+}
+
+.overdue-circle {
+    -fx-stroke: #ff6b6b;
+}
+
+.history-circle {
+    -fx-stroke: #6c5ce7;
+}
+
+.stat-number {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 0 2 0;
+}
+
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666666;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.table-section {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 10 0;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #495057;
+}
+
+.table-row-cell {
+    -fx-background-color: white;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #e9ecef;
+}
+/* end */
+
+/* admin dashboard */
+/* start */
+.dashboard {
+    -fx-background-color: #f5f5f5;
+    -fx-max-height: 464.0;
+    -fx-min-height: 464.0;
+    -fx-max-width: 700.0;
+    -fx-min-width: 700.0;
+}
+
+.header {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.header-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-background-radius: 5;
+    -fx-max-width: 120;
+    -fx-min-width: 120;
+}
+
+.stat-circle {
+    -fx-fill: transparent;
+    -fx-stroke-width: 8;
+    -fx-stroke-line-cap: round;
+}
+
+/* Background circles */
+.stat-circle-bg {
+    -fx-stroke: #f0f0f0;
+}
+
+/* Foreground circles with different colors */
+.all-books-circle {
+    -fx-stroke: #ff6b6b;
+}
+
+.remaining-books-circle {
+    -fx-stroke: #ff6b6b;
+}
+
+.issued-books-circle {
+    -fx-stroke: #ff6b6b;
+}
+
+.all-students-circle {
+    -fx-stroke: #2ab7ca;
+}
+
+.holding-books-circle {
+    -fx-stroke: #2ab7ca;
+}
+
+/* Circle container style */
+.circle-container {
+    -fx-alignment: center;
+}
+
+.stat-number {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 0 2 0;
+}
+
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666666;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.stat-container {
+    -fx-max-height: 120;
+    -fx-min-height: 120;
+    -fx-spacing: 15;
+    -fx-alignment: center;
+}
+
+.chart-section {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-fit-to-height: true;
+    -fx-fit-to-width: true;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 5 0;
+}
+
+.chart-bar {
+    -fx-bar-fill: #ff6b6b;
+}
+
+.default-color1.chart-bar {
+    -fx-bar-fill: #4ecdc4;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 5px;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #666666;
+    -fx-font-size: 11px;
+}
+
+.axis {
+    -fx-tick-label-font-size: 11px;
+}
+
+.axis-label {
+    -fx-font-size: 12px;
+}
+/* end */
