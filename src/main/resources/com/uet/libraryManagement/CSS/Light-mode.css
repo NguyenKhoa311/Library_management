@@ -1,16 +1,15 @@
 .root {
     -fx-background-color: #EEEEEE;
-
 }
 
 .text-field {
-    -fx-text-fill: black;
+    /*-fx-text-fill: black;*/
 }
 
 .label {
     -fx-font-size: 20;
     -fx-font-family: Calibri;
-    -fx-text-fill: #2d48dd;
+    /*-fx-text-fill: #31363F;*/
     -fx-alignment-baseline: middle;
     -fx-border-width: 2px; /* Optional rounded corners */
     -fx-background-radius: 5px;
@@ -27,14 +26,14 @@
 .buttons:hover {
     -fx-border-color: #31363F;
     -fx-background-color: #EEEEEE;
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-width: 0px; /* Optional rounded corners */
     -fx-background-radius: 5px;
 }
 
 .jfx-button-custom {
     -fx-background-color: #76ABAE;
     -fx-border-color: #31363F;
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-width: 0px; /* Optional rounded corners */
     -fx-background-radius: 5px;
 }
 
@@ -81,4 +80,146 @@
     -fx-alignment: center;
     -fx-background-color: #76ABAE;
     -fx-alignment-baseline: middle;
+}
+
+
+.jfx-register-button {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+.Login-label-username {
+    -fx-font-size: 11;
+    -fx-font-family: Montserrat;
+    -fx-text-fill: #31363F;
+}
+
+.Login-label-password {
+    -fx-font-size: 11;
+    -fx-font-family: Montserrat;
+    -fx-text-fill: #31363F;
+}
+
+.Login-JFXButton-Login {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+/* di chuột vào */
+.Login-JFXButton-Login:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-font-size: 15;/* Show hand cursor on hover */
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+}
+
+.Documents-JFXButton {
+    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-font-size: 13;
+    -fx-border-width: 1px; /* Optional rounded corners */
+    -fx-background-radius: 5px;
+    -fx-border-color: #31363F;
+    -fx-border-radius: 5px;
+}
+
+.Documents-JFXButton:hover {
+    -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
+    -fx-cursor: hand;
+    -fx-font-weight: bold; ;
+    -fx-font-fill: #76ABAE;
+    -fx-border-color: #31363F;
+    -fx-font-size: 12;/* Show hand cursor on hover */
+    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.Documents-TableView {
+    -fx-background-color: #EEEEEE; /* Background color of the table */
+    -fx-border-color: #31363F; /* Border color */
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px; /* Border width */
+    -fx-table-cell-border-color: #31363F; /* Border between cells */
+    -fx-text-fill: #31363F;
+    -fx-padding: 5px;
+}
+
+.Documents-TableView .column-header {
+    -fx-background-color: #76ABAE; /* Header background color */
+    -fx-text-fill: #31363F; /* Text color for the header */
+    -fx-font-weight: bold; /* Font weight for header */
+    -fx-alignment: center; /* Center align header text */
+}
+
+.Documents-TableView .table-row-cell {
+    -fx-background-color: #EEEEEE; /* Background color for rows */
+    -fx-alternate-row-fill-visible: true;
+    -fx-alternate-row-fill: #EEEEEE; /* Background color for alternate rows */
+    -fx-padding: 5px; /* Padding inside the rows */
+    -fx-text-fill: #31363F;
+}
+
+.Documents-TableView .table-row-cell:odd {
+    -fx-background-color: #EEEEEE; /* Alternate row background */
+}
+
+.Documents-TableView .table-row-cell:selected {
+    -fx-background-color: #76ABAE; /* Selected row background */
+    -fx-text-fill: #EEEEEE; /* Selected row text color */
+}
+
+.Documents-TableView .table-row-cell:hover {
+    -fx-background-color: #B0D4D6; /* Màu nền khi hover */
+    -fx-text-fill: #31363F; /* Màu văn bản khi hover */
+}
+
+.Documents-TableView .table-cell {
+    -fx-alignment: center-left; /* Alignment for cell content */
+    -fx-padding: 5px; /* Padding inside the cells */
+    -fx-font-size: 14px; /* Font size for cell text */
+    -fx-text-fill: #31363F;
+}
+
+.Documents-TableView .table-cell:selected {
+    -fx-background-color: #76ABAE; /* Selected cell background */
+    -fx-text-fill: #EEEEEE; /* Selected cell text color */
+    -fx-font-weight: bold;
+}
+
+/* Cài đặt cho HBox */
+.Documents-HBox {
+    -fx-background-color: #EEEEEE; /* Nền của HBox */
+    -fx-border-color: #31363F; /* Màu viền */
+    -fx-border-radius: 5px; /* Độ cong của viền */
+    -fx-border-width: 1px; /* Độ rộng viền */
+    -fx-padding: 5px; /* Khoảng cách giữa các phần tử trong HBox */
+    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+}
+
+/* Cài đặt cho các phần tử bên trong HBox */
+.Documents-HBox .button {
+    -fx-background-color: #76ABAE; /* Màu nền cho các nút */
+    -fx-font-size: 12px; /* Kích thước chữ */
+    -fx-border-width: 1px; /* Độ dày viền */
+    -fx-border-radius: 5px; /* Độ cong viền nút */
+    -fx-text-fill: #31363F; /* Màu chữ */
+    -fx-padding: 0px 0px; /* Khoảng cách bên trong nút */
+}
+
+/* Cài đặt khi hover trên các nút trong HBox */
+.Documents-HBox .button:hover {
+    -fx-background-color: #EEEEEE; /* Màu nền khi hover */
+    -fx-text-fill: #31363F; /* Màu chữ khi hover */
+    -fx-border-color: #31363F; /* Màu viền khi hover */
+    -fx-font-weight: bold; /* Làm đậm chữ khi hover */
+    -fx-cursor: hand; /* Thay đổi con trỏ khi hover */
 }
