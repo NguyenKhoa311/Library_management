@@ -1,20 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.HomeController">
+<AnchorPane stylesheets="@../CSS/dashboard.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDashboardController">
    <children>
-      <ImageView fitHeight="294.0" fitWidth="200.0" layoutX="54.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../ICONS/C++.jpeg" />
-         </image>
-      </ImageView>
-      <Label fx:id="version_label" layoutX="350.0" layoutY="62.0" prefHeight="18.0" prefWidth="200.0" text="Phiên bản: demo" />
-      <Label fx:id="appname_label" layoutX="350.0" layoutY="37.0" prefHeight="18.0" prefWidth="200.0" text="Ứng dụng quản lý thư viện" />
-      <Label fx:id="authors_label" layoutX="350.0" layoutY="89.0" prefHeight="18.0" prefWidth="200.0" text="Tác giả: H-K-K" />
-      <Label fx:id="time_label" layoutX="350.0" layoutY="115.0" prefHeight="18.0" prefWidth="187.0" text="dd:MM:yyyy HH:mm:ss" />
+      <VBox prefHeight="464.0" prefWidth="700.0" spacing="10" styleClass="dashboard" stylesheets="@../CSS/dashboard.css">
+      
+         <!-- Header -->
+         <HBox prefHeight="50.0" styleClass="header">
+            <padding>
+               <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+            <Label styleClass="header-title" text="UET Library Management System" />
+         </HBox>
+
+         <!-- Stat Cards Section -->
+         <HBox alignment="CENTER" prefHeight="120.0" spacing="15" styleClass="stat-container">
+            <!-- All Books Card -->
+            <VBox prefWidth="120" styleClass="stat-card">
+               <StackPane styleClass="circle-container">
+                  <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
+                  <Circle fx:id="allBooksCircle" radius="30" styleClass="stat-circle" />
+               </StackPane>
+               <Label fx:id="allDocsCount" styleClass="stat-number" text="85" />
+               <Label styleClass="stat-label" text="All Documents" />
+            </VBox>
+
+            <!-- Remaining Books Card -->
+            <VBox prefWidth="120" styleClass="stat-card">
+               <StackPane styleClass="circle-container">
+                  <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
+                  <Circle fx:id="remainingBooksCircle" radius="30" styleClass="stat-circle" />
+               </StackPane>
+               <Label fx:id="remainingDocsCount" styleClass="stat-number" text="80" />
+               <Label alignment="CENTER" prefWidth="106.0" styleClass="stat-label" text="Remaining Docs" />
+            </VBox>
+
+            <!-- Issued Books Card -->
+            <VBox prefWidth="120" styleClass="stat-card">
+               <StackPane styleClass="circle-container">
+                  <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
+                  <Circle fx:id="issuedBooksCircle" radius="30" styleClass="stat-circle" />
+               </StackPane>
+               <Label fx:id="issuedDocsCount" styleClass="stat-number" text="5" />
+               <Label styleClass="stat-label" text="Issued Docs" />
+            </VBox>
+
+            <!-- All Students Card -->
+            <VBox prefWidth="120" styleClass="stat-card">
+               <StackPane styleClass="circle-container">
+                  <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
+                  <Circle fx:id="allStudentsCircle" radius="30" styleClass="stat-circle" />
+               </StackPane>
+               <Label fx:id="allUsersCount" styleClass="stat-number" text="9" />
+               <Label styleClass="stat-label" text="All Users" />
+            </VBox>
+
+            <!-- Students Holding Books Card -->
+            <VBox prefWidth="120" styleClass="stat-card">
+               <StackPane styleClass="circle-container">
+                  <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
+                  <Circle fx:id="holdingBooksCircle" radius="30" styleClass="stat-circle" />
+               </StackPane>
+               <Label fx:id="holdingDocsCount" styleClass="stat-number" text="2" />
+               <Label styleClass="stat-label" text="Users Issuing" />
+            </VBox>
+         </HBox>
+      
+         <!-- Chart Section -->
+         <VBox styleClass="chart-section" VBox.vgrow="ALWAYS">
+            <padding>
+               <Insets bottom="10" left="15" right="15" top="10" />
+            </padding>
+            <Label styleClass="section-title" text="Documents and Users Information" />
+            <BarChart fx:id="statisticsChart" legendVisible="true" prefHeight="250.0">
+               <xAxis>
+                  <CategoryAxis />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis label="Count" tickUnit="20" />
+               </yAxis>
+            </BarChart>
+         </VBox>
+      </VBox>
    </children>
 </AnchorPane>

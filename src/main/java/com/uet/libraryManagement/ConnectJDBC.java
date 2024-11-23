@@ -4,10 +4,10 @@ import java.sql.*;
 
 public class ConnectJDBC {
 
-    private static final String DB_URL =
-            "jdbc:mysql://library-db.chyo8scokfws.ap-southeast-1.rds.amazonaws.com:3310/library_db";
-    private static final String DB_USERNAME = "admin";
-    private static final String DB_PASSWORD = "admindeptrai123";
+//    private static final String DB_URL =
+//            "jdbc:mysql://library-db.chyo8scokfws.ap-southeast-1.rds.amazonaws.com:3310/library_db";
+//    private static final String DB_USERNAME = "admin";
+//    private static final String DB_PASSWORD = "admindeptrai123";
 
     private static Connection connection;
 
@@ -30,11 +30,6 @@ public class ConnectJDBC {
             System.err.println("Lỗi khi kết nối tới cơ sở dữ liệu: " + e.getMessage());
         }
     }
-
-    // Phương thức trả về kết nối duy nhất
-//    public static Connection getConnection() {
-//        return connection;
-//    }
 
     public static ResultSet executeQuery(String query) {
         Statement statement;

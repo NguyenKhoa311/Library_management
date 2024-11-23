@@ -20,6 +20,19 @@ public class BorrowRepository {
         return instance;
     }
 
+    public int getNumberOfDocBorrowed() {
+        String query = "SELECT COUNT(*) FROM borrow_history WHERE status = 'borrowed'";
+        int count = 0;
+        try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
     public List<BorrowHistory> getAllHistoryByUserId(int userId, String docType) {
         List<BorrowHistory> historyList = new ArrayList<>();
         String query;

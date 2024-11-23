@@ -223,3 +223,66 @@
     -fx-font-weight: bold; /* Làm đậm chữ khi hover */
     -fx-cursor: hand; /* Thay đổi con trỏ khi hover */
 }
+
+.dashboard {
+    -fx-background-color: #f5f5f5;
+    -fx-padding: 20;
+}
+
+.header {
+    -fx-padding: 10 20;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.header-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-padding: 15;
+    -fx-alignment: center;
+    -fx-min-width: 150;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-background-radius: 5;
+}
+
+.stat-circle {
+    -fx-fill: #f0f0f0;
+    -fx-stroke: #e0e0e0;
+    -fx-stroke-width: 2;
+}
+
+.stat-number {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 5 0;
+}
+
+.stat-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+}
+
+.chart-section {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 10 0;
+}
+
+.chart-bar {
+    -fx-bar-fill: #ff6b6b;
+}
+
+.default-color1.chart-bar {
+    -fx-bar-fill: #4ecdc4;
+}
