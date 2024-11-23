@@ -25,6 +25,19 @@ public abstract class DocumentRepository {
 
     }
 
+    public int getNumberOfDocuments() {
+        String query = "SELECT COUNT(*) FROM " + getDbTable();
+        int count = 0;
+        try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
     // get all books from database
     public ObservableList<Document> getAllBooks() {
         ObservableList<Document> books = FXCollections.observableArrayList();

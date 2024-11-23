@@ -89,7 +89,6 @@ public class AdminDocumentsController extends DocumentsController {
 
             // Refresh the document list after adding a new document
             loadDocuments(docTypeBox.getValue());
-
         } catch (IOException e) {
             e.printStackTrace();
         }

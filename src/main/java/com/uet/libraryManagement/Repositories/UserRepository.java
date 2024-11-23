@@ -44,6 +44,32 @@ public class UserRepository {
         return null; // Login failed
     }
 
+    public int getNumberOfUsers() {
+        String query = "SELECT COUNT(*) FROM users WHERE role = 'user'";
+        int count = 0;
+        try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public int getNumberOfUsersIssuing() {
+        String query = "SELECT COUNT(DISTINCT user_id) FROM borrow_history WHERE status = 'borrowed'";
+        int count = 0;
+        try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM users";
