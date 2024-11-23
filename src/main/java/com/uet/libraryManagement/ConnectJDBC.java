@@ -15,26 +15,26 @@ public class ConnectJDBC {
     static {
         try {
             // Nạp driver MySQL
-            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Tạo kết nối
-//            String url = "jdbc:mysql://localhost:3307/library_db";
-//            String username = "root";
-//            String password = "";
-            connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            String url = "jdbc:mysql://localhost:3307/library_db";
+            String username = "root";
+            String password = "";
+            connection = DriverManager.getConnection(url, username, password);
 //            connection = DriverManager.getConnection(url, username, password);
             System.out.println("Kết nối thành công tới AWS RDS!");
-        } catch (ClassNotFoundException e) {
-            System.err.println("Không tìm thấy driver MySQL: " + e.getMessage());
+//        } catch (ClassNotFoundException e) {
+//            System.err.println("Không tìm thấy driver MySQL: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("Lỗi khi kết nối tới cơ sở dữ liệu: " + e.getMessage());
         }
     }
 
     // Phương thức trả về kết nối duy nhất
-    public static Connection getConnection() {
-        return connection;
-    }
+//    public static Connection getConnection() {
+//        return connection;
+//    }
 
     public static ResultSet executeQuery(String query) {
         Statement statement;
