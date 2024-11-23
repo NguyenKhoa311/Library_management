@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.ManageUsersController">
+    <children>
+        <!-- Search Bar -->
+        <HBox alignment="CENTER" layoutX="10" layoutY="10" prefHeight="37.0" prefWidth="635.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="55.0">
+            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#searchUser" styleClass="jfx-button-custom" stylesheets="@../CSS/Light-mode.css">
+                <graphic>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../ICONS/findUser.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <TextField fx:id="searchBar" focusTraversable="false" prefHeight="25.0" prefWidth="184.0" promptText="Search user...">
+                <HBox.margin>
+                    <Insets />
+                </HBox.margin></TextField>
+            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" styleClass="jfx-button-custom" stylesheets="@../CSS/Light-mode.css">
+                <graphic>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../ICONS/clear.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#issueHistory" prefHeight="33.0" prefWidth="150.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Issue history">
+                <graphic>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../ICONS/historyDoc.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+                <HBox.margin>
+                    <Insets left="30.0" />
+                </HBox.margin>
+            </JFXButton>
+        </HBox>
+
+        <TableView fx:id="usersTable" focusTraversable="false" layoutX="15.0" layoutY="50.0" prefHeight="360.0" prefWidth="670.0">
+            <columns>
+                <TableColumn fx:id="idCol" prefWidth="40.0" text="ID" />
+                <TableColumn fx:id="userNameCol" prefWidth="110.0" text="User name" />
+            <TableColumn fx:id="passwordCol" prefWidth="110.0" text="Password" />
+                <TableColumn fx:id="fullNameCol" prefWidth="110.0" text="Full name" />
+                <TableColumn fx:id="emailCol" prefWidth="110.0" text="Email" />
+                <TableColumn fx:id="phoneCol" prefWidth="110.0" text="Phone" />
+                <TableColumn fx:id="roleCol" prefWidth="79.0" text="Role" />
+            </columns>
+        </TableView>
+        <JFXButton focusTraversable="false" layoutX="282.0" layoutY="418.0" onAction="#deleteUser" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Delete user">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../ICONS/deleteUser.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton focusTraversable="false" layoutX="487.0" layoutY="418.0" onAction="#editUser" prefHeight="28.0" prefWidth="104.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Edit user">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../ICONS/editUser.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton focusTraversable="false" layoutX="88.0" layoutY="418.0" onAction="#addUser" prefHeight="28.0" prefWidth="104.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Add user">
+            <graphic>
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../ICONS/addUser.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+    </children>
+</AnchorPane>

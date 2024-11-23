@@ -2,6 +2,8 @@ package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
 import com.uet.libraryManagement.APIService.ImgurUpload;
+import com.uet.libraryManagement.Repositories.BookRepository;
+import com.uet.libraryManagement.Repositories.ThesisRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -15,7 +17,6 @@ import java.io.IOException;
 
 
 public class DocumentFormController {
-    private static String FOLDER = "thumbnails";
     @FXML
     private TextArea descriptionArea;
     @FXML

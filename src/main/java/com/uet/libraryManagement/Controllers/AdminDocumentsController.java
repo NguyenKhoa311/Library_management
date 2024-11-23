@@ -1,6 +1,8 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
+import com.uet.libraryManagement.Repositories.BookRepository;
+import com.uet.libraryManagement.Repositories.ThesisRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -91,12 +93,5 @@ public class AdminDocumentsController extends DocumentsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    // Helper method to show alerts
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

@@ -1,8 +1,8 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.uet.libraryManagement.SceneManager;
-import com.uet.libraryManagement.SessionManager;
+import com.uet.libraryManagement.Managers.SceneManager;
+import com.uet.libraryManagement.Managers.SessionManager;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -98,6 +98,13 @@ public class MenuController {
     }
 
     @FXML
+    private void Users() {
+        SceneManager.getInstance().setSubScene("FXML/Users.fxml");
+        Title_page.setText("Users");
+        hideMenuBox();
+    }
+
+    @FXML
     private void Documents() throws IOException {
         if (SessionManager.getInstance().getUser().getRole().equals("user")) {
             SceneManager.getInstance().setSubScene("FXML/UserDocuments.fxml");
@@ -116,22 +123,8 @@ public class MenuController {
     }
 
     @FXML
-    private void Issue() {
-        SceneManager.getInstance().setSubScene("FXML/IssueBook.fxml");
-        Title_page.setText("Issue");
-        hideMenuBox();
-    }
-
-    @FXML
-    private void Manage() {
-        SceneManager.getInstance().setSubScene("FXML/ManageDocuments.fxml");
-        Title_page.setText("Manage");
-        hideMenuBox();
-    }
-
-    @FXML
     private void History() {
-        SceneManager.getInstance().setSubScene("FXML/History.fxml");
+        SceneManager.getInstance().setSubScene("FXML/UserHistory.fxml");
         Title_page.setText("History");
         hideMenuBox();
     }

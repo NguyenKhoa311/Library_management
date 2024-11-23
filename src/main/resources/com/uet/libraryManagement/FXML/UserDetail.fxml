@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="406.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDetailController">
+    <VBox alignment="CENTER" prefHeight="406.0" prefWidth="200.0" spacing="10">
+        <ImageView fx:id="userAva" fitHeight="168.0" fitWidth="159.0">
+         <image>
+            <Image url="@../ICONS/profile.png" />
+         </image></ImageView>
+        <Label fx:id="userNameLabel" alignment="CENTER" text="User Name" wrapText="true">
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+            <padding>
+                <Insets bottom="2.0" left="10.0" right="10.0" />
+            </padding></Label>
+    </VBox>
+   <VBox layoutX="200.0" prefHeight="406.0" prefWidth="250.0" spacing="30.0">
+      <children>
+         <Label prefHeight="33.0" prefWidth="540.0" text="User profile">
+            <font>
+               <Font name="System Bold" size="28.0" />
+            </font>
+            <padding>
+               <Insets bottom="10.0" left="20.0" top="10.0" />
+            </padding>
+            <VBox.margin>
+               <Insets top="30.0" />
+            </VBox.margin>
+         </Label>
+         <VBox prefHeight="140.0" prefWidth="540.0">
+            <children>
+               <Label prefHeight="43.0" prefWidth="540.0" text="Profile details">
+                  <font>
+                     <Font name="System Bold" size="20.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <padding>
+                     <Insets bottom="10.0" left="20.0" top="10.0" />
+                  </padding>
+               </Label>
+               <Label fx:id="usernameLabel" prefHeight="41.0" prefWidth="540.0" text="Full Name: ">
+                  <padding>
+                     <Insets bottom="10.0" left="20.0" top="10.0" />
+                  </padding>
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Label>
+               <Label fx:id="birthdayLabel" prefHeight="41.0" prefWidth="540.0" text="Date of birth: ">
+                  <padding>
+                     <Insets bottom="10.0" left="20.0" top="10.0" />
+                  </padding>
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Label>
+               <Label prefHeight="43.0" prefWidth="540.0" text="Contact info">
+                  <font>
+                     <Font name="System Bold" size="20.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <padding>
+                     <Insets bottom="10.0" left="20.0" top="10.0" />
+                  </padding>
+               </Label>
+               <Label fx:id="phoneLabel" prefHeight="41.0" prefWidth="540.0" text="Phone: ">
+                  <padding>
+                     <Insets bottom="10.0" left="20.0" top="10.0" />
+                  </padding>
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Label>
+               <Label fx:id="emailLabel" prefHeight="41.0" prefWidth="540.0" text="Email:">
+                  <padding>
+                     <Insets bottom="10.0" left="20.0" top="10.0" />
+                  </padding>
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Label>
+            </children>
+         </VBox>
+      </children>
+   </VBox>
+</AnchorPane>

@@ -1,9 +1,9 @@
 package com.uet.libraryManagement.Controllers;
 
-import com.uet.libraryManagement.SceneManager;
-import com.uet.libraryManagement.SessionManager;
+import com.uet.libraryManagement.Managers.SceneManager;
+import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.User;
-import com.uet.libraryManagement.UserRepository;
+import com.uet.libraryManagement.Repositories.UserRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

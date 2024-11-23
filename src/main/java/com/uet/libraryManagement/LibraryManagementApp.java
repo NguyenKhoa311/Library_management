@@ -1,6 +1,7 @@
 package com.uet.libraryManagement;
 
 import com.uet.libraryManagement.Controllers.MenuController;
+import com.uet.libraryManagement.Managers.SceneManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -9,11 +10,8 @@ public class LibraryManagementApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
-//        ConnectJDBC.getConnection();
         SceneManager.getInstance().setStage(stage);
         SceneManager.getInstance().setLoginScene("FXML/Login.fxml");
-//        SceneManager.getInstance().setScene("UserMenu.fxml");
 
         stage.setOnCloseRequest(event -> {
             event.consume();

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.google.gson.*;
 
-public class GetAPI {
+public class BookAPI {
     private static final String API_KEY = "AIzaSyB5gHzt3vVKJHxU4R-g8MEMibYNtxtIRC4";
 
     public static List<Volume> searchVolumes(String query) {

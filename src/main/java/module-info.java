@@ -12,4 +12,8 @@ module com.example.librarymanagement_demo {
     opens com.uet.libraryManagement.Controllers to javafx.fxml;
     exports com.uet.libraryManagement.APIService;
     opens com.uet.libraryManagement.APIService to javafx.fxml;
+    exports com.uet.libraryManagement.Repositories;
+    opens com.uet.libraryManagement.Repositories to javafx.fxml;
+    exports com.uet.libraryManagement.Managers;
+    opens com.uet.libraryManagement.Managers to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package com.uet.libraryManagement;
+package com.uet.libraryManagement.Repositories;
 
 public class BookRepository extends DocumentRepository {
     protected String db_table;

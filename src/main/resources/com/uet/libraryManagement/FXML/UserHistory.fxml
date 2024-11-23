@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.HistoryController">
+    <children>
+        <!-- Search Bar -->
+        <HBox alignment="CENTER" layoutX="10" layoutY="10" prefHeight="33.0" prefWidth="468.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="222.0">
+            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="jfx-button-custom" stylesheets="@../CSS/Light-mode.css">
+                <graphic>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../ICONS/search.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <TextField fx:id="searchBar" focusTraversable="false" prefHeight="25.0" prefWidth="184.0" promptText="Search documents...">
+                <HBox.margin>
+                    <Insets />
+                </HBox.margin></TextField>
+            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" styleClass="jfx-button-custom" stylesheets="@../CSS/Light-mode.css">
+                <graphic>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../ICONS/clear.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </JFXButton>
+            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Advanced Search">
+                <graphic>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../ICONS/advanced_search.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+                <HBox.margin>
+                    <Insets left="30.0" />
+                </HBox.margin>
+            </JFXButton>
+        </HBox>
+
+        <!-- Advanced Filters (Collapsible) -->
+        <VBox fx:id="filtersPanel" layoutX="10" layoutY="50.0" prefHeight="280.0" prefWidth="494.0" spacing="12.0" visible="false">
+            <Text text="Advanced Search Filters" />
+            <HBox spacing="10">
+                <Label focusTraversable="false" prefHeight="25.0" text="Title:" />
+                <TextField fx:id="titleFilter" focusTraversable="false" promptText="Filter by title" />
+            </HBox>
+            <HBox prefHeight="25.0" prefWidth="445.0" spacing="10.0">
+                <Label alignment="CENTER" focusTraversable="false" prefHeight="25.0" text="Status:" />
+            <ChoiceBox fx:id="statusChoice" prefWidth="150.0" />
+            </HBox>
+            <HBox spacing="5.0">
+                <Label alignment="CENTER" focusTraversable="false" prefHeight="25.0" text="Borrow date:" />
+                <DatePicker fx:id="borrowStart" focusTraversable="false" prefWidth="185.0" promptText="Start date">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin></DatePicker>
+                <Text text="to" textAlignment="CENTER">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin></Text>
+                <DatePicker fx:id="borrowEnd" focusTraversable="false" promptText="End date" />
+            </HBox>
+         <HBox spacing="5.0">
+            <children>
+               <Label alignment="CENTER" focusTraversable="false" prefHeight="25.0" text="Due date:" />
+               <DatePicker fx:id="dueStart" focusTraversable="false" prefWidth="185.0" promptText="Start date">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </DatePicker>
+               <Text text="to" textAlignment="CENTER">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets top="5.0" />
+                  </HBox.margin>
+               </Text>
+               <DatePicker fx:id="dueEnd" focusTraversable="false" promptText="End date" />
+            </children>
+         </HBox>
+         <HBox spacing="5.0">
+            <children>
+               <Label alignment="CENTER" focusTraversable="false" prefHeight="25.0" text="Return date:" />
+               <DatePicker fx:id="returnStart" focusTraversable="false" prefWidth="185.0" promptText="Start date">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </DatePicker>
+               <Text text="to" textAlignment="CENTER">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets top="5.0" />
+                  </HBox.margin>
+               </Text>
+               <DatePicker fx:id="returnEnd" focusTraversable="false" promptText="End date" />
+            </children>
+         </HBox>
+            <HBox alignment="CENTER" spacing="20.0">
+                <JFXButton focusTraversable="false" onAction="#applyFilters" prefWidth="115.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Search">
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ICONS/search.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton focusTraversable="false" onAction="#clearFilters" prefHeight="25.0" prefWidth="115.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Clear filters">
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ICONS/clear_filters.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+            </HBox>
+            <padding>
+                <Insets left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+
+        <TableView fx:id="historyTable" focusTraversable="false" layoutX="15.0" layoutY="50.0" prefHeight="390.0" prefWidth="670.0">
+            <columns>
+                <TableColumn fx:id="noCol" prefWidth="40.0" text="No." />
+                <TableColumn fx:id="titleCol" prefWidth="200.0" text="Title" />
+                <TableColumn fx:id="borrowDateCol" prefWidth="120.0" text="Borrow date" />
+            <TableColumn fx:id="dueDateCol" prefWidth="120.0" text="Due date" />
+                <TableColumn fx:id="returnDateCol" minWidth="0.0" prefWidth="120.0" text="Return date" />
+                <TableColumn fx:id="statusCol" prefWidth="70.0" text="Status" />
+            </columns>
+        </TableView>
+        <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
+      <JFXButton layoutX="492.0" layoutY="12.0" onAction="#returnDoc" prefHeight="33.0" prefWidth="90.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Return">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ICONS/return.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+    </children>
+</AnchorPane>

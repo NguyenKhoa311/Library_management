@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Thesis extends Document {
     // attribute
-    private SimpleStringProperty field;
+    private final SimpleStringProperty field;
 
     // constructors
     public Thesis() {

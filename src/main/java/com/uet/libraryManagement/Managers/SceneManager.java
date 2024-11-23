@@ -1,16 +1,9 @@
-package com.uet.libraryManagement;
+package com.uet.libraryManagement.Managers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,7 +27,7 @@ public class SceneManager {
     }
 
     public void setLoginScene(String sceneName) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(sceneName));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/" + sceneName));
 
         scene = new Scene(fxmlLoader.load(), 300, 400);
 
@@ -46,7 +39,7 @@ public class SceneManager {
     }
 
     public void setScene(String sceneName) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(sceneName));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/" + sceneName));
 
         scene = new Scene(fxmlLoader.load(), 700, 500);
 
@@ -61,10 +54,10 @@ public class SceneManager {
         isLight = state;
         String css;
         if (isLight) {
-            css = Objects.requireNonNull(this.getClass().getResource("CSS/Light-mode.css")).toExternalForm();
+            css = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/CSS/Light-mode.css")).toExternalForm();
             scene.getStylesheets().clear();
         } else {
-            css = Objects.requireNonNull(this.getClass().getResource("CSS/Dark-mode.css")).toExternalForm();
+            css = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/CSS/Dark-mode.css")).toExternalForm();
             scene.getStylesheets().clear();
         }
 
@@ -83,7 +76,7 @@ public class SceneManager {
 
     public void setSubScene(String sceneName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/" + sceneName));
             AnchorPane pageContent = loader.load();
             contentPane.getChildren().setAll(pageContent);
         } catch (IOException e) {

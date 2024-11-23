@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="406.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserFormController">
+    <VBox alignment="CENTER" prefHeight="406.0" prefWidth="200.0" spacing="10">
+        <ImageView fx:id="userAva" fitHeight="168.0" fitWidth="159.0">
+            <image>
+                <Image url="@../ICONS/profile.png" />
+            </image></ImageView>
+      <JFXButton onAction="#insertImg" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Insert image">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ICONS/addImg.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+        <Label fx:id="userNameLabel" alignment="CENTER" text="User Name" wrapText="true">
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+            <padding>
+                <Insets bottom="2.0" left="10.0" right="10.0" />
+            </padding></Label>
+      <JFXButton onAction="#saveUser" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Save">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ICONS/save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+    </VBox>
+    <VBox layoutX="200.0" prefHeight="406.0" prefWidth="250.0" spacing="25.0">
+        <children>
+            <Label prefHeight="33.0" prefWidth="540.0" text="User profile">
+                <font>
+                    <Font name="System Bold" size="28.0" />
+                </font>
+                <padding>
+                    <Insets bottom="10.0" left="20.0" top="10.0" />
+                </padding>
+                <VBox.margin>
+                    <Insets top="30.0" />
+                </VBox.margin>
+            </Label>
+            <VBox prefHeight="140.0" prefWidth="540.0">
+                <children>
+                    <Label prefHeight="43.0" prefWidth="540.0" text="Profile details">
+                        <font>
+                            <Font name="System Bold" size="20.0" />
+                        </font>
+                        <VBox.margin>
+                            <Insets />
+                        </VBox.margin>
+                        <padding>
+                            <Insets bottom="10.0" left="20.0" top="10.0" />
+                        </padding>
+                    </Label>
+                    <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" text="Full Name: ">
+                        <padding>
+                            <Insets bottom="10.0" left="20.0" top="10.0" />
+                        </padding>
+                        <font>
+                            <Font size="16.0" />
+                        </font>
+                  <graphic>
+                     <TextField fx:id="nameField" prefHeight="27.0" prefWidth="145.0" />
+                  </graphic>
+                    </Label>
+                    <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" text="Date of birth: ">
+                        <padding>
+                            <Insets bottom="10.0" left="20.0" top="10.0" />
+                        </padding>
+                        <font>
+                            <Font size="16.0" />
+                        </font>
+                  <graphic>
+                     <DatePicker fx:id="birthdayField" prefHeight="27.0" prefWidth="133.0" />
+                  </graphic>
+                    </Label>
+                    <Label prefHeight="43.0" prefWidth="540.0" text="Contact info">
+                        <font>
+                            <Font name="System Bold" size="20.0" />
+                        </font>
+                        <VBox.margin>
+                            <Insets />
+                        </VBox.margin>
+                        <padding>
+                            <Insets bottom="10.0" left="20.0" top="10.0" />
+                        </padding>
+                    </Label>
+                    <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" text="Phone: ">
+                        <padding>
+                            <Insets bottom="10.0" left="20.0" top="10.0" />
+                        </padding>
+                        <font>
+                            <Font size="16.0" />
+                        </font>
+                  <graphic>
+                     <TextField fx:id="phoneField" prefHeight="27.0" prefWidth="139.0" />
+                  </graphic>
+                    </Label>
+                    <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" text="Email:">
+                        <padding>
+                            <Insets bottom="10.0" left="20.0" top="10.0" />
+                        </padding>
+                        <font>
+                            <Font size="16.0" />
+                        </font>
+                  <graphic>
+                     <TextField fx:id="emailField" prefHeight="27.0" prefWidth="151.0" />
+                  </graphic>
+                    </Label>
+                </children>
+            </VBox>
+        </children>
+    </VBox>
+</AnchorPane>

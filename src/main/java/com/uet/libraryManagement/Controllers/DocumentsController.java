@@ -1,8 +1,8 @@
 package com.uet.libraryManagement.Controllers;
 
-import com.uet.libraryManagement.BookRepository;
+import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Document;
-import com.uet.libraryManagement.ThesisRepository;
+import com.uet.libraryManagement.Repositories.ThesisRepository;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,7 +55,7 @@ public abstract class DocumentsController implements Initializable {
 
         // set default to show books
         docTypeBox.getSelectionModel().select("Books");
-        loadDocuments("Books");
+//        loadDocuments("Books");
 
         // handle double-clicked to show document details
         docsTable.setOnMouseClicked(event -> {
@@ -192,5 +192,11 @@ public abstract class DocumentsController implements Initializable {
             documents = ThesisRepository.getInstance().searchDocument(searchTerm);
         }
         docsTable.setItems(documents);
+    }
+
+    public void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

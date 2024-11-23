@@ -1,4 +1,6 @@
-package com.uet.libraryManagement;
+package com.uet.libraryManagement.Managers;
+
+import com.uet.libraryManagement.User;
 
 public class SessionManager {
     private static SessionManager instance;

@@ -1,8 +1,7 @@
 package com.uet.libraryManagement.Controllers;
 
-import com.uet.libraryManagement.*;
-import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.Repositories.UserRepository;
+import com.uet.libraryManagement.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -14,24 +13,42 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class EditProfileController {
-    @FXML private ImageView avatarImage;
-    @FXML private Label usernameLabel;
-    @FXML private TextField phoneField;
-    @FXML private TextField emailField;
+public class UserFormController {
+    @FXML private ImageView userAva;
+    @FXML private Label userNameLabel;
     @FXML private TextField nameField;
     @FXML private DatePicker birthdayField;
+    @FXML private TextField phoneField;
+    @FXML private TextField emailField;
 
+    private User currentUser;
+    private String avatarFile;
     private byte[] tmpAvatar;
-    private String avatarPath;
-    private final User currentUser = SessionManager.getInstance().getUser();
 
-    public void initialize() {
-        loadUserInfo();
+    public void setUserInfo(User user) {
+        this.currentUser = user;
+        userNameLabel.setText("Username:" + user.getUsername());
+        nameField.setText((user.getFullName() == null) ? "N/A" : user.getFullName());
+        emailField.setText(user.getEmail());
+        phoneField.setText((user.getPhone() == null) ? "N/A" : user.getPhone());
+
+        // Parse and set birthday if available
+        if (user.getBirthday() != null && !user.getBirthday().isEmpty()) {
+            birthdayField.setValue(LocalDate.parse(user.getBirthday()));
+        } else {
+            birthdayField.setPromptText("N/A");
+        }
+
+        // Load avatar image if available
+        if (user.getAvatar() != null) {
+            Image avatarImage = new Image(new ByteArrayInputStream(user.getAvatar()));
+            userAva.setImage(avatarImage);
+        }
     }
 
     public void insertImg() {
@@ -41,17 +58,17 @@ public class EditProfileController {
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
         );
 
-        File selectedFile = fileChooser.showOpenDialog(avatarImage.getScene().getWindow());
+        File selectedFile = fileChooser.showOpenDialog(userAva.getScene().getWindow());
         if (selectedFile != null) {
-            avatarPath = selectedFile.getAbsolutePath(); // Lưu tạm đường dẫn ảnh
+            avatarFile = selectedFile.getAbsolutePath(); // Lưu tạm đường dẫn ảnh
 
             try {
                 // Đọc ảnh thành mảng byte
                 tmpAvatar = java.nio.file.Files.readAllBytes(selectedFile.toPath());
 
                 // Hiển thị ảnh trong ImageView
-                Image thumbnailImage = new Image(new File(avatarPath).toURI().toString());
-                avatarImage.setImage(thumbnailImage);
+                Image thumbnailImage = new Image(new File(avatarFile).toURI().toString());
+                userAva.setImage(thumbnailImage);
             } catch (IOException e) {
                 e.printStackTrace();
                 showAlert("Error reading image file.");
@@ -59,7 +76,7 @@ public class EditProfileController {
         }
     }
 
-    public void saveChanges(ActionEvent actionEvent) throws IOException {
+    public void saveUser() throws IOException {
         String phone = phoneField.getText();
         String email = emailField.getText();
         String name = nameField.getText();
@@ -69,6 +86,7 @@ public class EditProfileController {
             showAlert("Please fill in all required fields.");
             return;
         }
+
         currentUser.setFullName(name);
         currentUser.setPhone(phone);
         currentUser.setEmail(email);
@@ -82,27 +100,6 @@ public class EditProfileController {
         closeForm();
     }
 
-    private void loadUserInfo() {
-        usernameLabel.setText(currentUser.getUsername());
-        nameField.setText(((currentUser.getFullName() == null) ? "N/A" : currentUser.getFullName()));
-        phoneField.setText(((currentUser.getPhone() == null) ? "N/A" : currentUser.getPhone()));
-        emailField.setText(((currentUser.getEmail() == null) ? "N/A" : currentUser.getEmail()));
-
-        // Set birthdayField if birthday exists
-        if (currentUser.getBirthday() != null && !currentUser.getBirthday().isEmpty()) {
-            LocalDate birthday = LocalDate.parse(currentUser.getBirthday());
-            birthdayField.setValue(birthday);
-        } else {
-            birthdayField.setPromptText("N/A");
-        }
-
-        if (currentUser.getAvatar() != null) {
-            // Hiển thị avatar từ byte[]
-            Image image = new Image(new java.io.ByteArrayInputStream(currentUser.getAvatar()));
-            avatarImage.setImage(image);
-        }
-    }
-
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
@@ -110,7 +107,7 @@ public class EditProfileController {
     }
 
     private void closeForm() {
-        Stage stage = (Stage) usernameLabel.getScene().getWindow();
+        Stage stage = (Stage) userNameLabel.getScene().getWindow();
         stage.close();
     }
 }
