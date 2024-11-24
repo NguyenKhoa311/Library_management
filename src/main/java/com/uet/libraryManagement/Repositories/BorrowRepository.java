@@ -109,6 +109,48 @@ public class BorrowRepository {
         return historyList;
     }
 
+    public Document getRecentDocument(int userId, int borrowId) {
+        Document document = null;
+        // Query to determine document type (book or thesis)
+        String typeQuery = "SELECT doc_type FROM borrow_history WHERE user_id = ? AND id = ?";
+        String docType = null;
+
+        try (ResultSet rsType = ConnectJDBC.executeQueryWithParams(typeQuery, userId, borrowId)) {
+            if (rsType.next()) {
+                docType = rsType.getString("doc_type");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Query to get document details based on the document type
+        String query = docType.equalsIgnoreCase("book")
+                ? "SELECT b.* FROM borrow_history br JOIN books b ON br.doc_id = b.id WHERE br.user_id = ? AND br.id = ?"
+                : "SELECT t.* FROM borrow_history br JOIN theses t ON br.doc_id = t.id WHERE br.user_id = ? AND br.id = ?";
+
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, userId, borrowId)) {
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String titleValue = rs.getString("title");
+                String authorValue = rs.getString("author");
+                String publisher = rs.getString("publisher");
+                String year = rs.getString("publishDate");
+                String description = rs.getString("description");
+                String genre = rs.getString(docType.equalsIgnoreCase("book") ? "genre" : "field");
+                String url = rs.getString("thumbnail");
+                String isbn10Value = rs.getString("isbn10");
+                String isbn13Value = rs.getString("isbn13");
+
+                document = docType.equalsIgnoreCase("book")
+                        ? new Book(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value)
+                        : new Thesis(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return document;
+    }
+
     public Document getDocument(int userId, int borrowId, String docType) {
         Document document = null;
         String query;
@@ -206,6 +248,16 @@ public class BorrowRepository {
     }
 
     public void borrowDocument(int userId, int docId, String docType) {
+        String maxIdQuery = "SELECT MAX(id) FROM borrow_history";
+        try (ResultSet maxIdRs = ConnectJDBC.executeQuery(maxIdQuery)) {
+            if (maxIdRs.next()) {
+                int maxId = maxIdRs.getInt(1);
+                String resetAutoIncrementQuery = "ALTER TABLE borrow_history AUTO_INCREMENT = " + (maxId + 1);
+                ConnectJDBC.executeUpdate(resetAutoIncrementQuery);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         String query = "INSERT INTO borrow_history (user_id, doc_type, doc_id, borrow_date, due_date, status) VALUES (?, ?, ?, CURRENT_DATE, DATE_ADD(CURRENT_DATE, INTERVAL 14 DAY), 'borrowed')";
         ConnectJDBC.executeUpdate(query, userId, docType, docId);
     }

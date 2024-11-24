@@ -1,12 +1,16 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.BorrowHistory;
+import com.uet.libraryManagement.Document;
 import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.Repositories.BorrowRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -15,7 +19,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeLineCap;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -62,6 +69,11 @@ public class UserDashboardController {
         setupTableColumns();
         loadUserData();
         setupCircleProgress();
+        recentBorrowsTable.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                showDocumentDetails();
+            }
+        });
         HandleOutsideClickListener();
     }
 
@@ -121,7 +133,7 @@ public class UserDashboardController {
 
         // Cập nhật bảng với 5 bản ghi gần nhất
         ObservableList<BorrowHistory> recentRecords = FXCollections.observableArrayList(
-                borrowRecords.subList(0, Math.min(7, borrowRecords.size()))
+                borrowRecords.subList(0, Math.min(5, borrowRecords.size()))
         );
         recentBorrowsTable.setItems(recentRecords);
     }
@@ -152,6 +164,32 @@ public class UserDashboardController {
         circle.getStrokeDashArray().setAll(strokeDashArray);
 
         circle.setRotate(-90);
+    }
+
+    private void showDocumentDetails() {
+        BorrowHistory borrowHistory = recentBorrowsTable.getSelectionModel().getSelectedItem();
+        int userId = SessionManager.getInstance().getUser().getId();
+        int borrow_id = borrowHistory.getId();
+        Document document = BorrowRepository.getInstance().getRecentDocument(userId, borrow_id);
+        if (document != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentDetail.fxml"));
+                Parent detailRoot = loader.load();
+
+                // Get the controller and set the selected book
+                DocumentDetailController controller = loader.getController();
+                controller.setDocumentDetails(document);
+
+                // Create a new stage for the book detail window
+                Stage detailStage = new Stage();
+                detailStage.setTitle("Document Details");
+                detailStage.setScene(new Scene(detailRoot));
+                detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
+                detailStage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private int getCurrentUserId() {
