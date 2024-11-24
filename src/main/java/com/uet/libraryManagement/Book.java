@@ -17,8 +17,18 @@ public class Book extends Document {
         this.genre = new SimpleStringProperty(genre);
     }
 
-   public Book(int id, String title, String author, String publisher, String description, String year, String genre, String url, String isbn10, String isbn13) {
+    public Book(int id, String title, String author, String publisher, String description, String year, String genre, String url, String isbn10, String isbn13) {
         super(id, title, author, publisher, description, year, url, isbn10, isbn13);
+        this.genre = new SimpleStringProperty(genre);
+    }
+
+    public Book(String title, String author, String publisher, String description, String year, String genre, String url, String isbn10, String isbn13, int quantity) {
+        super(title, author, publisher, description, year, url, isbn10, isbn13, quantity);
+        this.genre = new SimpleStringProperty(genre);
+    }
+
+   public Book(int id, String title, String author, String publisher, String description, String year, String genre, String url, String isbn10, String isbn13, int quantity) {
+        super(id, title, author, publisher, description, year, url, isbn10, isbn13, quantity);
        this.genre = new SimpleStringProperty(genre);
    }
 

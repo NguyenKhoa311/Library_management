@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDashboardController">
+    <children>
+        <VBox prefHeight="464.0" prefWidth="700.0" spacing="10" styleClass="dashboard">
+
+            <!-- Header -->
+            <HBox prefHeight="50.0" styleClass="header">
+                <padding>
+                    <Insets bottom="10" left="20" right="20" top="10" />
+                </padding>
+                <Label styleClass="header-title" text="My Library Dashboard" />
+            </HBox>
+
+            <!-- Stats Cards Section -->
+            <HBox alignment="CENTER" prefHeight="120.0" spacing="15" styleClass="stat-container">
+                <!-- Currently Borrowed -->
+                <VBox prefWidth="120" styleClass="stat-card">
+                    <StackPane styleClass="circle-container">
+                        <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
+                        <Circle fx:id="borrowedCircle" radius="30" styleClass="stat-circle, borrowed-circle" />
+                    </StackPane>
+                    <Label fx:id="borrowedCount" styleClass="stat-number" text="0" />
+                    <Label styleClass="stat-label" text="Currently Borrowed" />
+                </VBox>
+
+                <!-- Return Due Soon -->
+                <VBox prefWidth="120" styleClass="stat-card">
+                    <StackPane styleClass="circle-container">
+                        <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
+                        <Circle fx:id="dueSoonCircle" radius="30" styleClass="stat-circle, due-soon-circle" />
+                    </StackPane>
+                    <Label fx:id="dueSoonCount" styleClass="stat-number" text="0" />
+                    <Label styleClass="stat-label" text="Due Soon" />
+                </VBox>
+
+                <!-- Overdue -->
+                <VBox prefWidth="120" styleClass="stat-card">
+                    <StackPane styleClass="circle-container">
+                        <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
+                        <Circle fx:id="overdueCircle" radius="30" styleClass="stat-circle, overdue-circle" />
+                    </StackPane>
+                    <Label fx:id="overdueCount" styleClass="stat-number" text="0" />
+                    <Label styleClass="stat-label" text="Overdue" />
+                </VBox>
+
+                <!-- Total Borrowed History -->
+                <VBox prefWidth="120" styleClass="stat-card">
+                    <StackPane styleClass="circle-container">
+                        <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
+                        <Circle fx:id="historyCircle" radius="30" styleClass="stat-circle, history-circle" />
+                    </StackPane>
+                    <Label fx:id="historyCount" styleClass="stat-number" text="0" />
+                    <Label styleClass="stat-label" text="Total History" />
+                </VBox>
+            </HBox>
+
+            <!-- Recent Borrows Table -->
+            <VBox styleClass="table-section" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="10" left="15" right="15" top="10" />
+                </padding>
+                <Label styleClass="section-title" text="Recent Borrowed Documents" />
+                <TableView fx:id="recentBorrowsTable" prefHeight="200.0">
+                    <columns>
+                  <TableColumn fx:id="noCol" prefWidth="50.0" text="No." />
+                        <TableColumn fx:id="docTitleColumn" prefWidth="250.0" text="Document Title" />
+                        <TableColumn fx:id="borrowDateColumn" prefWidth="115.0" text="Borrow Date" />
+                        <TableColumn fx:id="dueDateColumn" prefWidth="115.0" text="Due Date" />
+                        <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </children>
+</AnchorPane>

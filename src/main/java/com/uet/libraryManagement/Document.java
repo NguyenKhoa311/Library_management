@@ -14,9 +14,11 @@ public class Document {
     private final SimpleStringProperty thumbnailUrl;
     private final SimpleStringProperty isbn10;
     private final SimpleStringProperty isbn13;
+    private SimpleIntegerProperty quantity;
 
     //constructors
     public Document() {
+        this.quantity = new SimpleIntegerProperty();
         this.id = new SimpleIntegerProperty();
         this.title = new SimpleStringProperty();
         this.author = new SimpleStringProperty();
@@ -26,6 +28,19 @@ public class Document {
         this.thumbnailUrl = new SimpleStringProperty();
         this.isbn10 = new SimpleStringProperty();
         this.isbn13 = new SimpleStringProperty();
+    }
+
+    public Document(int id, String title, String author, String publisher,
+                    String description, String year, String thumbnailUrl, String isbn10, String isbn13) {
+        this.id = new SimpleIntegerProperty(id);
+        this.title = new SimpleStringProperty(title);
+        this.author = new SimpleStringProperty(author);
+        this.publisher = new SimpleStringProperty(publisher);
+        this.description = new SimpleStringProperty(description);
+        this.publishedDate = new SimpleStringProperty(year);
+        this.thumbnailUrl = new SimpleStringProperty(thumbnailUrl);
+        this.isbn10 = new SimpleStringProperty(isbn10);
+        this.isbn13 = new SimpleStringProperty(isbn13);
     }
 
     public Document(String title, String author, String publisher,
@@ -40,8 +55,21 @@ public class Document {
         this.isbn13 = new SimpleStringProperty(isbn13);
     }
 
+    public Document(String title, String author, String publisher,
+                    String description, String year, String thumbnailUrl, String isbn10, String isbn13, int quantity) {
+        this.title = new SimpleStringProperty(title);
+        this.author = new SimpleStringProperty(author);
+        this.publisher = new SimpleStringProperty(publisher);
+        this.description = new SimpleStringProperty(description);
+        this.publishedDate = new SimpleStringProperty(year);
+        this.thumbnailUrl = new SimpleStringProperty(thumbnailUrl);
+        this.isbn10 = new SimpleStringProperty(isbn10);
+        this.isbn13 = new SimpleStringProperty(isbn13);
+        this.quantity = new SimpleIntegerProperty(quantity);
+    }
+
     public Document(int id, String title, String author, String publisher,
-                    String description, String year, String thumbnailUrl, String isbn10, String isbn13) {
+                    String description, String year, String thumbnailUrl, String isbn10, String isbn13, int quantity) {
         this.id = new SimpleIntegerProperty(id);
         this.title = new SimpleStringProperty(title);
         this.author = new SimpleStringProperty(author);
@@ -51,6 +79,7 @@ public class Document {
         this.thumbnailUrl = new SimpleStringProperty(thumbnailUrl);
         this.isbn10 = new SimpleStringProperty(isbn10);
         this.isbn13 = new SimpleStringProperty(isbn13);
+        this.quantity = new SimpleIntegerProperty(quantity);
     }
 
     // getters, setters
@@ -117,4 +146,8 @@ public class Document {
     public String getIsbn13() { return isbn13.get(); }
 
     public void setIsbn13(String isbn13) { this.isbn13.set(isbn13); }
+
+    public int getQuantity() { return quantity.get(); }
+
+    public void setQuantity(int quantity) { this.quantity.set(quantity); }
 }

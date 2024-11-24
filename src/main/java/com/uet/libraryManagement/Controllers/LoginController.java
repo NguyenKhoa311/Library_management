@@ -42,7 +42,7 @@ public class LoginController {
             SessionManager.getInstance().setUser(user);
             try {
                 SceneManager.getInstance().setScene("FXML/UserMenu.fxml");
-                SceneManager.getInstance().setSubScene("FXML/Home.fxml");
+                SceneManager.getInstance().setSubScene("FXML/UserDashboard.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
                 messageLabel.setText("Failed to load the application.");
@@ -51,7 +51,7 @@ public class LoginController {
             SessionManager.getInstance().setUser(user);
             try {
                 SceneManager.getInstance().setScene("FXML/AdminMenu.fxml");
-                SceneManager.getInstance().setSubScene("FXML/Home.fxml");
+                SceneManager.getInstance().setSubScene("FXML/AdminDashboard.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
                 messageLabel.setText("Failed to load the application.");

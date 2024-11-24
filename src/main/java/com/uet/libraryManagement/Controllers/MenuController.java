@@ -86,11 +86,11 @@ public class MenuController {
     @FXML
     private void Home() {
         if (SessionManager.getInstance().getUser().getRole().equals("user")) {
-            SceneManager.getInstance().setSubScene("FXML/Home.fxml");
+            SceneManager.getInstance().setSubScene("FXML/UserDashboard.fxml");
         } else {
-            SceneManager.getInstance().setSubScene("FXML/Home.fxml");
+            SceneManager.getInstance().setSubScene("FXML/AdminDashboard.fxml");
         }
-        Title_page.setText("Home");
+        Title_page.setText("Dashboard");
         hideMenuBox();
     }
 

@@ -20,7 +20,21 @@ public class BorrowRepository {
         return instance;
     }
 
+    public int getUserIssuedDocs(int userId) {
+        String query = "SELECT COUNT(*) FROM borrow_history WHERE user_id = ?";
+        int count = 0;
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, userId)) {
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
     public int getNumberOfDocBorrowed() {
+        updateOverdueStatus();
         String query = "SELECT COUNT(*) FROM borrow_history WHERE status = 'borrowed'";
         int count = 0;
         try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
@@ -33,7 +47,30 @@ public class BorrowRepository {
         return count;
     }
 
+    public List<BorrowHistory> getUserBorrowRecords(int currentUserId) {
+        updateOverdueStatus();
+        List<BorrowHistory> borrowRecords = new ArrayList<>();
+        String query = "SELECT borrow_history.id, borrow_date, due_date, return_date, status, " +
+                "CASE WHEN doc_type = 'book' THEN books.title " +
+                "WHEN doc_type = 'thesis' THEN theses.title END AS docTitle " +
+                "FROM borrow_history " +
+                "LEFT JOIN books ON borrow_history.doc_id = books.id AND doc_type = 'book' " +
+                "LEFT JOIN theses ON borrow_history.doc_id = theses.id AND doc_type = 'thesis' " +
+                "WHERE user_id = ? AND status = 'borrowed'" +
+                "ORDER BY borrow_date DESC";
+
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, currentUserId)) {
+            while (rs.next()) {
+                borrowRecords.add(getBorrowHistory(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return borrowRecords;
+    }
+
     public List<BorrowHistory> getAllHistoryByUserId(int userId, String docType) {
+        updateOverdueStatus();
         List<BorrowHistory> historyList = new ArrayList<>();
         String query;
 
@@ -70,6 +107,48 @@ public class BorrowRepository {
         }
 
         return historyList;
+    }
+
+    public Document getRecentDocument(int userId, int borrowId) {
+        Document document = null;
+        // Query to determine document type (book or thesis)
+        String typeQuery = "SELECT doc_type FROM borrow_history WHERE user_id = ? AND id = ?";
+        String docType = null;
+
+        try (ResultSet rsType = ConnectJDBC.executeQueryWithParams(typeQuery, userId, borrowId)) {
+            if (rsType.next()) {
+                docType = rsType.getString("doc_type");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Query to get document details based on the document type
+        String query = docType.equalsIgnoreCase("book")
+                ? "SELECT b.* FROM borrow_history br JOIN books b ON br.doc_id = b.id WHERE br.user_id = ? AND br.id = ?"
+                : "SELECT t.* FROM borrow_history br JOIN theses t ON br.doc_id = t.id WHERE br.user_id = ? AND br.id = ?";
+
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, userId, borrowId)) {
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String titleValue = rs.getString("title");
+                String authorValue = rs.getString("author");
+                String publisher = rs.getString("publisher");
+                String year = rs.getString("publishDate");
+                String description = rs.getString("description");
+                String genre = rs.getString(docType.equalsIgnoreCase("book") ? "genre" : "field");
+                String url = rs.getString("thumbnail");
+                String isbn10Value = rs.getString("isbn10");
+                String isbn13Value = rs.getString("isbn13");
+
+                document = docType.equalsIgnoreCase("book")
+                        ? new Book(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value)
+                        : new Thesis(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return document;
     }
 
     public Document getDocument(int userId, int borrowId, String docType) {
@@ -169,7 +248,42 @@ public class BorrowRepository {
     }
 
     public void borrowDocument(int userId, int docId, String docType) {
-        String query = "INSERT INTO borrow_history (user_id, doc_type, doc_id, borrow_date, due_date, status) VALUES (?, ?, ?, CURRENT_DATE, DATE_ADD(CURRENT_DATE, INTERVAL 1 MONTH), 'borrowed')";
+        String maxIdQuery = "SELECT MAX(id) FROM borrow_history";
+        try (ResultSet maxIdRs = ConnectJDBC.executeQuery(maxIdQuery)) {
+            if (maxIdRs.next()) {
+                int maxId = maxIdRs.getInt(1);
+                String resetAutoIncrementQuery = "ALTER TABLE borrow_history AUTO_INCREMENT = " + (maxId + 1);
+                ConnectJDBC.executeUpdate(resetAutoIncrementQuery);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String query = "INSERT INTO borrow_history (user_id, doc_type, doc_id, borrow_date, due_date, status) VALUES (?, ?, ?, CURRENT_DATE, DATE_ADD(CURRENT_DATE, INTERVAL 14 DAY), 'borrowed')";
         ConnectJDBC.executeUpdate(query, userId, docType, docId);
+    }
+
+    public void updateDocumentQuantity(int docId, String docType, int newQuantity) {
+        String query;
+        if ("book".equals(docType)) {
+            query = "UPDATE books SET quantity = ? WHERE id = ?";
+        } else {
+            query = "UPDATE theses SET quantity = ? WHERE id = ?";
+        }
+        ConnectJDBC.executeUpdate(query, newQuantity, docId);
+    }
+
+    public void increaseDocumentQuantity(int docId, String docType) {
+        String query;
+        if ("book".equals(docType)) {
+            query = "UPDATE books SET quantity = quantity + 1 WHERE id = ?";
+        } else {
+            query = "UPDATE theses SET quantity = quantity + 1 WHERE id = ?";
+        }
+        ConnectJDBC.executeUpdate(query, docId);
+    }
+
+    public void updateOverdueStatus() {
+        String query = "UPDATE borrow_history SET status = 'overdue' WHERE due_date <= CURRENT_DATE AND status = 'borrowed'";
+        ConnectJDBC.executeUpdate(query);
     }
 }

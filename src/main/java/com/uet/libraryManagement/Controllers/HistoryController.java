@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -67,7 +69,6 @@ public class HistoryController implements Initializable {
         statusChoice.getItems().addAll("Borrowed", "Overdue", "Returned");
         docTypeBox.getItems().addAll("Books", "Theses");
         docTypeBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-//            loadHistory(SessionManager.getInstance().getUser().getId(), newValue);
             loadHistory(selectedUserId != null ? selectedUserId : SessionManager.getInstance().getUser().getId(), newValue);
         });
 
@@ -124,29 +125,43 @@ public class HistoryController implements Initializable {
     @FXML
     private void returnDoc() {
         BorrowHistory borrowHistory = historyTable.getSelectionModel().getSelectedItem();
-        if (borrowHistory != null) {
-            // check if already returned
-            String status = borrowHistory.getStatus();
-            if ("returned".equalsIgnoreCase(status)) {
-                showAlert("This document has already been returned!");
-                return;
-            }
-
-            int borrowId = borrowHistory.getId();
-            // Update the return date and status in the borrow_history table
-            String query = "UPDATE borrow_history SET return_date = CURRENT_DATE, status = 'returned' WHERE id = ?";
-            // Execute the update
-            ConnectJDBC.executeUpdate(query, borrowId);
-            showAlert("The document has been successfully returned!");
-            loadHistory(SessionManager.getInstance().getUser().getId(), docTypeBox.getValue());
-        } else {
-            // Show a warning if no item is selected
+        if (borrowHistory == null) {
             showAlert("Please select a document from the history to return!");
+            return;
+        }
+
+        // Check if the document has already been returned
+        String status = borrowHistory.getStatus();
+        if ("returned".equalsIgnoreCase(status)) {
+            showAlert("This document has already been returned!");
+            return;
+        }
+
+        int borrowId = borrowHistory.getId();
+        int docId;
+
+        String getDocId = "SELECT doc_id, doc_type FROM borrow_history WHERE id = " + borrowId;
+        try(ResultSet rs = ConnectJDBC.executeQuery(getDocId)) {
+            if (rs.next()) {
+                docId = rs.getInt("doc_id");
+                String docType = rs.getString("doc_type");
+
+                // Update the return date and status in the borrow_history table
+                String updateReturnQuery = "UPDATE borrow_history SET return_date = CURRENT_DATE, status = 'returned' WHERE id = ?";
+                ConnectJDBC.executeUpdate(updateReturnQuery, borrowId);
+
+                // Increase the document quantity in the respective table
+                BorrowRepository.getInstance().increaseDocumentQuantity(docId, docType);
+                showAlert("The document has been successfully returned!");
+                loadHistory(SessionManager.getInstance().getUser().getId(), docTypeBox.getValue());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("An error occurred while returning the document.");
         }
     }
 
     // Handle search functionality
-
     public void handleSearchAction() {
         int userIdToUse = (selectedUserId != null) ? selectedUserId : SessionManager.getInstance().getUser().getId();
         String searchTerm = searchBar.getText();

@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane stylesheets="@../CSS/dashboard.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDashboardController">
+<AnchorPane stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDashboardController">
    <children>
-      <VBox prefHeight="464.0" prefWidth="700.0" spacing="10" styleClass="dashboard" stylesheets="@../CSS/dashboard.css">
+      <VBox prefHeight="464.0" prefWidth="700.0" spacing="10" stylesheets="@../CSS/Light-mode.css">
       
          <!-- Header -->
          <HBox prefHeight="50.0" styleClass="header">
