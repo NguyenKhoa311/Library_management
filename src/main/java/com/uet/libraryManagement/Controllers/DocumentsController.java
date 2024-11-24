@@ -25,7 +25,7 @@ public abstract class DocumentsController implements Initializable {
     @FXML
     protected TableView<Document> docsTable;
     @FXML
-    protected TableColumn<Document, Integer> idCol;
+    protected TableColumn<Document, Integer> idCol, quantityCol;
     @FXML
     protected TableColumn<Document, String> titleCol, authorCol, categoryCol, publisherCol, dateCol, isbn10Col, isbn13Col;
     @FXML
@@ -47,6 +47,7 @@ public abstract class DocumentsController implements Initializable {
         dateCol.setCellValueFactory(new PropertyValueFactory<>("year"));
         isbn10Col.setCellValueFactory(new PropertyValueFactory<>("isbn10"));
         isbn13Col.setCellValueFactory(new PropertyValueFactory<>("isbn13"));
+        quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         docTypeBox.getItems().addAll("Books", "Theses");
         docTypeBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
@@ -55,7 +56,6 @@ public abstract class DocumentsController implements Initializable {
 
         // set default to show books
         docTypeBox.getSelectionModel().select("Books");
-//        loadDocuments("Books");
 
         // handle double-clicked to show document details
         docsTable.setOnMouseClicked(event -> {

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" styleClass="root" stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDocumentsController">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" styleClass="root" stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDocumentsController">
    <children>
        <!-- Search Bar -->
        <HBox alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="33.0" prefWidth="468.0" styleClass="Documents-HBox" stylesheets="@../CSS/Light-mode.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="217.80000000000007">
@@ -116,6 +116,7 @@
             <TableColumn fx:id="dateCol" prefWidth="108.0" text="Published Date" />
             <TableColumn fx:id="isbn10Col" prefWidth="75.0" text="Isbn 10" />
             <TableColumn fx:id="isbn13Col" prefWidth="75.0" text="Isbn13" />
+            <TableColumn fx:id="quantityCol" text="Quantity" />
         </columns>
       </TableView>
       <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />

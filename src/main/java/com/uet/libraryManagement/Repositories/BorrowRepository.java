@@ -262,6 +262,26 @@ public class BorrowRepository {
         ConnectJDBC.executeUpdate(query, userId, docType, docId);
     }
 
+    public void updateDocumentQuantity(int docId, String docType, int newQuantity) {
+        String query;
+        if ("book".equals(docType)) {
+            query = "UPDATE books SET quantity = ? WHERE id = ?";
+        } else {
+            query = "UPDATE theses SET quantity = ? WHERE id = ?";
+        }
+        ConnectJDBC.executeUpdate(query, newQuantity, docId);
+    }
+
+    public void increaseDocumentQuantity(int docId, String docType) {
+        String query;
+        if ("book".equals(docType)) {
+            query = "UPDATE books SET quantity = quantity + 1 WHERE id = ?";
+        } else {
+            query = "UPDATE theses SET quantity = quantity + 1 WHERE id = ?";
+        }
+        ConnectJDBC.executeUpdate(query, docId);
+    }
+
     public void updateOverdueStatus() {
         String query = "UPDATE borrow_history SET status = 'overdue' WHERE due_date <= CURRENT_DATE AND status = 'borrowed'";
         ConnectJDBC.executeUpdate(query);

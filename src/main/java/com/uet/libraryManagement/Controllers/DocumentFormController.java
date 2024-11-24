@@ -22,7 +22,7 @@ public class DocumentFormController {
     @FXML
     private ImageView thumbnailImage;
     @FXML
-    private TextField titleField, authorField, publisherField, dateField, categoryField, isbn10Field, isbn13Field;
+    private TextField titleField, authorField, publisherField, dateField, categoryField, isbn10Field, isbn13Field, quantityField;
 
     private String mode;
     private Document document;
@@ -53,6 +53,7 @@ public class DocumentFormController {
         descriptionArea.setText(document.getDescription());
         isbn10Field.setText(document.getIsbn10());
         isbn13Field.setText(document.getIsbn13());
+        quantityField.setText(String.valueOf(document.getQuantity()));
 
         if (document.getThumbnailUrl() != null && !document.getThumbnailUrl().isEmpty()
                 && !document.getThumbnailUrl().equalsIgnoreCase("No Thumbnail")) {
@@ -112,8 +113,9 @@ public class DocumentFormController {
         String description = descriptionArea.getText();
         String isbn10 = isbn10Field.getText();
         String isbn13 = isbn13Field.getText();
+        String quantity = quantityField.getText();
 
-        if (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishDate.isEmpty() || category.isEmpty()) {
+        if (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishDate.isEmpty() || category.isEmpty() || quantity.isEmpty()) {
             showAlert("Please fill in all required fields.");
             return;
         }
@@ -131,12 +133,12 @@ public class DocumentFormController {
                 }
             }
             if ("Books".equals(docType)) {
-                document = new Book(title, author, publisher, description, publishDate, category, imgurUrl, isbn10, isbn13);
-                BookRepository.getInstance().create(document);
+                document = new Book(title, author, publisher, description, publishDate, category, imgurUrl, isbn10, isbn13, Integer.parseInt(quantity));
+                BookRepository.getInstance().create(document, Integer.parseInt(quantity));
                 System.out.println("Book added");
             } else if ("Theses".equals(docType)) {
-                document = new Thesis(title, author, publisher, description, publishDate, category, imgurUrl, isbn10, isbn13);
-                ThesisRepository.getInstance().create(document);
+                document = new Thesis(title, author, publisher, description, publishDate, category, imgurUrl, isbn10, isbn13, Integer.parseInt(quantity));
+                ThesisRepository.getInstance().create(document, Integer.parseInt(quantity));
                 System.out.println("Thesis added");
             }
         } else if ("edit".equals(mode) && document != null) {
@@ -149,6 +151,7 @@ public class DocumentFormController {
             document.setDescription(description);
             document.setIsbn10(isbn10);
             document.setIsbn13(isbn13);
+            document.setQuantity(Integer.parseInt(quantity));
 
             // upload image to imgur
             if (thumbnailFilePath != null && !thumbnailFilePath.isEmpty() && !thumbnailFilePath.equals(document.getThumbnailUrl())) {

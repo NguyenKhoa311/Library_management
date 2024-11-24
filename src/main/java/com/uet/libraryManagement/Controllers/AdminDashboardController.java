@@ -92,9 +92,9 @@ public class AdminDashboardController {
         statisticsChart.setPrefWidth(670.0);
         XYChart.Series<String, Number> bookSeries = new XYChart.Series<>();
         bookSeries.setName("Document Information");
-        int docNum = BookRepository.getInstance().getNumberOfDocuments() + ThesisRepository.getInstance().getNumberOfDocuments();
+        int remainingNum = BookRepository.getInstance().getNumberOfDocuments() + ThesisRepository.getInstance().getNumberOfDocuments();
         int issuedNum = BorrowRepository.getInstance().getNumberOfDocBorrowed();
-        int remainingNum = docNum - issuedNum;
+        int docNum = remainingNum + issuedNum;
         int userNum = UserRepository.getInstance().getNumberOfUsers();
         int numUserIssuing = UserRepository.getInstance().getNumberOfUsersIssuing();
         bookSeries.getData().add(new XYChart.Data<>("All Documents", docNum));

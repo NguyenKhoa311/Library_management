@@ -277,10 +277,36 @@ public class SearchDocumentsController implements Initializable {
             return;
         }
 
+        int quantity = 0;
+        while (quantity <= 0) {
+            TextInputDialog quantityDialog = new TextInputDialog();
+            quantityDialog.setTitle("Enter Quantity");
+            quantityDialog.setHeaderText("Add Document Quantity");
+            quantityDialog.setContentText("Please enter the quantity:");
+
+            // Show the dialog and capture the result
+            String quantityInput = quantityDialog.showAndWait().orElse("");
+
+            if (quantityInput.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Quantity cannot be empty.");
+                alert.showAndWait();
+            } else {
+                try {
+                    quantity = Integer.parseInt(quantityInput);
+                    if (quantity <= 0) {
+                        throw new NumberFormatException();
+                    }
+                } catch (NumberFormatException e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "Please enter a valid positive quantity.");
+                    alert.showAndWait();
+                }
+            }
+        }
+
         if (docTypeBox.getValue().equals("Books")) {
-            BookRepository.getInstance().create(selectedDocument);
+            BookRepository.getInstance().create(selectedDocument, quantity);
         } else {
-            ThesisRepository.getInstance().create(selectedDocument);
+            ThesisRepository.getInstance().create(selectedDocument, quantity);
         }
     }
 

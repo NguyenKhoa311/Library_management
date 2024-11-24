@@ -11,75 +11,80 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="400.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.DocumentFormController">
-<VBox alignment="CENTER" prefHeight="330.0" prefWidth="200.0" spacing="10">
-    <ImageView fx:id="thumbnailImage" fitHeight="200" fitWidth="150" focusTraversable="true">
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin></ImageView>
-      <JFXButton onAction="#insertImg" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Insert thumbnail">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../ICONS/addImg.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
-    <Label alignment="CENTER" contentDisplay="RIGHT" text="Title" wrapText="true">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-         <padding>
-            <Insets bottom="2.0" left="10.0" right="10.0" />
-         </padding>
-         <graphic>
-            <TextField fx:id="titleField" prefHeight="35.0" prefWidth="135.0" />
-         </graphic></Label>
-      <JFXButton onAction="#saveDoc" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Save">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../ICONS/save.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
-</VBox>
+    <VBox alignment="CENTER" prefHeight="330.0" prefWidth="200.0" spacing="10">
+        <ImageView fx:id="thumbnailImage" fitHeight="200" fitWidth="150" focusTraversable="true">
+            <VBox.margin>
+                <Insets top="20.0" />
+            </VBox.margin></ImageView>
+        <JFXButton onAction="#insertImg" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Insert thumbnail">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../ICONS/addImg.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <Label alignment="CENTER" contentDisplay="RIGHT" text="Title" wrapText="true">
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+            <padding>
+                <Insets bottom="2.0" left="10.0" right="10.0" />
+            </padding>
+            <graphic>
+                <TextField fx:id="titleField" prefHeight="35.0" prefWidth="135.0" />
+            </graphic></Label>
+        <JFXButton onAction="#saveDoc" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Save">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../ICONS/save.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+    </VBox>
     <VBox layoutX="200.0" layoutY="-1.0" prefHeight="400.0" prefWidth="213.0" spacing="8.0">
         <Label contentDisplay="RIGHT" text="Author:" wrapText="true">
-             <VBox.margin>
-                 <Insets top="15.0" />
-             </VBox.margin>
-             <graphic>
-                 <TextField fx:id="authorField" />
-             </graphic>
+            <VBox.margin>
+                <Insets top="15.0" />
+            </VBox.margin>
+            <graphic>
+                <TextField fx:id="authorField" />
+            </graphic>
         </Label>
         <Label contentDisplay="RIGHT" text="Publisher:" wrapText="true">
-             <graphic>
-                 <TextField fx:id="publisherField" prefHeight="25.0" prefWidth="145.0" />
-             </graphic>
+            <graphic>
+                <TextField fx:id="publisherField" prefHeight="25.0" prefWidth="145.0" />
+            </graphic>
         </Label>
         <Label contentDisplay="RIGHT" text="Published Date:" wrapText="true">
-             <graphic>
-                 <TextField fx:id="dateField" prefHeight="25.0" prefWidth="112.0" />
-             </graphic>
+            <graphic>
+                <TextField fx:id="dateField" prefHeight="25.0" prefWidth="112.0" />
+            </graphic>
         </Label>
         <Label contentDisplay="RIGHT" text="Genre:" wrapText="true">
-             <graphic>
-                 <TextField fx:id="categoryField" prefHeight="25.0" />
-             </graphic>
+            <graphic>
+                <TextField fx:id="categoryField" prefHeight="25.0" />
+            </graphic>
         </Label>
-      <Label contentDisplay="RIGHT" text="Isbn 10:" wrapText="true">
-         <graphic>
-            <TextField fx:id="isbn10Field" prefHeight="25.0" prefWidth="154.0" />
-         </graphic>
-      </Label>
-      <Label contentDisplay="RIGHT" text="Isbn 13:" wrapText="true">
-         <graphic>
-            <TextField fx:id="isbn13Field" prefHeight="25.0" prefWidth="155.0" />
-         </graphic>
-      </Label>
+        <Label contentDisplay="RIGHT" text="Isbn 10:" wrapText="true">
+            <graphic>
+                <TextField fx:id="isbn10Field" prefHeight="25.0" prefWidth="154.0" />
+            </graphic>
+        </Label>
+        <Label contentDisplay="RIGHT" text="Isbn 13:" wrapText="true">
+            <graphic>
+                <TextField fx:id="isbn13Field" prefHeight="25.0" prefWidth="155.0" />
+            </graphic>
+        </Label>
+        <Label contentDisplay="RIGHT" text="Quantity:" wrapText="true">
+            <graphic>
+                <TextField fx:id="quantityField" prefHeight="25.0" prefWidth="155.0" />
+            </graphic>
+        </Label>
         <Label contentDisplay="RIGHT" text="Description:" />
-        <TextArea fx:id="descriptionArea" prefHeight="154.0" prefWidth="213.0" wrapText="true" />
+        <TextArea fx:id="descriptionArea" prefHeight="134.0" prefWidth="213.0" wrapText="true" />
     </VBox>
 </AnchorPane>

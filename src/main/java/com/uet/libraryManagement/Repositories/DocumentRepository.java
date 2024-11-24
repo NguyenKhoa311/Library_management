@@ -26,7 +26,7 @@ public abstract class DocumentRepository {
     }
 
     public int getNumberOfDocuments() {
-        String query = "SELECT COUNT(*) FROM " + getDbTable();
+        String query = "SELECT SUM(quantity) FROM " + getDbTable();
         int count = 0;
         try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
             if (rs.next()) {
@@ -137,12 +137,12 @@ public abstract class DocumentRepository {
     }
 
     // create new document
-    public void create(Document document) {
+    public void create(Document document, int quantity) {
         Object[] params;
         String checkQuery;
 //        String checkQuery = "SELECT COUNT(*) FROM " + getDbTable() + " WHERE isbn10 = ? OR isbn13 = ?";
         String insertQuery = "INSERT INTO " + getDbTable() + " (title, author, publisher, publishDate, description, "
-                + (getDbTable().equals("books") ? "genre" : "field") + ", thumbnail, isbn10, isbn13) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + (getDbTable().equals("books") ? "genre" : "field") + ", thumbnail, isbn10, isbn13, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // check and reset AUTO_INCREMENT if needed
         String maxIdQuery = "SELECT MAX(id) FROM " + getDbTable();
@@ -187,7 +187,7 @@ public abstract class DocumentRepository {
             // add new document
             ConnectJDBC.executeUpdate(insertQuery, document.getTitle(), document.getAuthor(), document.getPublisher(),
                     document.getYear(), document.getDescription(), document.getCategory(),
-                    document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13());
+                    document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13(), quantity);
             showAlert("Document inserted successfully !");
             System.out.println("Document inserted successfully.");
         } catch (SQLException e) {
@@ -198,10 +198,10 @@ public abstract class DocumentRepository {
     // edit document
     public void update(Document document) {
         String query = "UPDATE " + getDbTable() + " SET title = ?, author = ?, publisher = ?, publishDate = ?, description = ?, "
-                + (getDbTable().equals("books") ? "genre" : "field") + " = ?, thumbnail = ?, isbn10 = ?, isbn13 = ? WHERE id = ?";
+                + (getDbTable().equals("books") ? "genre" : "field") + " = ?, thumbnail = ?, isbn10 = ?, isbn13 = ?, quantity = ? WHERE id = ?";
         ConnectJDBC.executeUpdate(query, document.getTitle(), document.getAuthor(), document.getPublisher(),
                 document.getYear(), document.getDescription(), document.getCategory(),
-                document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13(), document.getId());
+                document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13(), document.getQuantity(), document.getId());
     }
 
     // delete document
@@ -227,9 +227,10 @@ public abstract class DocumentRepository {
             String url = rs.getString("thumbnail");
             String isbn10Value = rs.getString("isbn10");
             String isbn13Value = rs.getString("isbn13");
+            int quantityValue = rs.getInt("quantity");
             Document document = getDbTable().equals("books") ?
-                    new Book(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value) :
-                    new Thesis(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value);
+                    new Book(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value, quantityValue) :
+                    new Thesis(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value, quantityValue);
             documents.add(document);
         }
     }
