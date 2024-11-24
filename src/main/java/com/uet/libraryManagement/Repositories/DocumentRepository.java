@@ -140,7 +140,6 @@ public abstract class DocumentRepository {
     public void create(Document document, int quantity) {
         Object[] params;
         String checkQuery;
-//        String checkQuery = "SELECT COUNT(*) FROM " + getDbTable() + " WHERE isbn10 = ? OR isbn13 = ?";
         String insertQuery = "INSERT INTO " + getDbTable() + " (title, author, publisher, publishDate, description, "
                 + (getDbTable().equals("books") ? "genre" : "field") + ", thumbnail, isbn10, isbn13, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
