@@ -7,29 +7,46 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.ProfileController">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" style="-fx-background-color: #f5f6fa;" styleClass="anchor-pane" stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.ProfileController">
    <BorderPane prefHeight="464.0" prefWidth="700.0" AnchorPane.topAnchor="0.0">
       <left>
-          <VBox alignment="TOP_CENTER" prefHeight="462.0" prefWidth="160.0" spacing="18.0" BorderPane.alignment="CENTER">
-            <VBox alignment="TOP_CENTER" prefHeight="197.0" prefWidth="158.0" spacing="8.0">
+         <VBox alignment="TOP_CENTER" prefHeight="462.0" prefWidth="200.0" spacing="18.0" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="197.0" prefWidth="200.0" spacing="15.0">
                <children>
-                    <ImageView fx:id="profileImage" fitHeight="120.0" fitWidth="120.0" focusTraversable="true">
-                     <image>
-                        <Image url="@../ICONS/profile.png" />
-                     </image>
-                     <VBox.margin>
-                        <Insets top="40.0" />
-                     </VBox.margin>
-                  </ImageView>
-                    <Label fx:id="userName" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="User Name" />
+                  <StackPane>
+                     <Circle fill="WHITE" radius="60.0" stroke="#e0e0e0" strokeType="INSIDE">
+                        <VBox.margin>
+                           <Insets top="40.0" />
+                        </VBox.margin>
+                     </Circle>
+                     <ImageView fx:id="profileImage" fitHeight="120.0" fitWidth="120.0" focusTraversable="true">
+                        <clip>
+                           <Circle centerX="60" centerY="60" radius="58.0" />
+                        </clip>
+                        <image>
+                           <Image url="@../ICONS/profile.png" />
+                        </image>
+                     </ImageView>
+                     <padding>
+                        <Insets top="70.0" />
+                     </padding>
+                  </StackPane>
+                  <Label fx:id="userName" alignment="CENTER" prefHeight="23.0" styleClass="username-label" text="User Name">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="239.0" prefWidth="158.0" spacing="10.0">
+            <VBox alignment="TOP_CENTER" prefHeight="239.0" prefWidth="200.0" spacing="15.0">
                <children>
-                  <JFXButton onAction="#handleEditProfile" prefHeight="40.0" prefWidth="110.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Edit profile">
+                  <JFXButton onAction="#handleEditProfile" prefHeight="40.0" prefWidth="160.0" styleClass="profile-button" stylesheets="@../CSS/Light-mode.css" text="Edit Profile">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -38,7 +55,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton onAction="#handlePassword" prefHeight="40.0" prefWidth="110.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Password">
+                  <JFXButton onAction="#handlePassword" prefHeight="40.0" prefWidth="160.0" styleClass="profile-button" stylesheets="@../CSS/Light-mode.css" text="Change Password">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -48,84 +65,129 @@
                      </graphic>
                   </JFXButton>
                </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
             </VBox>
-          </VBox>
+         </VBox>
       </left>
       <center>
-         <VBox prefHeight="464.0" prefWidth="539.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <VBox prefHeight="464.0" prefWidth="539.0" spacing="15.0" BorderPane.alignment="CENTER">
             <children>
-               <Label prefHeight="33.0" prefWidth="540.0" text="User profile">
-                  <font>
-                     <Font name="System Bold" size="28.0" />
-                  </font>
-                  <padding>
-                     <Insets bottom="10.0" left="20.0" top="10.0" />
-                  </padding>
+               <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                  <Label prefHeight="33.0" styleClass="page-title" text="User Profile">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
                   <VBox.margin>
-                     <Insets top="70.0" />
+                     <Insets top="20.0" />
                   </VBox.margin>
-               </Label>
-               <VBox prefHeight="140.0" prefWidth="540.0">
+               </HBox>
+
+               <VBox prefWidth="500.0" spacing="5.0" style="-fx-background-color: white; -fx-background-radius: 10;">
                   <children>
-                     <Label prefHeight="43.0" prefWidth="540.0" text="Profile details">
+                     <Label styleClass="section-title" text="Profile Details">
                         <font>
-                           <Font name="System Bold" size="20.0" />
+                           <Font name="System Bold" size="18.0" />
                         </font>
-                        <VBox.margin>
-                           <Insets />
-                        </VBox.margin>
                         <padding>
-                           <Insets bottom="10.0" left="20.0" top="10.0" />
+                           <Insets left="25.0" />
                         </padding>
                      </Label>
-                     <Label fx:id="usernameLabel" prefHeight="41.0" prefWidth="540.0" text="Full Name: ">
-                        <padding>
-                           <Insets bottom="10.0" left="20.0" top="10.0" />
-                        </padding>
-                        <font>
-                           <Font size="16.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="birthdayLabel" prefHeight="41.0" prefWidth="540.0" text="Date of birth: ">
-                        <padding>
-                           <Insets bottom="10.0" left="20.0" top="10.0" />
-                        </padding>
-                        <font>
-                           <Font size="16.0" />
-                        </font>
-                     </Label>
-                     <Label prefHeight="43.0" prefWidth="540.0" text="Contact info">
-                        <font>
-                           <Font name="System Bold" size="20.0" />
-                        </font>
-                        <VBox.margin>
-                           <Insets />
-                        </VBox.margin>
-                        <padding>
-                           <Insets bottom="10.0" left="20.0" top="10.0" />
-                        </padding>
-                     </Label>
-                     <Label fx:id="phoneLabel" prefHeight="41.0" prefWidth="540.0" text="Phone: ">
-                        <padding>
-                           <Insets bottom="10.0" left="20.0" top="10.0" />
-                        </padding>
-                        <font>
-                           <Font size="16.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="emailLabel" prefHeight="41.0" prefWidth="540.0" text="Email:">
-                        <padding>
-                           <Insets bottom="10.0" left="20.0" top="10.0" />
-                        </padding>
-                        <font>
-                           <Font size="16.0" />
-                        </font>
-                     </Label>
+
+                     <HBox prefWidth="500.0" spacing="3.0">
+                        <VBox spacing="3.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <VBox>
+                                 <Label styleClass="field-label" text="Full Name">
+                                    <font>
+                                       <Font size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="usernameLabel" styleClass="field-value">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </Label>
+                              </VBox>
+
+                              <VBox>
+                                 <Label styleClass="field-label" text="Date of Birth">
+                                    <font>
+                                       <Font size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="birthdayLabel" styleClass="field-value">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </Label>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </HBox>
                   </children>
+                  <padding>
+                     <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                  </padding>
+               </VBox>
+
+               <VBox prefWidth="500.0" spacing="5.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                  <children>
+                     <Label styleClass="section-title" text="Contact Information">
+                        <font>
+                           <Font name="System Bold" size="18.0" />
+                        </font>
+                        <padding>
+                           <Insets left="25.0" />
+                        </padding>
+                     </Label>
+
+                     <HBox prefWidth="500.0" spacing="30.0">
+                        <VBox spacing="3.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <VBox>
+                                 <Label styleClass="field-label" text="Phone Number">
+                                    <font>
+                                       <Font size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="phoneLabel" styleClass="field-value">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </Label>
+                              </VBox>
+
+                              <VBox>
+                                 <Label styleClass="field-label" text="Email Address">
+                                    <font>
+                                       <Font size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="emailLabel" styleClass="field-value">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </Label>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </HBox>
+                  </children>
+                  <padding>
+                     <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                  </padding>
                </VBox>
             </children>
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" />
+            </padding>
          </VBox>
       </center>
    </BorderPane>
-
 </AnchorPane>

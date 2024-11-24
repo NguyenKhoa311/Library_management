@@ -61,10 +61,10 @@ public class ProfileController {
 
     private void loadUserInfo() {
         userName.setText(currentUser.getUsername());
-        usernameLabel.setText("Full Name: " + ((currentUser.getFullName() == null) ? "N/A" : currentUser.getFullName()));
-        birthdayLabel.setText("Date of birth: " + ((currentUser.getBirthday() == null) ? "N/A" : currentUser.getBirthday()));
-        phoneLabel.setText("Phone: " + ((currentUser.getPhone() == null) ? "N/A" : currentUser.getPhone()));
-        emailLabel.setText("Email: " + ((currentUser.getEmail() == null) ? "N/A" : currentUser.getEmail()));
+        usernameLabel.setText(((currentUser.getFullName() == null) ? "N/A" : currentUser.getFullName()));
+        birthdayLabel.setText(((currentUser.getBirthday() == null) ? "N/A" : currentUser.getBirthday()));
+        phoneLabel.setText(((currentUser.getPhone() == null) ? "N/A" : currentUser.getPhone()));
+        emailLabel.setText(((currentUser.getEmail() == null) ? "N/A" : currentUser.getEmail()));
 
         if (currentUser.getAvatar() != null) {
             // Hiển thị avatar từ byte[]
