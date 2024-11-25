@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-
 public class DocumentFormController {
     @FXML
     private TextArea descriptionArea;
@@ -57,14 +56,8 @@ public class DocumentFormController {
 
         if (document.getThumbnailUrl() != null && !document.getThumbnailUrl().isEmpty()
                 && !document.getThumbnailUrl().equalsIgnoreCase("No Thumbnail")) {
-            if (document.getThumbnailUrl().startsWith("http")) {
-                Image image = new Image(document.getThumbnailUrl(), true);
-                thumbnailImage.setImage(image);
-            } else {
-                File file = new File(document.getThumbnailUrl());
-                Image image = new Image(file.toURI().toString(), true);
-                thumbnailImage.setImage(image);
-            }
+            Image image = new Image(document.getThumbnailUrl(), true);
+            thumbnailImage.setImage(image);
         } else {
             Image image = new Image(getClass().getResource("/com/uet/libraryManagement/ICONS/no_image.png").toExternalForm());
             thumbnailImage.setFitHeight(150);

@@ -9,7 +9,7 @@ public class User {
     private String email;
     private String phone;
     private String role;
-    private byte[] avatar;
+    private String avatar;
 
     public User(String username, String password, String email) {
         this.username = username;
@@ -33,7 +33,7 @@ public class User {
         this.role = role;
     }
 
-    public User(int id, String username, String password, String fullName, String birthday, String email, byte[] avatarUrl, String phone, String role) {
+    public User(int id, String username, String password, String fullName, String birthday, String email, String avatarUrl, String phone, String role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -86,11 +86,11 @@ public class User {
         this.phone = phone;
     }
 
-    public byte[] getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(byte[] avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 

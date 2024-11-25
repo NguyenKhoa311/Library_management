@@ -23,9 +23,8 @@ public class UserDetailController {
         phoneLabel.setText("Phone: " + ((user.getPhone() == null) ? "N/A" : user.getPhone()));
         emailLabel.setText("Email: " + ((user.getEmail() == null) ? "N/A" : user.getEmail()));
 
-        if (user.getAvatar() != null) {
-            // Hiển thị avatar từ byte[]
-            Image image = new Image(new ByteArrayInputStream(user.getAvatar()));
+        if (user.getAvatar() != null && !user.getAvatar().isEmpty()) {
+            Image image = new Image(user.getAvatar(), true);
             userAva.setImage(image);
         }
     }

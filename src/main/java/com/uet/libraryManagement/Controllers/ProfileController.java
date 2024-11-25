@@ -66,9 +66,8 @@ public class ProfileController {
         phoneLabel.setText(((currentUser.getPhone() == null) ? "N/A" : currentUser.getPhone()));
         emailLabel.setText(((currentUser.getEmail() == null) ? "N/A" : currentUser.getEmail()));
 
-        if (currentUser.getAvatar() != null) {
-            // Hiển thị avatar từ byte[]
-            Image image = new Image(new java.io.ByteArrayInputStream(currentUser.getAvatar()));
+        if (currentUser.getAvatar() != null && !currentUser.getAvatar().isEmpty()) {
+            Image image = new Image(currentUser.getAvatar(), true);
             profileImage.setImage(image);
         }
     }

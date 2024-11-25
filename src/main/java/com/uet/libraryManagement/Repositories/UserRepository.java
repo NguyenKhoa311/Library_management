@@ -33,7 +33,7 @@ public class UserRepository {
                 String fullName = rs.getString("fullName"); // can be null
                 String email = rs.getString("email");
                 String birthday = rs.getString("birthday"); // Can be null
-                byte[] image = rs.getBytes("image"); // Can be null
+                String image = rs.getString("image"); // Can be null
                 String phone = rs.getString("phone"); // Can be null
                 String role = rs.getString("role");
                 return new User(id, userName, pass, fullName, birthday, email, image, phone, role); // Adjust the constructor if necessary
@@ -82,7 +82,7 @@ public class UserRepository {
                 String fullName = rs.getString("fullName"); // can be null
                 String email = rs.getString("email");
                 String birthday = rs.getString("birthday"); // Can be null
-                byte[] image = rs.getBytes("image"); // Can be null
+                String image = rs.getString("image"); // Can be null
                 String phone = rs.getString("phone"); // Can be null
                 String role = rs.getString("role");
                 users.add(new User(id, userName, pass, fullName, birthday, email, image, phone, role)); // Adjust the constructor if necessary
@@ -106,7 +106,7 @@ public class UserRepository {
                         rs.getString("fullName"),
                         rs.getString("birthday"),
                         rs.getString("email"),
-                        rs.getBytes("image"),
+                        rs.getString("image"),
                         rs.getString("phone"),
                         rs.getString("role")
                 );

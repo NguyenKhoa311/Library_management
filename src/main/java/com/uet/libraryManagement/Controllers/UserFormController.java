@@ -1,8 +1,8 @@
 package com.uet.libraryManagement.Controllers;
 
+import com.uet.libraryManagement.APIService.ImgurUpload;
 import com.uet.libraryManagement.Repositories.UserRepository;
 import com.uet.libraryManagement.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -27,8 +26,7 @@ public class UserFormController {
     @FXML private TextField emailField;
 
     private User currentUser;
-    private String avatarFile;
-    private byte[] tmpAvatar;
+    private String avatarPath;
 
     public void setUserInfo(User user) {
         this.currentUser = user;
@@ -45,9 +43,9 @@ public class UserFormController {
         }
 
         // Load avatar image if available
-        if (user.getAvatar() != null) {
-            Image avatarImage = new Image(new ByteArrayInputStream(user.getAvatar()));
-            userAva.setImage(avatarImage);
+        if (currentUser.getAvatar() != null && !currentUser.getAvatar().isEmpty()) {
+            Image image = new Image(currentUser.getAvatar(), true);
+            userAva.setImage(image);
         }
     }
 
@@ -60,19 +58,11 @@ public class UserFormController {
 
         File selectedFile = fileChooser.showOpenDialog(userAva.getScene().getWindow());
         if (selectedFile != null) {
-            avatarFile = selectedFile.getAbsolutePath(); // Lưu tạm đường dẫn ảnh
+            avatarPath = selectedFile.getAbsolutePath(); // Lưu tạm đường dẫn ảnh
 
-            try {
-                // Đọc ảnh thành mảng byte
-                tmpAvatar = java.nio.file.Files.readAllBytes(selectedFile.toPath());
-
-                // Hiển thị ảnh trong ImageView
-                Image thumbnailImage = new Image(new File(avatarFile).toURI().toString());
-                userAva.setImage(thumbnailImage);
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert("Error reading image file.");
-            }
+            // show temporary image
+            Image img = new Image(new File(avatarPath).toURI().toString());
+            userAva.setImage(img);
         }
     }
 
@@ -91,8 +81,18 @@ public class UserFormController {
         currentUser.setPhone(phone);
         currentUser.setEmail(email);
         currentUser.setBirthday(birthday);
-        if (tmpAvatar != null) {
-            currentUser.setAvatar(tmpAvatar);
+
+        // Nếu thumbnail đã được chọn, tải lên Imgur và lấy URL trả về
+        String imgurUrl = null;
+        if (avatarPath != null && !avatarPath.isEmpty()) {
+            try {
+                imgurUrl = ImgurUpload.uploadImage(new File(avatarPath)); // Tải ảnh lên Imgur và nhận URL
+                currentUser.setAvatar(imgurUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert("Error uploading thumbnail image to Imgur.");
+                return; // Dừng lại nếu không thể tải ảnh lên Imgur
+            }
         }
 
         UserRepository.getInstance().updateProfile(currentUser);
