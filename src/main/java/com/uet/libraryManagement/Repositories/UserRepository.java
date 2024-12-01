@@ -21,6 +21,14 @@ public class UserRepository {
         return instance;
     }
 
+    /**
+     * only use for JUnit test.
+     * @param userRepositoryMock instance to set.
+     */
+    public static void setInstance(UserRepository userRepositoryMock) {
+        instance = userRepositoryMock;
+    }
+
     // check existed user
     public User validateUser(String username, String password) {
         String query = "SELECT * FROM users WHERE user_name = ? AND password = ?";

@@ -3,7 +3,6 @@ package com.uet.libraryManagement.Controllers;
 import com.uet.libraryManagement.*;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Repositories.ThesisRepository;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +15,7 @@ import java.io.IOException;
 
 public class AdminDocumentsController extends DocumentsController {
     @FXML
-    private void deleteDoc(ActionEvent actionEvent) {
+    private void deleteDoc() {
         Document selectedDocument = docsTable.getSelectionModel().getSelectedItem();
         if (selectedDocument != null) {
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this document?", ButtonType.YES, ButtonType.NO);
@@ -38,7 +37,7 @@ public class AdminDocumentsController extends DocumentsController {
     }
 
     @FXML
-    private void editDoc(ActionEvent actionEvent) {
+    private void editDoc() {
         Document selectedDocument = docsTable.getSelectionModel().getSelectedItem();
         if (selectedDocument != null) {
             try {
@@ -70,7 +69,7 @@ public class AdminDocumentsController extends DocumentsController {
     }
 
     @FXML
-    private void addDoc(ActionEvent actionEvent) {
+    private void addDoc() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentForm.fxml"));
             Parent formRoot = loader.load();

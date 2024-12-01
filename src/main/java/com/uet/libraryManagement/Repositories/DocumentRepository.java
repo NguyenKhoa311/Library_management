@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,21 @@ public abstract class DocumentRepository {
             e.printStackTrace();
         }
         return count;
+    }
+
+    public ObservableList<Document> getRecentAddedDocuments() {
+        ObservableList<Document> documents = FXCollections.observableArrayList();
+        String query = "SELECT * FROM books "
+                        + "UNION ALL "
+                        + "SELECT * FROM theses "
+                        + "ORDER BY createdDate DESC "
+                        + "LIMIT 5";
+        try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
+            getDocuments(rs, documents);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return documents;
     }
 
     // get all books from database
@@ -141,7 +158,7 @@ public abstract class DocumentRepository {
         Object[] params;
         String checkQuery;
         String insertQuery = "INSERT INTO " + getDbTable() + " (title, author, publisher, publishDate, description, "
-                + (getDbTable().equals("books") ? "genre" : "field") + ", thumbnail, isbn10, isbn13, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + (getDbTable().equals("books") ? "genre" : "field") + ", thumbnail, isbn10, isbn13, quantity, createdDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // check and reset AUTO_INCREMENT if needed
         String maxIdQuery = "SELECT MAX(id) FROM " + getDbTable();
@@ -186,7 +203,8 @@ public abstract class DocumentRepository {
             // add new document
             ConnectJDBC.executeUpdate(insertQuery, document.getTitle(), document.getAuthor(), document.getPublisher(),
                     document.getYear(), document.getDescription(), document.getCategory(),
-                    document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13(), quantity);
+                    document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13(),
+                    quantity, Timestamp.valueOf(LocalDateTime.now()));
             showAlert("Document inserted successfully !");
             System.out.println("Document inserted successfully.");
         } catch (SQLException e) {

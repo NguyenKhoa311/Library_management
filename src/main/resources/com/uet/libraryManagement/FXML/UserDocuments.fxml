@@ -126,7 +126,7 @@
             <TableColumn fx:id="dateCol" prefWidth="121.0" text="Published Date" />
             <TableColumn fx:id="isbn10Col" prefWidth="75.0" text="Isbn 10" />
             <TableColumn fx:id="isbn13Col" prefWidth="75.0" text="Isbn13" />
-            <TableColumn fx:id="quantityCol" text="Quantity" />
+            <TableColumn fx:id="statusCol" text="Status" />
         </columns>
       </TableView>
       <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />

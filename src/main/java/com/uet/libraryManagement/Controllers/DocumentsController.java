@@ -1,8 +1,10 @@
 package com.uet.libraryManagement.Controllers;
 
+import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Document;
 import com.uet.libraryManagement.Repositories.ThesisRepository;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +29,7 @@ public abstract class DocumentsController implements Initializable {
     @FXML
     protected TableColumn<Document, Integer> idCol, quantityCol;
     @FXML
-    protected TableColumn<Document, String> titleCol, authorCol, categoryCol, publisherCol, dateCol, isbn10Col, isbn13Col;
+    protected TableColumn<Document, String> titleCol, authorCol, categoryCol, publisherCol, dateCol, isbn10Col, isbn13Col, statusCol;
     @FXML
     protected ComboBox<String> docTypeBox;
     @FXML
@@ -47,7 +49,15 @@ public abstract class DocumentsController implements Initializable {
         dateCol.setCellValueFactory(new PropertyValueFactory<>("year"));
         isbn10Col.setCellValueFactory(new PropertyValueFactory<>("isbn10"));
         isbn13Col.setCellValueFactory(new PropertyValueFactory<>("isbn13"));
-        quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+        if (SessionManager.getInstance().getUser().getRole().equals("admin")) {
+            quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        } else {
+            statusCol.setCellValueFactory(cellData -> {
+                Document doc = cellData.getValue();
+                return doc.getQuantity() > 0 ? new SimpleStringProperty("Available") : new SimpleStringProperty("Out of stock");
+            });
+        }
 
         docTypeBox.getItems().addAll("Books", "Theses");
         docTypeBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {

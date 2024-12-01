@@ -15,6 +15,14 @@ public class SessionManager {
         return instance;
     }
 
+    /**
+     * only use for JUnit test.
+     * @param sessionManagerMock instance to set.
+     */
+    public static void setInstance(SessionManager sessionManagerMock) {
+        instance = sessionManagerMock;
+    }
+
     public void setUser(User user) {
         this.currentUser = user;
     }

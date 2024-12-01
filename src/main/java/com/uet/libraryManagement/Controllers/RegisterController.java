@@ -5,7 +5,6 @@ import com.uet.libraryManagement.User;
 import com.uet.libraryManagement.Repositories.UserRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -35,6 +34,10 @@ public class RegisterController {
             messageLabel.setText("Passwords do not match.");
             return;
         }
+        if (!isValidEmail(email)) {
+            messageLabel.setText("Invalid email address.");
+            return;
+        }
 
         User user = new User(username, password, email);
 
@@ -46,5 +49,16 @@ public class RegisterController {
     @FXML
     private void cancelRegister(ActionEvent actionEvent) throws IOException {
         SceneManager.getInstance().setLoginScene("FXML/Login.fxml");
+    }
+
+    /**
+     * Validate email using a regex pattern.
+     *
+     * @param email the email string to validate
+     * @return true if the email is valid, false otherwise
+     */
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(emailRegex);
     }
 }

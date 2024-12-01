@@ -22,6 +22,14 @@ public class SceneManager {
 
     private SceneManager() {}
 
+    /**
+     * only use for JUnit Test.
+     * @param sceneManagerMock instance to set.
+     */
+    public static void setInstance(SceneManager sceneManagerMock) {
+        instance = sceneManagerMock;
+    }
+
     public void setStage(Stage stage) {
         SceneManager.rootStage = stage;
     }

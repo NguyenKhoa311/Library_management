@@ -604,3 +604,57 @@
     -fx-alignment: top-center;
 }
 /* end */
+
+/* css for recently added documents */
+/* start */
+/* Modern Thumbnails Styles */
+.new-books-container {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 15px;
+    -fx-padding: 5px;
+}
+
+.thumbnail-navigation {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(0,0,0,0.05);
+    -fx-cursor: hand;
+}
+
+.book-showcase {
+    -fx-background-color: transparent;
+}
+
+.book-cover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.book-indicators {
+    -fx-padding: 5px;
+    -fx-alignment: center;
+}
+
+.book-indicator {
+    -fx-background-color: #e0e0e0;
+    -fx-background-radius: 50%;
+    -fx-pref-width: 8px;
+    -fx-pref-height: 8px;
+}
+
+.book-indicator.active {
+    -fx-background-color: #007bff;
+}
+/* end */

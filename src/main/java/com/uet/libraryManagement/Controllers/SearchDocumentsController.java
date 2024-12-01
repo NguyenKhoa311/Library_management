@@ -68,9 +68,11 @@ public class SearchDocumentsController implements Initializable {
         });
 
         docTypeBox.getItems().addAll("Books", "Theses");
-
         // set default to show books
         docTypeBox.getSelectionModel().select("Books");
+        docTypeBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            docsTable.getItems().clear();
+        });
 
         if (savedSearchTerm != null) {
             System.out.println("Restoring search term: " + savedSearchTerm);

@@ -10,12 +10,9 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 
 public class LoginController {
-    @FXML
-    private TextField username_textfield;
-    @FXML
-    private TextField password_textfield;
-    @FXML
-    private Label messageLabel;
+    public TextField username_textfield;
+    public TextField password_textfield;
+    public Label messageLabel;
 
     @FXML
     public void initialize() {
@@ -24,7 +21,7 @@ public class LoginController {
 
     // handle login
     @FXML
-    private void handleLogin() {
+    public void handleLogin() {
         String username = username_textfield.getText();
         String password = password_textfield.getText();
 
@@ -64,7 +61,7 @@ public class LoginController {
     }
 
     @FXML
-    private void handleRegister() throws IOException {
+    public void handleRegister() throws IOException {
         SceneManager.getInstance().setLoginScene("FXML/Register.fxml");
     }
 }
