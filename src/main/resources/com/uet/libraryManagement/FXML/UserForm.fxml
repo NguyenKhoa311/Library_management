@@ -17,7 +17,7 @@
             <image>
                 <Image url="@../ICONS/profile.png" />
             </image></ImageView>
-      <JFXButton onAction="#insertImg" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Insert image">
+      <JFXButton onAction="#insertImg" styleClass="jfx-menu-button-style" text="Insert image">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,7 +33,7 @@
             <padding>
                 <Insets bottom="2.0" left="10.0" right="10.0" />
             </padding></Label>
-      <JFXButton onAction="#saveUser" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Save">
+      <JFXButton onAction="#saveUser" styleClass="jfx-menu-button-style" text="Save">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>

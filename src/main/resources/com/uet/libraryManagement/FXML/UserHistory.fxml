@@ -21,7 +21,7 @@
     <children>
         <!-- Search Bar -->
         <HBox alignment="CENTER" layoutX="10" layoutY="10" prefHeight="33.0" prefWidth="468.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="222.0">
-            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="jfx-button-custom" stylesheets="@../CSS/Light-mode.css">
+            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="jfx-button-custom">
                 <graphic>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -34,7 +34,7 @@
                 <HBox.margin>
                     <Insets />
                 </HBox.margin></TextField>
-            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" styleClass="jfx-button-custom" stylesheets="@../CSS/Light-mode.css">
+            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" styleClass="jfx-button-custom">
                 <graphic>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -43,7 +43,7 @@
                     </ImageView>
                 </graphic>
             </JFXButton>
-            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Advanced Search">
+            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="jfx-menu-button-style" text="Advanced Search">
                 <graphic>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -122,7 +122,7 @@
             </children>
          </HBox>
             <HBox alignment="CENTER" spacing="20.0">
-                <JFXButton focusTraversable="false" onAction="#applyFilters" prefWidth="115.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Search">
+                <JFXButton focusTraversable="false" onAction="#applyFilters" prefWidth="115.0" styleClass="jfx-menu-button-style" text="Search">
                     <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -131,7 +131,7 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton focusTraversable="false" onAction="#clearFilters" prefHeight="25.0" prefWidth="115.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Clear filters">
+                <JFXButton focusTraversable="false" onAction="#clearFilters" prefHeight="25.0" prefWidth="115.0" styleClass="jfx-menu-button-style" text="Clear filters">
                     <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -157,7 +157,7 @@
             </columns>
         </TableView>
         <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
-      <JFXButton layoutX="492.0" layoutY="12.0" onAction="#returnDoc" prefHeight="33.0" prefWidth="90.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Return">
+      <JFXButton layoutX="492.0" layoutY="12.0" onAction="#returnDoc" prefHeight="33.0" prefWidth="90.0" styleClass="jfx-menu-button-style" text="Return">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

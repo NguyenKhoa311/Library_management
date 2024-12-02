@@ -16,7 +16,7 @@
             <VBox.margin>
                 <Insets top="20.0" />
             </VBox.margin></ImageView>
-        <JFXButton onAction="#insertImg" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Insert thumbnail">
+        <JFXButton onAction="#insertImg" styleClass="jfx-menu-button-style" text="Insert thumbnail">
             <graphic>
                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -35,7 +35,7 @@
             <graphic>
                 <TextField fx:id="titleField" prefHeight="35.0" prefWidth="135.0" />
             </graphic></Label>
-        <JFXButton onAction="#saveDoc" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Save">
+        <JFXButton onAction="#saveDoc" styleClass="jfx-menu-button-style" text="Save">
             <graphic>
                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                     <image>

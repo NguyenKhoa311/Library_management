@@ -20,7 +20,7 @@
          <image>
             <Image url="@../ICONS/profile.png" />
          </image></ImageView>
-        <JFXButton onAction="#insertImg" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Insert avatar">
+        <JFXButton onAction="#insertImg" styleClass="jfx-menu-button-style" text="Insert avatar">
             <graphic>
                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -39,7 +39,7 @@
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Label>
-        <JFXButton onAction="#saveChanges" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Save">
+        <JFXButton onAction="#saveChanges" styleClass="jfx-menu-button-style" text="Save">
             <graphic>
                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                     <image>

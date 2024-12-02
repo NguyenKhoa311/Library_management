@@ -28,7 +28,7 @@
                         <PasswordField fx:id="passwordField" layoutX="84.0" layoutY="33.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                   <PasswordField fx:id="cf_passwordField" layoutX="84.0" layoutY="67.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                   <TextField fx:id="emailField" layoutX="84.0" layoutY="103.0" prefHeight="26.0" prefWidth="150.0" promptText="Email" />
-                  <JFXButton layoutX="228.0" layoutY="137.0" onAction="#submitRegister" styleClass="jfx-register-button" stylesheets="@../CSS/Light-mode.css" text="Register" />
+                  <JFXButton layoutX="228.0" layoutY="137.0" onAction="#submitRegister" styleClass="jfx-register-button" text="Register" />
                   <Label fx:id="messageLabel" layoutX="16.0" layoutY="139.0" prefHeight="25.0" prefWidth="202.0" />
                     </children>
                 </AnchorPane>

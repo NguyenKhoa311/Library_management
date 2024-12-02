@@ -28,7 +28,7 @@
                         <PasswordField fx:id="passwordField" layoutX="84.0" layoutY="33.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                         <PasswordField fx:id="cf_passwordField" layoutX="84.0" layoutY="67.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
                         <TextField fx:id="emailField" layoutX="84.0" layoutY="103.0" prefHeight="26.0" prefWidth="150.0" promptText="Email" />
-                        <JFXButton layoutX="118.0" layoutY="174.0" onAction="#addUser" prefHeight="25.0" prefWidth="80.0" styleClass="jfx-menu-button-style" stylesheets="@../CSS/Light-mode.css" text="Add" />
+                        <JFXButton layoutX="118.0" layoutY="174.0" onAction="#addUser" prefHeight="25.0" prefWidth="80.0" styleClass="jfx-menu-button-style" text="Add" />
                   <ComboBox fx:id="roleBox" layoutX="84.0" layoutY="141.0" prefWidth="150.0" promptText="Role" />
                     </children>
                 </AnchorPane>

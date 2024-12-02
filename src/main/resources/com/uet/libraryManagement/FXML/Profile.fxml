@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" style="-fx-background-color: #f5f6fa;" styleClass="anchor-pane" stylesheets="@../CSS/Light-mode.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.ProfileController">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" style="-fx-background-color: #f5f6fa;" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.ProfileController">
    <BorderPane prefHeight="464.0" prefWidth="700.0" AnchorPane.topAnchor="0.0">
       <left>
          <VBox alignment="TOP_CENTER" prefHeight="462.0" prefWidth="200.0" spacing="18.0" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" BorderPane.alignment="CENTER">
@@ -46,7 +46,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="239.0" prefWidth="200.0" spacing="15.0">
                <children>
-                  <JFXButton onAction="#handleEditProfile" prefHeight="40.0" prefWidth="160.0" styleClass="profile-button" stylesheets="@../CSS/Light-mode.css" text="Edit Profile">
+                  <JFXButton onAction="#handleEditProfile" prefHeight="40.0" prefWidth="160.0" styleClass="profile-button" text="Edit Profile">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,7 +55,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton onAction="#handlePassword" prefHeight="40.0" prefWidth="160.0" styleClass="profile-button" stylesheets="@../CSS/Light-mode.css" text="Change Password">
+                  <JFXButton onAction="#handlePassword" prefHeight="40.0" prefWidth="160.0" styleClass="profile-button" text="Change Password">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
