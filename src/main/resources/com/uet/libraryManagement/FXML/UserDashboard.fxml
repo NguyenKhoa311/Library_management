@@ -95,15 +95,15 @@
                         </VBox.margin>
                      </Label>
       
-                       <HBox alignment="CENTER" prefWidth="236.0" spacing="10" styleClass="thumbnail-navigation">
+                       <HBox alignment="CENTER" fillHeight="false" prefWidth="236.0" spacing="10" styleClass="thumbnail-navigation" VBox.vgrow="NEVER">
                            <Button onAction="#prevDoc" styleClass="nav-button">
                                <graphic>
                                    <FontAwesomeIconView glyphName="CHEVRON_LEFT" size="20" />
                                </graphic>
                            </Button>
       
-                           <StackPane maxWidth="150.0" prefHeight="200.0" styleClass="book-showcase" HBox.hgrow="ALWAYS">
-                               <VBox fx:id="bookThumbnailContainer" alignment="CENTER" spacing="10" styleClass="book-details">
+                           <StackPane maxWidth="150.0" prefHeight="200.0" styleClass="book-showcase">
+                               <VBox fx:id="bookThumbnailContainer" alignment="CENTER" fillWidth="false" spacing="10" styleClass="book-details">
                                    <ImageView fx:id="currentBookThumbnail" fitHeight="200.0" fitWidth="150.0" preserveRatio="true" styleClass="book-cover">
                                  <VBox.margin>
                                     <Insets />
