@@ -11,8 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="406.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserFormController">
-    <VBox alignment="CENTER" prefHeight="406.0" prefWidth="200.0" spacing="10">
+<AnchorPane prefHeight="406.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserFormController">
+    <VBox alignment="CENTER" prefHeight="417.0" prefWidth="200.0" spacing="10">
         <ImageView fx:id="userAva" fitHeight="168.0" fitWidth="159.0">
             <image>
                 <Image url="@../ICONS/profile.png" />

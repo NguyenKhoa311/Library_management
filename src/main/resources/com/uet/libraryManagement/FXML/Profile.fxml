@@ -13,10 +13,10 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" style="-fx-background-color: #f5f6fa;" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.ProfileController">
-   <BorderPane prefHeight="464.0" prefWidth="700.0" AnchorPane.topAnchor="0.0">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" styleClass="Profile-root" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.ProfileController">
+   <BorderPane prefHeight="464.0" prefWidth="700.0" styleClass="Profile-root" AnchorPane.topAnchor="0.0">
       <left>
-         <VBox alignment="TOP_CENTER" prefHeight="462.0" prefWidth="200.0" spacing="18.0" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" BorderPane.alignment="CENTER">
+         <VBox alignment="TOP_CENTER" prefHeight="462.0" prefWidth="200.0" spacing="18.0" styleClass="Profile-VBox" BorderPane.alignment="CENTER">
             <VBox alignment="TOP_CENTER" prefHeight="197.0" prefWidth="200.0" spacing="15.0">
                <children>
                   <StackPane>
@@ -46,7 +46,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="239.0" prefWidth="200.0" spacing="15.0">
                <children>
-                  <JFXButton onAction="#handleEditProfile" prefHeight="40.0" prefWidth="160.0" styleClass="profile-button" text="Edit Profile">
+                  <JFXButton onAction="#handleEditProfile" prefHeight="40.0" prefWidth="160.0" styleClass="Profile-JFXButton" text="Edit Profile">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,7 +55,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton onAction="#handlePassword" prefHeight="40.0" prefWidth="160.0" styleClass="profile-button" text="Change Password">
+                  <JFXButton onAction="#handlePassword" prefHeight="40.0" prefWidth="160.0" styleClass="Profile-JFXButton" text="Change Password">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -74,7 +74,7 @@
       <center>
          <VBox prefHeight="464.0" prefWidth="539.0" spacing="15.0" BorderPane.alignment="CENTER">
             <children>
-               <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+               <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="500.0" styleClass="Profile-HBox">
                   <Label prefHeight="33.0" styleClass="page-title" text="User Profile">
                      <font>
                         <Font name="System Bold" size="24.0" />
@@ -88,7 +88,7 @@
                   </VBox.margin>
                </HBox>
 
-               <VBox prefWidth="500.0" spacing="5.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+               <VBox prefWidth="500.0" spacing="5.0" styleClass="Profile-HBox">
                   <children>
                      <Label styleClass="section-title" text="Profile Details">
                         <font>
@@ -136,7 +136,7 @@
                   </padding>
                </VBox>
 
-               <VBox prefWidth="500.0" spacing="5.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+               <VBox prefWidth="500.0" spacing="5.0" styleClass="Profile-HBox">
                   <children>
                      <Label styleClass="section-title" text="Contact Information">
                         <font>

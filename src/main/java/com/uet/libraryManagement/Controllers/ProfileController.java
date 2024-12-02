@@ -1,5 +1,6 @@
 package com.uet.libraryManagement.Controllers;
 
+import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.User;
 import javafx.event.ActionEvent;
@@ -32,6 +33,8 @@ public class ProfileController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/EditProfile.fxml"));
             Parent editProfileRoot = loader.load();
+
+            SceneManager.getInstance().setDL_Mode(SceneManager.getInstance().get_isLight());
 
             Stage stage = new Stage();
             stage.setTitle("Edit Profile");

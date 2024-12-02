@@ -46,7 +46,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <Label fx:id="messageLabel" layoutX="26.0" layoutY="178.0" prefHeight="26.0" prefWidth="255.0" />
+                  <Label fx:id="messageLabel" layoutX="22.0" layoutY="185.0" prefHeight="26.0" prefWidth="255.0" styleClass="Login-label" />
                </children>
             </AnchorPane>
          </children>

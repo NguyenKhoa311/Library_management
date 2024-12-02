@@ -17,10 +17,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.HistoryController">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.HistoryController">
     <children>
         <!-- Search Bar -->
-        <HBox alignment="CENTER" layoutX="10" layoutY="10" prefHeight="33.0" prefWidth="468.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="222.0">
+        <HBox alignment="CENTER" layoutX="15.2" layoutY="10" prefHeight="34.0" prefWidth="463.0" styleClass="Documents-HBox" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="222.0">
             <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="jfx-button-custom">
                 <graphic>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -43,7 +43,7 @@
                     </ImageView>
                 </graphic>
             </JFXButton>
-            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="jfx-menu-button-style" text="Advanced Search">
+            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="Documents-JFXButton" text="Advanced Search">
                 <graphic>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -58,8 +58,8 @@
         </HBox>
 
         <!-- Advanced Filters (Collapsible) -->
-        <VBox fx:id="filtersPanel" layoutX="10" layoutY="50.0" prefHeight="280.0" prefWidth="494.0" spacing="12.0" visible="false">
-            <Text text="Advanced Search Filters" />
+        <VBox fx:id="filtersPanel" layoutX="10" layoutY="54.0" prefHeight="287.0" prefWidth="502.0" spacing="12.0" styleClass="Document-vbox" visible="false">
+            <Text styleClass="Document-label" text="Advanced Search Filters" textAlignment="CENTER" wrappingWidth="484.64923095703125" />
             <HBox spacing="10">
                 <Label focusTraversable="false" prefHeight="25.0" text="Title:" />
                 <TextField fx:id="titleFilter" focusTraversable="false" promptText="Filter by title" />
@@ -122,7 +122,7 @@
             </children>
          </HBox>
             <HBox alignment="CENTER" spacing="20.0">
-                <JFXButton focusTraversable="false" onAction="#applyFilters" prefWidth="115.0" styleClass="jfx-menu-button-style" text="Search">
+                <JFXButton focusTraversable="false" onAction="#applyFilters" prefHeight="41.0" prefWidth="115.0" styleClass="Documents-VBox-JFXButton" text="Search">
                     <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -131,7 +131,7 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton focusTraversable="false" onAction="#clearFilters" prefHeight="25.0" prefWidth="115.0" styleClass="jfx-menu-button-style" text="Clear filters">
+                <JFXButton focusTraversable="false" onAction="#clearFilters" prefHeight="43.0" prefWidth="115.0" styleClass="Documents-VBox-JFXButton" text="Clear filters">
                     <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -146,7 +146,7 @@
             </padding>
         </VBox>
 
-        <TableView fx:id="historyTable" focusTraversable="false" layoutX="15.0" layoutY="50.0" prefHeight="390.0" prefWidth="670.0">
+        <TableView fx:id="historyTable" focusTraversable="false" layoutX="15.0" layoutY="57.0" prefHeight="383.0" prefWidth="670.0" styleClass="Documents-TableView">
             <columns>
                 <TableColumn fx:id="noCol" prefWidth="40.0" text="No." />
                 <TableColumn fx:id="titleCol" prefWidth="200.0" text="Title" />
@@ -157,7 +157,7 @@
             </columns>
         </TableView>
         <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
-      <JFXButton layoutX="492.0" layoutY="12.0" onAction="#returnDoc" prefHeight="33.0" prefWidth="90.0" styleClass="jfx-menu-button-style" text="Return">
+      <JFXButton layoutX="492.0" layoutY="12.0" onAction="#returnDoc" prefHeight="33.0" prefWidth="90.0" styleClass="Documents-JFXButton" text="Return">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

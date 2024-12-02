@@ -91,4 +91,8 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
+
+    public boolean get_isLight() {
+        return isLight;
+    }
 }

@@ -15,10 +15,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" style="-fx-background-color: #8eccf5; -fx-border-color: black;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.SearchDocumentsController">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.SearchDocumentsController">
     <children>
         <!-- Search Bar -->
-        <HBox alignment="CENTER" layoutX="10" layoutY="10" prefHeight="33.0" prefWidth="468.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="222.0">
+        <HBox alignment="CENTER" layoutX="16.0" layoutY="10" prefHeight="34.0" prefWidth="462.0" styleClass="Documents-HBox" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="222.0">
             <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="jfx-button-custom">
                 <graphic>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -41,7 +41,7 @@
                     </ImageView>
                 </graphic>
             </JFXButton>
-            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="jfx-button-custom" text="Advanced Search">
+            <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="Documents-JFXButton" text="Advanced Search">
                 <graphic>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -56,7 +56,7 @@
         </HBox>
 
         <!-- Advanced Filters (Collapsible) -->
-        <VBox fx:id="filtersPanel" layoutX="10" layoutY="50" spacing="10" style="-fx-background-color: #b1dff2;" visible="false">
+        <VBox fx:id="filtersPanel" layoutX="10" layoutY="50" spacing="10" visible="false">
             <Text text="Advanced Search Filters" />
             <HBox spacing="10">
                 <Label focusTraversable="false" prefHeight="25.0" text="Title:" />
@@ -106,7 +106,7 @@
             </HBox>
         </VBox>
 
-        <TableView fx:id="docsTable" focusTraversable="false" layoutX="15.0" layoutY="50.0" prefHeight="360.0" prefWidth="670.0">
+        <TableView fx:id="docsTable" focusTraversable="false" layoutX="15.0" layoutY="56.0" prefHeight="354.0" prefWidth="670.0" styleClass="Documents-TableView">
             <columns>
                 <TableColumn fx:id="noCol" prefWidth="40.0" text="No." />
                 <TableColumn fx:id="titleCol" prefWidth="145.0" text="Title" />
@@ -119,7 +119,7 @@
             </columns>
         </TableView>
         <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
-        <JFXButton focusTraversable="false" layoutX="287.0" layoutY="417.0" onAction="#addDoc" style="-fx-background-color: #8eccf5;" styleClass="jfx-button-custom" text="Add document">
+        <JFXButton focusTraversable="false" layoutX="287.0" layoutY="417.0" onAction="#addDoc" prefHeight="34.0" prefWidth="119.0" styleClass="Documents-JFXButton" text="Add document">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
