@@ -137,10 +137,13 @@ public class ManageUsersController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/AddUser.fxml"));
             Parent detailRoot = loader.load();
 
+            Scene detailScene = new Scene(detailRoot);
+
+            detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
             // Create a new stage for the book detail window
             Stage detailStage = new Stage();
             detailStage.setTitle("Add user");
-            detailStage.setScene(new Scene(detailRoot));
+            detailStage.setScene(detailScene);
             detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
             detailStage.showAndWait();
 
@@ -164,10 +167,13 @@ public class ManageUsersController {
                 UserFormController userFormController = loader.getController();
                 userFormController.setUserInfo(user);  // Populate form with user's data
 
+                Scene detailScene = new Scene(editRoot);
+
+                detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
                 // Open the edit dialog
                 Stage editStage = new Stage();
                 editStage.setTitle("Edit User");
-                editStage.setScene(new Scene(editRoot));
+                editStage.setScene(detailScene);
                 editStage.initModality(Modality.APPLICATION_MODAL);
                 editStage.showAndWait();
 

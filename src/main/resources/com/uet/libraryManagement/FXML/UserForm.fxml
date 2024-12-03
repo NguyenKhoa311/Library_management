@@ -18,13 +18,13 @@
 <AnchorPane prefHeight="406.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserFormController">
    <HBox prefHeight="417.0" prefWidth="450.0" style="-fx-spacing: 10px;">
       <children>
-          <VBox alignment="CENTER" prefHeight="418.0" prefWidth="215.0" spacing="10" style="-fx-background-color: #76ABAE; -fx-border-color: #31363F; -fx-border-width: 0 1px 0 0;">
+          <VBox alignment="CENTER" prefHeight="418.0" prefWidth="198.0" spacing="10" styleClass="SubScene-VBox-Left">
               <ImageView fx:id="userAva" fitHeight="190.0" fitWidth="159.0">
                   <image>
                       <Image url="@../ICONS/profile.png" />
                   </image>
             </ImageView>
-              <Label fx:id="userNameLabel" alignment="CENTER" prefHeight="20.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="User Name" textAlignment="CENTER" wrapText="true">
+              <Label fx:id="userNameLabel" alignment="CENTER" prefHeight="20.0" prefWidth="202.0" styleClass="SubScene-VBox-Left-TitleLabel" text="User Name" textAlignment="CENTER" wrapText="true">
                   <VBox.margin>
                       <Insets />
                   </VBox.margin>
@@ -35,7 +35,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXButton onAction="#insertImg" prefHeight="50.0" prefWidth="130.0" styleClass="EditProfile-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Insert image">
+            <JFXButton focusTraversable="false" onAction="#insertImg" prefHeight="50.0" prefWidth="130.0" styleClass="EditProfile-JFXButton" text="Insert image">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -44,7 +44,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton onAction="#saveUser" prefHeight="50.0" prefWidth="131.0" styleClass="EditProfile-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Save">
+            <JFXButton focusTraversable="false" onAction="#saveUser" prefHeight="50.0" prefWidth="131.0" styleClass="EditProfile-JFXButton" text="Save">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -54,11 +54,11 @@
                </graphic>
             </JFXButton>
           </VBox>
-          <VBox prefHeight="418.0" prefWidth="216.0" spacing="25.0" style="-fx-spacing: 10px;">
+          <VBox prefHeight="418.0" prefWidth="216.0" spacing="25.0">
               <children>
-                  <Label prefHeight="33.0" prefWidth="540.0" text="User profile">
+                  <Label prefHeight="33.0" prefWidth="540.0" styleClass="UserDetail_Title_label" text="User profile" textAlignment="CENTER">
                       <font>
-                          <Font name="System Bold" size="28.0" />
+                          <Font size="28.0" />
                       </font>
                       <padding>
                           <Insets bottom="10.0" left="20.0" top="10.0" />
@@ -69,9 +69,9 @@
                   </Label>
                   <VBox prefHeight="326.0" prefWidth="218.0" style="-fx-spacing: 10px;">
                       <children>
-                          <Label prefHeight="0.0" prefWidth="218.0" text="Profile details">
+                          <Label prefHeight="0.0" prefWidth="218.0" styleClass="UserDetail_Sub-Title_label" text="Profile details">
                               <font>
-                                  <Font name="System Bold" size="20.0" />
+                                  <Font size="20.0" />
                               </font>
                               <VBox.margin>
                                   <Insets />
@@ -90,7 +90,7 @@
                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        </rowConstraints>
                         <children>
-                                <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" style="-fx-font-weight: bold;" text="Full Name: ">
+                                <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail_label" text="Full Name: ">
                                     <padding>
                                         <Insets bottom="10.0" left="20.0" top="10.0" />
                                     </padding>
@@ -98,9 +98,9 @@
                                         <Font size="13.0" />
                                     </font>
                                 </Label>
-                           <TextField fx:id="nameField" prefHeight="27.0" prefWidth="145.0" GridPane.columnIndex="1" />
-                           <DatePicker fx:id="birthdayField" prefHeight="27.0" prefWidth="133.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" style="-fx-font-weight: bold;" text="Date of birth: " GridPane.rowIndex="1">
+                           <TextField fx:id="nameField" focusTraversable="false" prefHeight="27.0" prefWidth="145.0" GridPane.columnIndex="1" />
+                           <DatePicker fx:id="birthdayField" focusTraversable="false" prefHeight="27.0" prefWidth="133.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail_label" text="Date of birth: " GridPane.rowIndex="1">
                                     <padding>
                                         <Insets bottom="10.0" left="20.0" top="10.0" />
                                     </padding>
@@ -110,9 +110,9 @@
                                 </Label>
                         </children>
                      </GridPane>
-                          <Label prefHeight="34.0" prefWidth="218.0" text="Contact info">
+                          <Label prefHeight="34.0" prefWidth="218.0" styleClass="UserDetail_Sub-Title_label" text="Contact info">
                               <font>
-                                  <Font name="System Bold" size="20.0" />
+                                  <Font size="20.0" />
                               </font>
                               <VBox.margin>
                                   <Insets />
@@ -131,8 +131,8 @@
                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        </rowConstraints>
                         <children>
-                           <TextField fx:id="phoneField" prefHeight="27.0" prefWidth="139.0" GridPane.columnIndex="1" />
-                                <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" style="-fx-font-weight: bold;" text="Phone: ">
+                           <TextField fx:id="phoneField" focusTraversable="false" prefHeight="27.0" prefWidth="139.0" GridPane.columnIndex="1" />
+                                <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail_label" text="Phone: ">
                                     <padding>
                                         <Insets bottom="10.0" left="20.0" top="10.0" />
                                     </padding>
@@ -140,8 +140,8 @@
                                         <Font size="13.0" />
                                     </font>
                                 </Label>
-                           <TextField fx:id="emailField" prefHeight="27.0" prefWidth="151.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" style="-fx-font-weight: bold;" text="Email:" GridPane.rowIndex="1">
+                           <TextField fx:id="emailField" focusTraversable="false" prefHeight="27.0" prefWidth="151.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label contentDisplay="RIGHT" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail_label" text="Email:" GridPane.rowIndex="1">
                                     <padding>
                                         <Insets bottom="10.0" left="20.0" top="10.0" />
                                     </padding>

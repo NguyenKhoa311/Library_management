@@ -13,17 +13,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDashboardController">
+<AnchorPane prefHeight="390.0" prefWidth="525.0" styleClass="dashboard_anchor" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDashboardController">
     <children>
-        <VBox prefHeight="464.0" prefWidth="700.0" spacing="10" styleClass="dashboard">
-
-            <!-- Header -->
-            <HBox prefHeight="50.0" styleClass="header">
-                <padding>
-                    <Insets bottom="10" left="20" right="20" top="10" />
-                </padding>
-                <Label styleClass="header-title" text="My Library Dashboard" />
-            </HBox>
+        <VBox prefHeight="390.0" prefWidth="426.0" spacing="10" styleClass="dashboard">
+             <Label prefHeight="34.0" prefWidth="714.0" styleClass="header-title" text="My Library Dashboard" />
 
             <!-- Stats Cards Section -->
             <HBox alignment="CENTER" prefHeight="120.0" spacing="15" styleClass="stat-container">

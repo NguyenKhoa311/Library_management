@@ -12,13 +12,13 @@
 <AnchorPane prefHeight="406.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDetailController">
    <HBox prefHeight="410.0" prefWidth="450.0" style="-fx-spacing: 10px;">
       <children>
-          <VBox alignment="CENTER" prefHeight="406.0" prefWidth="200.0" spacing="10" style="-fx-background-color: #76ABAE; -fx-border-color: #31363F; -fx-border-width: 0 1px 0 0;">
+          <VBox alignment="CENTER" prefHeight="406.0" prefWidth="200.0" spacing="10" styleClass="SubScene-VBox-Left">
               <ImageView fx:id="userAva" fitHeight="168.0" fitWidth="159.0">
                <image>
                   <Image url="@../ICONS/profile.png" />
                </image>
             </ImageView>
-              <Label fx:id="userNameLabel" alignment="CENTER" prefHeight="20.0" prefWidth="198.0" style="-fx-font-weight: bold;" text="User Name" textAlignment="CENTER" wrapText="true">
+              <Label fx:id="userNameLabel" alignment="CENTER" prefHeight="59.0" prefWidth="206.0" styleClass="UserDetail_Sub-Title_label" text="User Name" textAlignment="CENTER" wrapText="true">
                   <VBox.margin>
                       <Insets />
                   </VBox.margin>
@@ -27,9 +27,9 @@
                   </padding>
             </Label>
           </VBox>
-         <VBox prefHeight="406.0" prefWidth="250.0" spacing="30.0" style="-fx-spacing: 10px;">
+         <VBox prefHeight="406.0" prefWidth="250.0" spacing="30.0" style="-fx-spacing: 10px;" styleClass="SubScene-VBox-Right">
             <children>
-               <Label prefHeight="47.0" prefWidth="246.0" text="User profile" textAlignment="CENTER">
+               <Label prefHeight="47.0" prefWidth="246.0" styleClass="UserDetail_Title_label" text="User profile" textAlignment="CENTER">
                   <font>
                      <Font name="System Bold" size="28.0" />
                   </font>
@@ -42,7 +42,7 @@
                </Label>
                <VBox prefHeight="140.0" prefWidth="540.0">
                   <children>
-                     <Label prefHeight="70.0" prefWidth="246.0" text="Profile details">
+                     <Label prefHeight="70.0" prefWidth="246.0" styleClass="UserDetail_Sub-Title_label" text="Profile details">
                         <font>
                            <Font name="System Bold" size="20.0" />
                         </font>
@@ -53,7 +53,7 @@
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>
                      </Label>
-                     <Label fx:id="usernameLabel" prefHeight="41.0" prefWidth="540.0" text="Full Name: ">
+                     <Label fx:id="usernameLabel" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail_label" text="Full Name: ">
                         <padding>
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>
@@ -61,7 +61,7 @@
                            <Font size="16.0" />
                         </font>
                      </Label>
-                     <Label fx:id="birthdayLabel" prefHeight="41.0" prefWidth="540.0" text="Date of birth: ">
+                     <Label fx:id="birthdayLabel" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail_label" text="Date of birth: ">
                         <padding>
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>
@@ -69,7 +69,7 @@
                            <Font size="16.0" />
                         </font>
                      </Label>
-                     <Label prefHeight="43.0" prefWidth="540.0" text="Contact info">
+                     <Label prefHeight="43.0" prefWidth="540.0" styleClass="UserDetail_Sub-Title_label" text="Contact info">
                         <font>
                            <Font name="System Bold" size="20.0" />
                         </font>
@@ -80,7 +80,7 @@
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>
                      </Label>
-                     <Label fx:id="phoneLabel" prefHeight="41.0" prefWidth="540.0" text="Phone: ">
+                     <Label fx:id="phoneLabel" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail_label" text="Phone: ">
                         <padding>
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>
@@ -88,7 +88,7 @@
                            <Font size="16.0" />
                         </font>
                      </Label>
-                     <Label fx:id="emailLabel" prefHeight="41.0" prefWidth="540.0" text="Email:">
+                     <Label fx:id="emailLabel" prefHeight="41.0" prefWidth="540.0" styleClass="UserDetail_label" text="Email:">
                         <padding>
                            <Insets bottom="10.0" left="20.0" top="10.0" />
                         </padding>

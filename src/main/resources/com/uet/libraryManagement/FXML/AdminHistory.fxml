@@ -58,7 +58,7 @@
         </HBox>
 
         <!-- Advanced Filters (Collapsible) -->
-        <VBox fx:id="filtersPanel" layoutX="10" layoutY="47.0" prefHeight="295.0" prefWidth="506.0" spacing="12.0" styleClass="Document-vbox" visible="false">
+        <VBox fx:id="filtersPanel" layoutX="10" layoutY="55.0" prefHeight="287.0" prefWidth="506.0" spacing="12.0" styleClass="Document-vbox" visible="false">
             <Text styleClass="Document-label" text="Advanced Search Filters" textAlignment="CENTER" wrappingWidth="472.6492385864258" />
             <HBox spacing="10">
                 <Label focusTraversable="false" prefHeight="25.0" text="Title:" />

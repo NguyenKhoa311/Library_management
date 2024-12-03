@@ -11,20 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDashboardController">
+<AnchorPane styleClass="dashboard_anchor" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDashboardController">
    <children>
       <VBox prefHeight="464.0" prefWidth="700.0" spacing="10">
-      
-         <!-- Header -->
-         <HBox prefHeight="50.0" styleClass="header">
-            <padding>
-               <Insets bottom="10" left="20" right="20" top="10" />
-            </padding>
-            <Label styleClass="header-title" text="UET Library Management System" />
-         </HBox>
+         <Label prefHeight="30.0" prefWidth="700.0" styleClass="header-title" text="UET Library Management System" />
 
          <!-- Stat Cards Section -->
-         <HBox alignment="CENTER" prefHeight="120.0" spacing="15" styleClass="stat-container">
+         <HBox alignment="CENTER" prefHeight="132.0" prefWidth="700.0" spacing="15" styleClass="stat-container">
             <!-- All Books Card -->
             <VBox prefWidth="120" styleClass="stat-card">
                <StackPane styleClass="circle-container">

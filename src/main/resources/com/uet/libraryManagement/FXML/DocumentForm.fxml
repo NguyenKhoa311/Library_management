@@ -17,13 +17,13 @@
 <AnchorPane prefHeight="400.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.DocumentFormController">
    <HBox prefHeight="400.0" prefWidth="414.0" style="-fx-spacing: 10px;">
       <children>
-          <VBox alignment="CENTER" prefHeight="330.0" prefWidth="198.0" spacing="10" style="-fx-spacing: 12px; -fx-background-color: #76ABAE; -fx-border-color: #31363F; -fx-border-width: 0 1px 0 0;" styleClass="sp">
+          <VBox alignment="CENTER" prefHeight="330.0" prefWidth="198.0" spacing="10" styleClass="SubScene-VBox-Left">
               <ImageView fx:id="thumbnailImage" fitHeight="179.0" fitWidth="150" focusTraversable="true">
                   <VBox.margin>
                       <Insets top="20.0" />
                   </VBox.margin>
             </ImageView>
-              <Label alignment="CENTER" contentDisplay="RIGHT" style="-fx-font-weight: bold;" text="Title" wrapText="true">
+              <Label alignment="CENTER" contentDisplay="RIGHT" styleClass="Login-label-username" text="Title" wrapText="true">
                   <VBox.margin>
                       <Insets />
                   </VBox.margin>
@@ -34,7 +34,7 @@
                       <TextField fx:id="titleField" prefHeight="35.0" prefWidth="135.0" />
                   </graphic>
             </Label>
-              <JFXButton onAction="#insertImg" prefHeight="49.0" prefWidth="156.0" styleClass="EditProfile-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Insert thumbnail">
+              <JFXButton onAction="#insertImg" prefHeight="49.0" prefWidth="156.0" styleClass="EditProfile-JFXButton" text="Insert thumbnail">
                   <graphic>
                       <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                           <image>
@@ -43,7 +43,7 @@
                       </ImageView>
                   </graphic>
               </JFXButton>
-              <JFXButton onAction="#saveDoc" prefHeight="44.0" prefWidth="95.0" styleClass="EditProfile-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Save">
+              <JFXButton onAction="#saveDoc" prefHeight="44.0" prefWidth="95.0" styleClass="EditProfile-JFXButton" text="Save">
                   <graphic>
                       <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                           <image>
@@ -53,8 +53,8 @@
                   </graphic>
               </JFXButton>
           </VBox>
-          <VBox prefHeight="400.0" prefWidth="198.0" spacing="8.0" style="-fx-padding: 5px; -fx-spacing: 5px;">
-            <GridPane style="-fx-hgap: 5px; -fx-vgap: 5px;">
+          <VBox prefHeight="378.0" prefWidth="198.0" spacing="8.0" styleClass="SubScene-VBox-Right">
+            <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -70,23 +70,23 @@
               </rowConstraints>
                <children>
                       <TextField fx:id="authorField" GridPane.columnIndex="1" />
-                    <Label contentDisplay="RIGHT" style="-fx-font-weight: bold;" text="Author:" wrapText="true" />
-                    <Label contentDisplay="RIGHT" style="-fx-font-weight: bold;" text="Publisher:" wrapText="true" GridPane.rowIndex="1" />
+                    <Label contentDisplay="RIGHT" styleClass="SubScene-VBox-Right-label" text="Author:" wrapText="true" />
+                    <Label contentDisplay="RIGHT" styleClass="SubScene-VBox-Right-label" text="Publisher:" wrapText="true" GridPane.rowIndex="1" />
                       <TextField fx:id="publisherField" prefHeight="25.0" prefWidth="145.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                    <Label contentDisplay="RIGHT" style="-fx-font-weight: bold;" text="Published Date:" wrapText="true" GridPane.rowIndex="2" />
+                    <Label contentDisplay="RIGHT" styleClass="SubScene-VBox-Right-label" text="Published Date:" wrapText="true" GridPane.rowIndex="2" />
                       <TextField fx:id="dateField" prefHeight="25.0" prefWidth="112.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                    <Label contentDisplay="RIGHT" style="-fx-font-weight: bold;" text="Genre:" wrapText="true" GridPane.rowIndex="3" />
-                    <Label contentDisplay="RIGHT" style="-fx-font-weight: bold;" text="Isbn 10:" wrapText="true" GridPane.rowIndex="4" />
+                    <Label contentDisplay="RIGHT" styleClass="SubScene-VBox-Right-label" text="Genre:" wrapText="true" GridPane.rowIndex="3" />
+                    <Label contentDisplay="RIGHT" styleClass="SubScene-VBox-Right-label" text="Isbn 10:" wrapText="true" GridPane.rowIndex="4" />
                       <TextField fx:id="categoryField" prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                       <TextField fx:id="isbn10Field" prefHeight="25.0" prefWidth="154.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                    <Label contentDisplay="RIGHT" style="-fx-font-weight: bold;" text="Isbn 13:" wrapText="true" GridPane.rowIndex="5" />
+                    <Label contentDisplay="RIGHT" styleClass="SubScene-VBox-Right-label" text="Isbn 13:" wrapText="true" GridPane.rowIndex="5" />
                       <TextField fx:id="isbn13Field" prefHeight="25.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                       <TextField fx:id="quantityField" prefHeight="25.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                    <Label contentDisplay="RIGHT" style="-fx-font-weight: bold;" text="Quantity:" wrapText="true" GridPane.rowIndex="6" />
+                    <Label contentDisplay="RIGHT" styleClass="SubScene-VBox-Right-label" text="Quantity:" wrapText="true" GridPane.rowIndex="6" />
                </children>
             </GridPane>
-              <Label contentDisplay="RIGHT" style="-fx-font-weight: bold;" text="Description:" />
-              <TextArea fx:id="descriptionArea" prefHeight="134.0" prefWidth="213.0" wrapText="true" />
+              <Label contentDisplay="RIGHT" styleClass="SubScene-VBox-Right-label" text="Description:" />
+              <TextArea fx:id="descriptionArea" prefHeight="114.0" prefWidth="198.0" wrapText="true" />
           </VBox>
       </children>
    </HBox>

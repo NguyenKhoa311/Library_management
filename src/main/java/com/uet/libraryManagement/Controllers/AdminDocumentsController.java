@@ -51,10 +51,14 @@ public class AdminDocumentsController extends DocumentsController {
                 controller.setDocument(selectedDocument); // Pass the selected document for editing
                 controller.setDocType(docTypeBox.getValue());
 
+                Scene detailScene = new Scene(formRoot);
+
+                detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
+
                 // Create a new stage for the edit window
                 Stage formStage = new Stage();
                 formStage.setTitle("Edit Document");
-                formStage.setScene(new Scene(formRoot));
+                formStage.setScene(detailScene);
                 formStage.initModality(Modality.APPLICATION_MODAL);
                 formStage.showAndWait();
 
