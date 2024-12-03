@@ -1,6 +1,7 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
+import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Repositories.ThesisRepository;
 import javafx.fxml.FXML;
@@ -72,17 +73,21 @@ public class AdminDocumentsController extends DocumentsController {
     private void addDoc() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentForm.fxml"));
-            Parent formRoot = loader.load();
+            Parent detailRoot = loader.load();
 
             // Get the controller and set the mode to add
             DocumentFormController controller = loader.getController();
             controller.setMode("add");
             controller.setDocType(docTypeBox.getValue());
 
+            Scene detailScene = new Scene(detailRoot);
+
+            detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
+            
             // Create a new stage for the add document window
             Stage formStage = new Stage();
             formStage.setTitle("Add Document");
-            formStage.setScene(new Scene(formRoot));
+            formStage.setScene(detailScene);
             formStage.initModality(Modality.APPLICATION_MODAL);
             formStage.showAndWait();
 

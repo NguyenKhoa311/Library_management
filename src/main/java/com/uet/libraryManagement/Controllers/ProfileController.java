@@ -36,9 +36,13 @@ public class ProfileController {
 
             SceneManager.getInstance().setDL_Mode(SceneManager.getInstance().get_isLight());
 
+            Scene detailScene = new Scene(editProfileRoot);
+
+            detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
+
             Stage stage = new Stage();
             stage.setTitle("Edit Profile");
-            stage.setScene(new Scene(editProfileRoot));
+            stage.setScene(detailScene);
             stage.showAndWait(); // Wait for the window to close before continuing
 
             // Update profile info if the user made changes
@@ -53,9 +57,13 @@ public class ProfileController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/ChangePassword.fxml"));
             Parent changePasswordRoot = loader.load();
 
+            Scene detailScene = new Scene(changePasswordRoot);
+
+            detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
+
             Stage stage = new Stage();
             stage.setTitle("Change Password");
-            stage.setScene(new Scene(changePasswordRoot));
+            stage.setScene(detailScene);
             stage.showAndWait(); // Wait for the window to close before continuing
         } catch (IOException e) {
             e.printStackTrace();

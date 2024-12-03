@@ -5,31 +5,37 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.DocumentDetailController">
-<VBox alignment="CENTER" prefHeight="329.0" prefWidth="200.0" spacing="10">
-    <ImageView fx:id="thumbnailImageView" fitHeight="200" fitWidth="150" />
-    <Label fx:id="titleLabel" alignment="CENTER" text="Title" wrapText="true">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-         <padding>
-            <Insets bottom="2.0" left="10.0" right="10.0" />
-         </padding></Label>
-</VBox>
-    <VBox layoutX="200.0" layoutY="-1.0" prefHeight="400.0" prefWidth="213.0" spacing="15.0">
-        <Label fx:id="authorLabel" text="Author" wrapText="true">
-             <VBox.margin>
-                 <Insets top="15.0" />
-             </VBox.margin>
-        </Label>
-        <Label fx:id="publisherLabel" text="Publisher" wrapText="true" />
-        <Label fx:id="publishedDateLabel" text="Published Date" wrapText="true" />
-        <Label fx:id="genreLabel" text="Genre" wrapText="true" />
-        <Label fx:id="isbn10Label" text="Isbn 10" wrapText="true" />
-        <Label fx:id="isbn13Label" text="Isbn 13" wrapText="true" />
-        <Label text="Description:" />
-        <TextArea fx:id="descriptionArea" editable="false" focusTraversable="false" prefHeight="154.0" prefWidth="213.0" wrapText="true" />
-    </VBox>
+<AnchorPane prefHeight="400.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.DocumentDetailController">
+   <HBox prefHeight="400.0" prefWidth="414.0" style="-fx-spacing: 10px;">
+      <children>
+      <VBox alignment="CENTER" prefHeight="329.0" prefWidth="200.0" spacing="10" style="-fx-background-color: #76ABAE; -fx-border-color: #31363F; -fx-border-width: 0 1px 0 0;">
+          <ImageView fx:id="thumbnailImageView" fitHeight="200" fitWidth="150" />
+          <Label fx:id="titleLabel" alignment="CENTER" prefHeight="20.0" prefWidth="202.0" style="-fx-font-weight: bold;" text="Title" textAlignment="CENTER" wrapText="true">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="2.0" left="10.0" right="10.0" />
+               </padding>
+            </Label>
+      </VBox>
+          <VBox prefHeight="400.0" prefWidth="196.0" spacing="15.0" style="-fx-spacing: 12px; -fx-padding: 5px;">
+              <Label fx:id="authorLabel" style="-fx-font-weight: bold;" text="Author" wrapText="true">
+                   <VBox.margin>
+                       <Insets top="15.0" />
+                   </VBox.margin>
+              </Label>
+              <Label fx:id="publisherLabel" style="-fx-font-weight: bold;" text="Publisher" wrapText="true" />
+              <Label fx:id="publishedDateLabel" style="-fx-font-weight: bold;" text="Published Date" wrapText="true" />
+              <Label fx:id="genreLabel" style="-fx-font-weight: bold;" text="Genre" wrapText="true" />
+              <Label fx:id="isbn10Label" style="-fx-font-weight: bold;" text="Isbn 10" wrapText="true" />
+              <Label fx:id="isbn13Label" style="-fx-font-weight: bold;" text="Isbn 13" wrapText="true" />
+              <Label style="-fx-font-weight: bold;" text="Description:" />
+              <TextArea fx:id="descriptionArea" editable="false" focusTraversable="false" prefHeight="154.0" prefWidth="213.0" wrapText="true" />
+          </VBox>
+      </children>
+   </HBox>
 </AnchorPane>

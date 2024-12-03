@@ -47,7 +47,7 @@
                       </ImageView>
                   </graphic>
               </JFXButton>
-              <JFXButton onAction="#saveChanges" prefHeight="42.0" prefWidth="152.0" styleClass="EditProfile-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Save">
+              <JFXButton onAction="#saveChanges" prefHeight="48.0" prefWidth="152.0" styleClass="EditProfile-JFXButton" stylesheets="@../CSS/Light-mode.css" text="Save">
                   <graphic>
                       <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                           <image>

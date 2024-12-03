@@ -1,5 +1,6 @@
 package com.uet.libraryManagement.Controllers;
 
+import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.Repositories.UserRepository;
 import com.uet.libraryManagement.User;
@@ -61,10 +62,13 @@ public class ManageUsersController {
                 UserDetailController controller = loader.getController();
                 controller.setUserDetails(selectedUser);
 
+                Scene detailScene = new Scene(detailRoot);
+
+                detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
                 // Create a new stage for the user detail window
                 Stage detailStage = new Stage();
                 detailStage.setTitle("User information");
-                detailStage.setScene(new Scene(detailRoot));
+                detailStage.setScene(detailScene);
                 detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
                 detailStage.showAndWait();
 
@@ -109,10 +113,13 @@ public class ManageUsersController {
                 historyController.loadHistory(selectedUser.getId(), "Books");
                 historyController.setSelectedUserId(selectedUser.getId());
 
+                Scene detailScene = new Scene(historyRoot);
+
+                detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
                 // Open history window
                 Stage historyStage = new Stage();
                 historyStage.setTitle("Borrowing History for " + selectedUser.getUsername());
-                historyStage.setScene(new Scene(historyRoot));
+                historyStage.setScene(detailScene);
                 historyStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
                 historyStage.showAndWait();
             } catch (IOException e) {

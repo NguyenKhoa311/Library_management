@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="464.0" prefWidth="700.0" styleClass="root" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDocumentsController">
+<AnchorPane prefHeight="464.0" prefWidth="700.0" styleClass="root" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDocumentsController">
    <children>
        <!-- Search Bar -->
-       <HBox alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="33.0" prefWidth="468.0" styleClass="Documents-HBox" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="217.80000000000007">
-           <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="Documents-JFXButton" >
+       <HBox alignment="CENTER" layoutX="14.4" layoutY="14.0" prefHeight="34.0" prefWidth="468.0" styleClass="Documents-HBox" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="218.0">
+           <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="Documents-JFXButton">
                <graphic>
                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="AdminDocuments-JFXButton-Add_document">
                        <image>
@@ -32,7 +32,7 @@
                <HBox.margin>
                    <Insets />
                </HBox.margin></TextField>
-           <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" styleClass="Documents-JFXButton" >
+           <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" styleClass="Documents-JFXButton">
                <graphic>
                    <ImageView fitHeight="25.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" styleClass="Documents-JFXButton">
                        <image>
@@ -41,7 +41,7 @@
                    </ImageView>
                </graphic>
            </JFXButton>
-           <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="Documents-JFXButton"  text="Advanced Search">
+           <JFXButton contentDisplay="RIGHT" focusTraversable="false" onAction="#toggleFilters" prefHeight="33.0" prefWidth="150.0" styleClass="Documents-JFXButton" text="Advanced Search">
                <graphic>
                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                        <image>
@@ -56,8 +56,8 @@
        </HBox>
 
        <!-- Advanced Filters (Collapsible) -->
-       <VBox fx:id="filtersPanel" layoutX="10" layoutY="50" spacing="10" visible="false">
-           <Text text="Advanced Search Filters" />
+       <VBox fx:id="filtersPanel" layoutX="10" layoutY="57.0" prefHeight="334.0" prefWidth="467.0" spacing="10" styleClass="Document-vbox" visible="false">
+           <Text styleClass="Document-label" text="Advanced Search Filters" textAlignment="CENTER" wrappingWidth="446.24920654296875" />
            <HBox spacing="10">
                <Label focusTraversable="false" prefHeight="25.0" text="Title:" />
                <TextField fx:id="titleFilter" focusTraversable="false" promptText="Filter by title" />
@@ -85,7 +85,7 @@
                <DatePicker fx:id="endDateFilter" focusTraversable="false" promptText="End Year" />
            </HBox>
            <HBox alignment="CENTER" spacing="20.0">
-               <JFXButton focusTraversable="false" onAction="#applyFilters" prefWidth="115.0" styleClass="jfx-menu-button-style"  text="Search">
+               <JFXButton focusTraversable="false" onAction="#applyFilters" prefHeight="46.0" prefWidth="115.0" styleClass="Documents-VBox-JFXButton" text="Search">
                    <graphic>
                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -94,7 +94,7 @@
                        </ImageView>
                    </graphic>
                </JFXButton>
-               <JFXButton focusTraversable="false" onAction="#clearFilters" prefHeight="25.0" prefWidth="115.0" styleClass="jfx-menu-button-style"  text="Clear filters">
+               <JFXButton focusTraversable="false" onAction="#clearFilters" prefHeight="46.0" prefWidth="115.0" styleClass="Documents-VBox-JFXButton" text="Clear filters">
                    <graphic>
                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -106,7 +106,7 @@
            </HBox>
        </VBox>
 
-      <TableView fx:id="docsTable" focusTraversable="false" layoutX="14.0" layoutY="58.0" prefHeight="360.0" prefWidth="670.0" styleClass="Documents-TableView" >
+      <TableView fx:id="docsTable" focusTraversable="false" layoutX="14.0" layoutY="59.0" prefHeight="341.0" prefWidth="670.0" styleClass="Documents-TableView">
         <columns>
           <TableColumn fx:id="idCol" prefWidth="40.0" text="ID" />
           <TableColumn fx:id="titleCol" prefWidth="145.0" text="Title" />
@@ -119,8 +119,8 @@
             <TableColumn fx:id="quantityCol" text="Quantity" />
         </columns>
       </TableView>
-      <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
-      <JFXButton focusTraversable="false" layoutX="280.0" layoutY="422.0" onAction="#deleteDoc" styleClass="Documents-JFXButton"  text="Delete document">
+      <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="593.0" layoutY="18.0" prefHeight="25.0" prefWidth="90.0" />
+      <JFXButton focusTraversable="false" layoutX="272.0" layoutY="407.0" onAction="#deleteDoc" prefHeight="34.0" prefWidth="143.0" styleClass="Documents-JFXButton" text="Delete document">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -129,7 +129,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton focusTraversable="false" layoutX="482.0" layoutY="422.0" onAction="#editDoc" styleClass="Documents-JFXButton"  text="Edit document">
+      <JFXButton focusTraversable="false" layoutX="482.0" layoutY="407.0" onAction="#editDoc" prefHeight="34.0" prefWidth="143.0" styleClass="Documents-JFXButton" text="Edit document">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -138,7 +138,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton focusTraversable="false" layoutX="88.0" layoutY="422.0" onAction="#addDoc" styleClass="Documents-JFXButton"  text="Add document">
+      <JFXButton focusTraversable="false" layoutX="65.0" layoutY="407.0" onAction="#addDoc" prefHeight="34.0" prefWidth="143.0" styleClass="Documents-JFXButton" text="Add document">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

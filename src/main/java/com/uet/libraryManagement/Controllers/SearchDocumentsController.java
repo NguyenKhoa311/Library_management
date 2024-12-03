@@ -5,6 +5,7 @@ import com.uet.libraryManagement.APIService.BookAPI;
 import com.uet.libraryManagement.APIService.Volume;
 import com.uet.libraryManagement.APIService.VolumeInfo;
 import com.uet.libraryManagement.APIService.IndustryIdentifier;
+import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Repositories.ThesisRepository;
 import javafx.collections.FXCollections;
@@ -258,10 +259,13 @@ public class SearchDocumentsController implements Initializable {
                 DocumentDetailController controller = loader.getController();
                 controller.setDocumentDetails(selectedDocument);
 
+                Scene detailScene = new Scene(detailRoot);
+                detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
+
                 // Create a new stage for the book detail window
                 Stage detailStage = new Stage();
                 detailStage.setTitle("Document Details");
-                detailStage.setScene(new Scene(detailRoot));
+                detailStage.setScene(detailScene);
                 detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
                 detailStage.showAndWait();
 

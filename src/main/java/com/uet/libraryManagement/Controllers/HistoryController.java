@@ -1,6 +1,7 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
+import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.Repositories.BorrowRepository;
 import javafx.collections.FXCollections;
@@ -101,10 +102,14 @@ public class HistoryController implements Initializable {
                 DocumentDetailController controller = loader.getController();
                 controller.setDocumentDetails(document);
 
+                Scene detailScene = new Scene(detailRoot);
+
+                detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
+
                 // Create a new stage for the book detail window
                 Stage detailStage = new Stage();
                 detailStage.setTitle("Document Details");
-                detailStage.setScene(new Scene(detailRoot));
+                detailStage.setScene(detailScene);
                 detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
                 detailStage.showAndWait();
             } catch (IOException e) {

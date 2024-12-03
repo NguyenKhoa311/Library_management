@@ -17,7 +17,7 @@ public class SceneManager {
     private static SceneManager instance;
     private static Stage rootStage;
     private boolean isLight = true;
-
+    private String css;
     private Scene scene;
 
     private SceneManager() {}
@@ -60,7 +60,6 @@ public class SceneManager {
 
     public void setDL_Mode(boolean state) {
         isLight = state;
-        String css;
         if (isLight) {
             css = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/CSS/Light-mode.css")).toExternalForm();
             scene.getStylesheets().clear();
@@ -94,5 +93,9 @@ public class SceneManager {
 
     public boolean get_isLight() {
         return isLight;
+    }
+
+    public String get_css() {
+        return css;
     }
 }

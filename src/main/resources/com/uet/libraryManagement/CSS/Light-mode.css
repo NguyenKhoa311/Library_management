@@ -407,6 +407,7 @@
 .EditProfile-JFXButton {
     -fx-background-color: #76ABAE; /* Set border color */
     -fx-font-size: 13;
+    -fx-font-weight: bold;
     -fx-border-width: 1px; /* Optional rounded corners */
     -fx-border-radius: 5px;
     -fx-border-color: #31363F;
@@ -417,7 +418,7 @@
 .EditProfile-JFXButton:hover {
     -fx-background-color: #EEEEEE; /* Change color on hover */ /* Change border color on hover */
     -fx-cursor: hand;
-    -fx-font-weight: bold; ;
+    -fx-font-weight: bold;
     -fx-font-fill: #76ABAE;
     -fx-font-size: 13;/* Show hand cursor on hover */
     -fx-border-color: #31363F;
