@@ -915,3 +915,15 @@
     -fx-font-family: Montserrat-Regular;
     -fx-text-fill: #31363F;
 }
+
+.star-icon {
+    -fx-fill: gray;
+}
+
+.star-icon-hover {
+    -fx-fill: orange;
+}
+
+.star-icon-selected {
+    -fx-fill: gold;
+}

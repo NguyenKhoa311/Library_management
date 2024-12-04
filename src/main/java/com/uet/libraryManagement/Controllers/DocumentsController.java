@@ -14,7 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+        import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -161,6 +161,7 @@ public abstract class DocumentsController implements Initializable {
 
     protected void showDocumentDetails() {
         Document selectedDocument = docsTable.getSelectionModel().getSelectedItem();
+        String docType = docTypeBox.getValue();
         if (selectedDocument != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentDetail.fxml"));
@@ -169,7 +170,9 @@ public abstract class DocumentsController implements Initializable {
                 // Get the controller and set the selected book
                 DocumentDetailController controller = loader.getController();
                 controller.setDocumentDetails(selectedDocument);
-
+                controller.setDocument(selectedDocument);
+                controller.setDocType(docType);
+                controller.loadComments(selectedDocument.getId(), docType);
                 Scene detailScene = new Scene(detailRoot);
 
                 detailScene.getStylesheets().add(SceneManager.getInstance().get_css());

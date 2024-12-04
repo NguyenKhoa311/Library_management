@@ -5,6 +5,7 @@ module com.example.librarymanagement_demo {
     requires com.jfoenix;
     requires jdk.compiler;
     requires java.sql;
+    requires de.jensd.fx.glyphs.fontawesome;
 
     opens com.uet.libraryManagement to javafx.fxml;
     exports com.uet.libraryManagement;
