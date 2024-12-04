@@ -144,6 +144,19 @@ public class UserRepository {
         return true;
     }
 
+    // checking if user is borrowing documents
+    public boolean isUserBorrowingDocuments(int userId) {
+        String query = "SELECT COUNT(*) FROM borrow_history WHERE user_id = ? AND return_date IS NULL";
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, userId)) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Nếu có ít nhất 1 tài liệu chưa trả
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     // edit document
     public void updateProfile(User user) throws IOException {
         String query = "UPDATE users SET fullName = ?, birthday = ?, email = ?, image = ?, phone = ? WHERE id = ?";

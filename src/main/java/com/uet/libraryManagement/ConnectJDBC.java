@@ -4,10 +4,10 @@ import java.sql.*;
 
 public class ConnectJDBC {
 
-    private static final String DB_URL =
-            "jdbc:mysql://library-db.chyo8scokfws.ap-southeast-1.rds.amazonaws.com:3310/library_db";
-    private static final String DB_USERNAME = "admin";
-    private static final String DB_PASSWORD = "admindeptrai123";
+//    private static final String DB_URL =
+//            "jdbc:mysql://library-db.chyo8scokfws.ap-southeast-1.rds.amazonaws.com:3310/library_db";
+//    private static final String DB_USERNAME = "admin";
+//    private static final String DB_PASSWORD = "admindeptrai123";
 
     private static Connection connection;
 
@@ -21,8 +21,8 @@ public class ConnectJDBC {
             String url = "jdbc:mysql://localhost:3307/library_db";
             String username = "root";
             String password = "";
-//            connection = DriverManager.getConnection(url, username, password);
-            connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+            connection = DriverManager.getConnection(url, username, password);
+//            connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             System.out.println("Kết nối thành công tới AWS RDS!");
 //        } catch (ClassNotFoundException e) {
 //            System.err.println("Không tìm thấy driver MySQL: " + e.getMessage());

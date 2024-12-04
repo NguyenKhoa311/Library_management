@@ -6,11 +6,8 @@ import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Repositories.BorrowRepository;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,9 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.StrokeLineCap;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -33,6 +28,8 @@ import java.util.List;
 public class UserDashboardController {
     @FXML
     private ImageView currentBookThumbnail;
+    @FXML
+    private ImageView currentRecThumbnail;
     @FXML
     private Label borrowedCount;
     @FXML
@@ -48,8 +45,6 @@ public class UserDashboardController {
     @FXML
     private Circle overdueCircle;
     @FXML
-    private Circle historyCircle;
-    @FXML
     private TableView<BorrowHistory> recentBorrowsTable;
     @FXML
     private TableColumn<BorrowHistory, String> noCol;
@@ -63,7 +58,9 @@ public class UserDashboardController {
     private TableColumn<BorrowHistory, String> statusColumn;
 
     private List<Document> recentDocs;
-    private int currentIndex = 0;      // index of current doc
+    private List<Document> recommendedDocs;
+    private int recentDocIndex = 0;      // index of current doc
+    private int recommendedDocIndex = 0;
     private static final double CIRCLE_RADIUS = 30.0;
 
     @FXML
@@ -76,12 +73,19 @@ public class UserDashboardController {
                 showDocumentDetails();
             }
         });
-        loadRecentlyAddedBooks();
+        loadRecentlyAddedDocuments();
+        loadRecommendedDocuments();
         HandleOutsideClickListener();
 
         currentBookThumbnail.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 showDocumentDetailsFromImage();
+            }
+        });
+
+        currentRecThumbnail.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                showRecommendedDocumentDetailsFromImage();
             }
         });
     }
@@ -107,99 +111,81 @@ public class UserDashboardController {
     private void loadUserData() {
         int currentUserId = getCurrentUserId();
         List<BorrowHistory> borrowRecords = BorrowRepository.getInstance().getUserBorrowRecords(currentUserId);
+        updateBorrowStats(borrowRecords);
+        updateRecentBorrowTable(borrowRecords);
+    }
 
-        int totalBorrowed = 0;
-        int dueSoon = 0;
-        int overdue = 0;
-        int totalHistory = BorrowRepository.getInstance().getUserIssuedDocs(currentUserId);
-
+    private void updateBorrowStats(List<BorrowHistory> borrowRecords) {
+        int totalBorrowed = 0, dueSoon = 0, overdue = 0, totalHistory = borrowRecords.size();
         LocalDate now = LocalDate.now();
         LocalDate oneWeekFromNow = now.plusDays(7);
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         for (BorrowHistory record : borrowRecords) {
             if (record.getReturnDate() == null) {
                 totalBorrowed++;
-
-                try {
-                    LocalDate dueDate = LocalDate.parse(record.getDueDate(), dateFormatter);
-                    if (dueDate.isBefore(now)) {
-                        overdue++;
-                    } else if (dueDate.isBefore(oneWeekFromNow)) {
-                        dueSoon++;
-                    }
-                } catch (DateTimeParseException e) {
-                    System.err.println("Lỗi khi phân tích dueDate: " + record.getDueDate());
+                LocalDate dueDate = parseDate(record.getDueDate());
+                if (dueDate != null) {
+                    if (dueDate.isBefore(now)) overdue++;
+                    else if (dueDate.isBefore(oneWeekFromNow)) dueSoon++;
                 }
             }
         }
 
-        // Cập nhật labels
         borrowedCount.setText(String.valueOf(totalBorrowed));
         dueSoonCount.setText(String.valueOf(dueSoon));
         overdueCount.setText(String.valueOf(overdue));
         historyCount.setText(String.valueOf(totalHistory));
+    }
 
-        // Cập nhật bảng với 5 bản ghi gần nhất
-        ObservableList<BorrowHistory> recentRecords = FXCollections.observableArrayList(
-                borrowRecords.subList(0, Math.min(5, borrowRecords.size()))
-        );
-        recentBorrowsTable.setItems(recentRecords);
+    private void updateRecentBorrowTable(List<BorrowHistory> borrowRecords) {
+        int limit = Math.min(5, borrowRecords.size());
+        recentBorrowsTable.setItems(FXCollections.observableArrayList(borrowRecords.subList(0, limit)));
+    }
+
+    private LocalDate parseDate(String date) {
+        try {
+            return LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            System.err.println("Parse date error: " + date);
+            return null;
+        }
     }
 
     private void setupCircleProgress() {
         int totalHistory = Integer.parseInt(historyCount.getText());
-        int totalBorrowed = Integer.parseInt(borrowedCount.getText());
-        int dueSoon = Integer.parseInt(dueSoonCount.getText());
-        int overdue = Integer.parseInt(overdueCount.getText());
+        if (totalHistory == 0) totalHistory = 1; // Avoid division by zero
 
-        // Calculate percentages based on total history
-        setupCircle(historyCircle, 100); // Always 100%
-        setupCircle(borrowedCircle, totalHistory > 0 ? (totalBorrowed * 100.0) / totalHistory : 0);
-        setupCircle(dueSoonCircle, totalHistory > 0 ? (dueSoon * 100.0) / totalHistory : 0);
-        setupCircle(overdueCircle, totalHistory > 0 ? (overdue * 100.0) / totalHistory : 0);
+        setupCircle(borrowedCircle, (Integer.parseInt(borrowedCount.getText()) * 100.0) / totalHistory);
+        setupCircle(dueSoonCircle, (Integer.parseInt(dueSoonCount.getText()) * 100.0) / totalHistory);
+        setupCircle(overdueCircle, (Integer.parseInt(overdueCount.getText()) * 100.0) / totalHistory);
     }
 
     private void setupCircle(Circle circle, double percentage) {
         double circumference = 2 * Math.PI * CIRCLE_RADIUS;
-        double dashArray = (percentage * circumference) / 100;
-        double gapArray = circumference - dashArray;
-
-        circle.setStrokeLineCap(StrokeLineCap.ROUND);
-
-        ObservableList<Double> strokeDashArray = FXCollections.observableArrayList(
-                dashArray, gapArray
-        );
-        circle.getStrokeDashArray().setAll(strokeDashArray);
-
+        circle.getStrokeDashArray().setAll((percentage * circumference) / 100, circumference);
         circle.setRotate(-90);
     }
 
-    private void loadRecentlyAddedBooks() {
-        // Fetch recently added documents from your data source
+    private void loadRecentlyAddedDocuments() {
         recentDocs = BookRepository.getInstance().getRecentAddedDocuments(); // Adjust repository accordingly
-        // Hiển thị cuốn sách đầu tiên
-        displayCurrentBook();
+        displayDocument(currentBookThumbnail, recentDocs, recentDocIndex);
     }
 
-    private void displayCurrentBook() {
-        if (recentDocs == null || recentDocs.isEmpty() || currentIndex < 0 || currentIndex >= recentDocs.size()) {
-            return; // Không làm gì nếu danh sách trống hoặc chỉ số không hợp lệ
-        }
-        Document doc = recentDocs.get(currentIndex);
-
-        Image coverImage;
-        coverImage = new Image(doc.getThumbnailUrl(), true);
-        currentBookThumbnail.setImage(coverImage);
+    private void loadRecommendedDocuments() {
+        recommendedDocs = BookRepository.getInstance().getRecommendedDocuments(getCurrentUserId());
+        displayDocument(currentRecThumbnail, recommendedDocs, recommendedDocIndex);
     }
 
     private void showDocumentDetailsFromImage() {
-        if (recentDocs == null || recentDocs.isEmpty() || currentIndex >= recentDocs.size()) {
-            return; // Không làm gì nếu danh sách trống hoặc chỉ số không hợp lệ
+        if (recentDocs != null && recentDocIndex < recentDocs.size()) {
+            openDocumentDetails(recentDocs.get(recentDocIndex));
         }
+    }
 
-        Document document = recentDocs.get(currentIndex);
-        openDocumentDetails(document);
+    private void showRecommendedDocumentDetailsFromImage() {
+        if (recommendedDocs != null && recommendedDocIndex < recommendedDocs.size()) {
+            openDocumentDetails(recommendedDocs.get(recommendedDocIndex));
+        }
     }
 
     private void showDocumentDetails() {
@@ -255,23 +241,49 @@ public class UserDashboardController {
         });
     }
 
+    private void displayDocument(ImageView imageView, List<Document> documents, int index) {
+        if (documents == null || documents.isEmpty() || index < 0 || index >= documents.size()) {
+            return; // Không làm gì nếu danh sách trống hoặc chỉ số không hợp lệ
+        }
+        Document doc = documents.get(index);
+        Image coverImage = new Image(doc.getThumbnailUrl(), true);
+        imageView.setImage(coverImage);
+    }
+
     @FXML
     private void prevDoc() {
-        if(currentIndex > 0) {
-            currentIndex--;
-        } else {
-            currentIndex = 4;
-        }
-        displayCurrentBook();
+        recentDocIndex = calculateIndex(recentDocIndex, recentDocs.size(), false);
+        displayDocument(currentBookThumbnail, recentDocs, recentDocIndex);
     }
 
     @FXML
     private void nextDoc() {
-        if(currentIndex < 4) {
-            currentIndex++;
-        } else {
-            currentIndex = 0;
-        }
-        displayCurrentBook();
+        recentDocIndex = calculateIndex(recentDocIndex, recentDocs.size(), true);
+        displayDocument(currentBookThumbnail, recentDocs, recentDocIndex);
+    }
+
+    @FXML
+    private void prevRec() {
+        recommendedDocIndex = calculateIndex(recommendedDocIndex, recommendedDocs.size(), false);
+        displayDocument(currentRecThumbnail, recommendedDocs, recommendedDocIndex);
+    }
+
+    @FXML
+    private void nextRec() {
+        recommendedDocIndex = calculateIndex(recommendedDocIndex, recommendedDocs.size(), true);
+        displayDocument(currentRecThumbnail, recommendedDocs, recommendedDocIndex);
+    }
+
+    /**
+     * Tính toán chỉ số tiếp theo hoặc trước đó, đảm bảo chỉ số hợp lệ và xoay vòng (circular index).
+     *
+     * @param currentIndex Chỉ số hiện tại
+     * @param size Tổng số phần tử
+     * @param isNext Nếu true, tính chỉ số tiếp theo; nếu false, tính chỉ số trước đó
+     * @return Chỉ số mới đã được xoay vòng
+     */
+    private int calculateIndex(int currentIndex, int size, boolean isNext) {
+        if (size == 0) return 0;
+        return isNext ? (currentIndex + 1) % size : (currentIndex - 1 + size) % size;
     }
 }

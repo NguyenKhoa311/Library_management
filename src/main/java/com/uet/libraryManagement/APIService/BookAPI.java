@@ -13,10 +13,14 @@ import com.google.gson.*;
 public class BookAPI {
     private static final String API_KEY = "AIzaSyB5gHzt3vVKJHxU4R-g8MEMibYNtxtIRC4";
 
-    public static List<Volume> searchVolumes(String query) {
+    public static List<Volume> searchVolumes(String query, String docType) {
         List<Volume> volumes = new ArrayList<>();
 
         try {
+            if ("Thesis".equalsIgnoreCase(docType)) {
+                query += " thesis";
+            }
+
             String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8.toString());
             String urlString = "https://www.googleapis.com/books/v1/volumes?q=" + encodedQuery + "&key=" + API_KEY + "&maxResults=25";
             URL url = new URL(urlString);
