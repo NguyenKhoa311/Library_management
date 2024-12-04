@@ -20,14 +20,20 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class EditProfileController {
-    @FXML private ImageView avatarImage;
-    @FXML private Label usernameLabel;
-    @FXML private TextField phoneField;
-    @FXML private TextField emailField;
-    @FXML private TextField nameField;
-    @FXML private DatePicker birthdayField;
+    @FXML
+    public ImageView avatarImage;
+    @FXML
+    public Label usernameLabel;
+    @FXML
+    public TextField phoneField;
+    @FXML
+    public TextField emailField;
+    @FXML
+    public TextField nameField;
+    @FXML
+    public DatePicker birthdayField;
 
-    private String avatarPath;
+    public String avatarPath;
     private final User currentUser = SessionManager.getInstance().getUser();
 
     public void initialize() {
@@ -83,7 +89,7 @@ public class EditProfileController {
         closeForm();
     }
 
-    private void loadUserInfo() {
+    public void loadUserInfo() {
         usernameLabel.setText(currentUser.getUsername());
         nameField.setText(((currentUser.getFullName() == null) ? "N/A" : currentUser.getFullName()));
         phoneField.setText(((currentUser.getPhone() == null) ? "N/A" : currentUser.getPhone()));
@@ -103,13 +109,13 @@ public class EditProfileController {
         }
     }
 
-    private void showAlert(String message) {
+    public void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.showAndWait();
     }
 
-    private void closeForm() {
+    public void closeForm() {
         Stage stage = (Stage) usernameLabel.getScene().getWindow();
         stage.close();
     }

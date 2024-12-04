@@ -12,14 +12,14 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 
 public class RegisterController {
-    @FXML private TextField usernameField;
-    @FXML private PasswordField passwordField;
-    @FXML private PasswordField cf_passwordField;
-    @FXML private TextField emailField;
-    @FXML private Label messageLabel;
+    @FXML public TextField usernameField;
+    @FXML public PasswordField passwordField;
+    @FXML public PasswordField cf_passwordField;
+    @FXML public TextField emailField;
+    @FXML public Label messageLabel;
 
     @FXML
-    private void submitRegister() {
+    public void submitRegister() {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = cf_passwordField.getText();
@@ -47,7 +47,7 @@ public class RegisterController {
     }
 
     @FXML
-    private void cancelRegister(ActionEvent actionEvent) throws IOException {
+    public void cancelRegister(ActionEvent actionEvent) throws IOException {
         SceneManager.getInstance().setLoginScene("FXML/Login.fxml");
     }
 
@@ -57,8 +57,28 @@ public class RegisterController {
      * @param email the email string to validate
      * @return true if the email is valid, false otherwise
      */
-    private boolean isValidEmail(String email) {
+    public boolean isValidEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         return email.matches(emailRegex);
+    }
+
+    public TextField getUsernameField() {
+        return usernameField;
+    }
+
+    public PasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public PasswordField getCf_passwordField() {
+        return cf_passwordField;
+    }
+
+    public TextField getEmailField() {
+        return emailField;
+    }
+
+    public Label getMessageLabel() {
+        return messageLabel;
     }
 }
