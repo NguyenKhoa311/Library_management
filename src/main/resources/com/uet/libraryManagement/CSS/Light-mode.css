@@ -218,9 +218,9 @@
 }
 
 .Documents-TableView .table-row-cell {
-    -fx-background-color: #EEEEEE; /* Background color for rows */
-    -fx-alternate-row-fill-visible: true;
-    -fx-alternate-row-fill: #EEEEEE; /* Background color for alternate rows */
+    -fx-background-color: #CCCCCC; /* Background color for rows */
+    -fx-alternate-row-fill-visible: true !important;
+    -fx-alternate-row-fill: #CCCCCC !important; /* Background color for alternate rows */
     -fx-padding: 5px; /* Padding inside the rows */
     -fx-text-fill: #31363F;
 }
@@ -237,7 +237,8 @@
 
 .Documents-TableView .table-row-cell:hover {
     -fx-background-color: #B0D4D6; /* Màu nền khi hover */
-    -fx-text-fill: #31363F; /* Màu văn bản khi hover */
+    -fx-text-fill: #31363F !important; /* Màu văn bản khi hover */
+    -fx-font-weight: bold;
 }
 
 .Documents-TableView .table-cell {
@@ -251,6 +252,15 @@
     -fx-background-color: #76ABAE; /* Selected cell background */
     -fx-text-fill: #EEEEEE; /* Selected cell text color */
     -fx-font-weight: bold;
+}
+.Documents-TableView .placeholder {
+    -fx-text-fill: #76ABAE !important; /* Đổi màu chữ thông báo thành màu đỏ cam */
+    -fx-font-size: 16px; /* Kích thước chữ */
+    -fx-font-weight: bold; /* Đậm chữ */
+}
+
+.Documents-TableView .corner  {
+    -fx-background-color: #EEEEEE !important;
 }
 
 /* Cài đặt cho HBox */
@@ -412,7 +422,7 @@
 
 .header {
     -fx-padding: 10 20;
-    -fx-background-color: white;
+    -fx-background-color: #EEEEEE;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
 }
 
@@ -427,7 +437,7 @@
 }
 
 .Dashboard-stat-circle {
-    -fx-fill: #f0f0f0;
+    -fx-fill: #CCCCCC;
     -fx-stroke: #e0e0e0;
     -fx-stroke-width: 2;
 }
@@ -439,13 +449,15 @@
 }
 
 .stat-label {
-    -fx-font-size: 14px;
+    -fx-font-size: 11px;
     -fx-font-weight: bold;
     -fx-text-fill: #31363F;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
 }
 
 .chart-section {
-    -fx-background-color: white;
+    -fx-background-color: #EEEEEE;
     -fx-padding: 20;
     -fx-background-radius: 5;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
@@ -464,13 +476,13 @@
     -fx-bar-fill: #4ecdc4;
 }
 .header {
-    -fx-background-color: white;
+    -fx-background-color: #EEEEEE;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
 }
 
 
 .Dashboard-stat-card {
-    -fx-background-color: white;
+    -fx-background-color: #EEEEEE;
     -fx-padding: 10;
     -fx-alignment: center;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
@@ -485,7 +497,7 @@
 }
 
 .stat-circle-bg {
-    -fx-stroke: #f0f0f0;
+    -fx-stroke: #CCCCCC;
 }
 
 .borrowed-circle {
@@ -510,50 +522,44 @@
     -fx-padding: 5 0 2 0;
 }
 
-.stat-label {
-    -fx-font-size: 12px;
-    -fx-text-fill: #31363F;
-    -fx-font-weight: bold;
-    -fx-wrap-text: true;
-    -fx-text-alignment: center;
-}
 
-.table-section {
-    -fx-background-color: white;
-    -fx-background-radius: 5;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
-}
 
-.section-title {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-padding: 0 0 10 0;
-}
+/*.table-section {*/
+/*    -fx-background-color: #EEEEEE;*/
+/*    -fx-background-radius: 5;*/
+/*    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);*/
+/*}*/
 
-.table-view {
-    -fx-background-color: transparent;
-}
+/*.section-title {*/
+/*    -fx-font-size: 16px;*/
+/*    -fx-font-weight: bold;*/
+/*    -fx-padding: 0 0 10 0;*/
+/*}*/
 
-.table-view .column-header {
-    -fx-background-color: #f8f9fa;
-}
+/*.table-view {*/
+/*    -fx-background-color: transparent;*/
+/*}*/
 
-.table-view .column-header .label {
-    -fx-font-weight: bold;
-    -fx-text-fill: #495057;
-}
+/*.table-view .column-header {*/
+/*    -fx-background-color: #EEEEEE;*/
+/*}*/
 
-.table-row-cell {
-    -fx-background-color: white;
-}
+/*.table-view .column-header .label {*/
+/*    -fx-font-weight: bold;*/
+/*    -fx-text-fill: #495057;*/
+/*}*/
 
-.table-row-cell:odd {
-    -fx-background-color: #f8f9fa;
-}
+/*.table-row-cell {*/
+/*    -fx-background-color: #EEEEEE;*/
+/*}*/
 
-.table-row-cell:selected {
-    -fx-background-color: #e9ecef;
-}
+/*.table-row-cell:odd {*/
+/*    -fx-background-color: #EEEEEE;*/
+/*}*/
+
+/*.table-row-cell:selected {*/
+/*    -fx-background-color: #e9ecef;*/
+/*}*/
 /* end */
 
 /* admin dashboard */
@@ -567,7 +573,7 @@
 }
 
 .header {
-    -fx-background-color: white;
+    -fx-background-color: #EEEEEE;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
 }
 
@@ -580,7 +586,7 @@
 }
 
 .Dashboard-stat-card {
-    -fx-background-color: white;
+    -fx-background-color: #EEEEEE;
     -fx-padding: 10;
     -fx-alignment: center;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
@@ -597,7 +603,7 @@
 
 /* Background circles */
 .stat-circle-bg {
-    -fx-stroke: #f0f0f0;
+    -fx-stroke: #CCCCCC;
 }
 
 /* Foreground circles with different colors */
@@ -632,13 +638,7 @@
     -fx-padding: 5 0 2 0;
 }
 
-.stat-label {
-    -fx-font-size: 12px;
-    -fx-text-fill: #31363F;
-    -fx-font-weight: bold;
-    -fx-wrap-text: true;
-    -fx-text-alignment: center;
-}
+
 
 .Dashboard-stat-container {
     -fx-max-height: 120;
@@ -676,16 +676,18 @@
 }
 
 .Dashboard-chart-legend-item {
-    -fx-text-fill: #666666;
     -fx-font-size: 11px;
+    -fx-text-fill: #31363F;
 }
 
 .axis {
     -fx-tick-label-font-size: 11px;
+    -fx-text-fill: #31363F;
 }
 
 .Dashboard-axis-label {
     -fx-font-size: 12px;
+    -fx-text-fill: #31363F;
 }
 /* end */
 
@@ -694,11 +696,7 @@
 /* start */
 /* Style cho AnchorPane chính */
 .anchor-pane {
-    -fx-background-color: #f5f6fa;
-    /*-fx-pref-height: 464.0;*/
-    /*-fx-pref-width: 700.0;*/
-    /*-fx-max-height: 464.0;*/
-    /*-fx-max-width: 700.0;*/
+    -fx-background-color: #EEEEEE;
 }
 
 /* Style cho các nút */
@@ -722,34 +720,34 @@
 
 /* Style cho labels */
 .Username-label {
-    -fx-text-fill: #333;
+    -fx-text-fill: #31363F;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-padding: 5 0;
 }
 
 .field-label {
-    -fx-text-fill: #666;
+    -fx-text-fill: #31363F;
     -fx-font-size: 12px;
     -fx-padding: 0 0 0 20px;
 }
 
 .field-value {
-    -fx-text-fill: #333;
+    -fx-text-fill: #31363F;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
     -fx-padding: 0 0 0 25px;
 }
 
 .section-title {
-    -fx-text-fill: #333;
+    -fx-text-fill: #31363F;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-padding: 0 0 0 20px;
 }
 
 .page-title {
-    -fx-text-fill: #333;
+    -fx-text-fill: #31363F;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
     -fx-padding: 10 0;
@@ -757,7 +755,7 @@
 
 /* Style cho containers */
 .profile-container {
-    -fx-background-color: white;
+    -fx-background-color: #EEEEEE;
     -fx-background-radius: 10;
     -fx-padding: 15;
     -fx-spacing: 10;
@@ -765,7 +763,7 @@
 }
 
 .left-sidebar {
-    -fx-background-color: white;
+    -fx-background-color: #EEEEEE;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
     -fx-padding: 20;
     -fx-max-width: 200;
@@ -775,21 +773,15 @@
 /* start */
 /* Modern Thumbnails Styles */
 .new-books-container {
-    -fx-background-color: #f8f9fa; /* Màu sắc mới */
+    -fx-background-color: #EEEEEE; /* Màu sắc mới */
     -fx-background-radius: 15px;
     -fx-padding: 5px;
-    -fx-pref-height: 200px; /* Chiều cao ưa thích */
-    -fx-min-height: 200px;  /* Chiều cao nhỏ nhất */
-    -fx-max-height: 200px;  /* Chiều cao lớn nhất */
 }
 
 .thumbnail-navigation {
-    -fx-background-color: #f8f9fa; /* Màu sắc mới giống như .new-books-container */
-    -fx-background-radius: 10px;
+    -fx-background-color: #76ABAE; /* Màu sắc mới giống như .new-books-container */
+    -fx-background-radius: 30px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
-    -fx-pref-height: 200px; /* Chiều cao ưa thích */
-    -fx-min-height: 200px;  /* Chiều cao nhỏ nhất */
-    -fx-max-height: 200px;  /* Chiều cao lớn nhất */
 }
 
 .nav-button {
@@ -951,4 +943,85 @@
     -fx-bar-fill: #ff6b6b; /* Màu khi hover vào cột */
 }
 
+/* ScrollPane Styles */
+.scroll-pane {
+    -fx-background: #EEEEEE;
+    -fx-background-color: #EEEEEE; /* Màu nền cho ScrollPane */
+    -fx-padding: 10px; /* Khoảng cách bên trong ScrollPane */
+}
 
+.scroll-pane .viewport {
+    -fx-background: #EEEEEE; /* Màu nền của nội dung bên trong */
+    -fx-background-color: #EEEEEE;
+}
+
+/* Vertical ScrollBar */
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent; /* Nền thanh cuộn dọc */
+    -fx-pref-width: 10px; /* Độ rộng thanh cuộn dọc */
+}
+
+/* Horizontal ScrollBar */
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: #EEEEEE; /* Nền thanh cuộn ngang */
+    -fx-pref-height: 10px; /* Độ cao thanh cuộn ngang */
+}
+
+/* Thumb (phần di chuyển trong thanh cuộn) */
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #31363F; /* Màu của thumb */
+    -fx-background-radius: 5px; /* Độ bo góc của thumb */
+}
+
+/* Hover effect for Thumb */
+.scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: #3A6F71; /* Màu khi hover */
+}
+
+/* Track (đường dẫn của thanh cuộn) */
+.scroll-pane .scroll-bar .track {
+    -fx-background-color: transparent; /* Màu nền track */
+    -fx-background-radius: 5px; /* Độ bo góc track */
+}
+
+/* Corner (góc nơi hai thanh cuộn giao nhau) */
+.scroll-pane .corner {
+    -fx-background-color: #31363F; /* Màu nền cho góc */
+}
+
+.image_label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-font-family: Montserrat;
+    -fx-text-fill: #31363F;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent; /* Nền thanh cuộn dọc */
+    -fx-pref-width: 10px; /* Độ rộng thanh cuộn dọc */
+}
+
+/* Horizontal ScrollBar */
+.scroll-bar:horizontal {
+    -fx-background-color: transparent; /* Nền thanh cuộn ngang */
+    -fx-pref-height: 10px; /* Độ cao thanh cuộn ngang */
+}
+
+/* Thumb (phần di chuyển trong thanh cuộn) */
+.scroll-bar .thumb {
+    -fx-background-color: #31363F; /* Màu của thumb */
+    -fx-background-radius: 5px; /* Độ bo góc của thumb */
+}
+
+/* Hover effect for Thumb */
+.scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: #3A6F71; /* Màu khi hover */
+}
+
+/* Track (đường dẫn của thanh cuộn) */
+.scroll-pane .scroll-bar .track {
+    -fx-background-color: #EEEEEE; /* Màu nền track */
+    -fx-background-radius: 5px; /* Độ bo góc track */
+}

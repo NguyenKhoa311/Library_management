@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -26,6 +27,10 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class UserDashboardController {
+    @FXML
+    private Circle historyCircle;
+    @FXML
+    private VBox bookThumbnailContainer1;
     @FXML
     private ImageView currentBookThumbnail;
     @FXML

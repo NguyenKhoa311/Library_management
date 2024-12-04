@@ -2,6 +2,10 @@
     -fx-background-color: #222831;
 }
 
+.table-view .corner {
+    -fx-background-color: #222831;
+}
+
 .Menu-jfx-button-custom {
     -fx-background-color: #222831;
     -fx-border-width: 0px; /* Optional rounded corners */
@@ -212,7 +216,7 @@
 
 .Documents-TableView .column-header {
     -fx-text-fill: #EEEEEE !important; /* Text color for the header */
-    -fx-background-color: #B0D4D6 !important; /* Header background color */
+    -fx-background-color: #76ABAE !important; /* Header background color */
     -fx-font-weight: bold; /* Font weight for header */
     -fx-alignment: center; /* Center align header text */
     -fx-border-color: #222831; /* Border color */
@@ -220,19 +224,20 @@
 }
 
 .Documents-TableView .column-header .label {
+    -fx-font-size: 13px;
     -fx-text-fill: #EEEEEE ; /* Optional: Change header text color */
 }
 
 .Documents-TableView .table-row-cell {
-    -fx-background-color: #222831; /* Background color for rows */
+    -fx-background-color: #31363F; /* Background color for rows */
     -fx-alternate-row-fill-visible: true;
-    -fx-alternate-row-fill: #31363F; /* Background color for alternate rows */
+    -fx-alternate-row-fill: #222831; /* Background color for alternate rows */
     -fx-padding: 5px; /* Padding inside the rows */
     -fx-text-fill: #76ABAE;
 }
 
 .Documents-TableView .table-row-cell:odd {
-    -fx-background-color: #31363F; /* Alternate row background */
+    -fx-background-color: #222831; /* Alternate row background */
 }
 
 .Documents-TableView .table-row-cell:selected {
@@ -265,6 +270,11 @@
     -fx-font-size: 16px; /* Kích thước chữ */
     -fx-font-weight: bold; /* Đậm chữ */
 }
+
+.Documents-TableView .corner  {
+    -fx-background-color: #222831 !important;
+}
+
 /* Cài đặt cho HBox */
 .Documents-HBox {
     -fx-background-color: #222831; /* Nền của HBox */
@@ -441,7 +451,7 @@
 }
 
 .Dashboard-stat-circle {
-    -fx-fill: #f0f0f0;
+    -fx-fill: gray;
     -fx-stroke: #e0e0e0;
     -fx-stroke-width: 2;
 }
@@ -452,11 +462,6 @@
     -fx-padding: 10 0 5 0;
 }
 
-.stat-label {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #76ABAE;
-}
 
 .chart-section {
     -fx-background-color: #31363F;
@@ -525,7 +530,7 @@
 }
 
 .stat-label {
-    -fx-font-size: 12px;
+    -fx-font-size: 11px;
     -fx-text-fill: #76ABAE;
     -fx-font-weight: bold;
     -fx-wrap-text: true;
@@ -612,7 +617,7 @@
 
 /* Background circles */
 .stat-circle-bg {
-    -fx-stroke: #f0f0f0;
+    -fx-stroke: gray;
 }
 
 /* Foreground circles with different colors */
@@ -648,13 +653,6 @@
     -fx-text-fill: #76ABAE;
 }
 
-.stat-label {
-    -fx-font-size: 12px;
-    -fx-text-fill: #76ABAE;
-    -fx-font-weight: bold;
-    -fx-wrap-text: true;
-    -fx-text-alignment: center;
-}
 
 .Dashboard-stat-container {
     -fx-max-height: 120;
@@ -712,11 +710,7 @@
 /* start */
 /* Style cho AnchorPane chính */
 .anchor-pane {
-    -fx-background-color: #f5f6fa;
-    /*-fx-pref-height: 464.0;*/
-    /*-fx-pref-width: 700.0;*/
-    /*-fx-max-height: 464.0;*/
-    /*-fx-max-width: 700.0;*/
+    -fx-background-color: #222831;
 }
 
 /* Style cho các nút */
@@ -789,6 +783,13 @@
     -fx-max-width: 200;
     -fx-alignment: top-center;
 }
+
+.Recently-Added-Documents-label {
+    -fx-font-size: 14px;
+    -fx-padding: 2px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #76ABAE;
+}
 /* end */
 
 /* css for recently added documents */
@@ -797,23 +798,14 @@
 .new-books-container {
     -fx-background-color: transparent; /* Màu sắc mới */
     -fx-background-radius: 15px;
-    -fx-padding: -5px;
-}
-
-.Recently-Added-Documents-label {
-    -fx-font-size: 14px;
-    -fx-padding: 2px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #76ABAE;
+    -fx-padding: 5px;
 }
 
 .thumbnail-navigation {
     -fx-background-color: #76ABAE; /* Màu sắc mới giống như .new-books-container */
-    -fx-background-radius: 10px;
+    -fx-background-radius: 30px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
-    -fx-pref-height: 200px; /* Chiều cao ưa thích */
-    -fx-min-height: 200px;  /* Chiều cao nhỏ nhất */
-    -fx-max-height: 200px;  /* Chiều cao lớn nhất */
+
 }
 
 .nav-button {
@@ -824,7 +816,7 @@
 }
 
 .nav-button:hover {
-    -fx-background-color: rgba(0,0,0,0.05);
+    -fx-background-color: #B0D4D6;
     -fx-cursor: hand;
 }
 
@@ -972,4 +964,87 @@
 
 .chart-bar:hover {
     -fx-bar-fill: #ff6b6b; /* Màu khi hover vào cột */
+}
+
+/* ScrollPane Styles */
+.scroll-pane {
+    -fx-background: #222831;
+    -fx-background-color: #222831 !important; /* Màu nền cho ScrollPane */
+    -fx-padding: 10px; /* Khoảng cách bên trong ScrollPane */
+}
+
+.scroll-pane .viewport {
+    -fx-background: #222831; /* Màu nền của nội dung bên trong */
+    -fx-background-color: #222831;
+}
+
+/* Vertical ScrollBar */
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent; /* Nền thanh cuộn dọc */
+    -fx-pref-width: 10px; /* Độ rộng thanh cuộn dọc */
+}
+
+/* Horizontal ScrollBar */
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: transparent; /* Nền thanh cuộn ngang */
+    -fx-pref-height: 10px; /* Độ cao thanh cuộn ngang */
+}
+
+/* Thumb (phần di chuyển trong thanh cuộn) */
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #76ABAE; /* Màu của thumb */
+    -fx-background-radius: 5px; /* Độ bo góc của thumb */
+}
+
+/* Hover effect for Thumb */
+.scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: #3A6F71; /* Màu khi hover */
+}
+
+/* Track (đường dẫn của thanh cuộn) */
+.scroll-pane .scroll-bar .track {
+    -fx-background-color: #222831; /* Màu nền track */
+    -fx-background-radius: 5px; /* Độ bo góc track */
+}
+
+/* Corner (góc nơi hai thanh cuộn giao nhau) */
+.scroll-pane .corner {
+    -fx-background-color: #222831; /* Màu nền cho góc */
+}
+
+.image_label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-font-family: Montserrat;
+    -fx-text-fill: #76ABAE;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent; /* Nền thanh cuộn dọc */
+    -fx-pref-width: 10px; /* Độ rộng thanh cuộn dọc */
+}
+
+/* Horizontal ScrollBar */
+.scroll-bar:horizontal {
+    -fx-background-color: transparent; /* Nền thanh cuộn ngang */
+    -fx-pref-height: 10px; /* Độ cao thanh cuộn ngang */
+}
+
+/* Thumb (phần di chuyển trong thanh cuộn) */
+.scroll-bar .thumb {
+    -fx-background-color: #76ABAE; /* Màu của thumb */
+    -fx-background-radius: 5px; /* Độ bo góc của thumb */
+}
+
+/* Hover effect for Thumb */
+.scroll-bar .thumb:hover {
+    -fx-background-color: #3A6F71; /* Màu khi hover */
+}
+
+/* Track (đường dẫn của thanh cuộn) */
+.scroll-bar .track {
+    -fx-background-color: #222831; /* Màu nền track */
+    -fx-background-radius: 5px; /* Độ bo góc track */
 }
