@@ -109,6 +109,19 @@ public class BorrowRepository {
         return historyList;
     }
 
+    public String getDocType(int userId, int borrowId) {
+        String typeQuery = "SELECT doc_type FROM borrow_history WHERE user_id = ? AND id = ?";
+        String docType = null;
+        try (ResultSet rsType = ConnectJDBC.executeQueryWithParams(typeQuery, userId, borrowId)) {
+            if (rsType.next()) {
+                docType = rsType.getString("doc_type");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return docType;
+    }
+
     public Document getRecentDocument(int userId, int borrowId) {
         Document document = null;
         // Query to determine document type (book or thesis)

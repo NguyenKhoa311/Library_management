@@ -37,7 +37,7 @@
                         <Insets top="70.0" />
                      </padding>
                   </StackPane>
-                  <Label fx:id="userName" alignment="CENTER" prefHeight="23.0" styleClass="username-label" text="User Name">
+                  <Label fx:id="userName" alignment="CENTER" prefHeight="23.0" styleClass="Username-label" text="User Name">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

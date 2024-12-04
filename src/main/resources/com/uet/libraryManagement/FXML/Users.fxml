@@ -14,7 +14,7 @@
     <children>
         <!-- Search Bar -->
         <HBox alignment="CENTER" layoutX="14.4" layoutY="10" prefHeight="38.0" prefWidth="670.0" styleClass="Documents-HBox" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="16.0">
-            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#searchUser" styleClass="jfx-button-custom">
+            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#searchUser" styleClass="Menu-jfx-button-custom">
                 <graphic>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -27,7 +27,7 @@
                 <HBox.margin>
                     <Insets />
                 </HBox.margin></TextField>
-            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" styleClass="jfx-button-custom">
+            <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" styleClass="Menu-jfx-button-custom">
                 <graphic>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                         <image>

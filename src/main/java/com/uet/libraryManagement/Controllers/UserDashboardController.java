@@ -1,7 +1,9 @@
 package com.uet.libraryManagement.Controllers;
 
+import com.uet.libraryManagement.Book;
 import com.uet.libraryManagement.BorrowHistory;
 import com.uet.libraryManagement.Document;
+import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Repositories.BorrowRepository;
@@ -16,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -26,6 +29,10 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class UserDashboardController {
+    @FXML
+    private Circle historyCircle;
+    @FXML
+    private VBox bookThumbnailContainer1;
     @FXML
     private ImageView currentBookThumbnail;
     @FXML
@@ -178,13 +185,27 @@ public class UserDashboardController {
 
     private void showDocumentDetailsFromImage() {
         if (recentDocs != null && recentDocIndex < recentDocs.size()) {
-            openDocumentDetails(recentDocs.get(recentDocIndex));
+            Document recent = recentDocs.get(recentDocIndex);
+            String docType;
+            if (recent instanceof Book) {
+                docType = "book";
+            } else {
+                docType = "thesis";
+            }
+            openDocumentDetails(recentDocs.get(recentDocIndex), docType);
         }
     }
 
     private void showRecommendedDocumentDetailsFromImage() {
         if (recommendedDocs != null && recommendedDocIndex < recommendedDocs.size()) {
-            openDocumentDetails(recommendedDocs.get(recommendedDocIndex));
+            Document document = recommendedDocs.get(recommendedDocIndex);
+            String docType;
+            if (document instanceof Book) {
+                docType = "book";
+            } else {
+                docType = "thesis";
+            }
+            openDocumentDetails(recommendedDocs.get(recommendedDocIndex), docType);
         }
     }
 
@@ -193,10 +214,11 @@ public class UserDashboardController {
         int userId = SessionManager.getInstance().getUser().getId();
         int borrow_id = borrowHistory.getId();
         Document document = BorrowRepository.getInstance().getRecentDocument(userId, borrow_id);
-        openDocumentDetails(document);
+        String docType = BorrowRepository.getInstance().getDocType(userId, borrow_id);
+        openDocumentDetails(document, docType);
     }
 
-    private void openDocumentDetails(Document document) {
+    private void openDocumentDetails(Document document, String docType) {
         if (document != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentDetail.fxml"));
@@ -205,11 +227,15 @@ public class UserDashboardController {
                 // Get the controller and set the selected document
                 DocumentDetailController controller = loader.getController();
                 controller.setDocumentDetails(document);
-
+                controller.setDocument(document);
+                controller.setDocType(docType);
+                controller.loadComments(document.getId(), docType);
+                Scene detailScene = new Scene(detailRoot);
+                detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
                 // Create a new stage for the document detail window
                 Stage detailStage = new Stage();
                 detailStage.setTitle("Document Details");
-                detailStage.setScene(new Scene(detailRoot));
+                detailStage.setScene(detailScene);
                 detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
                 detailStage.showAndWait();
             } catch (IOException e) {
