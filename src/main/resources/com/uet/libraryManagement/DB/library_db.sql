@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 04, 2024 at 07:22 AM
+-- Generation Time: Dec 04, 2024 at 12:10 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -113,6 +113,31 @@ INSERT INTO `borrow_history` (`id`, `user_id`, `doc_type`, `doc_id`, `borrow_dat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rating_comment`
+--
+
+CREATE TABLE `rating_comment` (
+  `id` int(11) NOT NULL,
+  `doc_id` int(11) NOT NULL,
+  `doc_type` varchar(15) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rating_comment`
+--
+
+INSERT INTO `rating_comment` (`id`, `doc_id`, `doc_type`, `user_id`, `rating`, `comment`, `created_at`) VALUES
+(1, 1, 'book', 1, 3, 'hay', '2024-12-04 16:38:35'),
+(2, 4, 'book', 1, 5, 'rất hay', '2024-12-04 16:45:16'),
+(3, 14, 'book', 4, 3, 'tạm', '2024-12-04 16:54:45');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `theses`
 --
 
@@ -201,6 +226,12 @@ ALTER TABLE `borrow_history`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `rating_comment`
+--
+ALTER TABLE `rating_comment`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `theses`
 --
 ALTER TABLE `theses`
@@ -227,6 +258,12 @@ ALTER TABLE `books`
 --
 ALTER TABLE `borrow_history`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `rating_comment`
+--
+ALTER TABLE `rating_comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `theses`
