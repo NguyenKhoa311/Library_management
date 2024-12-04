@@ -1025,3 +1025,14 @@
     -fx-background-color: #EEEEEE; /* Màu nền track */
     -fx-background-radius: 5px; /* Độ bo góc track */
 }
+.star-icon {
+    -fx-fill: gray;
+}
+
+.star-icon-hover {
+    -fx-fill: orange;
+}
+
+.star-icon-selected {
+    -fx-fill: gold;
+}
