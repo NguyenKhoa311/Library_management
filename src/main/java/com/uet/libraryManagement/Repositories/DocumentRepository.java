@@ -40,6 +40,68 @@ public abstract class DocumentRepository {
         return count;
     }
 
+    // get recommended documents by user id
+    public ObservableList<Document> getRecommendedDocuments(int userId) {
+        ObservableList<Document> documents = FXCollections.observableArrayList();
+
+        String query = """
+        WITH user_borrowed AS (
+            SELECT doc_id, doc_type
+            FROM borrow_history
+            WHERE user_id = ?
+        ),
+        similar_books AS (
+            SELECT * 
+            FROM books 
+            WHERE (
+                genre IN (
+                    SELECT DISTINCT genre 
+                    FROM books 
+                    WHERE id IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'book')
+                ) 
+                OR author IN (
+                    SELECT DISTINCT author 
+                    FROM books 
+                    WHERE id IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'book')
+                )
+            ) 
+            AND id NOT IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'book')
+        ),
+        similar_theses AS (
+            SELECT * 
+            FROM theses 
+            WHERE (
+                field IN (
+                    SELECT DISTINCT field 
+                    FROM theses 
+                    WHERE id IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'thesis')
+                ) 
+                OR author IN (
+                    SELECT DISTINCT author 
+                    FROM theses 
+                    WHERE id IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'thesis')
+                )
+            ) 
+            AND id NOT IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'thesis')
+        )
+        SELECT * 
+        FROM similar_books
+        UNION ALL
+        SELECT * 
+        FROM similar_theses
+        ORDER BY createdDate DESC
+        LIMIT 10;
+        """;
+
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, userId)) {
+            getDocuments(rs, documents);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return documents;
+    }
+
+    // get recent added documents
     public ObservableList<Document> getRecentAddedDocuments() {
         ObservableList<Document> documents = FXCollections.observableArrayList();
         String query = "SELECT * FROM books "
@@ -227,9 +289,17 @@ public abstract class DocumentRepository {
         ConnectJDBC.executeUpdate(query, document.getId());
     }
 
-    public void deleteAll() {
-        String query = "DELETE FROM " + getDbTable();
-        ConnectJDBC.executeUpdate(query);
+    // check if document is borrowed
+    public boolean isBorrowed(int bookId, String docType) {
+        String query = "SELECT COUNT(*) FROM borrow_history WHERE doc_id = ? AND doc_type = ? AND return_date IS NULL";
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, bookId, docType.equals("Books") ? "book" : "thesis")) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Nếu có ít nhất 1 bản sao đang được mượn
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void getDocuments(ResultSet rs, ObservableList<Document> documents) throws SQLException {

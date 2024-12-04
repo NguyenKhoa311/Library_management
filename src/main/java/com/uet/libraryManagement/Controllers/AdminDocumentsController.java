@@ -3,6 +3,7 @@ package com.uet.libraryManagement.Controllers;
 import com.uet.libraryManagement.*;
 import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
+import com.uet.libraryManagement.Repositories.DocumentRepository;
 import com.uet.libraryManagement.Repositories.ThesisRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,14 @@ public class AdminDocumentsController extends DocumentsController {
     @FXML
     private void deleteDoc() {
         Document selectedDocument = docsTable.getSelectionModel().getSelectedItem();
+        String docType = docTypeBox.getValue();
+
         if (selectedDocument != null) {
+            if (BookRepository.getInstance().isBorrowed(selectedDocument.getId(), docType)) {
+                showAlert("This document cannot be deleted because it is currently borrowed!");
+                return;
+            }
+
             Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this document?", ButtonType.YES, ButtonType.NO);
             confirmAlert.setTitle("Confirm Deletion");
             confirmAlert.setHeaderText("Delete Document");

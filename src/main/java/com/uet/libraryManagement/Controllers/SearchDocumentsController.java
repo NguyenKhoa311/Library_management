@@ -111,8 +111,9 @@ public class SearchDocumentsController implements Initializable {
     @FXML
     private void handleSearchAction() {
         String searchTerm = searchBar.getText();
+        String docType = docTypeBox.getValue();
         if (searchTerm != null && !searchTerm.isEmpty()) {
-            List<Volume> volumes = BookAPI.searchVolumes(searchTerm);
+            List<Volume> volumes = BookAPI.searchVolumes(searchTerm, docType);
             ObservableList<Document> documents = convertVolumesToDocuments(volumes);
 
             if (documents.isEmpty()) {
@@ -175,6 +176,7 @@ public class SearchDocumentsController implements Initializable {
     @FXML
     private void applyFilters() {
         StringBuilder searchTerm = new StringBuilder();
+        String docType = docTypeBox.getValue();
 
         // Append each filter to the query if it's not empty
         if (!titleFilter.getText().isEmpty()) {
@@ -203,7 +205,7 @@ public class SearchDocumentsController implements Initializable {
             searchTerm.setLength(searchTerm.length() - 1);
         }
 
-        List<Volume> volumes = BookAPI.searchVolumes(searchTerm.toString());
+        List<Volume> volumes = BookAPI.searchVolumes(searchTerm.toString(), docType);
         ObservableList<Document> documents = convertVolumesToDocuments(volumes);
         filtersPanel.setVisible(false);
 

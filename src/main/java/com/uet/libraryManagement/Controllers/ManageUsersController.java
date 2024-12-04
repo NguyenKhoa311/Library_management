@@ -196,6 +196,11 @@ public class ManageUsersController {
                 return;
             }
 
+            if (UserRepository.getInstance().isUserBorrowingDocuments(selectedUser.getId())) {
+                showAlert("You can't delete user borrowing documents");
+                return;
+            }
+
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Delete User");
             confirmationAlert.setContentText("Are you sure you want to delete this user?");
