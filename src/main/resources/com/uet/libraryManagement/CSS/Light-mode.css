@@ -2,51 +2,20 @@
     -fx-background-color: #EEEEEE;
 }
 
-.text-field {
-    /*-fx-text-fill: black;*/
-}
-
-.label {
-    -fx-font-size: 20;
-    -fx-font-family: Calibri;
-    /*-fx-text-fill: #31363F;*/
-    -fx-alignment-baseline: middle;
-    -fx-border-width: 2px; /* Optional rounded corners */
-    -fx-background-radius: 5px;
-}
-
-.TextField {
-    -fx-alignment: center;
-}
-
-.buttons {
-    -fx-background-color: #EEEEEE;
-    -fx-border-color: #31363F;
-    -fx-border-width: 0px; /* Optional rounded corners */
-    -fx-background-radius: 5px;
-}
-
-.buttons:hover {
-    -fx-border-color: #31363F;
-    -fx-background-color: #EEEEEE;
-    -fx-border-width: 0px; /* Optional rounded corners */
-    -fx-background-radius: 5px;
-}
-
-.jfx-button-custom {
+.Menu-jfx-button-custom {
     -fx-background-color: #76ABAE;
     -fx-border-color: #31363F;
     -fx-border-width: 0px; /* Optional rounded corners */
     -fx-background-radius: 5px;
 }
 
-.jfx-button-custom:hover {
+.Menu-jfx-button-custom:hover {
     -fx-background-color: #76ABAE;
     -fx-cursor: hand; /* Show hand cursor on hover */
 }
 
 /*chưa di chuột*/
-.jfx-menu-button-style {
+.Menu-button-style {
     -fx-background-color: #EEEEEE; /* Set border color */
     -fx-font-size: 13;
     -fx-border-width: 2px; /* Optional rounded corners */
@@ -54,7 +23,7 @@
 }
 
 /* di chuột vào */
-.jfx-menu-button-style:hover {
+.Menu-button-style:hover {
     -fx-background-color: #B0D4D6;  /* Change color on hover */ /* Change border color on hover */
     -fx-cursor: hand;
     -fx-font-weight: bold; ;
@@ -62,7 +31,7 @@
     -fx-font-size: 15;/* Show hand cursor on hover */
 }
 
-.jfx-menu-icon-style {
+.Menu-jfx-menu-icon-style {
     -fx-background-color: #76ABAE; /* Set border color */
     -fx-font-size: 13;
     -fx-border-radius: 5px;
@@ -201,7 +170,7 @@
     -fx-background-color: #EEEEEE; /* Set border color */
     -fx-font-size: 13;
     -fx-border-width: 1px; /* Optional rounded corners */
-    -fx-background-radius: 6px;
+    -fx-background-radius: 10px;
     -fx-border-color: #31363F;
     -fx-border-radius: 5px;
 }
@@ -213,7 +182,7 @@
     -fx-font-size: 12;/* Show hand cursor on hover */
     -fx-border-width: 2px; /* Optional rounded corners */
     -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-radius: 10px;
     -fx-background-color: #B0D4D6;  /* Màu nền khi hover */
     -fx-border-color: #3A6F71; /* Màu viền khi hover */
 }
@@ -240,12 +209,11 @@
     -fx-font-weight: bold; /* Font weight for header */
     -fx-alignment: center; /* Center align header text */
     -fx-border-color: #31363F; /* Border color */
-    -fx-border-radius: 5px;
-    -fx-border-width: 1px; /* Border width */
     -fx-background-radius: 5px;
 }
 
 .Documents-TableView .column-header .label {
+    -fx-font-size: 13px;
     -fx-text-fill: #31363F !important; /* Optional: Change header text color */
 }
 
@@ -403,6 +371,7 @@
 .Profile-HBox {
     -fx-background-color: #EEEEEE;
     -fx-background-radius:  10;
+    -fx-padding: 12px;
 }
 
 .EditProfile-JFXButton {
@@ -448,7 +417,7 @@
 }
 
 
-.stat-card {
+.Dashboard-stat-card {
     -fx-background-color: #EEEEEE;
     -fx-padding: 15;
     -fx-alignment: center;
@@ -457,13 +426,13 @@
     -fx-background-radius: 5;
 }
 
-.stat-circle {
+.Dashboard-stat-circle {
     -fx-fill: #f0f0f0;
     -fx-stroke: #e0e0e0;
     -fx-stroke-width: 2;
 }
 
-.stat-number {
+.Dashboard-stat-number {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-padding: 10 0 5 0;
@@ -483,16 +452,15 @@
 }
 
 .section-title {
-    -fx-font-size: 18px;
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
-    -fx-padding: 0 0 10 0;
 }
 
-.chart-bar {
+.Dashboard-chart-bar {
     -fx-bar-fill: #ff6b6b;
 }
 
-.default-color1.chart-bar {
+.Dashboard-default-color1.Dashboard-chart-bar {
     -fx-bar-fill: #4ecdc4;
 }
 .header {
@@ -501,7 +469,7 @@
 }
 
 
-.stat-card {
+.Dashboard-stat-card {
     -fx-background-color: white;
     -fx-padding: 10;
     -fx-alignment: center;
@@ -511,7 +479,7 @@
     -fx-min-width: 120;
 }
 
-.stat-circle {
+.Dashboard-stat-circle {
     -fx-fill: transparent;
     -fx-stroke-width: 8;
 }
@@ -536,7 +504,7 @@
     -fx-stroke: #6c5ce7;
 }
 
-.stat-number {
+.Dashboard-stat-number {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-padding: 5 0 2 0;
@@ -603,7 +571,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
 }
 
-.header-title {
+.Dashboard-header-title {
     -fx-font-family: Montserrat;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
@@ -611,7 +579,7 @@
     -fx-padding: 15;
 }
 
-.stat-card {
+.Dashboard-stat-card {
     -fx-background-color: white;
     -fx-padding: 10;
     -fx-alignment: center;
@@ -621,7 +589,7 @@
     -fx-min-width: 120;
 }
 
-.stat-circle {
+.Dashboard-stat-circle {
     -fx-fill: transparent;
     -fx-stroke-width: 8;
     -fx-stroke-line-cap: round;
@@ -654,11 +622,11 @@
 }
 
 /* Circle container style */
-.circle-container {
+.Dashboard-circle-container {
     -fx-alignment: center;
 }
 
-.stat-number {
+.Dashboard-stat-number {
     -fx-font-size: 15px;
     -fx-font-weight: bold;
     -fx-padding: 5 0 2 0;
@@ -672,7 +640,7 @@
     -fx-text-alignment: center;
 }
 
-.stat-container {
+.Dashboard-stat-container {
     -fx-max-height: 120;
     -fx-min-height: 120;
     -fx-spacing: 15;
@@ -694,20 +662,20 @@
     -fx-padding: 0 0 5 0;
 }
 
-.chart-bar {
+.Dashboard-chart-bar {
     -fx-bar-fill: #ff6b6b;
 }
 
-.default-color1.chart-bar {
+.Dashboard-default-color1.Dashboard-chart-bar {
     -fx-bar-fill: #4ecdc4;
 }
 
-.chart-legend {
+.Dashboard-chart-legend {
     -fx-background-color: transparent;
     -fx-padding: 5px;
 }
 
-.chart-legend-item {
+.Dashboard-chart-legend-item {
     -fx-text-fill: #666666;
     -fx-font-size: 11px;
 }
@@ -716,7 +684,7 @@
     -fx-tick-label-font-size: 11px;
 }
 
-.axis-label {
+.Dashboard-axis-label {
     -fx-font-size: 12px;
 }
 /* end */
@@ -734,7 +702,7 @@
 }
 
 /* Style cho các nút */
-.profile-button {
+.Profile-button {
     -fx-background-color: #f8f9fa;
     -fx-text-fill: #333;
     -fx-background-radius: 5;
@@ -747,13 +715,13 @@
     -fx-cursor: hand;
 }
 
-.profile-button:hover {
+.Profile-button:hover {
     -fx-background-color: #e9ecef;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 0);
 }
 
 /* Style cho labels */
-.username-label {
+.Username-label {
     -fx-text-fill: #333;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
@@ -762,22 +730,22 @@
 
 .field-label {
     -fx-text-fill: #666;
-    -fx-font-size: 13px;
-    -fx-padding: 2 0;
+    -fx-font-size: 12px;
+    -fx-padding: 0 0 0 20px;
 }
 
 .field-value {
     -fx-text-fill: #333;
-    -fx-font-size: 14px;
+    -fx-font-size: 13px;
     -fx-font-weight: bold;
-    -fx-padding: 3 0;
+    -fx-padding: 0 0 0 25px;
 }
 
 .section-title {
     -fx-text-fill: #333;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-padding: 5 0;
+    -fx-padding: 0 0 0 20px;
 }
 
 .page-title {
@@ -803,21 +771,25 @@
     -fx-max-width: 200;
     -fx-alignment: top-center;
 }
-/* end */
-
 /* css for recently added documents */
 /* start */
 /* Modern Thumbnails Styles */
 .new-books-container {
-    -fx-background-color: #f8f9fa;
+    -fx-background-color: #f8f9fa; /* Màu sắc mới */
     -fx-background-radius: 15px;
     -fx-padding: 5px;
+    -fx-pref-height: 200px; /* Chiều cao ưa thích */
+    -fx-min-height: 200px;  /* Chiều cao nhỏ nhất */
+    -fx-max-height: 200px;  /* Chiều cao lớn nhất */
 }
 
 .thumbnail-navigation {
-    -fx-background-color: white;
+    -fx-background-color: #f8f9fa; /* Màu sắc mới giống như .new-books-container */
     -fx-background-radius: 10px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-pref-height: 200px; /* Chiều cao ưa thích */
+    -fx-min-height: 200px;  /* Chiều cao nhỏ nhất */
+    -fx-max-height: 200px;  /* Chiều cao lớn nhất */
 }
 
 .nav-button {
@@ -859,7 +831,7 @@
 }
 
 .dashboard_anchor {
-    -fx-background-color: #76ABAE   ;
+    -fx-background-color: #76ABAE;
 }
 /* end */
 
@@ -915,3 +887,68 @@
     -fx-font-family: Montserrat-Regular;
     -fx-text-fill: #31363F;
 }
+
+.Recently-Added-Documents-label {
+    -fx-font-size: 14px;
+    -fx-padding: 2px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #31363F;
+}
+
+.chart-bar {
+    -fx-bar-fill: #76ABAE; /* Màu cột */
+    -fx-bar-gap: 2px; /* Khoảng cách giữa các cột */
+}
+
+.chart-title {
+    -fx-font-size: 18px; /* Kích thước tiêu đề */
+    -fx-font-weight: bold; /* Chữ đậm */
+    -fx-text-fill: #31363F; /* Màu chữ */
+}
+
+.axis-label {
+    -fx-font-size: 12px; /* Kích thước chữ của nhãn trục */
+    -fx-font-weight: normal;
+    -fx-text-fill: #31363F; /* Màu chữ của nhãn trục */
+}
+
+.axis {
+    -fx-tick-label-fill: #31363F; /* Màu của nhãn tick */
+    -fx-tick-label-font-size: 10px; /* Kích thước chữ tick */
+    -fx-tick-label-font-weight: bold;
+    -fx-border-color: transparent; /* Loại bỏ viền trục nếu cần */
+}
+
+.chart-legend {
+    -fx-background-color: transparent; /* Nền trong suốt */
+    -fx-border-color: #31363F; /* Viền nhẹ */
+    -fx-text-fill: #31363F; /* Màu chữ */
+    -fx-font-size: 10px;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #31363F; /* Màu chữ của Legend */
+    -fx-font-size: 10px; /* Kích thước chữ */
+    -fx-font-weight: bold; /* Độ đậm chữ */
+}
+
+.chart-legend-symbol {
+    -fx-background-color: #31363F; /* Màu biểu tượng của Legend */
+    -fx-shape: "circle"; /* Hình dạng của biểu tượng (mặc định là hình chữ nhật) */
+    -fx-background-radius: 50%; /* Làm tròn thành hình tròn nếu cần */
+    -fx-padding: 5px; /* Khoảng cách xung quanh biểu tượng */
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent; /* Màu nền của khu vực hiển thị biểu đồ */
+    -fx-background-radius: 5px; /* Bo góc cho nền */
+    -fx-border-color: #31363F; /* Màu viền */
+    -fx-border-width: 1px;
+    -fx-text-fill: #31363F;
+}
+
+.chart-bar:hover {
+    -fx-bar-fill: #ff6b6b; /* Màu khi hover vào cột */
+}
+
+

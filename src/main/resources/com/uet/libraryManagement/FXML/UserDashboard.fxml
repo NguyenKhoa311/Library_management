@@ -16,47 +16,47 @@
 <AnchorPane prefHeight="390.0" prefWidth="525.0" styleClass="dashboard_anchor" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.UserDashboardController">
     <children>
         <VBox prefHeight="390.0" prefWidth="426.0" spacing="10" styleClass="dashboard">
-             <Label prefHeight="34.0" prefWidth="714.0" styleClass="header-title" text="My Library Dashboard" />
+             <Label prefHeight="34.0" prefWidth="714.0" styleClass="Dashboard-header-title" text="My Library Dashboard" />
 
             <!-- Stats Cards Section -->
-            <HBox alignment="CENTER" prefHeight="120.0" spacing="15" styleClass="stat-container">
+            <HBox alignment="CENTER" prefHeight="120.0" spacing="15" styleClass="Dashboard-stat-container">
                 <!-- Currently Borrowed -->
-                <VBox prefWidth="120" styleClass="stat-card">
-                    <StackPane styleClass="circle-container">
-                        <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
-                        <Circle fx:id="borrowedCircle" radius="30" styleClass="stat-circle, borrowed-circle" />
+                <VBox prefWidth="120" styleClass="Dashboard-stat-card">
+                    <StackPane styleClass="Dashboard-circle-container">
+                        <Circle radius="30" styleClass="Dashboard-stat-circle, stat-circle-bg" />
+                        <Circle fx:id="borrowedCircle" radius="30" styleClass="Dashboard-stat-circle, borrowed-circle" />
                     </StackPane>
-                    <Label fx:id="borrowedCount" styleClass="stat-number" text="0" />
+                    <Label fx:id="borrowedCount" styleClass="Dashboard-stat-number" text="0" />
                     <Label styleClass="stat-label" text="Currently Borrowed" />
                 </VBox>
 
                 <!-- Return Due Soon -->
-                <VBox prefWidth="120" styleClass="stat-card">
-                    <StackPane styleClass="circle-container">
-                        <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
-                        <Circle fx:id="dueSoonCircle" radius="30" styleClass="stat-circle, due-soon-circle" />
+                <VBox prefWidth="120" styleClass="Dashboard-stat-card">
+                    <StackPane styleClass="Dashboard-circle-container">
+                        <Circle radius="30" styleClass="Dashboard-stat-circle, stat-circle-bg" />
+                        <Circle fx:id="dueSoonCircle" radius="30" styleClass="Dashboard-stat-circle, due-soon-circle" />
                     </StackPane>
-                    <Label fx:id="dueSoonCount" styleClass="stat-number" text="0" />
+                    <Label fx:id="dueSoonCount" styleClass="Dashboard-stat-number" text="0" />
                     <Label styleClass="stat-label" text="Due Soon" />
                 </VBox>
 
                 <!-- Overdue -->
-                <VBox prefWidth="120" styleClass="stat-card">
-                    <StackPane styleClass="circle-container">
-                        <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
-                        <Circle fx:id="overdueCircle" radius="30" styleClass="stat-circle, overdue-circle" />
+                <VBox prefWidth="120" styleClass="Dashboard-stat-card">
+                    <StackPane styleClass="Dashboard-circle-container">
+                        <Circle radius="30" styleClass="Dashboard-stat-circle, stat-circle-bg" />
+                        <Circle fx:id="overdueCircle" radius="30" styleClass="Dashboard-stat-circle, overdue-circle" />
                     </StackPane>
-                    <Label fx:id="overdueCount" styleClass="stat-number" text="0" />
+                    <Label fx:id="overdueCount" styleClass="Dashboard-stat-number" text="0" />
                     <Label styleClass="stat-label" text="Overdue" />
                 </VBox>
 
                 <!-- Total Borrowed History -->
-                <VBox prefWidth="120" styleClass="stat-card">
-                    <StackPane styleClass="circle-container">
-                        <Circle radius="30" styleClass="stat-circle, stat-circle-bg" />
-                        <Circle fx:id="historyCircle" radius="30" styleClass="stat-circle, history-circle" />
+                <VBox prefWidth="120" styleClass="Dashboard-stat-card">
+                    <StackPane styleClass="Dashboard-circle-container">
+                        <Circle radius="30" styleClass="Dashboard-stat-circle, stat-circle-bg" />
+                        <Circle fx:id="historyCircle" radius="30" styleClass="Dashboard-stat-circle, history-circle" />
                     </StackPane>
-                    <Label fx:id="historyCount" styleClass="stat-number" text="0" />
+                    <Label fx:id="historyCount" styleClass="Dashboard-stat-number" text="0" />
                     <Label styleClass="stat-label" text="Total History" />
                 </VBox>
             </HBox>
@@ -67,9 +67,9 @@
                     <Insets bottom="10" left="15" right="15" top="10" />
                 </padding>
                 <Label styleClass="section-title" text="Recent Borrowed Documents" />
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="162.0" prefWidth="638.0">
                <children>
-                      <TableView fx:id="recentBorrowsTable" prefHeight="200.0" prefWidth="370.0">
+                      <TableView fx:id="recentBorrowsTable" prefHeight="200.0" prefWidth="370.0" styleClass="Documents-TableView">
                           <columns>
                         <TableColumn fx:id="noCol" prefWidth="50.0" text="No." />
                               <TableColumn fx:id="docTitleColumn" prefWidth="164.0" text="Document Title" />
@@ -81,8 +81,8 @@
       
       
                    <!-- New Books Thumbnails Section -->
-                   <VBox alignment="CENTER" fillWidth="false" layoutX="391.0" layoutY="-40.0" prefHeight="200.0" prefWidth="246.0" styleClass="new-books-container">
-                       <Label alignment="CENTER" styleClass="section-title" text="Recently Added Documents">
+                   <VBox alignment="CENTER" fillWidth="false" layoutX="391.0" layoutY="-9.0" prefHeight="200.0" prefWidth="246.0" styleClass="new-books-container">
+                       <Label alignment="CENTER" styleClass="Recently-Added-Documents-label" text="Recently Added Documents">
                         <VBox.margin>
                            <Insets />
                         </VBox.margin>

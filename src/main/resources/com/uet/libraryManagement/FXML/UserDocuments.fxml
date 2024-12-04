@@ -20,7 +20,7 @@
    <children>
        <!-- Search Bar -->
        <HBox alignment="CENTER" layoutX="15.2" layoutY="10" prefHeight="34.0" prefWidth="463.0" styleClass="Documents-HBox" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="222.0">
-         <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="jfx-button-custom">
+         <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#handleSearchAction" styleClass="Menu-jfx-button-custom">
             <graphic>
                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -33,7 +33,7 @@
             <HBox.margin>
                <Insets />
             </HBox.margin></TextField>
-         <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" styleClass="jfx-button-custom">
+         <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#clearSearchTerm" styleClass="Menu-jfx-button-custom">
             <graphic>
                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>

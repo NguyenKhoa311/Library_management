@@ -28,7 +28,7 @@
                   <TextField fx:id="username_textfield" layoutX="98.0" layoutY="6.0" prefHeight="26.0" prefWidth="150.0" promptText="Username" />
                   <Label layoutX="27.0" layoutY="49.0" styleClass="Login-label-password" text="Password" />
                   <PasswordField fx:id="password_textfield" layoutX="98.0" layoutY="43.0" prefHeight="26.0" prefWidth="150.0" promptText="Password" />
-                  <JFXButton alignment="CENTER" layoutX="111.0" layoutY="87.0" onAction="#handleLogin" prefHeight="42.0" prefWidth="110.0" styleClass="Login-JFXButton-Login" text="Login">
+                  <JFXButton fx:id="login_button" alignment="CENTER" layoutX="111.0" layoutY="87.0" onAction="#handleLogin" prefHeight="42.0" prefWidth="110.0" styleClass="Login-JFXButton-Login" text="Login">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

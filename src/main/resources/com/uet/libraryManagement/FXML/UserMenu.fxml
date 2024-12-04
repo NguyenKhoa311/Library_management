@@ -60,21 +60,21 @@
          </graphic>
       </JFXButton>
    </VBox>
-   <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="657.0" onAction="#exit" prefHeight="38.0" prefWidth="42.0" styleClass="jfx-button-custom">
+   <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="657.0" onAction="#exit" prefHeight="38.0" prefWidth="42.0" styleClass="Menu-jfx-button-custom">
       <graphic>
          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../ICONS/close.png" />
          </ImageView>
       </graphic>
    </JFXButton>
-   <JFXButton fx:id="DL_mode" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="610.0" onAction="#DL_mode" prefHeight="38.0" prefWidth="46.0" styleClass="jfx-button-custom">
+   <JFXButton fx:id="DL_mode" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="610.0" onAction="#DL_mode" prefHeight="38.0" prefWidth="46.0" styleClass="Menu-jfx-button-custom">
       <graphic>
          <ImageView fx:id="DL_image" fitHeight="30.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../ICONS/dark.png" />
          </ImageView>
       </graphic>
    </JFXButton>
-   <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#menuButton" prefHeight="38.0" prefWidth="152.0" styleClass="jfx-menu-icon-style">
+   <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" onAction="#menuButton" prefHeight="38.0" prefWidth="152.0" styleClass="Menu-jfx-menu-icon-style">
       <graphic>
          <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true">
             <Image url="@../ICONS/menu.png" />

@@ -16,7 +16,18 @@ public class LoginController {
 
     @FXML
     public void initialize() {
+        // Lắng nghe phím Enter trên trường username hoặc password
+        username_textfield.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case ENTER -> handleLogin();
+            }
+        });
 
+        password_textfield.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case ENTER -> handleLogin();
+            }
+        });
     }
 
     // handle login
