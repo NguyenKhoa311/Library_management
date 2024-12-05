@@ -3,9 +3,11 @@ package com.uet.libraryManagement.Controllers;
 import com.uet.libraryManagement.*;
 import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Managers.SessionManager;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.Repositories.BorrowRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -121,10 +123,20 @@ public class HistoryController implements Initializable {
     // Load borrowing history from the database
     public void loadHistory(int currentUserId, String docType) {
         int userIdToUse = (selectedUserId != null) ? selectedUserId : currentUserId;
-        ObservableList<BorrowHistory> historyList = FXCollections.observableArrayList(
-                BorrowRepository.getInstance().getAllHistoryByUserId(userIdToUse, docType)
-        );
-        historyTable.setItems(historyList);
+
+        Task<ObservableList<BorrowHistory>> task = new Task<>() {
+            @Override
+            protected ObservableList<BorrowHistory> call() throws Exception {
+                return FXCollections.observableArrayList(
+                        BorrowRepository.getInstance().getAllHistoryByUserId(userIdToUse, docType)
+                );
+            }
+        };
+
+        Runnable onSuccess = () -> historyTable.setItems(task.getValue());
+        Runnable onFailure = () -> showAlert("Failed to load borrowing history.");
+
+        TaskManager.runTask(task, onSuccess, onFailure);
     }
 
     @FXML
@@ -143,45 +155,70 @@ public class HistoryController implements Initializable {
         }
 
         int borrowId = borrowHistory.getId();
-        int docId;
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                String getDocId = "SELECT doc_id, doc_type FROM borrow_history WHERE id = " + borrowId;
+                try (ResultSet rs = ConnectJDBC.executeQuery(getDocId)) {
+                    if (rs.next()) {
+                        int docId = rs.getInt("doc_id");
+                        String docType = rs.getString("doc_type");
 
-        String getDocId = "SELECT doc_id, doc_type FROM borrow_history WHERE id = " + borrowId;
-        try(ResultSet rs = ConnectJDBC.executeQuery(getDocId)) {
-            if (rs.next()) {
-                docId = rs.getInt("doc_id");
-                String docType = rs.getString("doc_type");
+                        // Update the return date and status in the borrow_history table
+                        String updateReturnQuery = "UPDATE borrow_history SET return_date = CURRENT_DATE, status = 'returned' WHERE id = ?";
+                        ConnectJDBC.executeUpdate(updateReturnQuery, borrowId);
 
-                // Update the return date and status in the borrow_history table
-                String updateReturnQuery = "UPDATE borrow_history SET return_date = CURRENT_DATE, status = 'returned' WHERE id = ?";
-                ConnectJDBC.executeUpdate(updateReturnQuery, borrowId);
-
-                // Increase the document quantity in the respective table
-                BorrowRepository.getInstance().increaseDocumentQuantity(docId, docType);
-                showAlert("The document has been successfully returned!");
-                loadHistory(SessionManager.getInstance().getUser().getId(), docTypeBox.getValue());
+                        // Increase the document quantity in the respective table
+                        BorrowRepository.getInstance().increaseDocumentQuantity(docId, docType);
+                    }
+                }
+                return null;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            showAlert("An error occurred while returning the document.");
-        }
+        };
+
+        Runnable onSuccess = () -> {
+            showAlert("The document has been successfully returned!");
+            loadHistory(SessionManager.getInstance().getUser().getId(), docTypeBox.getValue());
+        };
+
+        Runnable onFailure = () -> showAlert("An error occurred while returning the document.");
+
+        TaskManager.runTask(task, onSuccess, onFailure);
     }
 
     // Handle search functionality
     public void handleSearchAction() {
         int userIdToUse = (selectedUserId != null) ? selectedUserId : SessionManager.getInstance().getUser().getId();
         String searchTerm = searchBar.getText();
-        if (searchTerm != null && !searchTerm.isEmpty()) {
-            String docType = docTypeBox.getValue();
+        String docType = docTypeBox.getValue();
 
-            // Load history with search term
-            ObservableList<BorrowHistory> historyList = FXCollections.observableArrayList(
-                    BorrowRepository.getInstance().getAllHistoryByTitle(userIdToUse, docType, searchTerm)
-            );
-            historyTable.setItems(historyList);
-        } else {
-            // If search is cleared, reload full history
-            loadHistory(userIdToUse, docTypeBox.getValue());
-        }
+        Task<ObservableList<BorrowHistory>> searchTask = new Task<>() {
+            @Override
+            protected ObservableList<BorrowHistory> call() throws Exception {
+                if (searchTerm != null && !searchTerm.isEmpty()) {
+                    // Load history with search term
+                    return FXCollections.observableArrayList(
+                            BorrowRepository.getInstance().getAllHistoryByTitle(userIdToUse, docType, searchTerm)
+                    );
+                } else {
+                    // Reload full history if search term is empty
+                    return FXCollections.observableArrayList(
+                            BorrowRepository.getInstance().getAllHistoryByUserId(userIdToUse, docType)
+                    );
+                }
+            }
+        };
+
+        Runnable onSuccess = () -> {
+            historyTable.setItems(searchTask.getValue());
+        };
+
+        Runnable onFailure = () -> {
+            showAlert("An error occurred while searching. Please try again.");
+        };
+
+        // Sử dụng TaskManager để chạy Task
+        TaskManager.runTask(searchTask, onSuccess, onFailure);
     }
 
     public void clearSearchTerm() {
@@ -198,62 +235,69 @@ public class HistoryController implements Initializable {
     }
 
     public void applyFilters() {
+        filtersPanel.setVisible(false);
         String docType = docTypeBox.getValue();
         boolean isBook = "Books".equalsIgnoreCase(docType);
         int userIdToUse = (selectedUserId != null) ? selectedUserId : SessionManager.getInstance().getUser().getId();
 
-        // Start building the query with the initial structure
-        String query = "SELECT borrow_history.id, ";
-        query += isBook ? "books.title AS docTitle" : "theses.title AS docTitle";
-        query += ", borrow_date, due_date, return_date, status FROM borrow_history ";
-        query += "JOIN " + (isBook ? "books" : "theses") + " ON borrow_history.doc_id = "
-                + ("Books".equalsIgnoreCase(docType) ? "books.id" : "theses.id") + " WHERE borrow_history.user_id = ?"
-                + " AND doc_type = " + (isBook ? "'book'" : "'thesis'");
+        Task<ObservableList<BorrowHistory>> task = new Task<>() {
+            @Override
+            protected ObservableList<BorrowHistory> call() throws Exception {
+                String query = "SELECT borrow_history.id, ";
+                query += isBook ? "books.title AS docTitle" : "theses.title AS docTitle";
+                query += ", borrow_date, due_date, return_date, status FROM borrow_history ";
+                query += "JOIN " + (isBook ? "books" : "theses") + " ON borrow_history.doc_id = "
+                        + ("Books".equalsIgnoreCase(docType) ? "books.id" : "theses.id") + " WHERE borrow_history.user_id = ?"
+                        + " AND doc_type = " + (isBook ? "'book'" : "'thesis'");
 
-        // List of parameters to pass to the query
-        List<Object> params = new ArrayList<>();
-        params.add(userIdToUse);
+                List<Object> params = new ArrayList<>();
+                params.add(userIdToUse);
 
-        // Add filters to the query if they are set
-        if (titleFilter.getText() != null && !titleFilter.getText().isEmpty()) {
-            query += " AND " + (isBook ? "books.title" : "theses.title") + " LIKE ?";
-            params.add("%" + titleFilter.getText() + "%");
-        }
-        if (statusChoice.getValue() != null) {
-            query += " AND status = ?";
-            params.add(statusChoice.getValue());
-        }
-        if (borrowStart.getValue() != null) {
-            query += " AND borrow_date >= ?";
-            params.add(borrowStart.getValue());
-        }
-        if (borrowEnd.getValue() != null) {
-            query += " AND borrow_date <= ?";
-            params.add(borrowEnd.getValue());
-        }
-        if (dueStart.getValue() != null) {
-            query += " AND due_date >= ?";
-            params.add(dueStart.getValue());
-        }
-        if (dueEnd.getValue() != null) {
-            query += " AND due_date <= ?";
-            params.add(dueEnd.getValue());
-        }
-        if (returnStart.getValue() != null) {
-            query += " AND return_date >= ?";
-            params.add(returnStart.getValue());
-        }
-        if (returnEnd.getValue() != null) {
-            query += " AND return_date <= ?";
-            params.add(returnEnd.getValue());
-        }
+                if (titleFilter.getText() != null && !titleFilter.getText().isEmpty()) {
+                    query += " AND " + (isBook ? "books.title" : "theses.title") + " LIKE ?";
+                    params.add("%" + titleFilter.getText() + "%");
+                }
+                if (statusChoice.getValue() != null) {
+                    query += " AND status = ?";
+                    params.add(statusChoice.getValue());
+                }
+                if (borrowStart.getValue() != null) {
+                    query += " AND borrow_date >= ?";
+                    params.add(borrowStart.getValue());
+                }
+                if (borrowEnd.getValue() != null) {
+                    query += " AND borrow_date <= ?";
+                    params.add(borrowEnd.getValue());
+                }
+                if (dueStart.getValue() != null) {
+                    query += " AND due_date >= ?";
+                    params.add(dueStart.getValue());
+                }
+                if (dueEnd.getValue() != null) {
+                    query += " AND due_date <= ?";
+                    params.add(dueEnd.getValue());
+                }
+                if (returnStart.getValue() != null) {
+                    query += " AND return_date >= ?";
+                    params.add(returnStart.getValue());
+                }
+                if (returnEnd.getValue() != null) {
+                    query += " AND return_date <= ?";
+                    params.add(returnEnd.getValue());
+                }
 
-        // Execute the query with parameters and update the table
-        ObservableList<BorrowHistory> historyList = FXCollections.observableArrayList(
-                BorrowRepository.getInstance().getFilteredHistory(query, params.toArray())
-        );
-        historyTable.setItems(historyList);
-        filtersPanel.setVisible(false);
+                return FXCollections.observableArrayList(
+                        BorrowRepository.getInstance().getFilteredHistory(query, params.toArray())
+                );
+            }
+        };
+
+        Runnable onSuccess = () -> {
+            historyTable.setItems(task.getValue());
+        };
+        Runnable onFailure = () -> showAlert("Failed to apply filters.");
+
+        TaskManager.runTask(task, onSuccess, onFailure);
     }
 
     public void clearFilters() {

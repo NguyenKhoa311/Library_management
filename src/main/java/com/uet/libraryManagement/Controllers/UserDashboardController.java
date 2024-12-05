@@ -5,9 +5,12 @@ import com.uet.libraryManagement.BorrowHistory;
 import com.uet.libraryManagement.Document;
 import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Managers.SessionManager;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Repositories.BorrowRepository;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,7 +21,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,10 +31,6 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class UserDashboardController {
-    @FXML
-    private Circle historyCircle;
-    @FXML
-    private VBox bookThumbnailContainer1;
     @FXML
     private ImageView currentBookThumbnail;
     @FXML
@@ -72,16 +70,14 @@ public class UserDashboardController {
 
     @FXML
     public void initialize() {
-        setupTableColumns();
-        loadUserData();
-        setupCircleProgress();
+        loadUserDataInBackground();
         recentBorrowsTable.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 showDocumentDetails();
             }
         });
-        loadRecentlyAddedDocuments();
-        loadRecommendedDocuments();
+        loadRecentlyAddedDocumentsInBackground();
+        loadRecommendedDocumentsInBackground();
         HandleOutsideClickListener();
 
         currentBookThumbnail.setOnMouseClicked(event -> {
@@ -115,11 +111,27 @@ public class UserDashboardController {
         });
     }
 
-    private void loadUserData() {
-        int currentUserId = getCurrentUserId();
-        List<BorrowHistory> borrowRecords = BorrowRepository.getInstance().getUserBorrowRecords(currentUserId);
-        updateBorrowStats(borrowRecords);
-        updateRecentBorrowTable(borrowRecords);
+    private void loadUserDataInBackground() {
+        Task<List<BorrowHistory>> loadDataTask = new Task<>() {
+            @Override
+            protected List<BorrowHistory> call() {
+                int currentUserId = getCurrentUserId();
+                return BorrowRepository.getInstance().getUserBorrowRecords(currentUserId);
+            }
+        };
+
+        TaskManager.runTask(loadDataTask,
+                () -> {
+                    List<BorrowHistory> borrowRecords = loadDataTask.getValue();
+                    updateBorrowStats(borrowRecords);
+                    updateRecentBorrowTable(borrowRecords);
+                    setupTableColumns();
+                    setupCircleProgress();
+                },
+                () -> {
+                    Throwable exception = loadDataTask.getException();
+                    exception.printStackTrace(); // Xử lý lỗi tải dữ liệu
+                });
     }
 
     private void updateBorrowStats(List<BorrowHistory> borrowRecords) {
@@ -173,14 +185,42 @@ public class UserDashboardController {
         circle.setRotate(-90);
     }
 
-    private void loadRecentlyAddedDocuments() {
-        recentDocs = BookRepository.getInstance().getRecentAddedDocuments(); // Adjust repository accordingly
-        displayDocument(currentBookThumbnail, recentDocs, recentDocIndex);
+    private void loadRecentlyAddedDocumentsInBackground() {
+        Task<List<Document>> loadRecentDocTask = new Task<>() {
+            @Override
+            protected List<Document> call() {
+            return BookRepository.getInstance().getRecentAddedDocuments();
+            }
+        };
+
+        TaskManager.runTask(loadRecentDocTask,
+                () -> {
+                    recentDocs = loadRecentDocTask.getValue();
+                    displayDocument(currentBookThumbnail, recentDocs, recentDocIndex);
+                },
+                () -> {
+                    Throwable exception = loadRecentDocTask.getException();
+                    exception.printStackTrace(); // Xử lý lỗi tải dữ liệu
+                });
     }
 
-    private void loadRecommendedDocuments() {
-        recommendedDocs = BookRepository.getInstance().getRecommendedDocuments(getCurrentUserId());
-        displayDocument(currentRecThumbnail, recommendedDocs, recommendedDocIndex);
+    private void loadRecommendedDocumentsInBackground() {
+        Task<List<Document>> loadRecommendedTask = new Task<>() {
+        @Override
+        protected List<Document> call() {
+            return BookRepository.getInstance().getRecommendedDocuments(getCurrentUserId());
+        }
+        };
+
+        TaskManager.runTask(loadRecommendedTask,
+                () -> {
+                    recommendedDocs = loadRecommendedTask.getValue();
+                    displayDocument(currentRecThumbnail, recommendedDocs, recommendedDocIndex);
+                },
+                () -> {
+                    Throwable exception = loadRecommendedTask.getException();
+                    exception.printStackTrace(); // Xử lý lỗi tải dữ liệu
+                });
     }
 
     private void showDocumentDetailsFromImage() {
@@ -220,29 +260,69 @@ public class UserDashboardController {
 
     private void openDocumentDetails(Document document, String docType) {
         if (document != null) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentDetail.fxml"));
-                Parent detailRoot = loader.load();
+            Task<Void> loadDocumentDetailTask = new Task<>() {
+                @Override
+                protected Void call() throws Exception {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentDetail.fxml"));
+                        Parent detailRoot = loader.load();
 
-                // Get the controller and set the selected document
-                DocumentDetailController controller = loader.getController();
-                controller.setDocumentDetails(document);
-                controller.setDocument(document);
-                controller.setDocType(docType);
-                controller.loadComments(document.getId(), docType);
-                Scene detailScene = new Scene(detailRoot);
-                detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
-                // Create a new stage for the document detail window
-                Stage detailStage = new Stage();
-                detailStage.setTitle("Document Details");
-                detailStage.setScene(detailScene);
-                detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
-                detailStage.showAndWait();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                        // Lấy controller và thiết lập dữ liệu tài liệu
+                        DocumentDetailController controller = loader.getController();
+                        controller.setDocumentDetails(document);
+                        controller.setDocument(document);
+                        controller.setDocType(docType);
+
+                        // Tải dữ liệu comments trong nền
+                        controller.loadComments(document.getId(), docType);
+
+                        // Trả về null sau khi hoàn thành task
+                        return null;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return null;
+                    }
+                }
+            };
+
+            // Sử dụng TaskManager để chạy task trong nền
+            TaskManager.runTask(loadDocumentDetailTask,
+                    () -> {
+                        // Khi task thành công, hiển thị giao diện trên Application Thread
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentDetail.fxml"));
+                            Parent detailRoot = loader.load();
+
+                            // Lấy controller và thiết lập dữ liệu tài liệu
+                            DocumentDetailController controller = loader.getController();
+                            controller.setDocumentDetails(document);
+                            controller.setDocument(document);
+                            controller.setDocType(docType);
+
+                            Scene detailScene = new Scene(detailRoot);
+                            detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
+
+                            // Tạo Stage mới cho cửa sổ chi tiết
+                            Stage detailStage = new Stage();
+                            detailStage.setTitle("Document Details");
+                            detailStage.setScene(detailScene);
+                            detailStage.initModality(Modality.APPLICATION_MODAL);
+                            detailStage.showAndWait();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    () -> {
+                        // Xử lý lỗi nếu task thất bại
+                        Throwable exception = loadDocumentDetailTask.getException();
+                        if (exception != null) {
+                            exception.printStackTrace();
+                        }
+                    }
+            );
         }
     }
+
 
     private int getCurrentUserId() {
         return SessionManager.getInstance().getUser().getId();

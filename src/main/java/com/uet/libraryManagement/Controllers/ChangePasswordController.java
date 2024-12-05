@@ -1,8 +1,10 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.Managers.SessionManager;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.User;
 import com.uet.libraryManagement.Repositories.UserRepository;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -29,18 +31,39 @@ public class ChangePasswordController {
             return;
         }
 
+        // check if new password is the same to the old one
+        if (currentUser.getPassword().equals(newPassword)) {
+            messageLabel.setText("New password is the same to the old password");
+        }
+
         // Check if new password and confirmation match
         if (!newPassword.equals(confirmPassword)) {
             messageLabel.setText("Passwords do not match");
             return;
         }
 
-        // Update password in the user and database
-        currentUser.setPassword(newPassword);
-        UserRepository.getInstance().updatePassword(currentUser);
+        Task<Void> updatePasswordTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                // Update password in the user and database
+                currentUser.setPassword(newPassword);
+                UserRepository.getInstance().updatePassword(currentUser);
+                return null;
+            }
+        };
 
-        showAlert("Password changed successfully.");
-        closeForm();
+        Runnable onSuccess = () -> {
+            showAlert("Password changed successfully.");
+            closeForm();
+        };
+
+        Runnable onFailure = () -> {
+            Throwable ex = updatePasswordTask.getException();
+            if (ex != null) ex.printStackTrace(); // Log the error for debugging
+            showAlert("Failed to change the password.");
+        };
+
+        TaskManager.runTask(updatePasswordTask, onSuccess, onFailure);
     }
 
     private void showAlert(String message) {

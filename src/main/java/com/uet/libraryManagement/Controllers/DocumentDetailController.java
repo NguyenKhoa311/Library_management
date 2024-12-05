@@ -3,12 +3,15 @@ package com.uet.libraryManagement.Controllers;
 import com.uet.libraryManagement.Book;
 import com.uet.libraryManagement.Document;
 import com.uet.libraryManagement.Managers.SessionManager;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.RatingComment;
 import com.uet.libraryManagement.Repositories.RatingRepository;
 import com.uet.libraryManagement.Thesis;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -77,35 +80,64 @@ public class DocumentDetailController {
             return;
         }
 
-        // Lấy thông tin người dùng từ session
+        // Lấy thông tin người dùng
         int userId = SessionManager.getInstance().getUser().getId();
         RatingComment newComment = new RatingComment(userId, userRating, commentText, new Timestamp(System.currentTimeMillis()));
-        RatingRepository.getInstance().addComment(document.getId(), getDocType(), newComment);
-        showAlert("Comment sent.");
-        loadComments(getDocument().getId(), getDocType());
 
-        // Xóa nội dung trong TextArea sau khi gửi
-        newCommentArea.clear();
+        Task<Void> saveCommentTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                RatingRepository.getInstance().addComment(document.getId(), getDocType(), newComment);
+                return null;
+            }
+        };
+
+        TaskManager.runTask(saveCommentTask,
+                () -> {
+                    showAlert("Comment sent.");
+                    loadComments(document.getId(), getDocType());
+                    newCommentArea.clear();
+                },
+                () -> showAlert("Failed to save comment.")
+        );
     }
 
     public void loadComments(int documentId, String docType) {
-        int numRating = RatingRepository.getInstance().getRatingNum(documentId, docType.equals("Books") ? "book" : "thesis");
-        ratingNum.setText("(" + numRating + ")");
-        int docRating = RatingRepository.getInstance().getRating(documentId, docType.equals("Books") ? "book" : "thesis");
-        updateRating(docRating);
-        // Lấy danh sách bình luận từ cơ sở dữ liệu
-        ObservableList<RatingComment> comments = RatingRepository.getInstance().getCommentsByDocumentId(documentId, docType);
-        if (comments == null || comments.isEmpty()) {
-            comments = FXCollections.observableArrayList();
-            comments.add(new RatingComment("System", 0, 0, "There aren't any comments yet.", new Timestamp(System.currentTimeMillis())));
-        }
+        Task<Void> loadCommentsTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                // Lấy số lượng đánh giá và điểm đánh giá từ cơ sở dữ liệu
+                int numRating = RatingRepository.getInstance().getRatingNum(documentId, docType.equals("Books") ? "book" : "thesis");
+                int docRating = RatingRepository.getInstance().getRating(documentId, docType.equals("Books") ? "book" : "thesis");
 
-        // Sử dụng ListView để hiển thị danh sách chuỗi từ RatingComment
-        ObservableList<String> commentStrings = FXCollections.observableArrayList();
-        for (RatingComment comment : comments) {
-            commentStrings.add(comment.toString()); // Gọi phương thức toString để tạo chuỗi
-        }
-        commentsListView.setItems(commentStrings);
+                // Lấy danh sách bình luận
+                ObservableList<RatingComment> comments = RatingRepository.getInstance().getCommentsByDocumentId(documentId, docType);
+                if (comments == null || comments.isEmpty()) {
+                    comments = FXCollections.observableArrayList();
+                    comments.add(new RatingComment("System", 0, 0, "There aren't any comments yet.", new Timestamp(System.currentTimeMillis())));
+                }
+
+                // Chuyển đổi bình luận thành chuỗi
+                ObservableList<String> commentStrings = FXCollections.observableArrayList();
+                for (RatingComment comment : comments) {
+                    commentStrings.add(comment.toString());
+                }
+
+                // Cập nhật giao diện trên JavaFX Application Thread
+                Platform.runLater(() -> {
+                    ratingNum.setText("(" + numRating + ")");
+                    updateRating(docRating);
+                    commentsListView.setItems(commentStrings);
+                });
+
+                return null;
+            }
+        };
+
+        TaskManager.runTask(loadCommentsTask,
+                () -> System.out.println("Load comments successfully."), // Callback thành công
+                () -> showAlert("Failed to load comments.")              // Callback thất bại
+        );
     }
 
     private void setupRatingEvents() {

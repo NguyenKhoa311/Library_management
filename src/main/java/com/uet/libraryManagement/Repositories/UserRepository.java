@@ -126,8 +126,24 @@ public class UserRepository {
         return users;
     }
 
+    public boolean isUsernameTaken(String username) {
+        String query = "SELECT COUNT(*) FROM users WHERE user_name = ?";
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, username)) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Returns true if username exists
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     // create new document
     public boolean create(User user) {
+        if (isUsernameTaken(user.getUsername())) {
+            return false; // Return false if the username is already taken
+        }
+
         String maxIdQuery = "SELECT MAX(id) FROM users";
         try (ResultSet maxIdRs = ConnectJDBC.executeQuery(maxIdQuery)) {
             if (maxIdRs.next()) {

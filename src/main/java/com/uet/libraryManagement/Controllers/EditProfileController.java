@@ -3,7 +3,10 @@ package com.uet.libraryManagement.Controllers;
 import com.uet.libraryManagement.*;
 import com.uet.libraryManagement.APIService.ImgurUpload;
 import com.uet.libraryManagement.Managers.SessionManager;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.Repositories.UserRepository;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -71,22 +74,32 @@ public class EditProfileController {
         currentUser.setPhone(phone);
         currentUser.setEmail(email);
         currentUser.setBirthday(birthday);
-        // Nếu thumbnail đã được chọn, tải lên Imgur và lấy URL trả về
-        String imgurUrl = null;
-        if (avatarPath != null && !avatarPath.isEmpty()) {
-            try {
-                imgurUrl = ImgurUpload.uploadImage(new File(avatarPath)); // Tải ảnh lên Imgur và nhận URL
-                currentUser.setAvatar(imgurUrl);
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert("Error uploading thumbnail image to Imgur.");
-                return; // Dừng lại nếu không thể tải ảnh lên Imgur
-            }
-        }
 
-        UserRepository.getInstance().updateProfile(currentUser);
-        showAlert("Profile changed successfully.");
-        closeForm();
+        // Nếu có avatar mới, tải ảnh lên Imgur
+        Task<Void> saveProfileTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                if (avatarPath != null && !avatarPath.isEmpty()) {
+                    String imgurUrl = ImgurUpload.uploadImage(new File(avatarPath)); // Tải ảnh lên Imgur
+                    currentUser.setAvatar(imgurUrl); // Cập nhật URL avatar
+                }
+                // Cập nhật thông tin user trong database
+                UserRepository.getInstance().updateProfile(currentUser);
+                return null;
+            }
+        };
+
+        // Xử lý thành công hoặc thất bại
+        TaskManager.runTask(saveProfileTask, () -> {
+            // Thành công: hiển thị thông báo và đóng form
+            Platform.runLater(() -> {
+                showAlert("Profile changed successfully.");
+                closeForm();
+            });
+        }, () -> {
+            // Thất bại: thông báo lỗi
+            Platform.runLater(() -> showAlert("Failed to update profile. Please try again."));
+        });
     }
 
     public void loadUserInfo() {

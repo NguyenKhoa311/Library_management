@@ -2,9 +2,11 @@ package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Managers.SessionManager;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.Repositories.UserRepository;
 import com.uet.libraryManagement.User;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -79,18 +81,36 @@ public class ManageUsersController {
     }
 
     public void loadUsers() {
-        List<User> users = UserRepository.getInstance().getAllUsers();
-        usersTable.getItems().setAll(users);
+        Task<List<User>> loadUsersTask = new Task<>() {
+            @Override
+            protected List<User> call() {
+                return UserRepository.getInstance().getAllUsers(); // Lấy danh sách người dùng
+            }
+        };
+
+        TaskManager.runTask(loadUsersTask,
+                () -> usersTable.getItems().setAll(loadUsersTask.getValue()), // Cập nhật giao diện sau khi tải thành công
+                () -> showAlert("Failed to load users. Please try again.") // Hiển thị thông báo lỗi nếu tải thất bại
+        );
     }
 
     @FXML
     private void searchUser() {
         String searchTerm = searchBar.getText();
         if (searchTerm != null && !searchTerm.isEmpty()) {
-            List<User> searchResults = UserRepository.getInstance().searchUsers(searchTerm);
-            usersTable.setItems(FXCollections.observableArrayList(searchResults));
+            Task<List<User>> searchTask = new Task<>() {
+                @Override
+                protected List<User> call() {
+                    return UserRepository.getInstance().searchUsers(searchTerm);
+                }
+            };
+
+            TaskManager.runTask(searchTask,
+                    () -> usersTable.setItems(FXCollections.observableArrayList(searchTask.getValue())), // Cập nhật danh sách tìm kiếm
+                    () -> showAlert("Failed to search users. Please try again.") // Thông báo lỗi khi tìm kiếm
+            );
         } else {
-            loadUsers(); // Reload all users if the search bar is cleared
+            showAlert("Please enter a search term");
         }
     }
 
@@ -207,9 +227,21 @@ public class ManageUsersController {
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                UserRepository.getInstance().deleteUser(selectedUser.getId());
-                showAlert("User deleted successfully");
-                loadUsers(); // Refresh the table after deletion
+                Task<Void> deleteTask = new Task<>() {
+                    @Override
+                    protected Void call() {
+                        UserRepository.getInstance().deleteUser(selectedUser.getId());
+                        return null;
+                    }
+                };
+
+                TaskManager.runTask(deleteTask,
+                        () -> {
+                            showAlert("User deleted successfully");
+                            loadUsers(); // Làm mới danh sách sau khi xóa
+                        },
+                        () -> showAlert("Failed to delete user. Please try again.") // Thông báo lỗi khi xóa thất bại
+                );
             }
         } else {
             showAlert("Please select a user to delete.");

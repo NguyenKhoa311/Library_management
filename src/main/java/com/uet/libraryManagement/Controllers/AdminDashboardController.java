@@ -1,14 +1,19 @@
 package com.uet.libraryManagement.Controllers;
 
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Repositories.BorrowRepository;
 import com.uet.libraryManagement.Repositories.ThesisRepository;
 import com.uet.libraryManagement.Repositories.UserRepository;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeLineCap;
@@ -43,8 +48,8 @@ public class AdminDashboardController {
 
     @FXML
     public void initialize() {
-        setupStatisticsChart();
         setupCircleProgress();
+        setupStatisticsChart();
     }
 
     private void setupCircleProgress() {
@@ -90,30 +95,51 @@ public class AdminDashboardController {
         statisticsChart.setPrefHeight(250.0);
         statisticsChart.setMaxWidth(670.0); // 700 - padding
         statisticsChart.setPrefWidth(670.0);
-        XYChart.Series<String, Number> bookSeries = new XYChart.Series<>();
-        bookSeries.setName("Document Information");
-        int remainingNum = BookRepository.getInstance().getNumberOfDocuments() + ThesisRepository.getInstance().getNumberOfDocuments();
-        int issuedNum = BorrowRepository.getInstance().getNumberOfDocBorrowed();
-        int docNum = remainingNum + issuedNum;
-        int userNum = UserRepository.getInstance().getNumberOfUsers();
-        int numUserIssuing = UserRepository.getInstance().getNumberOfUsersIssuing();
-        bookSeries.getData().add(new XYChart.Data<>("All Documents", docNum));
-        bookSeries.getData().add(new XYChart.Data<>("Remaining Documents", remainingNum));
-        bookSeries.getData().add(new XYChart.Data<>("Issued Documents", issuedNum));
+        // Tạo Task để tải dữ liệu dashboard
+        Task<Void> loadTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                int remainingNum = BookRepository.getInstance().getNumberOfDocuments() + ThesisRepository.getInstance().getNumberOfDocuments();
+                int issuedNum = BorrowRepository.getInstance().getNumberOfDocBorrowed();
+                int docNum = remainingNum + issuedNum;
+                int userNum = UserRepository.getInstance().getNumberOfUsers();
+                int numUserIssuing = UserRepository.getInstance().getNumberOfUsersIssuing();
 
-        XYChart.Series<String, Number> studentSeries = new XYChart.Series<>();
-        studentSeries.setName("User Information");
+                // Cập nhật dữ liệu sau khi tính toán
+                Platform.runLater(() -> {
+                    // Cập nhật biểu đồ
+                    statisticsChart.getData().clear(); // Clear existing data
 
-        studentSeries.getData().add(new XYChart.Data<>("All Users", userNum));
-        studentSeries.getData().add(new XYChart.Data<>("Users issuing", numUserIssuing));
+                    XYChart.Series<String, Number> bookSeries = new XYChart.Series<>();
+                    bookSeries.setName("Document Information");
+                    bookSeries.getData().add(new XYChart.Data<>("All Documents", docNum));
+                    bookSeries.getData().add(new XYChart.Data<>("Remaining Documents", remainingNum));
+                    bookSeries.getData().add(new XYChart.Data<>("Issued Documents", issuedNum));
 
-        statisticsChart.getData().addAll(bookSeries, studentSeries);
-        loadDashboardData(
-                String.valueOf(docNum),
-                String.valueOf(remainingNum),
-                String.valueOf(issuedNum),
-                String.valueOf(userNum),
-                String.valueOf(numUserIssuing)
+                    XYChart.Series<String, Number> studentSeries = new XYChart.Series<>();
+                    studentSeries.setName("User Information");
+                    studentSeries.getData().add(new XYChart.Data<>("All Users", userNum));
+                    studentSeries.getData().add(new XYChart.Data<>("Users issuing", numUserIssuing));
+
+                    statisticsChart.getData().addAll(bookSeries, studentSeries);
+
+                    // Cập nhật thông tin cho các label
+                    loadDashboardData(
+                            String.valueOf(docNum),
+                            String.valueOf(remainingNum),
+                            String.valueOf(issuedNum),
+                            String.valueOf(userNum),
+                            String.valueOf(numUserIssuing)
+                    );
+                });
+                return null;
+            }
+        };
+
+        // Thực thi task bất đồng bộ
+        TaskManager.runTask(loadTask,
+                () -> System.out.println("Dữ liệu đã được tải thành công!"),
+                () -> System.out.println("Lỗi khi tải dữ liệu!")
         );
     }
 
