@@ -75,7 +75,9 @@ public abstract class DocumentsController implements Initializable {
         // handle double-clicked to show document details
         docsTable.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-                showDocumentDetails();
+                if (docsTable.getSelectionModel().getSelectedItem() != null) {
+                    showDocumentDetails();
+                }
             }
         });
 

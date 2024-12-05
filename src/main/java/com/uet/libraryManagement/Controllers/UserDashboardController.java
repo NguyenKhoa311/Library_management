@@ -8,7 +8,6 @@ import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Repositories.BorrowRepository;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -74,7 +73,9 @@ public class UserDashboardController {
         loadUserDataInBackground();
         recentBorrowsTable.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-                showDocumentDetails();
+                if (recentBorrowsTable.getSelectionModel().getSelectedItem() != null) {
+                    showDocumentDetails();
+                }
             }
         });
         loadRecentlyAddedDocumentsInBackground();

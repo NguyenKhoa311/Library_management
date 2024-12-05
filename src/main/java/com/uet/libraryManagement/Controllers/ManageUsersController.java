@@ -48,7 +48,9 @@ public class ManageUsersController {
         // handle double-clicked to show document details
         usersTable.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-                showUserDetails();
+                if (usersTable.getSelectionModel().getSelectedItem() != null) {
+                    showUserDetails();
+                }
             }
         });
 

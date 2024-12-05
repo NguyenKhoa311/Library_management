@@ -80,7 +80,9 @@ public class HistoryController implements Initializable {
         docTypeBox.getSelectionModel().select("Books");
         historyTable.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-                showDocumentDetails();
+                if (historyTable.getSelectionModel().getSelectedItem() != null) {
+                    showDocumentDetails();
+                }
             }
         });
         HandleOutsideClickListener();

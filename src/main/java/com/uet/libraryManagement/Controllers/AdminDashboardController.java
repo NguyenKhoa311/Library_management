@@ -44,40 +44,6 @@ public class AdminDashboardController {
 
     private static final double CIRCLE_RADIUS = 30.0;
 
-//    private void setupStatisticsChart() {
-//        // Thiết lập kích thước tối đa cho biểu đồ
-//        statisticsChart.setMaxHeight(250.0);
-//        statisticsChart.setPrefHeight(250.0);
-//        statisticsChart.setMaxWidth(670.0); // 700 - padding
-//        statisticsChart.setPrefWidth(670.0);
-//
-//        XYChart.Series<String, Number> bookSeries = new XYChart.Series<>();
-//        bookSeries.setName("Document Information");
-//        int remainingNum = BookRepository.getInstance().getNumberOfDocuments() + ThesisRepository.getInstance().getNumberOfDocuments();
-//        int issuedNum = BorrowRepository.getInstance().getNumberOfDocBorrowed();
-//        int docNum = remainingNum + issuedNum;
-//        int userNum = UserRepository.getInstance().getNumberOfUsers();
-//        int numUserIssuing = UserRepository.getInstance().getNumberOfUsersIssuing();
-//        bookSeries.getData().add(new XYChart.Data<>("All Documents", docNum));
-//        bookSeries.getData().add(new XYChart.Data<>("Remaining Documents", remainingNum));
-//        bookSeries.getData().add(new XYChart.Data<>("Issued Documents", issuedNum));
-//
-//        XYChart.Series<String, Number> studentSeries = new XYChart.Series<>();
-//        studentSeries.setName("User Information");
-//
-//        studentSeries.getData().add(new XYChart.Data<>("All Users", userNum));
-//        studentSeries.getData().add(new XYChart.Data<>("Users issuing", numUserIssuing));
-//
-//        statisticsChart.getData().addAll(bookSeries, studentSeries);
-//        loadDashboardData(
-//                String.valueOf(docNum),
-//                String.valueOf(remainingNum),
-//                String.valueOf(issuedNum),
-//                String.valueOf(userNum),
-//                String.valueOf(numUserIssuing)
-//        );
-//    }
-
     @FXML
     public void initialize() {
         setupStatisticsChart();
