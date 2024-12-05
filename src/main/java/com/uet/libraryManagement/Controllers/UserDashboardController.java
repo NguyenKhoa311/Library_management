@@ -29,6 +29,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Objects;
 
 public class UserDashboardController {
     @FXML
@@ -304,6 +305,10 @@ public class UserDashboardController {
 
                             // Tạo Stage mới cho cửa sổ chi tiết
                             Stage detailStage = new Stage();
+                            detailStage.setResizable(false);
+                            String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+                            Image icon = new Image(icon_url);
+                            detailStage.getIcons().add(icon);
                             detailStage.setTitle("Document Details");
                             detailStage.setScene(detailScene);
                             detailStage.initModality(Modality.APPLICATION_MODAL);

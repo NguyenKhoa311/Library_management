@@ -129,15 +129,19 @@
             <TableColumn fx:id="statusCol" text="Status" />
         </columns>
       </TableView>
-      <ComboBox fx:id="docTypeBox" focusTraversable="false" layoutX="596.0" layoutY="14.0" prefHeight="25.0" prefWidth="90.0" />
-      <JFXButton layoutX="489.0" layoutY="12.0" onAction="#takeDoc" prefHeight="34.0" prefWidth="90.0" styleClass="Documents-JFXButton" text="Take">
-         <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../ICONS/borrow.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
+      <HBox alignment="CENTER" layoutX="478.0" layoutY="8.0" prefHeight="38.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <JFXButton onAction="#takeDoc" prefHeight="34.0" prefWidth="90.0" styleClass="Documents-JFXButton" text="Take">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ICONS/borrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <ComboBox fx:id="docTypeBox" focusTraversable="false" prefHeight="26.0" prefWidth="90.0" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

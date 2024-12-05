@@ -14,12 +14,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class ManageUsersController {
@@ -69,6 +71,10 @@ public class ManageUsersController {
                 detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
                 // Create a new stage for the user detail window
                 Stage detailStage = new Stage();
+                detailStage.setResizable(false);
+                String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+                Image icon = new Image(icon_url);
+                detailStage.getIcons().add(icon);
                 detailStage.setTitle("User information");
                 detailStage.setScene(detailScene);
                 detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
@@ -138,6 +144,10 @@ public class ManageUsersController {
                 detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
                 // Open history window
                 Stage historyStage = new Stage();
+                historyStage.setResizable(false);
+                String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+                Image icon = new Image(icon_url);
+                historyStage.getIcons().add(icon);
                 historyStage.setTitle("Borrowing History for " + selectedUser.getUsername());
                 historyStage.setScene(detailScene);
                 historyStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
@@ -162,6 +172,10 @@ public class ManageUsersController {
             detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
             // Create a new stage for the book detail window
             Stage detailStage = new Stage();
+            detailStage.setResizable(false);
+            String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+            Image icon = new Image(icon_url);
+            detailStage.getIcons().add(icon);
             detailStage.setTitle("Add user");
             detailStage.setScene(detailScene);
             detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
@@ -192,6 +206,10 @@ public class ManageUsersController {
                 detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
                 // Open the edit dialog
                 Stage editStage = new Stage();
+                editStage.setResizable(false);
+                String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+                Image icon = new Image(icon_url);
+                editStage.getIcons().add(icon);
                 editStage.setTitle("Edit User");
                 editStage.setScene(detailScene);
                 editStage.initModality(Modality.APPLICATION_MODAL);

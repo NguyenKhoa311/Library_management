@@ -12,9 +12,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class AdminDocumentsController extends DocumentsController {
@@ -80,10 +82,15 @@ public class AdminDocumentsController extends DocumentsController {
 
                 Scene detailScene = new Scene(formRoot);
 
+
                 detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
 
                 // Create a new stage for the edit window
                 Stage formStage = new Stage();
+                formStage.setResizable(false);
+                String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+                Image icon = new Image(icon_url);
+                formStage.getIcons().add(icon);
                 formStage.setTitle("Edit Document");
                 formStage.setScene(detailScene);
                 formStage.initModality(Modality.APPLICATION_MODAL);
@@ -117,6 +124,10 @@ public class AdminDocumentsController extends DocumentsController {
             
             // Create a new stage for the add document window
             Stage formStage = new Stage();
+            formStage.setResizable(false);
+            String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+            Image icon = new Image(icon_url);
+            formStage.getIcons().add(icon);
             formStage.setTitle("Add Document");
             formStage.setScene(detailScene);
             formStage.initModality(Modality.APPLICATION_MODAL);

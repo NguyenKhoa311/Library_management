@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ProfileController {
     @FXML private ImageView profileImage;
@@ -40,6 +41,10 @@ public class ProfileController {
             detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
 
             Stage stage = new Stage();
+            stage.setResizable(false);
+            String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+            Image icon = new Image(icon_url);
+            stage.getIcons().add(icon);
             stage.setTitle("Edit Profile");
             stage.setScene(detailScene);
             stage.showAndWait(); // Wait for the window to close before continuing
@@ -61,6 +66,10 @@ public class ProfileController {
             detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
 
             Stage stage = new Stage();
+            stage.setResizable(false);
+            String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+            Image icon = new Image(icon_url);
+            stage.getIcons().add(icon);
             stage.setTitle("Change Password");
             stage.setScene(detailScene);
             stage.showAndWait(); // Wait for the window to close before continuing

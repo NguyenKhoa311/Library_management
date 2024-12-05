@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
         import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -24,6 +25,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public abstract class DocumentsController implements Initializable {
@@ -199,6 +201,10 @@ public abstract class DocumentsController implements Initializable {
                 detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
                 // Create a new stage for the book detail window
                 Stage detailStage = new Stage();
+                detailStage.setResizable(false);
+                String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+                Image icon = new Image(icon_url);
+                detailStage.getIcons().add(icon);
                 detailStage.setTitle("Document Details");
                 detailStage.setScene(detailScene);
                 detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window

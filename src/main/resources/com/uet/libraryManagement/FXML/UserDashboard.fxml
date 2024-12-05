@@ -117,6 +117,9 @@
                                                 <FontAwesomeIconView glyphName="CHEVRON_RIGHT" size="20" />
                                             </graphic>
                                         </Button>
+                              <opaqueInsets>
+                                 <Insets bottom="10.0" />
+                              </opaqueInsets>
                                     </HBox>
                                     <HBox alignment="CENTER" styleClass="thumbnail-navigation" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                         <children>
