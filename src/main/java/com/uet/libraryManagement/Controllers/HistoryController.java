@@ -105,7 +105,9 @@ public class HistoryController implements Initializable {
                 // Get the controller and set the selected book
                 DocumentDetailController controller = loader.getController();
                 controller.setDocumentDetails(document);
-
+                controller.setDocument(document);
+                controller.setDocType(docType);
+                controller.loadComments(document.getId(), docType);
                 Scene detailScene = new Scene(detailRoot);
 
                 detailScene.getStylesheets().add(SceneManager.getInstance().get_css());

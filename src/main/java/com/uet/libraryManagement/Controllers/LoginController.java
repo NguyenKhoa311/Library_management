@@ -1,5 +1,6 @@
 package com.uet.libraryManagement.Controllers;
 
+import com.uet.libraryManagement.ConnectJDBC;
 import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.Managers.TaskManager;
@@ -18,6 +19,18 @@ public class LoginController {
 
     @FXML
     public void initialize() {
+        // Khởi tạo kết nối cơ sở dữ liệu trong background
+        Task<Void> dbConnectTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                ConnectJDBC.connect();  // Kết nối cơ sở dữ liệu
+                return null;
+            }
+        };
+
+        // Chạy task kết nối cơ sở dữ liệu
+        TaskManager.runTask(dbConnectTask, null, () -> messageLabel.setText("Failed to connect to the database"));
+
         // Lắng nghe phím Enter trên trường username hoặc password
         username_textfield.setOnKeyPressed(event -> {
             switch (event.getCode()) {
@@ -45,10 +58,9 @@ public class LoginController {
         }
 
         // Tạo Task xác thực người dùng
-        Task<User> loginTask = new Task<User>() {
+        Task<User> loginTask = new Task<>() {
             @Override
             protected User call() throws Exception {
-                // Authenticate the user
                 return UserRepository.getInstance().validateUser(username, password);
             }
         };

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane styleClass="dashboard_anchor" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDashboardController">
+<AnchorPane styleClass="dashboard_anchor" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.AdminDashboardController">
    <children>
       <VBox prefHeight="464.0" prefWidth="700.0" spacing="10">
          <Label prefHeight="30.0" prefWidth="700.0" styleClass="Dashboard-header-title" text="UET Library Management System" />
@@ -24,7 +24,7 @@
                   <Circle radius="30" styleClass="Dashboard-stat-circle, stat-circle-bg" />
                   <Circle fx:id="allBooksCircle" radius="30" styleClass="Dashboard-stat-circle" />
                </StackPane>
-               <Label fx:id="allDocsCount" styleClass="Dashboard-stat-number" text="85" />
+               <Label fx:id="allDocsCount" styleClass="Dashboard-stat-number" text="0" />
                <Label styleClass="stat-label" text="All Documents" />
             </VBox>
 
@@ -34,7 +34,7 @@
                   <Circle radius="30" styleClass="Dashboard-stat-circle, stat-circle-bg" />
                   <Circle fx:id="remainingBooksCircle" radius="30" styleClass="Dashboard-stat-circle" />
                </StackPane>
-               <Label fx:id="remainingDocsCount" styleClass="Dashboard-stat-number" text="80" />
+               <Label fx:id="remainingDocsCount" styleClass="Dashboard-stat-number" text="0" />
                <Label alignment="CENTER" prefWidth="106.0" styleClass="stat-label" text="Remaining Docs" />
             </VBox>
 
@@ -44,7 +44,7 @@
                   <Circle radius="30" styleClass="Dashboard-stat-circle, stat-circle-bg" />
                   <Circle fx:id="issuedBooksCircle" radius="30" styleClass="Dashboard-stat-circle" />
                </StackPane>
-               <Label fx:id="issuedDocsCount" styleClass="Dashboard-stat-number" text="5" />
+               <Label fx:id="issuedDocsCount" styleClass="Dashboard-stat-number" text="0" />
                <Label styleClass="stat-label" text="Issued Docs" />
             </VBox>
 
@@ -54,7 +54,7 @@
                   <Circle radius="30" styleClass="Dashboard-stat-circle, stat-circle-bg" />
                   <Circle fx:id="allStudentsCircle" radius="30" styleClass="Dashboard-stat-circle" />
                </StackPane>
-               <Label fx:id="allUsersCount" styleClass="Dashboard-stat-number" text="9" />
+               <Label fx:id="allUsersCount" styleClass="Dashboard-stat-number" text="0" />
                <Label styleClass="stat-label" text="All Users" />
             </VBox>
 
@@ -64,7 +64,7 @@
                   <Circle radius="30" styleClass="Dashboard-stat-circle, stat-circle-bg" />
                   <Circle fx:id="holdingBooksCircle" radius="30" styleClass="Dashboard-stat-circle" />
                </StackPane>
-               <Label fx:id="holdingDocsCount" styleClass="Dashboard-stat-number" text="2" />
+               <Label fx:id="holdingDocsCount" styleClass="Dashboard-stat-number" text="0" />
                <Label styleClass="stat-label" text="Users Issuing" />
             </VBox>
          </HBox>

@@ -18,9 +18,9 @@ public class ConnectJDBC {
 //            Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Tạo kết nối
-            String url = "jdbc:mysql://localhost:3307/library_db";
-            String username = "root";
-            String password = "";
+//            String url = "jdbc:mysql://localhost:3307/library_db";
+//            String username = "root";
+//            String password = "";
 //            connection = DriverManager.getConnection(url, username, password);
             connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             System.out.println("Kết nối thành công tới AWS RDS!");
@@ -28,6 +28,17 @@ public class ConnectJDBC {
 //            System.err.println("Không tìm thấy driver MySQL: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("Lỗi khi kết nối tới cơ sở dữ liệu: " + e.getMessage());
+        }
+    }
+
+    public static void connect() {
+        if (connection == null) {
+            try {
+                connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+                System.out.println("Kết nối thành công tới AWS RDS!");
+            } catch (SQLException e) {
+                System.err.println("Lỗi khi kết nối tới cơ sở dữ liệu: " + e.getMessage());
+            }
         }
     }
 
