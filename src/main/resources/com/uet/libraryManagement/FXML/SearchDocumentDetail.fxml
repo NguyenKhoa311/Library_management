@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.DocumentDetailController">
+<AnchorPane prefHeight="400.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.SearchDocumentDetailController">
     <HBox prefHeight="400.0" prefWidth="414.0" style="-fx-spacing: 10px;">
         <children>
             <VBox alignment="CENTER" prefHeight="329.0" prefWidth="200.0" spacing="10" styleClass="SubScene-VBox-Left">

@@ -282,7 +282,7 @@ public class SearchDocumentsController implements Initializable {
                 Parent detailRoot = loader.load();
 
                 // Get the controller and set the selected book
-                DocumentDetailController controller = loader.getController();
+                SearchDocumentDetailController controller = loader.getController();
                 controller.setDocumentDetails(selectedDocument);
 
                 Scene detailScene = new Scene(detailRoot);
