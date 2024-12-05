@@ -3,6 +3,7 @@ package com.uet.libraryManagement.Managers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -31,6 +32,10 @@ public class SceneManager {
     }
 
     public void setStage(Stage stage) {
+        stage.setResizable(false);
+        String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+        Image icon = new Image(icon_url);
+        stage.getIcons().add(icon);
         SceneManager.rootStage = stage;
     }
 

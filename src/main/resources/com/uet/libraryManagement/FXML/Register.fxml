@@ -19,7 +19,7 @@
                         <Insets top="30.0" />
                     </VBox.margin>
                     <image>
-                        <Image url="@../ICONS/uet.png" />
+                        <Image url="@../ICONS/logo.png" />
                     </image>
                 </ImageView>
                 <AnchorPane prefHeight="181.0" prefWidth="300.0">
