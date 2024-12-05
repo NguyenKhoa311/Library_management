@@ -6,10 +6,12 @@ import com.uet.libraryManagement.APIService.Volume;
 import com.uet.libraryManagement.APIService.VolumeInfo;
 import com.uet.libraryManagement.APIService.IndustryIdentifier;
 import com.uet.libraryManagement.Managers.SceneManager;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Repositories.ThesisRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -113,20 +115,29 @@ public class SearchDocumentsController implements Initializable {
         String searchTerm = searchBar.getText();
         String docType = docTypeBox.getValue();
         if (searchTerm != null && !searchTerm.isEmpty()) {
-            List<Volume> volumes = BookAPI.searchVolumes(searchTerm, docType);
-            ObservableList<Document> documents = convertVolumesToDocuments(volumes);
+            Task<ObservableList<Document>> searchTask = new Task<>() {
+                @Override
+                protected ObservableList<Document> call() throws Exception {
+                    List<Volume> volumes = BookAPI.searchVolumes(searchTerm, docType);
+                    return convertVolumesToDocuments(volumes);
+                }
+            };
 
-            if (documents.isEmpty()) {
-                // Hiển thị thông báo nếu không có kết quả tìm kiếm
-                showAlert("No documents found for the search term.");
-            } else {
-                docsTable.setItems(documents);
-            }
+            TaskManager.runTask(searchTask, () -> {
+                ObservableList<Document> documents = searchTask.getValue();
+                if (documents.isEmpty()) {
+                    showAlert("No documents found for the search term.");
+                } else {
+                    docsTable.setItems(documents);
+                }
+                saveData();
+            }, () -> {
+                showAlert("Failed to load documents.");
+            });
         } else {
             // Handle case for empty search term
             showAlert("Please enter a search term.");
         }
-        saveData();
     }
 
     private ObservableList<Document> convertVolumesToDocuments(List<Volume> volumes) {
@@ -175,47 +186,60 @@ public class SearchDocumentsController implements Initializable {
     // Apply filters based on user inputs
     @FXML
     private void applyFilters() {
-        StringBuilder searchTerm = new StringBuilder();
-        String docType = docTypeBox.getValue();
-
-        // Append each filter to the query if it's not empty
-        if (!titleFilter.getText().isEmpty()) {
-            searchTerm.append("intitle:").append(titleFilter.getText()).append("+");
-        }
-        if (!authorFilter.getText().isEmpty()) {
-            searchTerm.append("inauthor:").append(authorFilter.getText()).append("+");
-        }
-        if (!categoryFilter.getText().isEmpty()) {
-            searchTerm.append("subject:").append(categoryFilter.getText()).append("+");
-        }
-        if (!isbn10Filter.getText().isEmpty()) {
-            searchTerm.append("isbn:").append(isbn10Filter.getText()).append("+");
-        }
-        if (!isbn13Filter.getText().isEmpty()) {
-            searchTerm.append("isbn:").append(isbn13Filter.getText()).append("+");
-        }
-        if (startDateFilter.getValue() != null) {
-            searchTerm.append("after:").append(startDateFilter.getValue().getYear()).append("+");
-        }
-        if (endDateFilter.getValue() != null) {
-            searchTerm.append("before:").append(endDateFilter.getValue().getYear()).append("+");
-        }
-
-        if (searchTerm.length() > 0 && searchTerm.charAt(searchTerm.length() - 1) == '+') {
-            searchTerm.setLength(searchTerm.length() - 1);
-        }
-
-        List<Volume> volumes = BookAPI.searchVolumes(searchTerm.toString(), docType);
-        ObservableList<Document> documents = convertVolumesToDocuments(volumes);
         filtersPanel.setVisible(false);
+        Task<ObservableList<Document>> filterTask = new Task<ObservableList<Document>>() {
+            @Override
+            protected ObservableList<Document> call() throws Exception {
+                StringBuilder searchTerm = new StringBuilder();
+                String docType = docTypeBox.getValue();
 
-        if (documents.isEmpty()) {
-            // Hiển thị thông báo nếu không có kết quả tìm kiếm
-            showAlert("No documents found for the search term.");
-        } else {
-            docsTable.setItems(documents);
-        }
-        saveData();
+                // Append each filter to the query if it's not empty
+                if (!titleFilter.getText().isEmpty()) {
+                    searchTerm.append("intitle:").append(titleFilter.getText()).append("+");
+                }
+                if (!authorFilter.getText().isEmpty()) {
+                    searchTerm.append("inauthor:").append(authorFilter.getText()).append("+");
+                }
+                if (!categoryFilter.getText().isEmpty()) {
+                    searchTerm.append("subject:").append(categoryFilter.getText()).append("+");
+                }
+                if (!isbn10Filter.getText().isEmpty()) {
+                    searchTerm.append("isbn:").append(isbn10Filter.getText()).append("+");
+                }
+                if (!isbn13Filter.getText().isEmpty()) {
+                    searchTerm.append("isbn:").append(isbn13Filter.getText()).append("+");
+                }
+                if (startDateFilter.getValue() != null) {
+                    searchTerm.append("after:").append(startDateFilter.getValue().getYear()).append("+");
+                }
+                if (endDateFilter.getValue() != null) {
+                    searchTerm.append("before:").append(endDateFilter.getValue().getYear()).append("+");
+                }
+
+                if (searchTerm.length() > 0 && searchTerm.charAt(searchTerm.length() - 1) == '+') {
+                    searchTerm.setLength(searchTerm.length() - 1);
+                }
+
+                // Search for volumes based on the filters
+                List<Volume> volumes = BookAPI.searchVolumes(searchTerm.toString(), docType);
+                // Convert the volumes to document objects
+                return convertVolumesToDocuments(volumes);
+            }
+        };
+
+        TaskManager.runTask(filterTask,
+                () -> {
+                    ObservableList<Document> documents = filterTask.getValue();
+                    if (documents.isEmpty()) {
+                        showAlert("No documents found for the search term.");
+                    } else {
+                        docsTable.setItems(documents);
+                    }
+                    saveData();
+                },
+                () -> {
+                    showAlert("An error occurred while applying the filters.");
+                });
     }
 
     // Clear all filters
@@ -270,7 +294,6 @@ public class SearchDocumentsController implements Initializable {
                 detailStage.setScene(detailScene);
                 detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
                 detailStage.showAndWait();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

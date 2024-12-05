@@ -2,9 +2,11 @@ package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
 import com.uet.libraryManagement.Managers.SceneManager;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Repositories.DocumentRepository;
 import com.uet.libraryManagement.Repositories.ThesisRepository;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,13 +34,30 @@ public class AdminDocumentsController extends DocumentsController {
             confirmAlert.setHeaderText("Delete Document");
 
             if (confirmAlert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
-                if (selectedDocument instanceof Book) {
-                    BookRepository.getInstance().delete(selectedDocument);
-                } else if (selectedDocument instanceof Thesis) {
-                    ThesisRepository.getInstance().delete(selectedDocument);
-                }
-                // Refresh the document list after deletion
-                loadDocuments(docTypeBox.getValue());
+                Task<Void> deleteTask = new Task<>() {
+                    @Override
+                    protected Void call() throws Exception {
+                        if (selectedDocument instanceof Book) {
+                            BookRepository.getInstance().delete(selectedDocument);
+                        } else if (selectedDocument instanceof Thesis) {
+                            ThesisRepository.getInstance().delete(selectedDocument);
+                        }
+                        return null;
+                    }
+                };
+
+                Runnable onSuccess = () -> {
+                    loadDocuments(docType);
+                    showAlert("Document deleted successfully.");
+                };
+
+                Runnable onFailure = () -> {
+                    Throwable ex = deleteTask.getException();
+                    if (ex != null) ex.printStackTrace(); // Log lỗi để debug
+                    showAlert("Failed to delete the document.");
+                };
+
+                TaskManager.runTask(deleteTask, onSuccess, onFailure);
             }
         } else {
             showAlert("Please select a document to delete.");

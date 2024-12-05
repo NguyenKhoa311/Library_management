@@ -2,11 +2,13 @@ package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Managers.SessionManager;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Document;
 import com.uet.libraryManagement.Repositories.ThesisRepository;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -130,13 +132,32 @@ public abstract class DocumentsController implements Initializable {
 
     // load documents base on type chosen from comboBox
     protected void loadDocuments(String docType) {
-        ObservableList<Document> documents;
-        if ("Books".equals(docType)) {
-            documents = BookRepository.getInstance().getAllBooks();
-        } else {
-            documents = ThesisRepository.getInstance().getAllTheses();
-        }
-        docsTable.setItems(documents);
+        Task<ObservableList<Document>> loadDocumentsTask = new Task<ObservableList<Document>>() {
+            @Override
+            protected ObservableList<Document> call() throws Exception {
+                ObservableList<Document> documents;
+                if ("Books".equals(docType)) {
+                    // Tải danh sách sách từ BookRepository
+                    documents = BookRepository.getInstance().getAllBooks();
+                } else {
+                    // Tải danh sách luận văn từ ThesisRepository
+                    documents = ThesisRepository.getInstance().getAllTheses();
+                }
+                return documents;
+            }
+        };
+
+        Runnable onSuccess = () -> {
+            ObservableList<Document> documents = loadDocumentsTask.getValue();
+            docsTable.setItems(documents);
+        };
+
+        Runnable onFailure = () -> {
+            Throwable ex = loadDocumentsTask.getException();
+            if (ex != null) ex.printStackTrace(); // Log lỗi để debug
+        };
+
+        TaskManager.runTask(loadDocumentsTask, onSuccess, onFailure);
     }
 
     // add listener to handle clicked outside table
@@ -190,25 +211,57 @@ public abstract class DocumentsController implements Initializable {
     }
 
     private void loadDocuments(String title, String author, String category, String startYear, String endYear, String isbn10, String isbn13) {
-        ObservableList<Document> documents;
-        if (docTypeBox.getValue().equals("Books")) {
-            documents = BookRepository.getInstance().getFilteredDocuments(title, author, category, startYear, endYear, isbn10, isbn13);
+        Task<ObservableList<Document>> loadDocumentsTask = new Task<>() {
+            @Override
+            protected ObservableList<Document> call() throws Exception {
+                ObservableList<Document> documents;
+                if (docTypeBox.getValue().equals("Books")) {
+                    documents = BookRepository.getInstance().getFilteredDocuments(title, author, category, startYear, endYear, isbn10, isbn13);
+                } else {
+                    documents = ThesisRepository.getInstance().getFilteredDocuments(title, author, category, startYear, endYear, isbn10, isbn13);
+                }
+                return documents;
+            }
+        };
+
+        Runnable onSuccess = () -> {
+            ObservableList<Document> documents = loadDocumentsTask.getValue();
             docsTable.setItems(documents);
-        } else {
-            documents = ThesisRepository.getInstance().getFilteredDocuments(title, author, category, startYear, endYear, isbn10, isbn13);
-        }
-        docsTable.setItems(documents);
+        };
+
+        Runnable onFailure = () -> {
+            Throwable ex = loadDocumentsTask.getException();
+            if (ex != null) ex.printStackTrace(); // Log lỗi để debug
+        };
+
+        TaskManager.runTask(loadDocumentsTask, onSuccess, onFailure);
     }
 
     private void loadSearchedDocuments(String searchTerm) {
-        ObservableList<Document> documents;
-        if (docTypeBox.getValue().equals("Books")) {
-            documents = BookRepository.getInstance().searchDocument(searchTerm);
+        Task<ObservableList<Document>> loadSearchedDocumentsTask = new Task<>() {
+            @Override
+            protected ObservableList<Document> call() throws Exception {
+                ObservableList<Document> documents;
+                if (docTypeBox.getValue().equals("Books")) {
+                    documents = BookRepository.getInstance().searchDocument(searchTerm);
+                } else {
+                    documents = ThesisRepository.getInstance().searchDocument(searchTerm);
+                }
+                return documents;
+            }
+        };
+
+        Runnable onSuccess = () -> {
+            ObservableList<Document> documents = loadSearchedDocumentsTask.getValue();
             docsTable.setItems(documents);
-        } else {
-            documents = ThesisRepository.getInstance().searchDocument(searchTerm);
-        }
-        docsTable.setItems(documents);
+        };
+
+        Runnable onFailure = () -> {
+            Throwable ex = loadSearchedDocumentsTask.getException();
+            if (ex != null) ex.printStackTrace();
+        };
+
+        TaskManager.runTask(loadSearchedDocumentsTask, onSuccess, onFailure);
     }
 
     public void showAlert(String message) {

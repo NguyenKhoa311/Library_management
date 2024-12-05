@@ -1,8 +1,10 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.Managers.SceneManager;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.User;
 import com.uet.libraryManagement.Repositories.UserRepository;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -41,9 +43,30 @@ public class RegisterController {
 
         User user = new User(username, password, email);
 
-        if (UserRepository.getInstance().create(user)) {
-            messageLabel.setText("Registration successful!");
-        }
+        // Create a Task for the registration process
+        Task<Boolean> registerTask = new Task<>() {
+            @Override
+            protected Boolean call() throws Exception {
+                return UserRepository.getInstance().create(user);
+            }
+        };
+
+        // Success handler
+        Runnable onSuccess = () -> {
+            if (registerTask.getValue()) {
+                messageLabel.setText("Registration successful!");
+            } else {
+                messageLabel.setText("Registration failed. Username already exist.");
+            }
+        };
+
+        // Failure handler
+        Runnable onFailure = () -> {
+            messageLabel.setText("An error occurred. Please try again.");
+        };
+
+        // Run the Task using TaskManager
+        TaskManager.runTask(registerTask, onSuccess, onFailure);
     }
 
     @FXML
@@ -60,25 +83,5 @@ public class RegisterController {
     public boolean isValidEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         return email.matches(emailRegex);
-    }
-
-    public TextField getUsernameField() {
-        return usernameField;
-    }
-
-    public PasswordField getPasswordField() {
-        return passwordField;
-    }
-
-    public PasswordField getCf_passwordField() {
-        return cf_passwordField;
-    }
-
-    public TextField getEmailField() {
-        return emailField;
-    }
-
-    public Label getMessageLabel() {
-        return messageLabel;
     }
 }

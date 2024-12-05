@@ -18,7 +18,7 @@ public class ConnectJDBC {
 //            Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Tạo kết nối
-            String url = "jdbc:mysql://localhost:3306/library_db";
+            String url = "jdbc:mysql://localhost:3307/library_db";
             String username = "root";
             String password = "";
             connection = DriverManager.getConnection(url, username, password);

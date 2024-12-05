@@ -2,8 +2,10 @@ package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.*;
 import com.uet.libraryManagement.APIService.ImgurUpload;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.Repositories.BookRepository;
 import com.uet.libraryManagement.Repositories.ThesisRepository;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -126,60 +128,79 @@ public class DocumentFormController {
             return;
         }
 
-        if ("add".equals(mode)) {
-            String imgurUrl = null;
-            // Nếu thumbnail đã được chọn, tải lên Imgur và lấy URL trả về
-            if (thumbnailFilePath != null && !thumbnailFilePath.isEmpty()) {
-                try {
-                    imgurUrl = ImgurUpload.uploadImage(new File(thumbnailFilePath)); // Tải ảnh lên Imgur và nhận URL
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    showAlert("Error uploading thumbnail image to Imgur.");
-                    return; // Dừng lại nếu không thể tải ảnh lên Imgur
+        Task<Void> saveTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                // This block will run in a separate thread
+                String imgurUrl = null;
+
+                if (thumbnailFilePath != null && !thumbnailFilePath.isEmpty()) {
+                    try {
+                        imgurUrl = ImgurUpload.uploadImage(new File(thumbnailFilePath)); // Tải ảnh lên Imgur và nhận URL
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        showAlert("Error uploading thumbnail image to Imgur.");
+                        return null; // Dừng lại nếu không thể tải ảnh lên Imgur
+                    }
                 }
-            }
-            if ("Books".equals(docType)) {
-                document = new Book(title, author, publisher, description, publishDate, category, imgurUrl, isbn10, isbn13, Integer.parseInt(quantityInput));
-                BookRepository.getInstance().create(document, Integer.parseInt(quantityInput));
-                System.out.println("Book added");
-            } else if ("Theses".equals(docType)) {
-                document = new Thesis(title, author, publisher, description, publishDate, category, imgurUrl, isbn10, isbn13, Integer.parseInt(quantityInput));
-                ThesisRepository.getInstance().create(document, Integer.parseInt(quantityInput));
-                System.out.println("Thesis added");
-            }
-        } else if ("edit".equals(mode) && document != null) {
-            // Update document details and save changes
-            document.setTitle(title);
-            document.setAuthor(author);
-            document.setPublisher(publisher);
-            document.setYear(publishDate);
-            document.setCategory(category);
-            document.setDescription(description);
-            document.setIsbn10(isbn10);
-            document.setIsbn13(isbn13);
-            document.setQuantity(Integer.parseInt(quantityInput));
 
-            // upload image to imgur
-            if (thumbnailFilePath != null && !thumbnailFilePath.isEmpty() && !thumbnailFilePath.equals(document.getThumbnailUrl())) {
-                try {
-                    String imgurUrl = ImgurUpload.uploadImage(new File(thumbnailFilePath)); // Upload image to Imgur
-                    document.setThumbnailUrl(imgurUrl);  // Set the new Imgur URL
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    showAlert("Error uploading thumbnail image to Imgur.");
-                    return;
+                if ("add".equals(mode)) {
+                    if ("Books".equals(docType)) {
+                        document = new Book(title, author, publisher, description, publishDate, category, imgurUrl, isbn10, isbn13, quantity);
+                        BookRepository.getInstance().create(document, quantity);
+                        System.out.println("Book added");
+                    } else if ("Theses".equals(docType)) {
+                        document = new Thesis(title, author, publisher, description, publishDate, category, imgurUrl, isbn10, isbn13, quantity);
+                        ThesisRepository.getInstance().create(document, quantity);
+                        System.out.println("Thesis added");
+                    }
+                } else if ("edit".equals(mode) && document != null) {
+                    // Update document details and save changes
+                    document.setTitle(title);
+                    document.setAuthor(author);
+                    document.setPublisher(publisher);
+                    document.setYear(publishDate);
+                    document.setCategory(category);
+                    document.setDescription(description);
+                    document.setIsbn10(isbn10);
+                    document.setIsbn13(isbn13);
+                    document.setQuantity(quantity);
+
+                    // Upload image to imgur if necessary
+                    if (thumbnailFilePath != null && !thumbnailFilePath.isEmpty() && !thumbnailFilePath.equals(document.getThumbnailUrl())) {
+                        try {
+                            imgurUrl = ImgurUpload.uploadImage(new File(thumbnailFilePath)); // Upload image to Imgur
+                            document.setThumbnailUrl(imgurUrl);  // Set the new Imgur URL
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            showAlert("Error uploading thumbnail image to Imgur.");
+                            return null;
+                        }
+                    }
+
+                    if (document instanceof Book) {
+                        BookRepository.getInstance().update(document);
+                    } else if (document instanceof Thesis) {
+                        ThesisRepository.getInstance().update(document);
+                    }
                 }
-            }
 
-            if (document instanceof Book) {
-                BookRepository.getInstance().update(document);
-            } else if (document instanceof Thesis) {
-                ThesisRepository.getInstance().update(document);
+                return null;
             }
-        }
+        };
 
-        showAlert("Document saved successfully.");
-        closeForm();
+        Runnable onSuccess = () -> {
+            showAlert("Document saved successfully.");
+            closeForm();
+        };
+
+        Runnable onFailure = () -> {
+            Throwable ex = saveTask.getException();
+            if (ex != null) ex.printStackTrace(); // Log lỗi để debug
+            showAlert("Failed to save the document.");
+        };
+
+        TaskManager.runTask(saveTask, onSuccess, onFailure);
     }
 
     private void showAlert(String message) {

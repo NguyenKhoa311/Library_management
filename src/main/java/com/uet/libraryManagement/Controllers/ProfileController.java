@@ -3,7 +3,6 @@ package com.uet.libraryManagement.Controllers;
 import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,7 +28,7 @@ public class ProfileController {
         loadUserInfo();
     }
 
-    public void handleEditProfile(ActionEvent actionEvent) {
+    public void handleEditProfile() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/EditProfile.fxml"));
             Parent editProfileRoot = loader.load();
@@ -52,7 +51,7 @@ public class ProfileController {
         }
     }
 
-    public void handlePassword(ActionEvent actionEvent) {
+    public void handlePassword() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/ChangePassword.fxml"));
             Parent changePasswordRoot = loader.load();

@@ -1,8 +1,10 @@
 package com.uet.libraryManagement.Controllers;
 
 import com.uet.libraryManagement.APIService.ImgurUpload;
+import com.uet.libraryManagement.Managers.TaskManager;
 import com.uet.libraryManagement.Repositories.UserRepository;
 import com.uet.libraryManagement.User;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -82,22 +84,35 @@ public class UserFormController {
         currentUser.setEmail(email);
         currentUser.setBirthday(birthday);
 
-        // Nếu thumbnail đã được chọn, tải lên Imgur và lấy URL trả về
-        String imgurUrl = null;
-        if (avatarPath != null && !avatarPath.isEmpty()) {
-            try {
-                imgurUrl = ImgurUpload.uploadImage(new File(avatarPath)); // Tải ảnh lên Imgur và nhận URL
-                currentUser.setAvatar(imgurUrl);
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert("Error uploading thumbnail image to Imgur.");
-                return; // Dừng lại nếu không thể tải ảnh lên Imgur
+        Task<Void> saveUserTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                // Nếu thumbnail đã được chọn, tải lên Imgur và lấy URL trả về
+                if (avatarPath != null && !avatarPath.isEmpty()) {
+                    try {
+                        String imgurUrl = ImgurUpload.uploadImage(new File(avatarPath));
+                        currentUser.setAvatar(imgurUrl); // Set avatar URL sau khi tải lên thành công
+                    } catch (IOException e) {
+                        throw new RuntimeException("Error uploading thumbnail image to Imgur.", e);
+                    }
+                }
+                // Cập nhật thông tin hồ sơ người dùng
+                UserRepository.getInstance().updateProfile(currentUser);
+                return null;
             }
-        }
+        };
 
-        UserRepository.getInstance().updateProfile(currentUser);
-        showAlert("Profile changed successfully.");
-        closeForm();
+        // Sử dụng TaskManager để chạy task
+        TaskManager.runTask(
+                saveUserTask,
+                () -> { // On Success
+                    showAlert("Profile changed successfully.");
+                    closeForm(); // Đóng form sau khi lưu thành công
+                },
+                () -> { // On Failure
+                    showAlert("An error occurred while saving the profile: " + saveUserTask.getException().getMessage());
+                }
+        );
     }
 
     private void showAlert(String message) {
