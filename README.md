@@ -79,21 +79,28 @@ The **Library Management System** is a software application designed to streamli
 ## 📝 Creators
 
 ### Nguyen Van Khoa: 
-- **Role**: Backend, Database design.
+- **Role**: Project manager, Backend developer, Database designer.
 - **Contact**:
   - Email: khoabeo651@gmail.com
   - Facebook: https://www.facebook.com/profile.php?id=100014293383493
   - GitHub: https://github.com/NguyenKhoa311
 ### Do Ngoc Khanh:
-- **Role**: Frontend, UX/UI design.
+- **Role**: Frontend developer, UX/UI designer, database manager.
 - **Contact**:
     - Email: dongockhanh.vn@gmail.com
     - Facebook: https://www.facebook.com/profile.php?id=100015122586295
     - GitHub: https://github.com/Xipog77
 ### Nguyen Huy Hoang:
-- **Role**: JUnit, Tester.
+- **Role**: Project analyst, JUnit developer, Tester.
 - **Contact**:
     - Email: huyhoangnguyen5405@gmail.com
     - Facebook: https://www.facebook.com/profile.php?id=100012702061324
     - GitHub: https://github.com/Sfyelf
 ---
+
+## References
+- ChatGPT
+- Claude
+- Gemini
+- Stack Overflow
+- Color Hunt
