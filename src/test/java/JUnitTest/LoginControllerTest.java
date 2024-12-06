@@ -1,6 +1,7 @@
 package JUnitTest;
 
 import com.uet.libraryManagement.Controllers.LoginController;
+import com.uet.libraryManagement.Controllers.MenuController;
 import com.uet.libraryManagement.Managers.SceneManager;
 import com.uet.libraryManagement.Managers.SessionManager;
 import com.uet.libraryManagement.Repositories.UserRepository;
@@ -15,13 +16,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.testfx.framework.junit5.ApplicationTest;
 
 import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class LoginControllerTest {
+public class LoginControllerTest extends ApplicationTest {
 
     @InjectMocks
     private LoginController loginController;
@@ -56,6 +58,15 @@ public class LoginControllerTest {
         loginController.password_textfield = passwordTextField;
         loginController.messageLabel = messageLabel;
 
+    }
+
+    @Override
+    public void start(Stage stage) {
+        try {
+            // Chạy như bình thường
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -167,12 +178,11 @@ public class LoginControllerTest {
         verifyNoInteractions(sceneManagerMock);
     }
 
-    //@Override
-    public void start(Stage stage) {
-        try {
-// Chạy như bình thường
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+}
+
+class LoginControllerTestLauncher {
+    public static void main(String[] args)
+    {
+        ConnectJDBCTest.main(args);
     }
 }

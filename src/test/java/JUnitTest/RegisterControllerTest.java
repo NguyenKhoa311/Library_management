@@ -196,3 +196,10 @@ public class RegisterControllerTest {
         }
     }
 }
+
+class RegisterControllerTestLauncher {
+    public static void main(String[] args)
+    {
+        ConnectJDBCTest.main(args);
+    }
+}

@@ -192,3 +192,10 @@ public class EditProfileControllerTest {
         assertNotNull(alert.getContentText());
     }
 }
+
+class EditProfileControllerTestLauncher {
+    public static void main(String[] args)
+    {
+        ConnectJDBCTest.main(args);
+    }
+}

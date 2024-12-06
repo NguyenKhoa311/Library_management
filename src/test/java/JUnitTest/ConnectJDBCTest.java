@@ -1,16 +1,37 @@
 package JUnitTest;
 
 import com.uet.libraryManagement.ConnectJDBC;
+import com.uet.libraryManagement.Controllers.MenuController;
+import com.uet.libraryManagement.Managers.SceneManager;
+import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
+import org.testfx.framework.junit5.ApplicationTest;
+
+import java.sql.Connection;
 
 import java.sql.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class ConnectJDBCTest {
+public class ConnectJDBCTest extends ApplicationTest {
+
+    @Override
+    public void start(Stage stage) {
+        try {
+            SceneManager.getInstance().setStage(stage);
+            SceneManager.getInstance().setLoginScene("FXML/Login.fxml");
+
+            stage.setOnCloseRequest(event -> {
+                event.consume();
+                MenuController.close(stage);
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void testStaticConnectionInitialization() throws SQLException {
@@ -90,5 +111,17 @@ public class ConnectJDBCTest {
             verify(mockPreparedStatement).setObject(2, 1);
             verify(mockPreparedStatement).executeUpdate();
         }
+    }
+
+
+
+    static void main(String[] args) {
+    }
+}
+
+class ConnectJDBCTestLauncher {
+    public static void main(String[] args)
+    {
+        ConnectJDBCTest.main(args);
     }
 }
