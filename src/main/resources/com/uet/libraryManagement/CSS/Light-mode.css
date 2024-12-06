@@ -25,7 +25,6 @@
     -fx-background-color: #B0D4D6;
     -fx-cursor: hand;
     -fx-font-weight: bold;
-;
     -fx-font-fill: #76ABAE;
     -fx-font-size: 15;
 }
@@ -127,7 +126,6 @@
     -fx-background-color: #EEEEEE;
     -fx-cursor: hand;
     -fx-font-weight: bold;
-;
     -fx-font-fill: #76ABAE;
     -fx-font-size: 13;
     -fx-border-color: #31363F;
@@ -149,7 +147,6 @@
     -fx-background-color: #EEEEEE;
     -fx-cursor: hand;
     -fx-font-weight: bold;
-;
     -fx-font-fill: #76ABAE;
     -fx-border-color: #31363F;
     -fx-font-size: 12;
@@ -170,7 +167,6 @@
 .Documents-VBox-JFXButton:hover {
     -fx-cursor: hand;
     -fx-font-weight: bold;
-;
     -fx-font-fill: #76ABAE;
     -fx-font-size: 12;
     -fx-border-width: 2px;
