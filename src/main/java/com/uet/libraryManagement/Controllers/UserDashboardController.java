@@ -257,76 +257,40 @@ public class UserDashboardController {
         int borrow_id = borrowHistory.getId();
         Document document = BorrowRepository.getInstance().getRecentDocument(userId, borrow_id);
         String docType = BorrowRepository.getInstance().getDocType(userId, borrow_id);
+        System.out.println(docType);
         openDocumentDetails(document, docType);
     }
 
     private void openDocumentDetails(Document document, String docType) {
-        if (document != null) {
-            Task<Void> loadDocumentDetailTask = new Task<>() {
-                @Override
-                protected Void call() throws Exception {
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentDetail.fxml"));
-                        Parent detailRoot = loader.load();
+            if (document != null) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentDetail.fxml"));
+                    Parent detailRoot = loader.load();
 
-                        // Lấy controller và thiết lập dữ liệu tài liệu
-                        DocumentDetailController controller = loader.getController();
-                        controller.setDocumentDetails(document);
-                        controller.setDocument(document);
-                        controller.setDocType(docType);
+                    // Lấy controller và thiết lập dữ liệu tài liệu
+                    DocumentDetailController controller = loader.getController();
+                    controller.setDocumentDetails(document);
+                    controller.setDocument(document);
+                    controller.setDocType(docType);
+                    controller.loadComments(document.getId(), docType); // Load comments trực tiếp
 
-                        // Tải dữ liệu comments trong nền
-                        controller.loadComments(document.getId(), docType);
+                    // Tạo Scene và Stage cho cửa sổ chi tiết tài liệu
+                    Scene detailScene = new Scene(detailRoot);
+                    detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
 
-                        // Trả về null sau khi hoàn thành task
-                        return null;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        return null;
-                    }
+                    Stage detailStage = new Stage();
+                    detailStage.setResizable(false);
+                    String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+                    Image icon = new Image(icon_url);
+                    detailStage.getIcons().add(icon);
+                    detailStage.setTitle("Document Details");
+                    detailStage.setScene(detailScene);
+                    detailStage.initModality(Modality.APPLICATION_MODAL); // Đặt chế độ modal
+                    detailStage.showAndWait();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            };
-
-            // Sử dụng TaskManager để chạy task trong nền
-            TaskManager.runTask(loadDocumentDetailTask,
-                    () -> {
-                        // Khi task thành công, hiển thị giao diện trên Application Thread
-                        try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentDetail.fxml"));
-                            Parent detailRoot = loader.load();
-
-                            // Lấy controller và thiết lập dữ liệu tài liệu
-                            DocumentDetailController controller = loader.getController();
-                            controller.setDocumentDetails(document);
-                            controller.setDocument(document);
-                            controller.setDocType(docType);
-
-                            Scene detailScene = new Scene(detailRoot);
-                            detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
-
-                            // Tạo Stage mới cho cửa sổ chi tiết
-                            Stage detailStage = new Stage();
-                            detailStage.setResizable(false);
-                            String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
-                            Image icon = new Image(icon_url);
-                            detailStage.getIcons().add(icon);
-                            detailStage.setTitle("Document Details");
-                            detailStage.setScene(detailScene);
-                            detailStage.initModality(Modality.APPLICATION_MODAL);
-                            detailStage.showAndWait();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    },
-                    () -> {
-                        // Xử lý lỗi nếu task thất bại
-                        Throwable exception = loadDocumentDetailTask.getException();
-                        if (exception != null) {
-                            exception.printStackTrace();
-                        }
-                    }
-            );
-        }
+            }
     }
 
 

@@ -34,6 +34,10 @@ public class ConnectJDBC {
     public static void connect() {
         if (connection == null) {
             try {
+//                String url = "jdbc:mysql://localhost:3307/library_db";
+//                String username = "root";
+//                String password = "";
+//                connection = DriverManager.getConnection(url, username, password);
                 connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
                 System.out.println("Kết nối thành công tới AWS RDS!");
             } catch (SQLException e) {
