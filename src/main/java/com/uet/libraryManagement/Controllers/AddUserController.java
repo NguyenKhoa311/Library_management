@@ -46,6 +46,11 @@ public class AddUserController {
             return;
         }
 
+        if (!isValidEmail(email)) {
+            showAlert("Invalid email address.");
+            return;
+        }
+
         User user = new User(username, password, email, role);
 
         // Create Task to add user
@@ -71,6 +76,11 @@ public class AddUserController {
                 },
                 () -> showAlert("An error occurred while adding the user. Please try again.") // On Failure
         );
+    }
+
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+[.][A-Za-z]{2,}$";
+        return email.matches(emailRegex);
     }
 
     private void showAlert(String message) {

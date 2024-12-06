@@ -4,6 +4,7 @@ import com.uet.libraryManagement.Book;
 import com.uet.libraryManagement.ConnectJDBC;
 import com.uet.libraryManagement.Document;
 import com.uet.libraryManagement.Thesis;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -142,13 +143,30 @@ public abstract class DocumentRepository {
     // get recent added documents
     public ObservableList<Document> getRecentAddedDocuments() {
         ObservableList<Document> documents = FXCollections.observableArrayList();
-        String query = "SELECT * FROM books "
+        String query = "SELECT *, 'book' AS docType FROM books "
                         + "UNION ALL "
-                        + "SELECT * FROM theses "
+                        + "SELECT *, 'thesis' AS docType FROM theses "
                         + "ORDER BY createdDate DESC "
                         + "LIMIT 5";
         try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
-            getDocuments(rs, documents);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String titleValue = rs.getString("title");
+                String authorValue = rs.getString("author");
+                String publisher = rs.getString("publisher");
+                String year = rs.getString("publishDate");
+                String description = rs.getString("description");
+                String genre = rs.getString(getDbTable().equals("books") ? "genre" : "field");
+                String url = rs.getString("thumbnail");
+                String isbn10Value = rs.getString("isbn10");
+                String isbn13Value = rs.getString("isbn13");
+                int quantityValue = rs.getInt("quantity");
+                String docType = rs.getString("docType");
+                Document document = docType.equals("books") ?
+                        new Book(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value, quantityValue) :
+                        new Thesis(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value, quantityValue);
+                documents.add(document);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -305,7 +323,6 @@ public abstract class DocumentRepository {
                     document.getYear(), document.getDescription(), document.getCategory(),
                     document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13(),
                     quantity, Timestamp.valueOf(LocalDateTime.now()));
-            showAlert("Document inserted successfully !");
             System.out.println("Document inserted successfully.");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -361,8 +378,12 @@ public abstract class DocumentRepository {
     }
 
     private void showAlert(String message) {
+        Platform.runLater(() -> {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Notification");
+        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    });
     }
 }

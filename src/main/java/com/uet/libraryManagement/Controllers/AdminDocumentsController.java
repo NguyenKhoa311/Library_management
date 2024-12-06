@@ -50,7 +50,7 @@ public class AdminDocumentsController extends DocumentsController {
 
                 Runnable onSuccess = () -> {
                     loadDocuments(docType);
-                    showAlert("Document deleted successfully.");
+//                    showAlert("Document deleted successfully.");
                 };
 
                 Runnable onFailure = () -> {

@@ -128,7 +128,7 @@ public class DocumentFormController {
             return;
         }
 
-        Task<Void> saveTask = new Task<Void>() {
+        Task<Void> saveTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
                 // This block will run in a separate thread

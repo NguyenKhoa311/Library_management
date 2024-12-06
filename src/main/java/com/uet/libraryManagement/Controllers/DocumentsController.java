@@ -187,6 +187,7 @@ public abstract class DocumentsController implements Initializable {
     protected void showDocumentDetails() {
         Document selectedDocument = docsTable.getSelectionModel().getSelectedItem();
         String docType = docTypeBox.getValue();
+        System.out.println(docType);
         if (selectedDocument != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/uet/libraryManagement/FXML/DocumentDetail.fxml"));

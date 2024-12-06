@@ -347,6 +347,7 @@ public class SearchDocumentsController implements Initializable {
         } else {
             ThesisRepository.getInstance().create(selectedDocument, quantity);
         }
+        showAlert("Document Added Successfully!");
     }
 
     private void saveData() {
