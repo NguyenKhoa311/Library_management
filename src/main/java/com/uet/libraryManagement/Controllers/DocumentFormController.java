@@ -115,6 +115,16 @@ public class DocumentFormController {
             return;
         }
 
+        if (!isbn10.isEmpty() && isbn10.length() != 10) {
+            showAlert("ISBN-10 must be exactly 10 characters.");
+            return;
+        }
+
+        if (!isbn13.isEmpty() && isbn13.length() != 13) {
+            showAlert("ISBN-13 must be exactly 13 characters.");
+            return;
+        }
+
         // Validate and parse quantity
         int quantity;
         try {

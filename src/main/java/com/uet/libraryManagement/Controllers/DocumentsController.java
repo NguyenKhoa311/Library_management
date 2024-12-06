@@ -212,7 +212,6 @@ public abstract class DocumentsController implements Initializable {
                 detailStage.setScene(detailScene);
                 detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window
                 detailStage.showAndWait();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }

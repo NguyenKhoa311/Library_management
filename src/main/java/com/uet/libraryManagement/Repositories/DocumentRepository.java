@@ -162,7 +162,7 @@ public abstract class DocumentRepository {
                 String isbn13Value = rs.getString("isbn13");
                 int quantityValue = rs.getInt("quantity");
                 String docType = rs.getString("docType");
-                Document document = docType.equals("books") ?
+                Document document = docType.equals("book") ?
                         new Book(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value, quantityValue) :
                         new Thesis(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value, quantityValue);
                 documents.add(document);

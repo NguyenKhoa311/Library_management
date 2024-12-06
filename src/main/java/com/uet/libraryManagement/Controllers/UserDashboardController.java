@@ -257,7 +257,6 @@ public class UserDashboardController {
         int borrow_id = borrowHistory.getId();
         Document document = BorrowRepository.getInstance().getRecentDocument(userId, borrow_id);
         String docType = BorrowRepository.getInstance().getDocType(userId, borrow_id);
-        System.out.println(docType);
         openDocumentDetails(document, docType);
     }
 
@@ -321,9 +320,18 @@ public class UserDashboardController {
         if (documents == null || documents.isEmpty() || index < 0 || index >= documents.size()) {
             return; // Không làm gì nếu danh sách trống hoặc chỉ số không hợp lệ
         }
-        Document doc = documents.get(index);
-        Image coverImage = new Image(doc.getThumbnailUrl(), true);
-        imageView.setImage(coverImage);
+        Document document = documents.get(index);
+        if (document.getThumbnailUrl() != null && !document.getThumbnailUrl().isEmpty()
+                && !document.getThumbnailUrl().equalsIgnoreCase("No Thumbnail")) {
+            Image image = new Image(document.getThumbnailUrl(), true);
+            imageView.setImage(image);
+
+        } else {
+            Image image = new Image(getClass().getResource("/com/uet/libraryManagement/ICONS/no_image.png").toExternalForm());
+            imageView.setFitHeight(200);
+            imageView.setFitWidth(150);
+            imageView.setImage(image); // set no thumbnail image
+        }
     }
 
     @FXML
