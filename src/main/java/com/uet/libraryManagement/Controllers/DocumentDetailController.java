@@ -107,8 +107,16 @@ public class DocumentDetailController {
             @Override
             protected Void call() throws Exception {
                 // Lấy số lượng đánh giá và điểm đánh giá từ cơ sở dữ liệu
-                int numRating = RatingRepository.getInstance().getRatingNum(documentId, docType.equals("Books") ? "book" : "thesis");
-                int docRating = RatingRepository.getInstance().getRating(documentId, docType.equals("Books") ? "book" : "thesis");
+                String normalizedDocType;
+                if (docType.equalsIgnoreCase("book") || docType.equalsIgnoreCase("books")) {
+                    normalizedDocType = "book";
+                } else if (docType.equalsIgnoreCase("thesis") || docType.equalsIgnoreCase("theses")) {
+                    normalizedDocType = "thesis";
+                } else {
+                    throw new IllegalArgumentException("Invalid document type: " + docType);
+                }
+                int numRating = RatingRepository.getInstance().getRatingNum(documentId, normalizedDocType);
+                int docRating = RatingRepository.getInstance().getRating(documentId, normalizedDocType);
 
                 // Lấy danh sách bình luận
                 ObservableList<RatingComment> comments = RatingRepository.getInstance().getCommentsByDocumentId(documentId, docType);

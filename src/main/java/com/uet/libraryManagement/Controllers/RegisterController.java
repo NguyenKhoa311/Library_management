@@ -27,7 +27,6 @@ public class RegisterController {
         String confirmPassword = cf_passwordField.getText();
         String email = emailField.getText();
 
-        // Basic validation
         if (username.isEmpty() || password.isEmpty() || email.isEmpty()) {
             messageLabel.setText("Please fill all fields.");
             return;
@@ -43,7 +42,6 @@ public class RegisterController {
 
         User user = new User(username, password, email);
 
-        // Create a Task for the registration process
         Task<Boolean> registerTask = new Task<>() {
             @Override
             protected Boolean call() throws Exception {
@@ -51,7 +49,6 @@ public class RegisterController {
             }
         };
 
-        // Success handler
         Runnable onSuccess = () -> {
             if (registerTask.getValue()) {
                 messageLabel.setText("Registration successful!");
@@ -60,12 +57,10 @@ public class RegisterController {
             }
         };
 
-        // Failure handler
         Runnable onFailure = () -> {
             messageLabel.setText("An error occurred. Please try again.");
         };
 
-        // Run the Task using TaskManager
         TaskManager.runTask(registerTask, onSuccess, onFailure);
     }
 
@@ -81,7 +76,7 @@ public class RegisterController {
      * @return true if the email is valid, false otherwise
      */
     public boolean isValidEmail(String email) {
-        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+[.][A-Za-z]{2,}$";
         return email.matches(emailRegex);
     }
 }

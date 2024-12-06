@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -27,6 +28,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HistoryController implements Initializable {
@@ -78,7 +80,9 @@ public class HistoryController implements Initializable {
         docTypeBox.getSelectionModel().select("Books");
         historyTable.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-                showDocumentDetails();
+                if (historyTable.getSelectionModel().getSelectedItem() != null) {
+                    showDocumentDetails();
+                }
             }
         });
         HandleOutsideClickListener();
@@ -103,13 +107,19 @@ public class HistoryController implements Initializable {
                 // Get the controller and set the selected book
                 DocumentDetailController controller = loader.getController();
                 controller.setDocumentDetails(document);
+                controller.setDocument(document);
+                controller.setDocType(docType);
+                controller.loadComments(document.getId(), docType);
 
                 Scene detailScene = new Scene(detailRoot);
-
                 detailScene.getStylesheets().add(SceneManager.getInstance().get_css());
 
                 // Create a new stage for the book detail window
                 Stage detailStage = new Stage();
+                detailStage.setResizable(false);
+                String icon_url = Objects.requireNonNull(this.getClass().getResource("/com/uet/libraryManagement/ICONS/logo.png")).toExternalForm();
+                Image icon = new Image(icon_url);
+                detailStage.getIcons().add(icon);
                 detailStage.setTitle("Document Details");
                 detailStage.setScene(detailScene);
                 detailStage.initModality(Modality.APPLICATION_MODAL); // Make it a modal window

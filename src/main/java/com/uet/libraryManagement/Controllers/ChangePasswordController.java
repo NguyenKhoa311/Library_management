@@ -34,6 +34,7 @@ public class ChangePasswordController {
         // check if new password is the same to the old one
         if (currentUser.getPassword().equals(newPassword)) {
             messageLabel.setText("New password is the same to the old password");
+            return;
         }
 
         // Check if new password and confirmation match

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uet.libraryManagement.Controllers.LoginController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10.0">
          <children>
@@ -25,7 +25,7 @@
             </ImageView>
             <AnchorPane prefHeight="217.0" prefWidth="300.0">
                <children>
-                  <Label fx:id="messageLabel" layoutX="22.0" layoutY="177.0" prefHeight="26.0" prefWidth="255.0" styleClass="Login-label" />
+                  <Label fx:id="messageLabel" layoutX="22.0" layoutY="177.0" prefHeight="26.0" prefWidth="255.0" styleClass="Login-label" textAlignment="CENTER" />
                   <VBox layoutX="56.0" prefHeight="106.0" prefWidth="186.0" spacing="5.0">
                      <children>
                         <Label styleClass="Login-label-username" text="Username" />

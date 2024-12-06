@@ -8,36 +8,34 @@
 
 .Menu-jfx-button-custom {
     -fx-background-color: #222831;
-    -fx-border-width: 0px; /* Optional rounded corners */
+    -fx-border-width: 0px;
     -fx-background-radius: 5px;
 }
 
 .Menu-jfx-button-custom:hover {
     -fx-background-color: #31363F;
-    -fx-cursor: hand; /* Show hand cursor on hover */
+    -fx-cursor: hand;
 }
 
-/*chưa di chuột*/
 .Menu-button-style {
-    -fx-background-color: #222831; /* Set border color */
+    -fx-background-color: #222831;
     -fx-font-size: 13;
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-width: 2px;
     -fx-background-radius: 5px;
 }
 
-/* di chuột vào */
 .Menu-button-style:hover {
-    -fx-background-color: #222831;  /* Change color on hover */ /* Change border color on hover */
+    -fx-background-color: #222831;
     -fx-cursor: hand;
-    -fx-font-weight: bold; ;
+    -fx-font-weight: bold;
     -fx-font-fill: #76ABAE;
-    -fx-font-size: 15;/* Show hand cursor on hover */
+    -fx-font-size: 15;
 }
 
 .Menu-jfx-menu-icon-style {
-    -fx-background-color: #222831; /* Set border color */
+    -fx-background-color: #222831;
     -fx-border-radius: 5px;
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-width: 2px;
     -fx-background-radius: 5px;
 }
 
@@ -46,56 +44,50 @@
     -fx-cursor: hand;
 }
 
-/* Định dạng chung cho VBox */
 .Menu-vbox {
-    -fx-spacing: 10px; /* Khoảng cách giữa các nút */
-    -fx-padding: 15px; /* Padding bên trong VBox */
-    -fx-background-color: #3A6F71; /* Màu nền VBox */
-    -fx-border-color: #76ABAE; /* Màu viền */
-    -fx-border-width: 2px; /* Độ dày viền */
-    -fx-border-radius: 5px; /* Bo góc viền */
-    -fx-background-radius: 5px; /* Bo góc nền */
-    -fx-alignment: center; /* Căn giữa nội dung */
-    -fx-max-width: Infinity; /* Mở rộng nút tối đa theo VBox */
+    -fx-spacing: 10px;
+    -fx-padding: 15px;
+    -fx-background-color: #3A6F71;
+    -fx-border-color: #76ABAE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-alignment: center;
+    -fx-max-width: Infinity;
 }
 
-/* Định dạng chung cho JFXButton */
 .Menu-vbox .jfx-button {
-    -fx-pref-width: 200px; /* Chiều rộng cố định cho nút */
-    -fx-pref-height: 40px; /* Chiều cao cố định cho nút */
-    -fx-background-color: #222831; /* Màu nền nút */
-    -fx-text-fill: #76ABAE; /* Màu chữ */
-    -fx-font-size: 12px; /* Cỡ chữ */
-    -fx-border-color: #76ABAE; /* Màu viền nút */
-    -fx-border-width: 1px; /* Độ dày viền */
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-background-color: #222831;
+    -fx-text-fill: #76ABAE;
+    -fx-font-size: 12px;
+    -fx-border-color: #76ABAE;
+    -fx-border-width: 1px;
     -fx-border-radius: 5px;
     -fx-background-radius: 6px;
 }
 
-/* Hiệu ứng khi rê chuột qua nút */
 .Menu-vbox .jfx-button:hover {
-    -fx-background-color: #B0D4D6;  /* Màu nền khi hover */
-    -fx-font-weight: bold; /* In đậm chữ */
-    -fx-border-color: #3A6F71; /* Màu viền khi hover */
-    -fx-border-width: 2px; /* Độ dày viền */
-    -fx-border-radius: 5px; /* Bo góc viền */
-    -fx-background-radius: 6px; /* Bo góc nền */
+    -fx-background-color: #B0D4D6;
+    -fx-font-weight: bold;
+    -fx-border-color: #3A6F71;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 6px;
 }
 
-/* Hiệu ứng khi nhấn nút */
 .Menu-vbox .jfx-button:pressed {
-    -fx-background-color: #3A6F71; /* Màu nền khi nhấn */
-    -fx-text-fill: #E0E0E0; /* Màu chữ khi nhấn */
+    -fx-background-color: #3A6F71;
+    -fx-text-fill: #E0E0E0;
 }
 
-/* Hiệu ứng cho nút không hoạt động (disabled) */
 .Menu-vbox .jfx-button:disabled {
-    -fx-background-color: #D3D3D3; /* Màu nền nút bị vô hiệu */
-    -fx-text-fill: #A0A0A0; /* Màu chữ nút bị vô hiệu */
-    -fx-border-color: #B0B0B0; /* Màu viền nút bị vô hiệu */
+    -fx-background-color: #D3D3D3;
+    -fx-text-fill: #A0A0A0;
+    -fx-border-color: #B0B0B0;
 }
 
-/*Tiêu đề*/
 .Title-label {
     -fx-font-size: 30;
     -fx-font-family: Montserrat;
@@ -104,10 +96,9 @@
     -fx-alignment: center;
     -fx-background-color: #222831;
     -fx-alignment-baseline: middle;
-    /* Chỉ thêm viền ở góc dưới */
-    -fx-border-width: 0 0 3px 0; /* Viền chỉ ở dưới, dày 3px */
-    -fx-border-color: #76ABAE; /* Màu viền */
-    -fx-border-style: solid; /* Kiểu viền */
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-color: #76ABAE;
+    -fx-border-style: solid;
 }
 
 .Login-label-username {
@@ -130,9 +121,9 @@
 }
 
 .Login-JFXButton-Login {
-    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-background-color: #76ABAE;
     -fx-font-size: 13;
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-width: 2px;
     -fx-border-radius: 5px;
     -fx-font-weight: bold;
     -fx-border-color: #3A6F71;
@@ -140,23 +131,22 @@
     -fx-background-radius: 6px;
 }
 
-/* di chuột vào */
 .Login-JFXButton-Login:hover {
-    -fx-background-color: #B0D4D6; /* Change color on hover */ /* Change border color on hover */
+    -fx-background-color: #B0D4D6;
     -fx-cursor: hand;
     -fx-font-weight: bold;
     -fx-text-fill: #31363F;
-    -fx-font-size: 13;/* Show hand cursor on hover */
+    -fx-font-size: 13;
     -fx-border-color: #3A6F71;
     -fx-border-radius: 5px;
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-width: 2px;
     -fx-background-radius: 5px;
 }
 
 .Documents-JFXButton {
-    -fx-background-color: #31363F; /* Set border color */
+    -fx-background-color: #31363F;
     -fx-font-size: 13;
-    -fx-border-width: 1px; /* Optional rounded corners */
+    -fx-border-width: 1px;
     -fx-background-radius: 6px;
     -fx-border-color: #76ABAE;
     -fx-border-radius: 5px;
@@ -164,21 +154,21 @@
 }
 
 .Documents-JFXButton:hover {
-    -fx-background-color: #3A6F71; /* Change color on hover */ /* Change border color on hover */
+    -fx-background-color: #3A6F71;
     -fx-cursor: hand;
-    -fx-font-weight: bold; ;
+    -fx-font-weight: bold;
     -fx-font-fill: #76ABAE;
     -fx-border-color: #76ABAE;
-    -fx-font-size: 12;/* Show hand cursor on hover */
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-font-size: 12;
+    -fx-border-width: 2px;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
 }
 
 .Documents-VBox-JFXButton {
-    -fx-background-color: #222831; /* Set border color */
+    -fx-background-color: #222831;
     -fx-font-size: 13;
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-width: 2px;
     -fx-background-radius: 6px;
     -fx-border-color: #76ABAE;
     -fx-border-radius: 5px;
@@ -187,122 +177,119 @@
 
 .Documents-VBox-JFXButton:hover {
     -fx-cursor: hand;
-    -fx-font-weight: bold; ;
+    -fx-font-weight: bold;
     -fx-font-fill: #76ABAE;
-    -fx-font-size: 12;/* Show hand cursor on hover */
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-font-size: 12;
+    -fx-border-width: 2px;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
-    -fx-background-color: #B0D4D6;  /* Màu nền khi hover */
-    -fx-border-color: #3A6F71; /* Màu viền khi hover */
+    -fx-background-color: #B0D4D6;
+    -fx-border-color: #3A6F71;
 }
 
-/* Hiệu ứng khi nhấn nút */
 .Documents-VBox-JFXButton:pressed {
-    -fx-background-color: #3A6F71; /* Màu nền khi nhấn */
-    -fx-text-fill: #E0E0E0; /* Màu chữ khi nhấn */
+    -fx-background-color: #3A6F71;
+    -fx-text-fill: #E0E0E0;
 }
 
 .Documents-TableView {
-    -fx-background-color: #222831; /* Background color of the table */
-    -fx-border-color: #76ABAE; /* Border color */
+    -fx-background-color: #222831;
+    -fx-border-color: #76ABAE;
     -fx-border-radius: 5px;
-    -fx-border-width: 1px; /* Border width */
-    -fx-table-cell-border-color: #76ABAE; /* Border between cells */
+    -fx-border-width: 1px;
+    -fx-table-cell-border-color: #76ABAE;
     -fx-text-fill: #76ABAE;
     -fx-padding: 5px;
 }
 
 .Documents-TableView .column-header {
-    -fx-text-fill: #EEEEEE !important; /* Text color for the header */
-    -fx-background-color: #76ABAE !important; /* Header background color */
-    -fx-font-weight: bold; /* Font weight for header */
-    -fx-alignment: center; /* Center align header text */
-    -fx-border-color: #222831; /* Border color */
+    -fx-text-fill: #EEEEEE !important;
+    -fx-background-color: #76ABAE !important;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-border-color: #222831;
     -fx-background-radius: 5px;
 }
 
 .Documents-TableView .column-header .label {
     -fx-font-size: 13px;
-    -fx-text-fill: #EEEEEE ; /* Optional: Change header text color */
+    -fx-text-fill: #EEEEEE;
 }
 
 .Documents-TableView .table-row-cell {
-    -fx-background-color: #31363F; /* Background color for rows */
+    -fx-background-color: #31363F;
     -fx-alternate-row-fill-visible: true;
-    -fx-alternate-row-fill: #222831; /* Background color for alternate rows */
-    -fx-padding: 5px; /* Padding inside the rows */
+    -fx-alternate-row-fill: #222831;
+    -fx-padding: 5px;
     -fx-text-fill: #76ABAE;
 }
 
 .Documents-TableView .table-row-cell:odd {
-    -fx-background-color: #222831; /* Alternate row background */
+    -fx-background-color: #222831;
 }
 
 .Documents-TableView .table-row-cell:selected {
     -fx-font-weight: bold;
-    -fx-background-color: #E0E0E0; /* Selected row background */
-    -fx-text-fill: #222831 ; /* Selected row text color */
+    -fx-background-color: #E0E0E0;
+    -fx-text-fill: #222831;
 }
 
 .Documents-TableView .table-row-cell:hover {
-    -fx-background-color: #3A6F71; /* Màu nền khi hover */
-    -fx-text-fill: #222831 !important; /* Màu văn bản khi hover */
+    -fx-background-color: #3A6F71;
+    -fx-text-fill: #222831 !important;
     -fx-font-weight: bold;
 }
 
 .Documents-TableView .table-cell {
-    -fx-alignment: center-left; /* Alignment for cell content */
-    -fx-padding: 5px; /* Padding inside the cells */
-    -fx-font-size: 14px; /* Font size for cell text */
+    -fx-alignment: center-left;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
     -fx-text-fill: #76ABAE;
 }
 
 .Documents-TableView .table-cell:selected {
-    -fx-background-color: #76ABAE; /* Selected cell background */
-    -fx-text-fill: #EEEEEE; /* Selected cell text color */
+    -fx-background-color: #76ABAE;
+    -fx-text-fill: #EEEEEE;
     -fx-font-weight: bold;
 }
 
 .Documents-TableView .placeholder {
-    -fx-text-fill: #76ABAE !important; /* Đổi màu chữ thông báo thành màu đỏ cam */
-    -fx-font-size: 16px; /* Kích thước chữ */
-    -fx-font-weight: bold; /* Đậm chữ */
+    -fx-text-fill: #76ABAE !important;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
 }
 
-.Documents-TableView .corner  {
+.Documents-TableView .corner {
     -fx-background-color: #222831 !important;
 }
 
-/* Cài đặt cho HBox */
 .Documents-HBox {
-    -fx-background-color: #222831; /* Nền của HBox */
-    -fx-border-color: #76ABAE; /* Màu viền */
-    -fx-border-radius: 5px; /* Độ cong của viền */
-    -fx-border-width: 1px; /* Độ rộng viền */
-    -fx-padding: 5px; /* Khoảng cách giữa các phần tử trong HBox */
-    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+    -fx-background-color: #222831;
+    -fx-border-color: #76ABAE;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-padding: 5px;
+    -fx-spacing: 10px;
 }
 
-/* Cài đặt cho các phần tử bên trong HBox */
 .Documents-HBox .button {
-    -fx-background-color: #76ABAE; /* Màu nền cho các nút */
-    -fx-font-size: 12px; /* Kích thước chữ */
-    -fx-border-width: 1px; /* Độ dày viền */
-    -fx-border-radius: 5px; /* Độ cong viền nút */
-    -fx-text-fill: #222831; /* Màu chữ */
-    -fx-padding: 0px 0px; /* Khoảng cách bên trong nút */
+    -fx-background-color: #76ABAE;
+    -fx-font-size: 12px;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #222831;
+    -fx-padding: 0px 0px;
     -fx-border-color: #3A6F71;
 }
 
-/* Cài đặt khi hover trên các nút trong HBox */
 .Documents-HBox .button:hover {
-    -fx-background-color: #222831; /* Màu nền khi hover */
-    -fx-text-fill: #76ABAE; /* Màu chữ khi hover */
-    -fx-border-color: #76ABAE; /* Màu viền khi hover */
-    -fx-font-weight: bold; /* Làm đậm chữ khi hover */
-    -fx-cursor: hand; /* Thay đổi con trỏ khi hover */
+    -fx-background-color: #222831;
+    -fx-text-fill: #76ABAE;
+    -fx-border-color: #76ABAE;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
 }
+
 .Document-label {
     -fx-font-size: 14;
     -fx-alignment: center;
@@ -310,122 +297,121 @@
     -fx-text-fill: #76ABAE;
 }
 
-/* Định dạng chung cho VBox */
 .Document-vbox {
-    -fx-spacing: 10px; /* Khoảng cách giữa các HBox */
-    -fx-padding: 15px; /* Khoảng cách bên trong VBox */
-    -fx-background-color: #3A6F71; /* Màu nền của VBox */
-    -fx-border-color: #76ABAE; /* Màu viền */
-    -fx-border-width: 2px; /* Độ dày viền */
-    -fx-border-radius: 5px; /* Bo tròn viền */
-    -fx-background-radius: 5px; /* Bo tròn nền */
+    -fx-spacing: 10px;
+    -fx-padding: 15px;
+    -fx-background-color: #3A6F71;
+    -fx-border-color: #76ABAE;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
 }
-.Document-vbox .label{
-    -fx-text-fill: #222831; /* Màu chữ */
-    -fx-font-size: 14px; /* Cỡ chữ */
-    -fx-font-weight: bold; /* In đậm */
-    -fx-min-width: 100px; /* Độ rộng tối thiểu để căn chỉnh với TextField */
-    -fx-alignment: center-left; /* Canh phải */
+
+.Document-vbox .label {
+    -fx-text-fill: #222831;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-min-width: 100px;
+    -fx-alignment: center-left;
 }
-/* Định dạng chung cho HBox */
+
 .Document-vbox .custom-hbox {
-    -fx-spacing: 10px; /* Khoảng cách giữa Label và TextField */
-    -fx-alignment: center-left; /* Canh giữa theo trục dọc, trái theo trục ngang */
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
 }
 
-/* Định dạng cho Label */
 .Document-vbox .custom-hbox .label {
-    -fx-text-fill: #76ABAE; /* Màu chữ */
-    -fx-font-size: 14px; /* Cỡ chữ */
-    -fx-font-weight: bold; /* In đậm */
-    -fx-min-width: 100px; /* Độ rộng tối thiểu để căn chỉnh với TextField */
-    -fx-alignment: center-right; /* Canh phải */
+    -fx-text-fill: #76ABAE;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-min-width: 100px;
+    -fx-alignment: center-right;
 }
-
 
 .Document-vbox.custom-hbox .date-picker {
-    -fx-pref-width: 150px; /* Đặt chiều rộng cố định */
-    -fx-font-size: 14px; /* Cỡ chữ đồng nhất */
-    -fx-padding: 5px; /* Khoảng cách bên trong */
+    -fx-pref-width: 150px;
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
 }
 
-/* Định dạng cho TextField */
 .Document-vbox .custom-hbox .text-field {
-    -fx-background-color: #FFFFFF; /* Màu nền */
-    -fx-border-color: #CCCCCC; /* Màu viền */
-    -fx-border-width: 1px; /* Độ dày viền */
-    -fx-border-radius: 4px; /* Bo tròn viền */
-    -fx-background-radius: 4px; /* Bo tròn nền */
-    -fx-padding: 5px; /* Khoảng cách bên trong TextField */
-    -fx-font-size: 14px; /* Cỡ chữ */
-    -fx-text-fill: #76ABAE; /* Màu chữ */
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #76ABAE;
 }
+
 .Profile-root {
     -fx-background-color: #76ABAE;
 }
+
 .Profile-JFXButton {
-    -fx-background-color: #76ABAE; /* Set border color */
+    -fx-background-color: #76ABAE;
     -fx-font-size: 13;
     -fx-font-weight: bold;
-    -fx-border-width: 1px; /* Optional rounded corners */
+    -fx-border-width: 1px;
     -fx-background-radius: 6px;
     -fx-border-color: #3A6F71;
     -fx-border-radius: 5px;
 }
 
 .Profile-JFXButton:hover {
-    -fx-background-color: #B0D4D6; /* Change color on hover */ /* Change border color on hover */
+    -fx-background-color: #B0D4D6;
     -fx-cursor: hand;
-    -fx-font-weight: bold; ;
+    -fx-font-weight: bold;
+;
     -fx-border-color: #3A6F71;
-    -fx-font-size: 13;/* Show hand cursor on hover */
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-font-size: 13;
+    -fx-border-width: 2px;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
 }
 
 .Profile-VBox {
     -fx-background-color: #222831;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
 }
 
 .Profile-HBox {
     -fx-background-color: #222831;
-    -fx-background-radius:  10;
+    -fx-background-radius: 10;
     -fx-padding: 12px;
 }
 
 .EditProfile-JFXButton {
-    -fx-background-color: #31363F; /* Set border color */
+    -fx-background-color: #31363F;
     -fx-font-size: 13;
     -fx-font-weight: bold;
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-width: 2px;
     -fx-border-radius: 5px;
     -fx-border-color: #3A6F71;
     -fx-background-radius: 5px;
     -fx-text-fill: #76ABAE;
 }
 
-/* di chuột vào */
 .EditProfile-JFXButton:hover {
-    -fx-background-color: #B0D4D6; /* Change color on hover */ /* Change border color on hover */
+    -fx-background-color: #B0D4D6;
     -fx-cursor: hand;
     -fx-font-weight: bold;
     -fx-font-fill: #76ABAE;
-    -fx-font-size: 13;/* Show hand cursor on hover */
+    -fx-font-size: 13;
     -fx-border-color: #3A6F71;
     -fx-border-radius: 5px;
-    -fx-border-width: 2px; /* Optional rounded corners */
+    -fx-border-width: 2px;
     -fx-background-radius: 5px;
 }
 
 .EditProfile-HBox {
-    -fx-background-color: #222831; /* Nền của HBox */
-    -fx-border-color: #76ABAE; /* Màu viền */
-    -fx-border-radius: 5px; /* Độ cong của viền */
-    -fx-border-width: 1px; /* Độ rộng viền */
-    -fx-padding: 5px; /* Khoảng cách giữa các phần tử trong HBox */
-    -fx-spacing: 10px; /* Khoảng cách giữa các phần tử con trong HBox */
+    -fx-background-color: #222831;
+    -fx-border-color: #76ABAE;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-padding: 5px;
+    -fx-spacing: 10px;
     -fx-text-fill: #76ABAE;
 }
 
@@ -436,16 +422,15 @@
 .header {
     -fx-padding: 10 20;
     -fx-background-color: #222831;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
 }
-
 
 .Dashboard-stat-card {
     -fx-background-color: #222831;
     -fx-padding: 15;
     -fx-alignment: center;
     -fx-min-width: 150;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
     -fx-background-radius: 5;
 }
 
@@ -461,37 +446,21 @@
     -fx-padding: 10 0 5 0;
 }
 
-
-.chart-section {
-    -fx-background-color: #31363F;
-    -fx-padding: 20;
-    -fx-background-radius: 5;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
-}
-
 .section-title {
     -fx-font-size: 12px;
     -fx-font-weight: bold;
 }
 
-.Dashboard-chart-bar {
-    -fx-bar-fill: #ff6b6b;
-}
-
-.Dashboard-default-color1.Dashboard-chart-bar {
-    -fx-bar-fill: #4ecdc4;
-}
 .header {
     -fx-background-color: #31363F;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
 }
-
 
 .Dashboard-stat-card {
     -fx-background-color: #31363F;
     -fx-padding: 10;
     -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
     -fx-background-radius: 5;
     -fx-max-width: 120;
     -fx-min-width: 120;
@@ -539,7 +508,7 @@
 .table-section {
     -fx-background-color: #31363F;
     -fx-background-radius: 5;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
 }
 
 .section-title {
@@ -572,10 +541,7 @@
 .table-row-cell:selected {
     -fx-background-color: #e9ecef;
 }
-/* end */
 
-/* admin dashboard */
-/* start */
 .dashboard {
     -fx-background-color: #76ABAE;
     -fx-max-height: 464.0;
@@ -586,7 +552,7 @@
 
 .header {
     -fx-background-color: #31363F;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
 }
 
 .Dashboard-header-title {
@@ -602,7 +568,7 @@
     -fx-background-color: #31363F;
     -fx-padding: 10;
     -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
     -fx-background-radius: 5;
     -fx-max-width: 120;
     -fx-min-width: 120;
@@ -614,12 +580,10 @@
     -fx-stroke-line-cap: round;
 }
 
-/* Background circles */
 .stat-circle-bg {
     -fx-stroke: gray;
 }
 
-/* Foreground circles with different colors */
 .all-books-circle {
     -fx-stroke: #ff6b6b;
 }
@@ -640,7 +604,6 @@
     -fx-stroke: #2ab7ca;
 }
 
-/* Circle container style */
 .Dashboard-circle-container {
     -fx-alignment: center;
 }
@@ -652,21 +615,12 @@
     -fx-text-fill: #76ABAE;
 }
 
-
 .Dashboard-stat-container {
     -fx-max-height: 120;
     -fx-min-height: 120;
     -fx-spacing: 15;
     -fx-alignment: center;
     -fx-background-color: #76ABAE;
-}
-
-.chart-section {
-    -fx-background-color: #222831;
-    -fx-background-radius: 5;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
-    -fx-fit-to-height: true;
-    -fx-fit-to-width: true;
 }
 
 .section-title {
@@ -676,43 +630,20 @@
     -fx-text-fill: #76ABAE;
 }
 
-.Dashboard-chart-bar {
-    -fx-bar-fill: #ff6b6b;
-}
-
-.Dashboard-default-color1.Dashboard-chart-bar {
-    -fx-bar-fill: #4ecdc4;
-}
-
-.Dashboard-chart-legend {
-    -fx-background-color: transparent;
-    -fx-padding: 5px;
-}
-
-.Dashboard-chart-legend-item {
-    -fx-font-size: 11px;
-    -fx-text-fill: #76ABAE;
-}
-
 .axis {
     -fx-tick-label-font-size: 11px;
     -fx-text-fill: #76ABAE;
 }
+
 .Dashboard-axis-label {
     -fx-font-size: 12px;
     -fx-text-fill: #76ABAE;
 }
-/* end */
 
-
-/* profile interface */
-/* start */
-/* Style cho AnchorPane chính */
 .anchor-pane {
     -fx-background-color: #222831;
 }
 
-/* Style cho các nút */
 .Profile-button {
     -fx-background-color: #31363F;
     -fx-text-fill: #333;
@@ -728,10 +659,9 @@
 
 .Profile-button:hover {
     -fx-background-color: #e9ecef;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 3, 0, 0, 0);
 }
 
-/* Style cho labels */
 .Username-label {
     -fx-text-fill: #76ABAE;
     -fx-font-size: 16px;
@@ -746,7 +676,7 @@
 }
 
 .field-value {
-    -fx-text-fill: #76ABAE;
+    -fx-text-fill: #B0D4D6;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
     -fx-padding: 0 0 0 25px;
@@ -766,7 +696,6 @@
     -fx-padding: 10 0;
 }
 
-/* Style cho containers */
 .profile-container {
     -fx-background-color: #31363F;
     -fx-background-radius: 10;
@@ -777,7 +706,7 @@
 
 .left-sidebar {
     -fx-background-color: #31363F;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
     -fx-padding: 20;
     -fx-max-width: 200;
     -fx-alignment: top-center;
@@ -789,21 +718,17 @@
     -fx-font-weight: bold;
     -fx-text-fill: #76ABAE;
 }
-/* end */
 
-/* css for recently added documents */
-/* start */
-/* Modern Thumbnails Styles */
 .new-books-container {
-    -fx-background-color: transparent; /* Màu sắc mới */
+    -fx-background-color: transparent;
     -fx-background-radius: 15px;
     -fx-padding: 5px;
 }
 
 .thumbnail-navigation {
-    -fx-background-color: #76ABAE; /* Màu sắc mới giống như .new-books-container */
+    -fx-background-color: #76ABAE;
     -fx-background-radius: 30px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
 
 }
 
@@ -824,7 +749,7 @@
 }
 
 .book-cover {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 0, 5);
     -fx-background-radius: 10px;
     -fx-cursor: hand;
 }
@@ -848,13 +773,12 @@
 .dashboard_anchor {
     -fx-background-color: #76ABAE;
 }
-/* end */
 
 .SubScene-VBox-Left {
-    -fx-background-color:  #76ABAE;
+    -fx-background-color: #76ABAE;
     -fx-effect: dropshadow(gaussian, #EEEEEE, 10, 0.5, 0, 0);
-    -fx-border-width:  0 1px 0 0;
-    -fx-spacing:  12px;
+    -fx-border-width: 0 1px 0 0;
+    -fx-spacing: 12px;
 }
 
 .SubScene-VBox-Left-TitleLabel {
@@ -865,7 +789,7 @@
 }
 
 .SubScene-VBox-Right {
-    -fx-spacing:   10px;
+    -fx-spacing: 10px;
     -fx-padding: 10px;
 }
 
@@ -875,6 +799,7 @@
     -fx-font-family: Montserrat;
     -fx-text-fill: #76ABAE;
 }
+
 .ChangePassword_label {
     -fx-font-size: 13;
     -fx-font-weight: bold;
@@ -909,106 +834,120 @@
     -fx-text-fill: #76ABAE;
 }
 
+.chart-section {
+    -fx-background-color: #222831;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+    -fx-fit-to-height: true;
+    -fx-fit-to-width: true;
+}
+
 .chart-bar {
-    -fx-bar-fill: #76ABAE; /* Màu cột */
-    -fx-bar-gap: 2px; /* Khoảng cách giữa các cột */
+    -fx-bar-gap: 2px;
+    -fx-alternative-row-fill-visible: true;
+}
+
+.bar-1 {
+    -fx-bar-fill: #ff6b6b;
+}
+
+.bar-2 {
+    -fx-bar-fill: #4ecdc4;
+}
+
+.bar-3 {
+    -fx-bar-fill: #2ab7ca;
 }
 
 .chart-title {
-    -fx-font-size: 18px; /* Kích thước tiêu đề */
-    -fx-font-weight: bold; /* Chữ đậm */
-    -fx-text-fill: #76ABAE; /* Màu chữ */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #76ABAE;
 }
 
 .axis-label {
-    -fx-font-size: 12px; /* Kích thước chữ của nhãn trục */
+    -fx-font-size: 12px;
     -fx-font-weight: normal;
-    -fx-text-fill: #76ABAE; /* Màu chữ của nhãn trục */
+    -fx-text-fill: #76ABAE;
 }
 
 .axis {
-    -fx-tick-label-fill: #76ABAE; /* Màu của nhãn tick */
-    -fx-tick-label-font-size: 10px; /* Kích thước chữ tick */
+    -fx-tick-label-fill: #76ABAE;
+    -fx-tick-label-font-size: 10px;
     -fx-tick-label-font-weight: bold;
-    -fx-border-color: transparent; /* Loại bỏ viền trục nếu cần */
+    -fx-border-color: transparent;
 }
 
 .chart-legend {
-    -fx-background-color: transparent; /* Nền trong suốt */
-    -fx-border-color: #76ABAE; /* Viền nhẹ */
-    -fx-text-fill: #76ABAE; /* Màu chữ */
+    -fx-background-color: transparent;
+    -fx-border-color: #76ABAE;
+    -fx-text-fill: #76ABAE;
     -fx-font-size: 10px;
 }
 
 .chart-legend-item {
-    -fx-text-fill: #76ABAE; /* Màu chữ của Legend */
-    -fx-font-size: 10px; /* Kích thước chữ */
-    -fx-font-weight: bold; /* Độ đậm chữ */
+    -fx-text-fill: #76ABAE;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
 }
 
 .chart-legend-symbol {
-    -fx-background-color: #76ABAE; /* Màu biểu tượng của Legend */
-    -fx-shape: "circle"; /* Hình dạng của biểu tượng (mặc định là hình chữ nhật) */
-    -fx-background-radius: 50%; /* Làm tròn thành hình tròn nếu cần */
-    -fx-padding: 5px; /* Khoảng cách xung quanh biểu tượng */
+    -fx-background-color: #76ABAE;
+    -fx-shape: "circle";
+    -fx-background-radius: 50%;
+    -fx-padding: 5px;
 }
 
 .chart-plot-background {
-    -fx-background-color: #31363F; /* Màu nền của khu vực hiển thị biểu đồ */
-    -fx-background-radius: 5px; /* Bo góc cho nền */
-    -fx-border-color: #76ABAE; /* Màu viền */
+    -fx-background-color: #31363F;
+    -fx-background-radius: 5px;
+    -fx-border-color: #76ABAE;
     -fx-border-width: 1px;
     -fx-text-fill: #76ABAE;
 }
 
 .chart-bar:hover {
-    -fx-bar-fill: #ff6b6b; /* Màu khi hover vào cột */
+    -fx-bar-fill: #76ABAE;
 }
 
-/* ScrollPane Styles */
 .scroll-pane {
     -fx-background: #222831;
-    -fx-background-color: #222831 !important; /* Màu nền cho ScrollPane */
-    -fx-padding: 10px; /* Khoảng cách bên trong ScrollPane */
+    -fx-background-color: #222831 !important;
+    -fx-padding: 10px;
 }
 
 .scroll-pane .viewport {
-    -fx-background: #222831; /* Màu nền của nội dung bên trong */
+    -fx-background: #222831;
     -fx-background-color: #222831;
 }
 
-/* Vertical ScrollBar */
 .scroll-pane .scroll-bar:vertical {
-    -fx-background-color: transparent; /* Nền thanh cuộn dọc */
-    -fx-pref-width: 10px; /* Độ rộng thanh cuộn dọc */
+    -fx-background-color: transparent;
+    -fx-pref-width: 10px;
 }
 
-/* Horizontal ScrollBar */
 .scroll-pane .scroll-bar:horizontal {
-    -fx-background-color: transparent; /* Nền thanh cuộn ngang */
-    -fx-pref-height: 10px; /* Độ cao thanh cuộn ngang */
+    -fx-background-color: transparent;
+    -fx-pref-height: 10px;
 }
 
-/* Thumb (phần di chuyển trong thanh cuộn) */
 .scroll-pane .scroll-bar .thumb {
-    -fx-background-color: #76ABAE; /* Màu của thumb */
-    -fx-background-radius: 5px; /* Độ bo góc của thumb */
+    -fx-background-color: #76ABAE;
+    -fx-background-radius: 5px;
 }
 
-/* Hover effect for Thumb */
 .scroll-pane .scroll-bar .thumb:hover {
-    -fx-background-color: #3A6F71; /* Màu khi hover */
+    -fx-background-color: #3A6F71;
 }
 
-/* Track (đường dẫn của thanh cuộn) */
 .scroll-pane .scroll-bar .track {
-    -fx-background-color: #222831; /* Màu nền track */
-    -fx-background-radius: 5px; /* Độ bo góc track */
+    -fx-background-color: #222831;
+    -fx-background-radius: 5px;
 }
 
-/* Corner (góc nơi hai thanh cuộn giao nhau) */
+
 .scroll-pane .corner {
-    -fx-background-color: #222831; /* Màu nền cho góc */
+    -fx-background-color: #222831;
 }
 
 .image_label {
@@ -1021,29 +960,261 @@
 }
 
 .scroll-bar:vertical {
-    -fx-background-color: transparent; /* Nền thanh cuộn dọc */
-    -fx-pref-width: 10px; /* Độ rộng thanh cuộn dọc */
+    -fx-background-color: transparent;
+    -fx-pref-width: 10px;
 }
 
-/* Horizontal ScrollBar */
 .scroll-bar:horizontal {
-    -fx-background-color: transparent; /* Nền thanh cuộn ngang */
-    -fx-pref-height: 10px; /* Độ cao thanh cuộn ngang */
+    -fx-background-color: transparent;
+    -fx-pref-height: 10px;
 }
 
-/* Thumb (phần di chuyển trong thanh cuộn) */
 .scroll-bar .thumb {
-    -fx-background-color: #76ABAE; /* Màu của thumb */
-    -fx-background-radius: 5px; /* Độ bo góc của thumb */
+    -fx-background-color: #76ABAE;
+    -fx-background-radius: 5px;
 }
 
-/* Hover effect for Thumb */
 .scroll-bar .thumb:hover {
-    -fx-background-color: #3A6F71; /* Màu khi hover */
+    -fx-background-color: #3A6F71;
 }
 
-/* Track (đường dẫn của thanh cuộn) */
 .scroll-bar .track {
-    -fx-background-color: #222831; /* Màu nền track */
-    -fx-background-radius: 5px; /* Độ bo góc track */
+    -fx-background-color: #222831;
+    -fx-background-radius: 5px;
+}
+
+.star-icon {
+    -fx-fill: gray;
+}
+
+.star-icon-hover {
+    -fx-fill: orange;
+}
+
+.star-icon-selected {
+    -fx-fill: gold;
+}
+
+.list-view {
+    -fx-background-color: #222831;
+    -fx-control-inner-background: #222831;
+    -fx-border-color: #76ABAE;
+    -fx-border-radius: 5px;
+    -fx-padding: 11px;
+    -fx-background-radius: 5px;
+}
+
+.list-view .list-cell {
+    -fx-text-fill: #EEEEEE;
+    -fx-background-color: transparent;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 12px;
+    -fx-alignment: center-left;
+    -fx-alternate-row-fill-visible: true;
+    -fx-alternate-row-fill: #31363F;
+}
+
+.list-view .list-cell:odd {
+    -fx-background-color: #31363F;
+}
+
+.list-view .list-cell:even {
+    -fx-background-color: #222831;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #3A6F71;
+    -fx-text-fill: #FFFFFF;
+}
+
+.list-view .list-cell:selected {
+    -fx-background-color: #76ABAE;
+    -fx-text-fill: #222831;
+    -fx-font-weight: bold;
+}
+
+.text-area {
+    -fx-background-color: #222831;
+    -fx-border-color: #76ABAE;
+    -fx-border-radius: 5px;
+    -fx-padding: 2px;
+    -fx-font-size: 10px;
+    -fx-text-fill: #EEEEEE;
+    -fx-background-radius: 5px;
+}
+
+.text-area .content {
+    -fx-background-color: transparent;
+    -fx-text-fill: #EEEEEE;
+}
+
+.Comment_button {
+    -fx-background-color: #76ABAE;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 5px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-focus-color: transparent;
+}
+
+.Comment_button:hover {
+    -fx-background-color: #31363F;
+    -fx-text-fill: #EEEEEE;
+    -fx-background-radius: 5px;
+}
+
+.Comment_button:pressed {
+    -fx-background-color: #2E4E50;
+    -fx-text-fill: #FFFFFF;
+}
+
+.combo-box {
+    -fx-background-color: #222831;
+    -fx-border-color: #76ABAE;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 11px;
+    -fx-text-fill: #EEEEEE;
+}
+
+.combo-box:hover {
+    -fx-background-color: #31363F;
+    -fx-border-color: #3A6F71;
+}
+
+.combo-box:focused {
+    -fx-border-color: #76ABAE;
+    -fx-background-color: #31363F;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #EEEEEE;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #3A6F71;
+    -fx-text-fill: #FFFFFF;
+}
+
+.combo-box .list-cell:selected {
+    -fx-background-color: #76ABAE;
+    -fx-text-fill: #222831;
+    -fx-font-weight: bold;
+}
+
+.text-field {
+    -fx-background-color: #222831;
+    -fx-border-color: #76ABAE;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 12px;
+    -fx-text-fill: #EEEEEE;
+}
+
+.text-field:hover {
+    -fx-border-color: #3A6F71;
+}
+
+.text-field:focused {
+    -fx-border-color: #3A6F71;
+    -fx-background-color: #31363F;
+}
+
+.text-field .text-prompt {
+    -fx-text-fill: #888888;
+    -fx-font-style: italic;
+}
+
+.text-field:disabled {
+    -fx-background-color: #444C54;
+    -fx-text-fill: #666666;
+    -fx-border-color: #444C54;
+}
+
+.date-picker {
+    -fx-background-color: #222831;
+    -fx-border-color: #76ABAE;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-text-fill: #222831;
+    -fx-font-size: 14px;
+}
+
+.date-picker:hover {
+    -fx-border-color: #3A6F71;
+}
+
+.date-picker:focused {
+    -fx-border-color: #76ABAE;
+    -fx-background-color: #31363F;
+}
+
+.date-picker-popup {
+    -fx-background-color: #222831 !important;
+    -fx-border-color: #76ABAE;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.date-picker-popup .calendar-header {
+    -fx-background-color: #3A6F71;
+    -fx-border-color: #76ABAE;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.date-picker-popup .calendar-header .label {
+    -fx-text-fill: #222831 !important;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-background-color: #3A6F71 !important;
+}
+
+.arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 5px;
+    -fx-cursor: hand;
+}
+
+.arrow-button:hover {
+    -fx-background-color: #76ABAE;
+    -fx-text-fill: #222831;
+    -fx-border-radius: 50%;
+}
+
+.date-cell {
+    -fx-background-color: #222831;
+    -fx-text-fill: #76ABAE;
+}
+
+.date-cell:selected {
+    -fx-background-color: #76ABAE;
+    -fx-text-fill: #222831;
+    -fx-font-weight: bold;
+}
+
+.date-cell:hover {
+    -fx-background-color: #B0D4D6;
+    -fx-text-fill: #3A6F71;
+}
+
+.date-cell:empty {
+    -fx-text-fill: #888888;
+}
+
+.date-picker .text-prompt {
+    -fx-text-fill: #888888;
+    -fx-font-style: italic;
+}
+
+.date-picker:disabled {
+    -fx-background-color: #444C54;
+    -fx-text-fill: #666666;
+    -fx-border-color: #444C54;
 }

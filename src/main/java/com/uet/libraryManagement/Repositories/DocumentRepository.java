@@ -4,6 +4,7 @@ import com.uet.libraryManagement.Book;
 import com.uet.libraryManagement.ConnectJDBC;
 import com.uet.libraryManagement.Document;
 import com.uet.libraryManagement.Thesis;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -45,52 +46,90 @@ public abstract class DocumentRepository {
         ObservableList<Document> documents = FXCollections.observableArrayList();
 
         String query = """
-        WITH user_borrowed AS (
-            SELECT doc_id, doc_type
-            FROM borrow_history
-            WHERE user_id = ?
-        ),
-        similar_books AS (
-            SELECT * 
-            FROM books 
-            WHERE (
-                genre IN (
-                    SELECT DISTINCT genre 
-                    FROM books 
-                    WHERE id IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'book')
-                ) 
-                OR author IN (
-                    SELECT DISTINCT author 
-                    FROM books 
-                    WHERE id IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'book')
+                WITH user_borrowed AS (
+                    SELECT doc_id, doc_type
+                    FROM borrow_history
+                    WHERE user_id = ?
+                ),
+                similar_books AS (
+                    SELECT\s
+                        b.*,\s
+                        'book' AS doc_type,\s
+                        COALESCE(AVG(rc.rating), 0) AS avg_rating
+                    FROM books b
+                    LEFT JOIN rating_comment rc ON rc.doc_id = b.id AND rc.doc_type = 'book'
+                    WHERE (
+                        b.genre IN (
+                            SELECT DISTINCT b1.genre\s
+                            FROM books b1
+                            WHERE b1.id IN (SELECT ub.doc_id FROM user_borrowed ub WHERE ub.doc_type = 'book')
+                        )\s
+                        OR b.author IN (
+                            SELECT DISTINCT b2.author\s
+                            FROM books b2
+                            WHERE b2.id IN (SELECT ub.doc_id FROM user_borrowed ub WHERE ub.doc_type = 'book')
+                        )
+                    )\s
+                    AND b.id NOT IN (SELECT ub.doc_id FROM user_borrowed ub WHERE ub.doc_type = 'book')
+                    GROUP BY b.id
+                ),
+                similar_theses AS (
+                    SELECT\s
+                        t.*,\s
+                        'thesis' AS doc_type,\s
+                        COALESCE(AVG(rc.rating), 0) AS avg_rating
+                    FROM theses t
+                    LEFT JOIN rating_comment rc ON rc.doc_id = t.id AND rc.doc_type = 'thesis'
+                    WHERE (
+                        t.field IN (
+                            SELECT DISTINCT t1.field\s
+                            FROM theses t1
+                            WHERE t1.id IN (SELECT ub.doc_id FROM user_borrowed ub WHERE ub.doc_type = 'thesis')
+                        )\s
+                        OR t.author IN (
+                            SELECT DISTINCT t2.author\s
+                            FROM theses t2
+                            WHERE t2.id IN (SELECT ub.doc_id FROM user_borrowed ub WHERE ub.doc_type = 'thesis')
+                        )
+                    )\s
+                    AND t.id NOT IN (SELECT ub.doc_id FROM user_borrowed ub WHERE ub.doc_type = 'thesis')
+                    GROUP BY t.id
+                ),
+                rated_books AS (
+                    SELECT\s
+                        b.*,\s
+                        'book' AS doc_type,\s
+                        COALESCE(AVG(rc.rating), 0) AS avg_rating
+                    FROM books b
+                    LEFT JOIN rating_comment rc ON rc.doc_id = b.id AND rc.doc_type = 'book'
+                    WHERE b.id NOT IN (SELECT ub.doc_id FROM user_borrowed ub WHERE ub.doc_type = 'book')
+                    GROUP BY b.id
+                    ORDER BY avg_rating DESC, b.createdDate DESC
+                    LIMIT 5
+                ),
+                rated_theses AS (
+                    SELECT\s
+                        t.*,\s
+                        'thesis' AS doc_type,\s
+                        COALESCE(AVG(rc.rating), 0) AS avg_rating
+                    FROM theses t
+                    LEFT JOIN rating_comment rc ON rc.doc_id = t.id AND rc.doc_type = 'thesis'
+                    WHERE t.id NOT IN (SELECT ub.doc_id FROM user_borrowed ub WHERE ub.doc_type = 'thesis')
+                    GROUP BY t.id
+                    ORDER BY avg_rating DESC, t.createdDate DESC
+                    LIMIT 5
+                ),
+                recommended_docs AS (
+                    SELECT * FROM similar_books
+                    UNION ALL
+                    SELECT * FROM similar_theses
                 )
-            ) 
-            AND id NOT IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'book')
-        ),
-        similar_theses AS (
-            SELECT * 
-            FROM theses 
-            WHERE (
-                field IN (
-                    SELECT DISTINCT field 
-                    FROM theses 
-                    WHERE id IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'thesis')
-                ) 
-                OR author IN (
-                    SELECT DISTINCT author 
-                    FROM theses 
-                    WHERE id IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'thesis')
-                )
-            ) 
-            AND id NOT IN (SELECT doc_id FROM user_borrowed WHERE doc_type = 'thesis')
-        )
-        SELECT * 
-        FROM similar_books
-        UNION ALL
-        SELECT * 
-        FROM similar_theses
-        ORDER BY createdDate DESC
-        LIMIT 10;
+                SELECT * FROM recommended_docs
+                UNION ALL
+                SELECT * FROM rated_books
+                UNION ALL
+                SELECT * FROM rated_theses
+                LIMIT 10;
         """;
 
         try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, userId)) {
@@ -104,13 +143,30 @@ public abstract class DocumentRepository {
     // get recent added documents
     public ObservableList<Document> getRecentAddedDocuments() {
         ObservableList<Document> documents = FXCollections.observableArrayList();
-        String query = "SELECT * FROM books "
+        String query = "SELECT *, 'book' AS docType FROM books "
                         + "UNION ALL "
-                        + "SELECT * FROM theses "
+                        + "SELECT *, 'thesis' AS docType FROM theses "
                         + "ORDER BY createdDate DESC "
                         + "LIMIT 5";
         try (ResultSet rs = ConnectJDBC.executeQuery(query)) {
-            getDocuments(rs, documents);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String titleValue = rs.getString("title");
+                String authorValue = rs.getString("author");
+                String publisher = rs.getString("publisher");
+                String year = rs.getString("publishDate");
+                String description = rs.getString("description");
+                String genre = rs.getString(getDbTable().equals("books") ? "genre" : "field");
+                String url = rs.getString("thumbnail");
+                String isbn10Value = rs.getString("isbn10");
+                String isbn13Value = rs.getString("isbn13");
+                int quantityValue = rs.getInt("quantity");
+                String docType = rs.getString("docType");
+                Document document = docType.equals("book") ?
+                        new Book(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value, quantityValue) :
+                        new Thesis(id, titleValue, authorValue, publisher, description, year, genre, url, isbn10Value, isbn13Value, quantityValue);
+                documents.add(document);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -267,7 +323,6 @@ public abstract class DocumentRepository {
                     document.getYear(), document.getDescription(), document.getCategory(),
                     document.getThumbnailUrl(), document.getIsbn10(), document.getIsbn13(),
                     quantity, Timestamp.valueOf(LocalDateTime.now()));
-            showAlert("Document inserted successfully !");
             System.out.println("Document inserted successfully.");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -323,8 +378,12 @@ public abstract class DocumentRepository {
     }
 
     private void showAlert(String message) {
+        Platform.runLater(() -> {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Notification");
+        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    });
     }
 }

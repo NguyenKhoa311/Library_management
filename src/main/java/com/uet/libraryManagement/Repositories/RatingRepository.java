@@ -55,11 +55,19 @@ public class RatingRepository {
 
     public ObservableList<RatingComment> getCommentsByDocumentId(int documentId, String docType) {
         ObservableList<RatingComment> comments = FXCollections.observableArrayList();
+        String normalizedDocType;
+        if (docType.equalsIgnoreCase("book") || docType.equalsIgnoreCase("books")) {
+            normalizedDocType = "book";
+        } else if (docType.equalsIgnoreCase("thesis") || docType.equalsIgnoreCase("theses")) {
+            normalizedDocType = "thesis";
+        } else {
+            throw new IllegalArgumentException("Invalid document type: " + docType);
+        }
         String query = "SELECT r.user_id, r.rating, r.comment, r.created_at, u.user_name " +
                 "FROM rating_comment r " +
                 "JOIN users u ON r.user_id = u.id " +
                 "WHERE r.doc_id = ? AND r.doc_type = ?";
-        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, documentId, docType.equals("Books") ? "book" : "thesis")) {
+        try (ResultSet rs = ConnectJDBC.executeQueryWithParams(query, documentId, normalizedDocType)) {
             while (rs.next()) {
                 String userName = rs.getString("user_name");
                 int userId = rs.getInt("user_id");
