@@ -23,7 +23,7 @@ The **Library Management System** is a software application designed to streamli
 
 ### Application Supports:
 - APIs search.
-- Light-Dark mode.
+- Light-dark mode.
 - Using *AWS RDS* as a database.
 - Multithreading.
 - Rating and commenting documents.
